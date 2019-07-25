@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import MultipeerConnectivity
 
 class GameViewController: UIViewController {
     
@@ -23,22 +23,15 @@ class GameViewController: UIViewController {
 }
 
 extension GameViewController: SessionManagerDelegate {
-    func nearPeerHasChangedState(_ manager: SessionManager,peer: String, connected state: Bool) {
-        let peerList = session.showConncetedDevices()
-        DispatchQueue.main.async {
-        self.label.text = ""
-        }
-        for device in peerList {
-            DispatchQueue.main.async {
-            self.label.text = self.label.text! + device + "\n"
-            }
-        }
-        print("cambio stato")
+    func peerFound(_ manger: SessionManager, peer: MCPeerID) {
+        
+      try! session.invitePeer(invite: peer)
     }
     
-    func mexReceived(_ manager: SessionManager, didMessaggeReceived: Data) {
-        i += 1
-        print("\(i)")
+    func nearPeerHasChangedState(_ manager: SessionManager,peer: MCPeerID, connected state: Bool) {
+        print("boh")
     }
     
+    func mexReceived(_ manager: SessionManager, didMessaggeReceived: UInt8) {        print("Messaggio: \(didMessaggeReceived)")
+    } 
 }

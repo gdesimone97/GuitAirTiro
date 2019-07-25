@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import MultipeerConnectivity
 
 class GameViewControllerPhone: UIViewController {
-
+    
     @IBOutlet var label: UILabel!
     var session = SessionManager()
+    var i: UInt8 = 2
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         session.delegate = self
@@ -23,20 +26,26 @@ class GameViewControllerPhone: UIViewController {
     }
     @IBAction func button(_ sender: Any) {
         var deviceList = session.showConncetedDevices()
-        session.sendSignal(deviceList[0], message: 1)
+        
+        session.sendSignal(deviceList![0], message: i)
+        i+=1
     }
 }
 
 extension GameViewControllerPhone: SessionManagerDelegate {
     
-    func nearPeerHasChangedState(_ manager: SessionManager, peer: String, connected state: Bool) {
+    func peerFound(_ manger: SessionManager, peer: MCPeerID) {
+        print("peer trovato: \(peer)")
+    }
+    
+    func nearPeerHasChangedState(_ manager: SessionManager, peer: MCPeerID, connected state: Bool) {
         DispatchQueue.main.async {
-        if state {
-            self.label.text = "conneted"
-        }
-        else {
-            self.label.text = "disconnected"
-        }
+            if state {
+                self.label.text = "conneted"
+            }
+            else {
+                self.label.text = "disconnected"
+            }
         }
     }
 }
