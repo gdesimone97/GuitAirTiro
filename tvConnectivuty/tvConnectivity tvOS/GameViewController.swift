@@ -20,9 +20,6 @@ class GameViewController: UIViewController {
         i = 0
     }
     
-    @IBAction func device(_ sender: Any) {
-        present(session.serviceBrowserView!, animated: true, completion: nil)
-    }
 }
 
 extension GameViewController: SessionManagerDelegate {
