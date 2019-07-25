@@ -17,12 +17,7 @@ import MultipeerConnectivity
 
 class SessionManager: NSObject {
     // Initiating a Session
-    #if os(tvOS)
-    private var peerID = MCPeerID(displayName: "tv-" + UIDevice.current.name ) // ID peer ugaule all'identificativo del device
-    #elseif os(iOS)
-    private var peerID = MCPeerID(displayName: "phone-" + UIDevice.current.name )
-    #endif
-    
+    private var peerID = MCPeerID(displayName: UIDevice.current.name ) // ID peer ugaule all'identificativo del device
     var serviceBrowserView: MCBrowserViewController?
     
     lazy var session: MCSession = {
