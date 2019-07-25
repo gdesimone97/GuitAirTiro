@@ -23,7 +23,7 @@ class SessionManager: NSObject {
     private var peerID = MCPeerID(displayName: "phone-" + UIDevice.current.name )
     #endif
     
-//    var serviceBrowserView: MCBrowserViewController?
+    var serviceBrowserView: MCBrowserViewController?
     
     lazy var session: MCSession = {
         let mySession = MCSession(peer: self.peerID)
@@ -33,30 +33,30 @@ class SessionManager: NSObject {
     
     private let typeOfService = "guit-air"
     weak var delegate: SessionManagerDelegate?
-    private let serviceBrowser: MCNearbyServiceBrowser
+    private var serviceBrowser: MCNearbyServiceBrowser?
     private let serviceAdverticer: MCNearbyServiceAdvertiser
+    var serviceAdverticerAssistant: MCAdvertiserAssistant?
     
     //    Singleton
     static var share = SessionManager()
     
     override init() {
-        self.serviceBrowser = MCNearbyServiceBrowser(peer: self.peerID, serviceType: typeOfService) // Cerca altri peer usando l'infrastrutture di rete disponibili
         self.serviceAdverticer = MCNearbyServiceAdvertiser(peer: self.peerID, discoveryInfo: nil, serviceType: typeOfService) // Gestisce gli invita da parte degli altri peer
         super.init()
+        self.serviceBrowserView = MCBrowserViewController(serviceType: typeOfService, session: self.session)
+        self.serviceAdverticerAssistant = MCAdvertiserAssistant(serviceType: typeOfService, discoveryInfo: nil, session: self.session)
+        self.serviceAdverticerAssistant?.delegate = self
+        self.serviceAdverticerAssistant?.start()
         
-//        self.serviceBrowserView = MCBrowserViewController(serviceType: typeOfService, session: self.session)
-//        self.serviceBrowserView?.delegate = self
+        serviceBrowserView?.maximumNumberOfPeers = 3
+        serviceBrowserView?.minimumNumberOfPeers = 3
         
-        self.serviceBrowser.delegate = self
-        self.serviceBrowser.startBrowsingForPeers()
-        
-        self.serviceAdverticer.delegate = self
-        self.serviceAdverticer.startAdvertisingPeer()
     }
     
     deinit {
-        self.serviceBrowser.stopBrowsingForPeers()
+        self.serviceBrowser!.stopBrowsingForPeers()
         self.serviceAdverticer.stopAdvertisingPeer()
+        self.serviceAdverticerAssistant?.stop()
     }
     
     #if os(iOS)
@@ -120,42 +120,19 @@ extension SessionManager: MCSessionDelegate {
     }
 }
 
-extension SessionManager: MCNearbyServiceBrowserDelegate {
-    func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        print("peer trovato: \(peerID)")
-        #if os(tvOS)
-        let arrayString = peerID.displayName.components(separatedBy: "-")
-        let peerHeader = arrayString[0]
-        if peerHeader == "phone" {
-            browser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 30)
-        }
-        print("peer invitato: \(peerID)")
-        #endif
-    }
+extension SessionManager: MCBrowserViewControllerDelegate {
     
-    func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
-        print("peer perso: \(peerID)")
-        self.delegate?.peerLost?(self, peerIdString: peerID.displayName)
+    func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
+        browserViewController.dismiss(animated: true, completion: nil)
+    }
+        
+        
+    func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
+        browserViewController.dismiss(animated: true, completion: nil)
+        
     }
 }
 
-extension SessionManager: MCNearbyServiceAdvertiserDelegate {
-    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-        print("Invito ricevuto da: \(peerID)")
-        #if os(iOS)
-        invitationHandler(true,self.session)
-        #endif
-    }
+extension SessionManager: MCAdvertiserAssistantDelegate {
+    
 }
-
-//extension SessionManager: MCBrowserViewControllerDelegate {
-//    func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
-//        browserViewController.dismiss(animated: true, completion: nil)
-//    }
-//
-//    func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
-//        browserViewController.dismiss(animated: true, completion: nil)
-//    }
-//
-//
-//}
