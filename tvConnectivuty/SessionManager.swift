@@ -9,15 +9,15 @@
 import UIKit
 import MultipeerConnectivity
 
-enum MyError: Error {
-    case notPeerFound
-}
-
 @objc protocol SessionManagerDelegate: class {
+    /** Rilevazione di un peer */
     func peerFound(_ manger: SessionManager, peer: MCPeerID)
-    @objc optional func nearPeerHasChangedState(_ manager: SessionManager,peer: MCPeerID, connected: Bool)
+    /** Uno dei peer della sessione ha cambiato stato: connesso o disconnesso dalla sessione */
+    @objc optional func nearPeerHasChangedState(_ manager: SessionManager,peer change: MCPeerID, connected: Bool)
+    /** Segnala la ricezione di un messaggio */
     @objc optional func mexReceived(_ manager: SessionManager,didMessaggeReceived: UInt8)
-    @objc optional func peerLost(_ manager: SessionManager, peerIdString: MCPeerID)
+    /** Connessione con peer persa */
+    @objc optional func peerLost(_ manager: SessionManager,peer lost: MCPeerID)
 }
 
 class SessionManager: NSObject {
@@ -56,6 +56,7 @@ class SessionManager: NSObject {
     }
     
     func invitePeer(invite peer: MCPeerID) throws {
+        sleep(2)
         self.serviceBrowser.invitePeer(peer, to: self.session, withContext: nil, timeout: 30)
     }
     
@@ -123,7 +124,7 @@ extension SessionManager: MCNearbyServiceBrowserDelegate {
     
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
         print("peer perso: \(peerID)")
-        self.delegate?.peerLost?(self, peerIdString: peerID)
+        self.delegate?.peerLost?(self, peer: peerID)
     }
 }
 

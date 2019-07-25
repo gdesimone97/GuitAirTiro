@@ -25,7 +25,7 @@ class GameViewController: UIViewController {
 extension GameViewController: SessionManagerDelegate {
     func peerFound(_ manger: SessionManager, peer: MCPeerID) {
         
-      try! session.invitePeer(invite: peer)
+        try! session.invitePeer(invite: peer)
     }
     
     func nearPeerHasChangedState(_ manager: SessionManager,peer: MCPeerID, connected state: Bool) {
@@ -33,5 +33,5 @@ extension GameViewController: SessionManagerDelegate {
     }
     
     func mexReceived(_ manager: SessionManager, didMessaggeReceived: UInt8) {        print("Messaggio: \(didMessaggeReceived)")
-    } 
+    }
 }
