@@ -25,10 +25,10 @@ class GameViewControllerPhone: UIViewController {
         
     }
     @IBAction func button(_ sender: Any) {
-        var deviceList = session.showConncetedDevices()
-        
-        session.sendSignal(deviceList![0], message: i)
+        if let deviceList = session.showConncetedDevices() {
+            session.sendSignal(deviceList[0], message: i)
         i+=1
+        }
     }
 }
 
