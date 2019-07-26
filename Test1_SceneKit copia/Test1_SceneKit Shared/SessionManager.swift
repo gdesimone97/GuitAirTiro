@@ -38,7 +38,7 @@ class SessionManager: NSObject {
     //    Singleton
     static var share = SessionManager()
     
-    override init() {
+    private override init() {
         self.serviceBrowser = MCNearbyServiceBrowser(peer: self.peerID, serviceType: typeOfService) // Cerca altri peer usando l'infrastrutture di rete disponibili
         self.serviceAdverticer = MCNearbyServiceAdvertiser(peer: self.peerID, discoveryInfo: nil, serviceType: typeOfService) // Gestisce gli invita da parte degli altri peer
         super.init()
