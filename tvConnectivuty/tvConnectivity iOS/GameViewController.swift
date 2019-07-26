@@ -13,7 +13,7 @@ class GameViewControllerPhone: UIViewController {
     
     @IBOutlet var label: UILabel!
     var session = SessionManager()
-    var i: UInt8 = 2
+    var i: UInt8 = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +22,9 @@ class GameViewControllerPhone: UIViewController {
     }
     
     @IBAction func controller(_ sender: Any) {
-        
+        session.disconnectedPeer()
     }
+    
     @IBAction func button(_ sender: Any) {
         if let deviceList = session.showConncetedDevices() {
             session.sendSignal(deviceList[0], message: i)

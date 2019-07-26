@@ -56,10 +56,14 @@ class SessionManager: NSObject {
     }
     
     func invitePeer(invite peer: MCPeerID) throws {
+        print("Connessione in corso...")
         sleep(2)
-        self.serviceBrowser.invitePeer(peer, to: self.session, withContext: nil, timeout: 30)
+        self.serviceBrowser.invitePeer(peer, to: self.session, withContext: nil, timeout: 10)
     }
     
+    func disconnectedPeer() {
+        self.session.disconnect()
+    }
     
     #if os(iOS)
     func sendSignal (_ peer: MCPeerID, message: UInt8) {
@@ -92,7 +96,7 @@ extension SessionManager: MCSessionDelegate {
     // Lo stato di un peer vicino è cambiato
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         state == MCSessionState.connected ? self.delegate?.nearPeerHasChangedState?(self,peer: peerID,connected: true) : self.delegate?.nearPeerHasChangedState?(self,peer:peerID, connected: false)
-        print("Stato della connessione: \(state.rawValue)")
+        print("Stato della connessione: \(state.rawValue) di \(peerID)")
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
