@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		777BB7B222E99C9D001BF9E9 /* Smoke Effect in Resources */ = {isa = PBXBuildFile; fileRef = 777BB7AF22E99C9D001BF9E9 /* Smoke Effect */; };
+		779E565022EB090400ACC1BF /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779E564F22EB090300ACC1BF /* SessionManager.swift */; };
+		779E565122EB090400ACC1BF /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779E564F22EB090300ACC1BF /* SessionManager.swift */; };
+		779E565322EB0A3200ACC1BF /* DeviceDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779E565222EB0A3200ACC1BF /* DeviceDictionary.swift */; };
 		77DFAD2222E84C56006DCBEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFAD2122E84C56006DCBEE /* AppDelegate.swift */; };
 		77DFAD2422E84C56006DCBEE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFAD2322E84C56006DCBEE /* GameViewController.swift */; };
 		77DFAD2722E84C56006DCBEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77DFAD2522E84C56006DCBEE /* Main.storyboard */; };
@@ -75,6 +78,8 @@
 
 /* Begin PBXFileReference section */
 		777BB7AF22E99C9D001BF9E9 /* Smoke Effect */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Smoke Effect"; sourceTree = "<group>"; };
+		779E564F22EB090300ACC1BF /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		779E565222EB0A3200ACC1BF /* DeviceDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDictionary.swift; sourceTree = "<group>"; };
 		77DFAD1722E84C54006DCBEE /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		77DFAD1822E84C54006DCBEE /* Art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Art.scnassets; sourceTree = "<group>"; };
 		77DFAD1922E84C56006DCBEE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -138,6 +143,7 @@
 		77DFAD1622E84C54006DCBEE /* Test1_SceneKit Shared */ = {
 			isa = PBXGroup;
 			children = (
+				779E564F22EB090300ACC1BF /* SessionManager.swift */,
 				77DFAD1722E84C54006DCBEE /* GameController.swift */,
 				77DFAD1822E84C54006DCBEE /* Art.scnassets */,
 				77DFAD1922E84C56006DCBEE /* Assets.xcassets */,
@@ -195,6 +201,7 @@
 				777BB7AF22E99C9D001BF9E9 /* Smoke Effect */,
 				77DFAD4F22E84C56006DCBEE /* Main.storyboard */,
 				77DFAD5222E84C56006DCBEE /* Info.plist */,
+				779E565222EB0A3200ACC1BF /* DeviceDictionary.swift */,
 			);
 			path = "Test1_SceneKit tvOS";
 			sourceTree = "<group>";
@@ -366,6 +373,7 @@
 			files = (
 				77DFAD2422E84C56006DCBEE /* GameViewController.swift in Sources */,
 				77DFAD5322E84C56006DCBEE /* GameController.swift in Sources */,
+				779E565022EB090400ACC1BF /* SessionManager.swift in Sources */,
 				77DFAD2222E84C56006DCBEE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,6 +394,8 @@
 			files = (
 				77DFAD4E22E84C56006DCBEE /* GameViewController.swift in Sources */,
 				77DFAD5522E84C56006DCBEE /* GameController.swift in Sources */,
+				779E565322EB0A3200ACC1BF /* DeviceDictionary.swift in Sources */,
+				779E565122EB090400ACC1BF /* SessionManager.swift in Sources */,
 				77DFAD4C22E84C56006DCBEE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

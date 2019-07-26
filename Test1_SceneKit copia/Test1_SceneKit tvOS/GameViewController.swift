@@ -8,6 +8,7 @@
 
 import UIKit
 import SceneKit
+import MultipeerConnectivity
 
 
 class GameViewController: UIViewController {
@@ -24,7 +25,8 @@ class GameViewController: UIViewController {
     var camera: SCNNode!
     var spot: SCNNode!
     
-    var dictionary: [String : String] = ["1":"Ciao", "2":"Holaaaaa", "3":"Close", "4":"Peppeee", "5":"OOee", "6":"Mario De Sio", "7":"GesuChristian"]
+    var dictionary = DeviceDictionary()
+    var session = SessionManager.share
     
     // Connection Properties
     var planeNode: SCNNode!
@@ -33,6 +35,7 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        session.delegate = self
         
         self.gameController = GameController(sceneRenderer: gameView)
         
@@ -97,7 +100,7 @@ class GameViewController: UIViewController {
                 }
             // DownGesture
             case 8:
-                if row < dictionary.count {
+                if row < dictionary.dim {
                     row += 1
                     showKey(pos: row)
                 }
@@ -105,11 +108,11 @@ class GameViewController: UIViewController {
                 break
             }
             
-            if row > 0 && row < dictionary.count + 1 {
+            if row > 0 && row < dictionary.dim + 1 {
                 self.gameView.scene!.rootNode.enumerateChildNodes { (node, _) in
                     let names = node.name?.split(separator: ":")
                     if names?[0] == "Text" && String((names?[1])!) == String(row) {
-                        node.scale = SCNVector3(x: 0.4, y: 0.4, z: 0.3)
+                        node.scale = SCNVector3(x: 0.35, y: 0.35, z: 0.3)
                     }
                     else if names?[0] == "Text" {
                         node.scale = SCNVector3(x: 0.3, y: 0.3, z: 0.3)
@@ -206,17 +209,17 @@ class GameViewController: UIViewController {
             planeNode.runAction(SCNAction.wait(duration: 5))
         }
         
-        planeNode.runAction(SCNAction.move(to: SCNVector3(x: 0, y: 4, z: 1), duration: 1))
-        spot.light?.intensity = 100
+        planeNode.runAction(SCNAction.move(by: SCNVector3(x: 0, y: -6, z: 0), duration: 1))
+        spot.light?.intensity = 500
         
-        for pair in dictionary {
-            addCenteredText(pos: Int(pair.key)!, str: pair.value)
+        for pair in dictionary.dictionary {
+            addCenteredText(pos: Int(pair.key)!, str: pair.value.displayName)
         }
     }
     
     func hidePlane() {
         if planeNode != nil {
-            planeNode.runAction(SCNAction.move(to: SCNVector3(x: 0, y: 10, z: 1), duration: 1))
+            planeNode.runAction(SCNAction.move(by: SCNVector3(x: 0, y: 6, z: 0), duration: 1))
             spot.light?.intensity = 2000
         }
         self.gameView.scene!.rootNode.enumerateChildNodes { (node, _) in
@@ -281,7 +284,8 @@ class GameViewController: UIViewController {
         textNode.geometry?.firstMaterial = textMaterial
         
         // Positioned slightly to the left, and above the capsule (which is 10 units high)
-        textNode.position = SCNVector3(x: -2, y: Float(5.95 - Double(pos)/2.2), z: 1)
+        textNode.position = SCNVector3(x: -2, y: 10, z: 1)
+        textNode.runAction(SCNAction.move(by: SCNVector3(x: 0, y: Float(-(10 - (5.95 - Double(pos)/2.2))), z: 0), duration: 2))
         textNode.scale = SCNVector3(x: 0.3, y: 0.3, z: 0.3)
         self.gameView.scene?.rootNode.addChildNode(textNode)
     }
@@ -316,6 +320,16 @@ class GameViewController: UIViewController {
         particleNode.eulerAngles = SCNVector3(CGFloat.pi/2, roll, 0)
     }
     
+}
+
+extension GameViewController: SessionManagerDelegate {
+    func peerFound(_ manger: SessionManager, peer: MCPeerID) {
+        dictionary.addSample(peer: peer)
+    }
+    
+    func peerLost(_ manager: SessionManager, peer lost: MCPeerID) {
+        dictionary.removeSample(peer: lost)
+    }
 }
 
 
