@@ -44,9 +44,9 @@ extension GameViewControllerPhone: SessionManagerDelegate {
         print("peer trovato: \(peer)")
     }
     
-    func nearPeerHasChangedState(_ manager: SessionManager, peer: MCPeerID, connected state: Bool) {
+    func nearPeerHasChangedState(_ manager: SessionManager, peer change: MCPeerID, connected: Int)  {
         DispatchQueue.main.async {
-            if state {
+            if connected == 2 {
                 self.label.text = "conneted"
             }
             else {
