@@ -127,7 +127,7 @@ class SessionManager: NSObject {
         while session.connectedPeers.count >= playersNumber {
             //print("peer: \(session.connectedPeers.last?.displayName)")
             sendSignal(session.connectedPeers.last!, message: SignalCode.disconnectPeerSignal)
-            sleep(6)
+            sleep(3)
         }
     }
     
