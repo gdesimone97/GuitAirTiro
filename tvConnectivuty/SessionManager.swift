@@ -13,7 +13,7 @@ import MultipeerConnectivity
     /** Rilevazione di un peer */
     func peerFound(_ manger: SessionManager, peer: MCPeerID)
     /** Uno dei peer della sessione ha cambiato stato: connesso o disconnesso dalla sessione */
-    @objc optional func nearPeerHasChangedState(_ manager: SessionManager,peer change: MCPeerID, connected: Bool)
+    @objc optional func nearPeerHasChangedState(_ manager: SessionManager,peer change: MCPeerID, connected: Int)
     /** Segnala la ricezione di un messaggio */
     @objc optional func mexReceived(_ manager: SessionManager,didMessaggeReceived: UInt8)
     /** Connessione con peer persa */
@@ -22,6 +22,8 @@ import MultipeerConnectivity
 
 enum SignalCode: UInt8 {
     case disconnectPeerSignal = 0
+    case accept = 3
+    case decline = 4
 }
 
 class SessionManager: NSObject {
@@ -136,11 +138,7 @@ class SessionManager: NSObject {
 extension SessionManager: MCSessionDelegate {
     // Lo stato di un peer vicino è cambiato
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
-        if state == MCSessionState.connected { self.delegate?.nearPeerHasChangedState?(self,peer: peerID,connected: true)
-        }
-        else if state == MCSessionState.notConnected {
-            self.delegate?.nearPeerHasChangedState?(self,peer:peerID, connected: false)
-        }
+        self.delegate?.nearPeerHasChangedState?(self, peer: peerID, connected: state.rawValue)
         print("Stato della connessione: \(state.rawValue) di \(peerID)")
     }
     
