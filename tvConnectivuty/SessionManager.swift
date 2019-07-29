@@ -13,7 +13,7 @@ import MultipeerConnectivity
     /** Rilevazione di un peer */
     func peerFound(_ manger: SessionManager, peer: MCPeerID)
     /** Uno dei peer della sessione ha cambiato stato: connesso o disconnesso dalla sessione */
-    @objc optional func nearPeerHasChangedState(_ manager: SessionManager,peer change: MCPeerID, connected: Int)
+    func nearPeerHasChangedState(_ manager: SessionManager,peer change: MCPeerID, connected: Int)
     /** Segnala la ricezione di un messaggio */
     @objc optional func mexReceived(_ manager: SessionManager,didMessaggeReceived: UInt8)
     /** Connessione con peer persa */
@@ -54,6 +54,7 @@ class SessionManager: NSObject {
     //    Singleton
     static var share = SessionManager()
     
+    
     private override init() {
         self.serviceBrowser = MCNearbyServiceBrowser(peer: self.peerID, serviceType: typeOfService) // Cerca altri peer usando l'infrastrutture di rete disponibili
         self.serviceAdverticer = MCNearbyServiceAdvertiser(peer: self.peerID, discoveryInfo: nil, serviceType: typeOfService) // Gestisce gli invita da parte degli altri peer
@@ -75,7 +76,7 @@ class SessionManager: NSObject {
         print("Connessione in corso...")
         invitePeerSetUp()
         sleep(2)
-        self.serviceBrowser.invitePeer(peer, to: self.session, withContext: nil, timeout: 10)
+        self.serviceBrowser.invitePeer(peer, to: self.session, withContext: nil, timeout: 30)
         print("Connessione effettuata")
     }
     
@@ -126,7 +127,7 @@ class SessionManager: NSObject {
     private func invitePeerSetUp() {
         while session.connectedPeers.count >= playersNumber {
             //print("peer: \(session.connectedPeers.last?.displayName)")
-            sendSignal(session.connectedPeers.last!, message: SignalCode.disconnectPeerSignal)
+            session.cancelConnectPeer(session.connectedPeers.last!)
             sleep(3)
         }
     }
@@ -138,17 +139,13 @@ class SessionManager: NSObject {
 extension SessionManager: MCSessionDelegate {
     // Lo stato di un peer vicino è cambiato
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
-        self.delegate?.nearPeerHasChangedState?(self, peer: peerID, connected: state.rawValue)
+        self.delegate?.nearPeerHasChangedState(self, peer: peerID, connected: state.rawValue)
         print("Stato della connessione: \(state.rawValue) di \(peerID)")
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         print("Messaggio ricevuto da: \(peerID), messaggio: \(data)")
         let intData = data.first
-        if intData == SignalCode.disconnectPeerSignal.rawValue {
-            session.disconnect()
-            return
-        }
         self.delegate?.mexReceived?(self, didMessaggeReceived: intData!)
     }
     
@@ -181,10 +178,17 @@ extension SessionManager: MCNearbyServiceBrowserDelegate {
 extension SessionManager: MCNearbyServiceAdvertiserDelegate {
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
         
-        print("Invito ricevuto da: \(peerID)")
-        #if os(iOS)
-        invitationHandler(true,self.session)
-        #endif
-        
+        let allert = UIAlertController(title: "Invitation", message: "Do you want accept the connection request?", preferredStyle: .alert)
+        let actionAccept = UIAlertAction(title: "Accept", style: .default, handler: { action in
+            invitationHandler(true,self.session)
+            sleep(1)
+        })
+        let actionDecline = UIAlertAction(title: "Decline", style: .cancel, handler: { action in
+            invitationHandler(false,self.session)
+        })
+        allert.addAction(actionAccept)
+        allert.addAction(actionDecline)
+        let viewController:UIViewController = UIApplication.shared.keyWindow!.rootViewController!
+        viewController.present(allert, animated: true, completion: nil)
     }
 }
