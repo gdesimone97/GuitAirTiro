@@ -32,7 +32,6 @@
                                 <state key="normal" title="Button2"/>
                                 <connections>
                                     <action selector="button2:" destination="BV1-FR-VrT" eventType="touchUpInside" id="gsu-Cc-7bX"/>
-                                    <action selector="controller:" destination="BV1-FR-VrT" eventType="touchUpInside" id="KXP-SY-SV7"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zLz-AR-w4i">
