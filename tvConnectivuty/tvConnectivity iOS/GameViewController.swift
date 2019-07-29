@@ -27,10 +27,17 @@ class GameViewControllerPhone: UIViewController {
     
     @IBAction func button(_ sender: Any) {
         if let deviceList = session.showConncetedDevices() {
-            session.sendSignal(deviceList[0], message: i)
-        i+=1
+            session.sendSignal(deviceList[0], message: 1)
         }
     }
+    
+    @IBAction func button2(_ sender: Any) {
+        if let deviceList = session.showConncetedDevices() {
+            session.sendSignal(deviceList[0], message: 2)
+        }
+    }
+    
+    
 }
 
 extension GameViewControllerPhone: SessionManagerDelegate {

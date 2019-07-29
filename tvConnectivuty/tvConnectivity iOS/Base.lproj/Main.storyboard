@@ -25,21 +25,23 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zLz-AR-w4i">
-                                <rect key="frame" x="87" y="450" width="168" height="106"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qH-Ta-DRo">
+                                <rect key="frame" x="263" y="454" width="121" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Button2"/>
                                 <connections>
-                                    <action selector="button:" destination="BV1-FR-VrT" eventType="touchUpInside" id="WPf-ck-12F"/>
+                                    <action selector="button2:" destination="BV1-FR-VrT" eventType="touchUpInside" id="gsu-Cc-7bX"/>
+                                    <action selector="controller:" destination="BV1-FR-VrT" eventType="touchUpInside" id="KXP-SY-SV7"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qH-Ta-DRo">
-                                <rect key="frame" x="286" y="366" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zLz-AR-w4i">
+                                <rect key="frame" x="20" y="450" width="168" height="106"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <state key="normal" title="Button1"/>
                                 <connections>
-                                    <action selector="controller:" destination="BV1-FR-VrT" eventType="touchUpInside" id="KXP-SY-SV7"/>
+                                    <action selector="button:" destination="BV1-FR-VrT" eventType="touchUpInside" id="WPf-ck-12F"/>
                                 </connections>
                             </button>
                         </subviews>
