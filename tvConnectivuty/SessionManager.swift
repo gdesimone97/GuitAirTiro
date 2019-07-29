@@ -38,6 +38,7 @@ class SessionManager: NSObject {
     weak var delegate: SessionManagerDelegate?
     private let serviceBrowser: MCNearbyServiceBrowser
     private let serviceAdverticer: MCNearbyServiceAdvertiser
+    //private let serviceAdverticerAssistant: MC
     private var players = 1
     var playersNumber: Int {
         get {
@@ -81,7 +82,7 @@ class SessionManager: NSObject {
     }
     
     func sendSignal (_ peer: MCPeerID, message: SignalCode) {
-        var mex = message
+        var mex = message.rawValue
         if self.session.connectedPeers.count > 0 {
             print("Messaggio inviato")
             let data = withUnsafeBytes(of: &mex) { Data($0) }
@@ -121,9 +122,10 @@ class SessionManager: NSObject {
     }
     
     private func invitePeerSetUp() {
-        let peerList = session.connectedPeers
-        while peerList.count + 1 > playersNumber {
-            self.sendSignal(peerList.last!, message: SignalCode.disconnectPeerSignal)
+        while session.connectedPeers.count >= playersNumber {
+            //print("peer: \(session.connectedPeers.last?.displayName)")
+            sendSignal(session.connectedPeers.last!, message: SignalCode.disconnectPeerSignal)
+            sleep(6)
         }
     }
     
