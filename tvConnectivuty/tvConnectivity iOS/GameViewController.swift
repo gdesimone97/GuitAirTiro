@@ -35,9 +35,7 @@ class GameViewControllerPhone: UIViewController {
         if let deviceList = session.showConncetedDevices() {
             session.sendSignal(deviceList[0], message: 2)
         }
-    }
-    
-    
+    } 
 }
 
 extension GameViewControllerPhone: SessionManagerDelegate {
