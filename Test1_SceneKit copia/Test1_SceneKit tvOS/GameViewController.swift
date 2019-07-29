@@ -27,6 +27,8 @@ class GameViewController: UIViewController {
     
     var dictionary = DeviceDictionary()
     var session = SessionManager.share
+    let semaphore = DispatchSemaphore(value: 1)
+    let listPeerQueue = DispatchQueue(label: "listPeerQueue", qos: .userInteractive)
     
     // Connection Properties
     var planeNode: SCNNode!
@@ -65,6 +67,15 @@ class GameViewController: UIViewController {
         
         self.addGestures()
         
+        listPeerQueue.async {
+            while true {
+                if self.flagPanelConnection {
+                    self.updatePeerList()
+                }
+                print("Ciao")
+                self.semaphore.wait()
+            }
+        }
     }
     
     @objc func handleTap(_ gestureRecognizer: UIGestureRecognizer) {
@@ -74,17 +85,15 @@ class GameViewController: UIViewController {
         }
         else {
             // Forse non basta uno switch perchè non so il numero esatto di peer
-            switch row {
-            case 1:
-                print("Selezionato 1")
-            case 2:
-                print("Selezionato 2")
-            default:
-                hidePlane()
-                showKey(pos: 0)
-                row = 0
-                flagPanelConnection = !flagPanelConnection
+            for index in dictionary.dictionary.keys {
+                if Int(index)! == row {
+                    print("Selezionato \(dictionary.dictionary[index])")
+                }
             }
+            hidePlane()
+            showKey(pos: 0)
+            row = 0
+            flagPanelConnection = !flagPanelConnection
         }
         
     }
@@ -209,12 +218,13 @@ class GameViewController: UIViewController {
             planeNode.runAction(SCNAction.wait(duration: 5))
         }
         
-        planeNode.runAction(SCNAction.move(by: SCNVector3(x: 0, y: -6, z: 0), duration: 1))
         spot.light?.intensity = 500
         
-        for pair in dictionary.dictionary {
-            addCenteredText(pos: Int(pair.key)!, str: pair.value.displayName)
+        let goDown = SCNAction.move(by: SCNVector3(x: 0, y: -6, z: 0), duration: 1)
+        let textAppear = SCNAction.run{ _ in
+            self.updatePeerList()
         }
+        planeNode.runAction(SCNAction.sequence([goDown, textAppear]))
     }
     
     func hidePlane() {
@@ -227,6 +237,34 @@ class GameViewController: UIViewController {
             if names?[0] == "Text" {
                 node.removeFromParentNode()
             }
+        }
+    }
+    
+    func updatePeerList() {
+        self.gameView.scene!.rootNode.enumerateChildNodes { (node, _) in
+            let names = node.name?.split(separator: ":")
+            if names?[0] == "Text" {
+                node.removeFromParentNode()
+                print("rimosso")
+            }
+        }
+        
+        for pair in dictionary.dictionary {
+            let text = SCNText(string: pair.value.displayName, extrusionDepth: 0.2)
+            text.font = UIFont.italicSystemFont(ofSize: 1)
+            let textNode = SCNNode(geometry: text)
+            textNode.name = "Text:\(pair.key))"
+            
+            let textMaterial = SCNMaterial()
+            textMaterial.diffuse.contents = UIColor.black
+            textMaterial.specular.contents = UIColor.black
+            textMaterial.emission.contents = UIColor.black
+            textMaterial.shininess = 1.0
+            textNode.geometry?.firstMaterial = textMaterial
+            
+            textNode.position = SCNVector3(x: -2, y: Float(5.95 - Double(Int(pair.key)!)/2.2), z: 1)
+            textNode.scale = SCNVector3(x: 0.3, y: 0.3, z: 0.3)
+            self.gameView.scene?.rootNode.addChildNode(textNode)
         }
     }
     
@@ -325,10 +363,12 @@ class GameViewController: UIViewController {
 extension GameViewController: SessionManagerDelegate {
     func peerFound(_ manger: SessionManager, peer: MCPeerID) {
         dictionary.addSample(peer: peer)
+        semaphore.signal()
     }
     
     func peerLost(_ manager: SessionManager, peer lost: MCPeerID) {
         dictionary.removeSample(peer: lost)
+        semaphore.signal()
     }
 }
 
