@@ -122,7 +122,7 @@ class SessionManager: NSObject {
     
     private func invitePeerSetUp() {
         let peerList = session.connectedPeers
-        while peerList.count >= playersNumber {
+        while peerList.count > playersNumber {
             self.sendSignal(peerList.last!, message: SignalCode.disconnectPeerSignal)
         }
     }
