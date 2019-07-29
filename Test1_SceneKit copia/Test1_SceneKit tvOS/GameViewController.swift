@@ -19,19 +19,25 @@ class GameViewController: UIViewController {
     
     var gameController: GameController!
     
-    var box: SCNNode!
+    var electricGuitar: SCNNode!
+    var acousticGuitar: SCNNode!
     var keyNode: SCNNode!
     var plane: SCNNode!
     var camera: SCNNode!
     var spot: SCNNode!
+    var numGuitar: Int = 2 // 2 for electric guitar, 1 for acoustic guitar
+    // Assegnamento da fare in base alle UsersDefaults e NON QUI
     
     var dictionary = DeviceDictionary()
     var session = SessionManager.share
     let semaphore = DispatchSemaphore(value: 1)
     let peerListQueue = DispatchQueue(label: "peerListQueue", qos: .userInteractive)
+    var peerConnected: MCPeerID?
+    var connected: Int = 0 // -> 0: Disconnected, 1: Connecting, 2: Connected
     
-    var deviceNode1: SCNNode?
-    var deviceNode2: SCNNode?
+    var deviceNode: SCNNode?
+    
+    
     
     // Connection Properties
     var planeNode: SCNNode!
@@ -96,18 +102,14 @@ class GameViewController: UIViewController {
             flagPanelConnection = !flagPanelConnection
         }
         else {
-            let rows = dictionary.dim+1
+            let rows = dictionary.dim + 1
             for index in 0...rows {
                 if index == row {
                     if let peerID = dictionary.keyForValue(value: String(index)) {
                         print("Selezionato \(peerID)")
                         do {
                             try session.invitePeer(invite: peerID)
-                            deviceNode1?.removeFromParentNode()
-                            deviceNode2?.removeFromParentNode()
-                            addNotification(str: "Connected to the device!", color: UIColor.green)
-                            deviceNode1 = addTextAtPosition(str: "Device Connected: ", x: 7, y: 4.5)
-                            deviceNode2 = addTextAtPosition(str: "\(peerID.displayName)", x: 7, y: 4)
+                            addNotification(str: "Connecting to the device!", color: UIColor.green)
                         } catch {
                             addNotification(str: "Unable to connect to that device!", color: UIColor.red)
                         }
@@ -185,22 +187,28 @@ class GameViewController: UIViewController {
         // Add a Fog Emitter
 //        addEmitter()
         
-        // Add a text
-        addCenteredText(str: "GuitAir")
+        DispatchQueue.main.async {
+            self.addCenteredText(str: "GuitAir")
+            self.deviceNode = self.addTextAtPosition(str: "No device connected! Press the central button on the remote control to see the available devices", x: -5.5, y: 0.5)
+        }
     }
     
     func addContent() {
         let node = self.gameView.scene!.rootNode.childNode(withName: "Node", recursively: false)
         self.gameView.scene!.rootNode.enumerateChildNodes { (node, _) in
             if node.name == "electricGuitar" {
-                box = node
-                box.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: box, options: nil))
-                box.physicsBody?.isAffectedByGravity = false
-                box.physicsBody?.restitution = 1
-//                let up = SCNAction.move(to: SCNVector3(0, 0, 0.3), duration: 4)
-//                let down = SCNAction.move(to: SCNVector3(0, -0.7, 0.3), duration: 4)
-//                box.runAction(SCNAction.repeatForever(SCNAction.sequence([up, down])))
-                box.runAction(SCNAction.repeatForever(SCNAction.rotate(by: CGFloat.pi, around: SCNVector3(box.position.x, box.position.y+1, box.position.z), duration: 3)))
+                electricGuitar = node
+                electricGuitar.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: electricGuitar, options: nil))
+                electricGuitar.physicsBody?.isAffectedByGravity = false
+                electricGuitar.physicsBody?.restitution = 1
+                electricGuitar.runAction(SCNAction.repeatForever(SCNAction.rotate(by: CGFloat.pi, around: SCNVector3(0, 1, 0), duration: 3)))
+            }
+            if node.name == "acousticGuitar" {
+                acousticGuitar = node
+                acousticGuitar.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: acousticGuitar, options: nil))
+                acousticGuitar.physicsBody?.isAffectedByGravity = false
+                acousticGuitar.physicsBody?.restitution = 1
+                acousticGuitar.runAction(SCNAction.repeatForever(SCNAction.rotate(by: CGFloat.pi, around: SCNVector3(0, 1, 0), duration: 3)))
             }
             if node.name == "camera" {
                 camera = node
@@ -237,7 +245,9 @@ class GameViewController: UIViewController {
             self.gameView.scene?.rootNode.addChildNode(planeNode)
         }
         
-        spot.light?.intensity = 500
+        if let spot = spot  {
+            spot.light!.intensity = 500
+        }
         
         let goDown = SCNAction.move(by: SCNVector3(x: 0, y: -6, z: 0), duration: 0.4)
         let textAppear = SCNAction.run{ _ in
@@ -350,24 +360,25 @@ class GameViewController: UIViewController {
         textNode.runAction(SCNAction.sequence([appear, wait, run, remove]))
     }
     
-    // Posizioni rispetto il centro della tv. LarghezzaMin : 6, LarghezzaMax: 8
+    // Position relative to the center of the screen
+    // x -> MIN: -5.5, MAX: 5.5
+    // y -> MIN: 0, MAX:
     func addTextAtPosition(str: String, x: Float, y: Float) -> SCNNode {
         let text = SCNText(string: str, extrusionDepth: 0.2)
         text.font = UIFont.systemFont(ofSize: 1)
         let textNode = SCNNode(geometry: text)
+
+//        textNode.eulerAngles = SCNVector3(x: 0, y: -0.2, z: 0)
+        textNode.scale = SCNVector3(x: 0.2, y: 0.2, z: 0.2)
         let xLenght = (textNode.boundingBox.max.x - textNode.boundingBox.min.x)
-        // Positioned slightly to the left, and above the capsule (which is 10 units high)
-        textNode.position = SCNVector3(x: x - xLenght/2, y: 10, z: -3)
-        textNode.eulerAngles = SCNVector3(x: 0, y: -0.2, z: 0)
-        textNode.scale = SCNVector3(x: 0.5, y: 0.5, z: 0.5)
         self.gameView.scene?.rootNode.addChildNode(textNode)
+        textNode.position = SCNVector3(x: x, y: y, z: 1)
         
-        
-        let compareAction = SCNAction.move(to: SCNVector3(x: x - xLenght/2, y: 3 + y, z: -3), duration: 2)
-        let right = SCNAction.rotate(by: 0.4, around: SCNVector3(x: 0, y: 1, z: 0), duration: 3)
-        let left = SCNAction.rotate(by: -0.4, around: SCNVector3(x: 0, y: 1, z: 0), duration: 3)
-        let repeatAction = SCNAction.repeatForever(SCNAction.sequence([right, left]))
-        textNode.runAction(SCNAction.sequence([compareAction, repeatAction]))
+//        let compareAction = SCNAction.move(to: SCNVector3(x: x - xLenght/2, y: 3 + y, z: -3), duration: 2)
+//        let right = SCNAction.rotate(by: 0.4, around: SCNVector3(x: 0, y: 1, z: 0), duration: 3)
+//        let left = SCNAction.rotate(by: -0.4, around: SCNVector3(x: 0, y: 1, z: 0), duration: 3)
+//        let repeatAction = SCNAction.repeatForever(SCNAction.sequence([right, left]))
+//        textNode.runAction(SCNAction.sequence([compareAction, repeatAction]))
         
         return textNode
     }
@@ -408,6 +419,7 @@ class GameViewController: UIViewController {
         particleNode.eulerAngles = SCNVector3(CGFloat.pi/2, roll, 0)
     }
     
+    
 }
 
 extension GameViewController: SessionManagerDelegate {
@@ -421,8 +433,79 @@ extension GameViewController: SessionManagerDelegate {
         semaphore.signal()
     }
     
+    func nearPeerHasChangedState(_ manager: SessionManager, peer change: MCPeerID, connected: Int) {
+        DispatchQueue.main.async {
+            self.deviceNode!.removeFromParentNode()
+            
+            if self.connected == 0 && connected == 1 {
+                self.connected = connected
+                self.deviceNode = self.addTextAtPosition(str: "Connecting to \(change.displayName) ...", x: -5.5, y: 0.5)
+            }
+            else if self.connected == 1 && connected == 2 {
+                self.connected = connected
+                self.deviceNode = self.addTextAtPosition(str: "Device Connected: \(change.displayName)", x: -5.5, y: 0.5)
+                self.peerConnected = change
+            }
+            else if self.peerConnected == change && self.connected == 2 && connected == 0 {
+                self.connected = connected
+                self.deviceNode = self.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5)
+            }
+        }
+    }
+    
     func mexReceived(_ manager: SessionManager, didMessaggeReceived: UInt8) {
-        print("ricevuto un messaggio \(didMessaggeReceived)")
+        DispatchQueue.main.async {
+            switch Int(didMessaggeReceived) {
+            case 1: // Guitar #1 has been selected (Acoustic)
+                
+                // See what was the selected guitar
+                switch self.numGuitar {
+                case 2: // Guitar #2 was selected (Electric)
+                    let go = SCNAction.move(by: SCNVector3(x: -10, y: 0, z: 0), duration: 1)
+                    let remove = SCNAction.run{_ in
+                        self.electricGuitar.removeFromParentNode()
+                    }
+                    self.electricGuitar.runAction(SCNAction.sequence([go, remove]))
+                    
+                // If you add more guitars, you must add the other cases here
+                default:
+                    break
+                }
+                
+                if self.numGuitar != 1 {
+                    self.numGuitar = Int(didMessaggeReceived)
+                    self.gameView.scene?.rootNode.addChildNode(self.acousticGuitar)
+                    self.acousticGuitar.position = SCNVector3(x: 10, y: 0.7, z: 0)
+                    self.acousticGuitar.runAction(SCNAction.move(by: SCNVector3(x: -10, y: 0, z: 0), duration: 0.7))
+                }
+                
+            case 2: // Guitar #2 has been selected (Electric)
+                
+                // See what was the selected guitar
+                switch self.numGuitar {
+                case 1: // Guitar #1 was selected (Acoustic)
+                    let go = SCNAction.move(by: SCNVector3(x: -10, y: 0, z: 0), duration: 1)
+                    let remove = SCNAction.run{_ in
+                        self.acousticGuitar.removeFromParentNode()
+                    }
+                    self.acousticGuitar.runAction(SCNAction.sequence([go, remove]))
+                    
+                // If you add more guitars, you must add the other cases here
+                default:
+                    break
+                }
+                
+                if self.numGuitar != 2 {
+                    self.numGuitar = Int(didMessaggeReceived)
+                    self.gameView.scene?.rootNode.addChildNode(self.electricGuitar)
+                    self.electricGuitar.position = SCNVector3(x: 10, y: 0.7, z: 0)
+                    self.electricGuitar.runAction(SCNAction.move(by: SCNVector3(x: -10, y: 0, z: 0), duration: 0.7))
+                }
+                
+            default:
+                break
+            }
+        }
     }
 }
 

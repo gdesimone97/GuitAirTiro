@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test1_SceneKit tvOS/GameViewController.swift"
-            timestampString = "586096789.7305911"
+            timestampString = "586112693.421574"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "16"
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test1_SceneKit tvOS/GameViewController.swift"
-            timestampString = "586096789.730914"
+            timestampString = "586112693.421983"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test1_SceneKit tvOS/GameViewController.swift"
-            timestampString = "586096789.731112"
+            timestampString = "586112693.422278"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
+            landmarkName = "GameViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Test1_SceneKit tvOS/GameViewController.swift"
+            timestampString = "586112693.422568"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
             landmarkName = "addContent()"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,13 +74,156 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test1_SceneKit tvOS/GameViewController.swift"
-            timestampString = "586096789.731302"
+            timestampString = "586112693.42286"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
-            landmarkName = "GameViewController"
-            landmarkType = "3">
+            startingLineNumber = "437"
+            endingLineNumber = "437"
+            landmarkName = "nearPeerHasChangedState(_:peer:connected:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Test1_SceneKit.GameViewController.nearPeerHasChangedState(_: Test1_SceneKit.SessionManager, peer: __C.MCPeerID, connected: Swift.Int) -&gt; ()"
+                  moduleName = "Test1_SceneKit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ggiaquinto/Documents/GitHub/GuitAirTiro/Test1_SceneKit%20copia/Test1_SceneKit%20tvOS/GameViewController.swift"
+                  timestampString = "586110476.316864"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "436"
+                  endingLineNumber = "436"
+                  offsetFromSymbolStart = "200">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Test1_SceneKit.GameViewController.nearPeerHasChangedState(_: Test1_SceneKit.SessionManager, peer: __C.MCPeerID, connected: Swift.Int) -&gt; ()"
+                  moduleName = "Test1_SceneKit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ggiaquinto/Documents/GitHub/GuitAirTiro/Test1_SceneKit%20copia/Test1_SceneKit%20tvOS/GameViewController.swift"
+                  timestampString = "586110476.318213"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "437"
+                  endingLineNumber = "437"
+                  offsetFromSymbolStart = "208">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Test1_SceneKit tvOS/GameViewController.swift"
+            timestampString = "586112693.423098"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "439"
+            endingLineNumber = "439"
+            landmarkName = "nearPeerHasChangedState(_:peer:connected:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Test1_SceneKit tvOS/GameViewController.swift"
+            timestampString = "586112693.423328"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "438"
+            endingLineNumber = "438"
+            landmarkName = "nearPeerHasChangedState(_:peer:connected:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Test1_SceneKit tvOS/GameViewController.swift"
+            timestampString = "586112693.423557"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "449"
+            endingLineNumber = "449"
+            landmarkName = "nearPeerHasChangedState(_:peer:connected:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Test1_SceneKit tvOS/GameViewController.swift"
+            timestampString = "586112693.423787"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "458"
+            endingLineNumber = "458"
+            landmarkName = "mexReceived(_:didMessaggeReceived:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Test1_SceneKit.GameViewController.mexReceived(_: Test1_SceneKit.SessionManager, didMessaggeReceived: Swift.UInt8) -&gt; ()"
+                  moduleName = "Test1_SceneKit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ggiaquinto/Documents/GitHub/GuitAirTiro/Test1_SceneKit%20copia/Test1_SceneKit%20tvOS/GameViewController.swift"
+                  timestampString = "586111829.450266"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "457"
+                  endingLineNumber = "457"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Test1_SceneKit.GameViewController.mexReceived(_: Test1_SceneKit.SessionManager, didMessaggeReceived: Swift.UInt8) -&gt; ()"
+                  moduleName = "Test1_SceneKit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ggiaquinto/Documents/GitHub/GuitAirTiro/Test1_SceneKit%20copia/Test1_SceneKit%20tvOS/GameViewController.swift"
+                  timestampString = "586111829.451659"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "457"
+                  endingLineNumber = "457"
+                  offsetFromSymbolStart = "204">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Test1_SceneKit.GameViewController.mexReceived(_: Test1_SceneKit.SessionManager, didMessaggeReceived: Swift.UInt8) -&gt; ()"
+                  moduleName = "Test1_SceneKit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ggiaquinto/Documents/GitHub/GuitAirTiro/Test1_SceneKit%20copia/Test1_SceneKit%20tvOS/GameViewController.swift"
+                  timestampString = "586111829.452979"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "457"
+                  endingLineNumber = "457"
+                  offsetFromSymbolStart = "2308">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
