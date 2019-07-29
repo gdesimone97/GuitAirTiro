@@ -38,7 +38,7 @@ class SessionManager: NSObject {
     weak var delegate: SessionManagerDelegate?
     private let serviceBrowser: MCNearbyServiceBrowser
     private let serviceAdverticer: MCNearbyServiceAdvertiser
-    
+    //private let serviceAdverticerAssistant: MC
     private var players = 1
     var playersNumber: Int {
         get {
@@ -123,7 +123,7 @@ class SessionManager: NSObject {
     
     private func invitePeerSetUp() {
         let peerList = session.connectedPeers
-        while peerList.count >= playersNumber {
+        while peerList.count > playersNumber {
             self.sendSignal(peerList.last!, message: SignalCode.disconnectPeerSignal)
         }
     }
