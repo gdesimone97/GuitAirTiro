@@ -28,7 +28,10 @@ class GameViewController: UIViewController {
     var dictionary = DeviceDictionary()
     var session = SessionManager.share
     let semaphore = DispatchSemaphore(value: 1)
-    let listPeerQueue = DispatchQueue(label: "listPeerQueue", qos: .userInteractive)
+    let peerListQueue = DispatchQueue(label: "peerListQueue", qos: .userInteractive)
+    
+    var deviceNode1: SCNNode?
+    var deviceNode2: SCNNode?
     
     // Connection Properties
     var planeNode: SCNNode!
@@ -67,13 +70,22 @@ class GameViewController: UIViewController {
         
         self.addGestures()
         
-        listPeerQueue.async {
+        peerListQueue.async {
             while true {
-                if self.flagPanelConnection {
-                    self.updatePeerList()
-                }
-                print("Ciao")
+                self.peerListMain()
                 self.semaphore.wait()
+            }
+        }
+    }
+    
+    
+    // Func needed to update interface immediatly
+    func peerListMain() {
+        DispatchQueue.main.async {
+            if self.flagPanelConnection {
+                self.updatePeerList()
+                self.showKey(pos: 0)
+                self.row = 0
             }
         }
     }
@@ -84,18 +96,29 @@ class GameViewController: UIViewController {
             flagPanelConnection = !flagPanelConnection
         }
         else {
-            // Forse non basta uno switch perchè non so il numero esatto di peer
-            for index in dictionary.dictionary.keys {
-                if Int(index)! == row {
-                    print("Selezionato \(dictionary.dictionary[index])")
+            let rows = dictionary.dim+1
+            for index in 0...rows {
+                if index == row {
+                    if let peerID = dictionary.keyForValue(value: String(index)) {
+                        print("Selezionato \(peerID)")
+                        do {
+                            try session.invitePeer(invite: peerID)
+                            deviceNode1?.removeFromParentNode()
+                            deviceNode2?.removeFromParentNode()
+                            addNotification(str: "Connected to the device!", color: UIColor.green)
+                            deviceNode1 = addTextAtPosition(str: "Device Connected: ", x: 7, y: 4.5)
+                            deviceNode2 = addTextAtPosition(str: "\(peerID.displayName)", x: 7, y: 4)
+                        } catch {
+                            addNotification(str: "Unable to connect to that device!", color: UIColor.red)
+                        }
+                    }
+                    hidePlane()
+                    showKey(pos: 0)
+                    row = 0
+                    flagPanelConnection = !flagPanelConnection
                 }
             }
-            hidePlane()
-            showKey(pos: 0)
-            row = 0
-            flagPanelConnection = !flagPanelConnection
         }
-        
     }
     
     @objc func handleSwipe(swipe: UISwipeGestureRecognizer) {
@@ -109,7 +132,7 @@ class GameViewController: UIViewController {
                 }
             // DownGesture
             case 8:
-                if row < dictionary.dim {
+                if row < dictionary.dim + 1 {
                     row += 1
                     showKey(pos: row)
                 }
@@ -117,11 +140,11 @@ class GameViewController: UIViewController {
                 break
             }
             
-            if row > 0 && row < dictionary.dim + 1 {
+            if row > 0 && row < (dictionary.dim + 2) {
                 self.gameView.scene!.rootNode.enumerateChildNodes { (node, _) in
                     let names = node.name?.split(separator: ":")
-                    if names?[0] == "Text" && String((names?[1])!) == String(row) {
-                        node.scale = SCNVector3(x: 0.35, y: 0.35, z: 0.3)
+                    if names?[0] == "Text" && names![1] == String(row) {
+                        node.scale = SCNVector3(x: 0.35, y: 0.35, z: 0.35)
                     }
                     else if names?[0] == "Text" {
                         node.scale = SCNVector3(x: 0.3, y: 0.3, z: 0.3)
@@ -164,8 +187,6 @@ class GameViewController: UIViewController {
         
         // Add a text
         addCenteredText(str: "GuitAir")
-        addTextAtPosition(str: "Points: ", x: 5, y: 3)
-        
     }
     
     func addContent() {
@@ -214,22 +235,20 @@ class GameViewController: UIViewController {
             planeNode.geometry?.firstMaterial = planeMaterial
             
             self.gameView.scene?.rootNode.addChildNode(planeNode)
-            
-            planeNode.runAction(SCNAction.wait(duration: 5))
         }
         
         spot.light?.intensity = 500
         
-        let goDown = SCNAction.move(by: SCNVector3(x: 0, y: -6, z: 0), duration: 1)
+        let goDown = SCNAction.move(by: SCNVector3(x: 0, y: -6, z: 0), duration: 0.4)
         let textAppear = SCNAction.run{ _ in
             self.updatePeerList()
         }
-        planeNode.runAction(SCNAction.sequence([goDown, textAppear]))
+        planeNode.runAction(SCNAction.group([goDown, textAppear]))
     }
     
     func hidePlane() {
         if planeNode != nil {
-            planeNode.runAction(SCNAction.move(by: SCNVector3(x: 0, y: 6, z: 0), duration: 1))
+            planeNode.runAction(SCNAction.move(by: SCNVector3(x: 0, y: 6, z: 0), duration: 0.4))
             spot.light?.intensity = 2000
         }
         self.gameView.scene!.rootNode.enumerateChildNodes { (node, _) in
@@ -241,19 +260,20 @@ class GameViewController: UIViewController {
     }
     
     func updatePeerList() {
+        // Cancel all nodes whose name starts with "Text" (are the ones in the peer list)
         self.gameView.scene!.rootNode.enumerateChildNodes { (node, _) in
             let names = node.name?.split(separator: ":")
             if names?[0] == "Text" {
                 node.removeFromParentNode()
-                print("rimosso")
             }
         }
         
+        // Re-write all nodes present in the dictionary
         for pair in dictionary.dictionary {
-            let text = SCNText(string: pair.value.displayName, extrusionDepth: 0.2)
+            let text = SCNText(string: pair.key.displayName, extrusionDepth: 0.2)
             text.font = UIFont.italicSystemFont(ofSize: 1)
             let textNode = SCNNode(geometry: text)
-            textNode.name = "Text:\(pair.key))"
+            textNode.name = "Text:\(pair.value)"
             
             let textMaterial = SCNMaterial()
             textMaterial.diffuse.contents = UIColor.black
@@ -262,10 +282,32 @@ class GameViewController: UIViewController {
             textMaterial.shininess = 1.0
             textNode.geometry?.firstMaterial = textMaterial
             
-            textNode.position = SCNVector3(x: -2, y: Float(5.95 - Double(Int(pair.key)!)/2.2), z: 1)
-            textNode.scale = SCNVector3(x: 0.3, y: 0.3, z: 0.3)
+            textNode.position = SCNVector3(x: -2, y: Float(5.95 - Double(Int(pair.value)!)/2.2), z: 1)
+            textNode.scale = SCNVector3(x: 0, y: 0, z: 0)
             self.gameView.scene?.rootNode.addChildNode(textNode)
+            let wait = SCNAction.wait(duration: 0.3)
+            let scale = SCNAction.scale(to: 0.3, duration: 0.01)
+            textNode.runAction(SCNAction.sequence([wait, scale]))
         }
+        
+        // Then add the "CLOSE" label
+        let text = SCNText(string: "CLOSE", extrusionDepth: 0.2)
+        text.font = UIFont.italicSystemFont(ofSize: 1)
+        let textNode = SCNNode(geometry: text)
+        textNode.name = "Text:\(dictionary.dim + 1)"
+        
+        let textMaterial = SCNMaterial()
+        textMaterial.diffuse.contents = UIColor.black
+        textMaterial.specular.contents = UIColor.black
+        textMaterial.emission.contents = UIColor.black
+        textMaterial.shininess = 1.0
+        textNode.geometry?.firstMaterial = textMaterial
+        textNode.position = SCNVector3(x: -2, y: Float(5.95 - Double((dictionary.dim + 1))/2.2), z: 1)
+        textNode.scale = SCNVector3(x: 0, y: 0, z: 0)
+        self.gameView.scene?.rootNode.addChildNode(textNode)
+        let wait = SCNAction.wait(duration: 0.3)
+        let scale = SCNAction.scale(to: 0.3, duration: 0.01)
+        textNode.runAction(SCNAction.sequence([wait, scale]))
     }
     
     // Pass 0 to hide the key
@@ -308,28 +350,8 @@ class GameViewController: UIViewController {
         textNode.runAction(SCNAction.sequence([appear, wait, run, remove]))
     }
     
-    func addCenteredText(pos: Int, str: String) {
-        let text = SCNText(string: str, extrusionDepth: 0.2)
-        text.font = UIFont.italicSystemFont(ofSize: 1)
-        let textNode = SCNNode(geometry: text)
-        textNode.name = "Text:\(pos)"
-        
-        let textMaterial = SCNMaterial()
-        textMaterial.diffuse.contents = UIColor.black
-        textMaterial.specular.contents = UIColor.black
-        textMaterial.emission.contents = UIColor.black
-        textMaterial.shininess = 1.0
-        textNode.geometry?.firstMaterial = textMaterial
-        
-        // Positioned slightly to the left, and above the capsule (which is 10 units high)
-        textNode.position = SCNVector3(x: -2, y: 10, z: 1)
-        textNode.runAction(SCNAction.move(by: SCNVector3(x: 0, y: Float(-(10 - (5.95 - Double(pos)/2.2))), z: 0), duration: 2))
-        textNode.scale = SCNVector3(x: 0.3, y: 0.3, z: 0.3)
-        self.gameView.scene?.rootNode.addChildNode(textNode)
-    }
-    
     // Posizioni rispetto il centro della tv. LarghezzaMin : 6, LarghezzaMax: 8
-    func addTextAtPosition(str: String, x: Float, y: Float) {
+    func addTextAtPosition(str: String, x: Float, y: Float) -> SCNNode {
         let text = SCNText(string: str, extrusionDepth: 0.2)
         text.font = UIFont.systemFont(ofSize: 1)
         let textNode = SCNNode(geometry: text)
@@ -337,15 +359,43 @@ class GameViewController: UIViewController {
         // Positioned slightly to the left, and above the capsule (which is 10 units high)
         textNode.position = SCNVector3(x: x - xLenght/2, y: 10, z: -3)
         textNode.eulerAngles = SCNVector3(x: 0, y: -0.2, z: 0)
+        textNode.scale = SCNVector3(x: 0.5, y: 0.5, z: 0.5)
         self.gameView.scene?.rootNode.addChildNode(textNode)
         
         
-        let waitAction = SCNAction.wait(duration: 5)
         let compareAction = SCNAction.move(to: SCNVector3(x: x - xLenght/2, y: 3 + y, z: -3), duration: 2)
         let right = SCNAction.rotate(by: 0.4, around: SCNVector3(x: 0, y: 1, z: 0), duration: 3)
         let left = SCNAction.rotate(by: -0.4, around: SCNVector3(x: 0, y: 1, z: 0), duration: 3)
         let repeatAction = SCNAction.repeatForever(SCNAction.sequence([right, left]))
-        textNode.runAction(SCNAction.sequence([waitAction, compareAction, repeatAction]))
+        textNode.runAction(SCNAction.sequence([compareAction, repeatAction]))
+        
+        return textNode
+    }
+    
+    func addNotification(str: String, color: UIColor) {
+        let text = SCNText(string: str, extrusionDepth: 0.2)
+        text.font = UIFont.italicSystemFont(ofSize: 1)
+        let textNode = SCNNode(geometry: text)
+
+        
+        let textMaterial = SCNMaterial()
+        textMaterial.diffuse.contents = color
+        textMaterial.specular.contents = color
+        textMaterial.emission.contents = color
+        textMaterial.shininess = 1.0
+        textNode.geometry?.firstMaterial = textMaterial
+        
+        textNode.scale = SCNVector3(x: 0.5, y: 0.5, z: 0.1)
+        let xLenght = (textNode.boundingBox.max.x - textNode.boundingBox.min.x)
+        let yLenght = (textNode.boundingBox.max.y - textNode.boundingBox.min.y)
+        textNode.position = SCNVector3(x: -xLenght/4, y: 1 + yLenght/2, z: 1)
+        
+        self.gameView.scene?.rootNode.addChildNode(textNode)
+        
+        let wait = SCNAction.wait(duration: 2)
+        let disappear = SCNAction.fadeOut(duration: 1)
+        let remove = SCNAction.removeFromParentNode()
+        textNode.runAction(SCNAction.sequence([wait, disappear, remove]))
     }
     
     func fog(x: Float, y: Float, z: Float, roll: CGFloat) {
@@ -369,6 +419,10 @@ extension GameViewController: SessionManagerDelegate {
     func peerLost(_ manager: SessionManager, peer lost: MCPeerID) {
         dictionary.removeSample(peer: lost)
         semaphore.signal()
+    }
+    
+    func mexReceived(_ manager: SessionManager, didMessaggeReceived: UInt8) {
+        print("ricevuto un messaggio \(didMessaggeReceived)")
     }
 }
 

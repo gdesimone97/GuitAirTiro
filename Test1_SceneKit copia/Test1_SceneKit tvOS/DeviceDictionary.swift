@@ -11,7 +11,7 @@ import MultipeerConnectivity
 
 class DeviceDictionary {
     
-    var dictionary = [String : MCPeerID]()
+    var dictionary = [MCPeerID : String]()
     var dim: Int { return dictionary.count }
     
     
@@ -21,24 +21,41 @@ class DeviceDictionary {
     }
     
     func addSample(peer: MCPeerID) {
-        dictionary["\(dim+1)"] = peer
+        dictionary[peer] = "\(dim+1)"
     }
     
     func removeSample(peer: MCPeerID) {
-        let peerLostKey = findValue(peer: peer)
-        if peerLostKey != "nil" {
-            dictionary.removeValue(forKey: peerLostKey)
+        if isPresent(peer: peer) {
+            scaleDict(peerRemoved: peer)
+            dictionary.removeValue(forKey: peer)
         }
     }
     
     
-    private func findValue(peer: MCPeerID) -> String {
-        for key in dictionary.keys {
-            if dictionary[key] == peer {
-                return key
+    private func isPresent(peer: MCPeerID) -> Bool {
+        for peers in dictionary {
+            if peers.key == peer {
+                return true
             }
         }
-        return "nil"
+        return false
+    }
+    
+    private func scaleDict(peerRemoved: MCPeerID) {
+        for peer in dictionary {
+            if Int(peer.value)! > Int(dictionary[peerRemoved]!)! {
+                dictionary[peer.key] = String( Int(peer.value)! - 1 )
+            }
+        }
+    }
+    
+    func keyForValue(value: String) -> MCPeerID? {
+        for peer in dictionary {
+            if peer.value == value {
+                return peer.key
+            }
+        }
+        return nil
     }
     
 }
