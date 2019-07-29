@@ -136,7 +136,11 @@ class SessionManager: NSObject {
 extension SessionManager: MCSessionDelegate {
     // Lo stato di un peer vicino è cambiato
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
-        state == MCSessionState.connected ? self.delegate?.nearPeerHasChangedState?(self,peer: peerID,connected: true) : self.delegate?.nearPeerHasChangedState?(self,peer:peerID, connected: false)
+        if state == MCSessionState.connected { self.delegate?.nearPeerHasChangedState?(self,peer: peerID,connected: true)
+        }
+        else if state == MCSessionState.notConnected {
+            self.delegate?.nearPeerHasChangedState?(self,peer:peerID, connected: false)
+        }
         print("Stato della connessione: \(state.rawValue) di \(peerID)")
     }
     
