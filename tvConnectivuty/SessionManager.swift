@@ -20,6 +20,10 @@ import MultipeerConnectivity
     @objc optional func peerLost(_ manager: SessionManager,peer lost: MCPeerID)
 }
 
+enum SignalCode: UInt8 {
+    case disconnectPeerSignal = 0
+}
+
 class SessionManager: NSObject {
     // Initiating a Session
     private var peerID = MCPeerID(displayName: UIDevice.current.name ) // ID peer ugaule all'identificativo del device
@@ -34,6 +38,15 @@ class SessionManager: NSObject {
     weak var delegate: SessionManagerDelegate?
     private let serviceBrowser: MCNearbyServiceBrowser
     private let serviceAdverticer: MCNearbyServiceAdvertiser
+    private var players = 1
+    var playersNumber: Int {
+        get {
+            return self.players
+        }
+        set(newValue) {
+            players = newValue
+        }
+    }
     
     //    Singleton
     static var share = SessionManager()
@@ -57,16 +70,17 @@ class SessionManager: NSObject {
     
     func invitePeer(invite peer: MCPeerID) throws {
         print("Connessione in corso...")
+        invitePeerSetUp()
         sleep(2)
         self.serviceBrowser.invitePeer(peer, to: self.session, withContext: nil, timeout: 10)
+        print("Connessione effettuata")
     }
     
     func disconnectedPeer() {
         self.session.disconnect()
     }
     
-    #if os(iOS)
-    func sendSignal (_ peer: MCPeerID, message: UInt8) {
+    func sendSignal (_ peer: MCPeerID, message: SignalCode) {
         var mex = message
         if self.session.connectedPeers.count > 0 {
             print("Messaggio inviato")
@@ -79,7 +93,22 @@ class SessionManager: NSObject {
             }
         }
     }
-    #endif
+    
+    func sendSignal (_ peer: MCPeerID, message: UInt8) {
+        var mex = message
+        guard mex != 0 else {print("Non puoi mandare 0, questo metodo verà cancellatto successivamente"); return}
+        if self.session.connectedPeers.count > 0 {
+            print("Messaggio inviato")
+            let data = withUnsafeBytes(of: &mex) { Data($0) }
+            do {
+                try self.session.send(data, toPeers: [peer], with: .unreliable)
+            }
+            catch _ {
+                print("Errore invio messaggio")
+            }
+        }
+    }
+    
     
     /**
      Funzione che ritorna la lista dei dispositivi connessi
@@ -90,7 +119,17 @@ class SessionManager: NSObject {
         guard deviceList.count != 0 else { return nil }
         return deviceList
     }
+    
+    private func invitePeerSetUp() {
+        let peerList = session.connectedPeers
+        while peerList.count >= playersNumber {
+            self.sendSignal(peerList.last!, message: SignalCode.disconnectPeerSignal)
+        }
+    }
+    
 }
+
+
 
 extension SessionManager: MCSessionDelegate {
     // Lo stato di un peer vicino è cambiato
@@ -101,8 +140,11 @@ extension SessionManager: MCSessionDelegate {
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         print("Messaggio ricevuto da: \(peerID), messaggio: \(data)")
-        
         let intData = data.first
+        if intData == 0 {
+            session.disconnect()
+            return
+        }
         self.delegate?.mexReceived?(self, didMessaggeReceived: intData!)
     }
     
