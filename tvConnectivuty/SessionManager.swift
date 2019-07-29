@@ -51,7 +51,7 @@ class SessionManager: NSObject {
     //    Singleton
     static var share = SessionManager()
     
-    override init() {
+    private override init() {
         self.serviceBrowser = MCNearbyServiceBrowser(peer: self.peerID, serviceType: typeOfService) // Cerca altri peer usando l'infrastrutture di rete disponibili
         self.serviceAdverticer = MCNearbyServiceAdvertiser(peer: self.peerID, discoveryInfo: nil, serviceType: typeOfService) // Gestisce gli invita da parte degli altri peer
         super.init()
@@ -122,7 +122,7 @@ class SessionManager: NSObject {
     
     private func invitePeerSetUp() {
         let peerList = session.connectedPeers
-        while peerList.count > playersNumber {
+        while peerList.count + 1 > playersNumber {
             self.sendSignal(peerList.last!, message: SignalCode.disconnectPeerSignal)
         }
     }
