@@ -30,6 +30,9 @@ class GameViewController: UIViewController {
     let semaphore = DispatchSemaphore(value: 1)
     let peerListQueue = DispatchQueue(label: "peerListQueue", qos: .userInteractive)
     
+    var deviceNode1: SCNNode?
+    var deviceNode2: SCNNode?
+    
     // Connection Properties
     var planeNode: SCNNode!
     var flagPanelConnection = false
@@ -100,9 +103,11 @@ class GameViewController: UIViewController {
                         print("Selezionato \(peerID)")
                         do {
                             try session.invitePeer(invite: peerID)
+                            deviceNode1?.removeFromParentNode()
+                            deviceNode2?.removeFromParentNode()
                             addNotification(str: "Connected to the device!", color: UIColor.green)
-                            addTextAtPosition(str: "Device Connected: ", x: 7, y: 4.5)
-                            addTextAtPosition(str: "\(peerID.displayName)", x: 7, y: 4)
+                            deviceNode1 = addTextAtPosition(str: "Device Connected: ", x: 7, y: 4.5)
+                            deviceNode2 = addTextAtPosition(str: "\(peerID.displayName)", x: 7, y: 4)
                         } catch {
                             addNotification(str: "Unable to connect to that device!", color: UIColor.red)
                         }
@@ -346,7 +351,7 @@ class GameViewController: UIViewController {
     }
     
     // Posizioni rispetto il centro della tv. LarghezzaMin : 6, LarghezzaMax: 8
-    func addTextAtPosition(str: String, x: Float, y: Float) {
+    func addTextAtPosition(str: String, x: Float, y: Float) -> SCNNode {
         let text = SCNText(string: str, extrusionDepth: 0.2)
         text.font = UIFont.systemFont(ofSize: 1)
         let textNode = SCNNode(geometry: text)
@@ -363,6 +368,8 @@ class GameViewController: UIViewController {
         let left = SCNAction.rotate(by: -0.4, around: SCNVector3(x: 0, y: 1, z: 0), duration: 3)
         let repeatAction = SCNAction.repeatForever(SCNAction.sequence([right, left]))
         textNode.runAction(SCNAction.sequence([compareAction, repeatAction]))
+        
+        return textNode
     }
     
     func addNotification(str: String, color: UIColor) {
