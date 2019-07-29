@@ -143,7 +143,7 @@ extension SessionManager: MCSessionDelegate {
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         print("Messaggio ricevuto da: \(peerID), messaggio: \(data)")
         let intData = data.first
-        if intData == 0 {
+        if intData == SignalCode.disconnectPeerSignal.rawValue {
             session.disconnect()
             return
         }
