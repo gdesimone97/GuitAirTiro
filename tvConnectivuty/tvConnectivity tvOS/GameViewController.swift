@@ -12,8 +12,9 @@ import MultipeerConnectivity
 class GameViewController: UIViewController {
     
     @IBOutlet var label: UILabel!
-    var session = SessionManager()
+    var session = SessionManager.share
     var i = 0
+    var peer: MCPeerID?
     override func viewDidLoad() {
         super.viewDidLoad()
         session.delegate = self
@@ -24,7 +25,7 @@ class GameViewController: UIViewController {
 
 extension GameViewController: SessionManagerDelegate {
     func peerFound(_ manger: SessionManager, peer: MCPeerID) {
-        
+        self.peer = peer
         try! session.invitePeer(invite: peer)
     }
     
@@ -32,6 +33,7 @@ extension GameViewController: SessionManagerDelegate {
         print("boh")
     }
     
-    func mexReceived(_ manager: SessionManager, didMessaggeReceived: UInt8) {        print("Messaggio: \(didMessaggeReceived)")
+    func mexReceived(_ manager: SessionManager,peer: MCPeerID, didMessaggeReceived: UInt8) {        print("Messaggio: \(didMessaggeReceived)")
+        session.sendSignal(peer, message: 0)
     }
 }

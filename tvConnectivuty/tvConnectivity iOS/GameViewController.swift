@@ -12,7 +12,7 @@ import MultipeerConnectivity
 class GameViewControllerPhone: UIViewController {
     
     @IBOutlet var label: UILabel!
-    var session = SessionManager()
+    var session = SessionManager.share
     var i: UInt8 = 1
     
     override func viewDidLoad() {
@@ -27,13 +27,13 @@ class GameViewControllerPhone: UIViewController {
     
     @IBAction func button(_ sender: Any) {
         if let deviceList = session.showConncetedDevices() {
-            session.sendSignal(deviceList[0], message: 1)
+            session.sendSignal(deviceList[0], message: 2)
         }
     }
     
     @IBAction func button2(_ sender: Any) {
         if let deviceList = session.showConncetedDevices() {
-            session.sendSignal(deviceList[0], message: 2)
+            session.sendSignal(deviceList[0], message: 5)
         }
     } 
 }
@@ -54,4 +54,9 @@ extension GameViewControllerPhone: SessionManagerDelegate {
             }
         }
     }
+    
+    func mexReceived(_ manager: SessionManager, didMessaggeReceived: UInt8) {
+        print("Messaggio ricevuto: \(didMessaggeReceived)")
+    }
+    
 }
