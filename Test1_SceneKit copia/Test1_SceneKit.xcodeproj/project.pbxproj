@@ -7,16 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0898EC1922F0502F007C32DD /* WatchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898EC1522F0502E007C32DD /* WatchController.swift */; };
+		0898EC1A22F0502F007C32DD /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898EC1622F0502E007C32DD /* NotificationController.swift */; };
+		0898EC1B22F0502F007C32DD /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898EC1722F0502E007C32DD /* MotionManager.swift */; };
+		0898EC1F22F0508B007C32DD /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0898EC1D22F0508B007C32DD /* Interface.storyboard */; };
+		0898EC2722F05146007C32DD /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898EC2022F05146007C32DD /* SettingsTableViewController.swift */; };
+		0898EC2822F05146007C32DD /* GameModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898EC2122F05146007C32DD /* GameModeViewController.swift */; };
+		0898EC2922F05146007C32DD /* ChordsPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898EC2222F05146007C32DD /* ChordsPickerViewController.swift */; };
+		0898EC2A22F05146007C32DD /* NotationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898EC2322F05146007C32DD /* NotationTableViewCell.swift */; };
+		0898EC2B22F05146007C32DD /* Guitar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898EC2422F05146007C32DD /* Guitar.swift */; };
+		0898EC2C22F05146007C32DD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898EC2522F05146007C32DD /* ViewController.swift */; };
+		0898EC2D22F05146007C32DD /* NotationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898EC2622F05146007C32DD /* NotationTableViewController.swift */; };
+		0898EC3022F051A2007C32DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0898EC2E22F051A2007C32DD /* Main.storyboard */; };
 		777BB7B222E99C9D001BF9E9 /* Smoke Effect in Resources */ = {isa = PBXBuildFile; fileRef = 777BB7AF22E99C9D001BF9E9 /* Smoke Effect */; };
 		779E565022EB090400ACC1BF /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779E564F22EB090300ACC1BF /* SessionManager.swift */; };
 		779E565122EB090400ACC1BF /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779E564F22EB090300ACC1BF /* SessionManager.swift */; };
 		779E565322EB0A3200ACC1BF /* DeviceDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779E565222EB0A3200ACC1BF /* DeviceDictionary.swift */; };
 		77DFAD2222E84C56006DCBEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFAD2122E84C56006DCBEE /* AppDelegate.swift */; };
 		77DFAD2422E84C56006DCBEE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFAD2322E84C56006DCBEE /* GameViewController.swift */; };
-		77DFAD2722E84C56006DCBEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77DFAD2522E84C56006DCBEE /* Main.storyboard */; };
 		77DFAD2A22E84C56006DCBEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77DFAD2822E84C56006DCBEE /* LaunchScreen.storyboard */; };
 		77DFAD2F22E84C56006DCBEE /* Test1_SceneKit.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 77DFAD2E22E84C56006DCBEE /* Test1_SceneKit.app */; };
-		77DFAD3522E84C56006DCBEE /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77DFAD3322E84C56006DCBEE /* Interface.storyboard */; };
 		77DFAD3C22E84C56006DCBEE /* Test1_SceneKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 77DFAD3B22E84C56006DCBEE /* Test1_SceneKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		77DFAD4122E84C56006DCBEE /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFAD4022E84C56006DCBEE /* InterfaceController.swift */; };
 		77DFAD4322E84C56006DCBEE /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFAD4222E84C56006DCBEE /* ExtensionDelegate.swift */; };
@@ -77,6 +87,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0898EC1522F0502E007C32DD /* WatchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchController.swift; sourceTree = "<group>"; };
+		0898EC1622F0502E007C32DD /* NotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		0898EC1722F0502E007C32DD /* MotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
+		0898EC1E22F0508B007C32DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		0898EC2022F05146007C32DD /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		0898EC2122F05146007C32DD /* GameModeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModeViewController.swift; sourceTree = "<group>"; };
+		0898EC2222F05146007C32DD /* ChordsPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordsPickerViewController.swift; sourceTree = "<group>"; };
+		0898EC2322F05146007C32DD /* NotationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotationTableViewCell.swift; sourceTree = "<group>"; };
+		0898EC2422F05146007C32DD /* Guitar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guitar.swift; sourceTree = "<group>"; };
+		0898EC2522F05146007C32DD /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0898EC2622F05146007C32DD /* NotationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotationTableViewController.swift; sourceTree = "<group>"; };
+		0898EC2F22F051A2007C32DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0898EC3122F05203007C32DD /* Test1_SceneKit watchOS App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Test1_SceneKit watchOS App-Bridging-Header.h"; sourceTree = "<group>"; };
 		777BB7AF22E99C9D001BF9E9 /* Smoke Effect */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Smoke Effect"; sourceTree = "<group>"; };
 		779E564F22EB090300ACC1BF /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		779E565222EB0A3200ACC1BF /* DeviceDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDictionary.swift; sourceTree = "<group>"; };
@@ -86,11 +109,9 @@
 		77DFAD1E22E84C56006DCBEE /* Test1_SceneKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test1_SceneKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77DFAD2122E84C56006DCBEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77DFAD2322E84C56006DCBEE /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		77DFAD2622E84C56006DCBEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		77DFAD2922E84C56006DCBEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		77DFAD2B22E84C56006DCBEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77DFAD2E22E84C56006DCBEE /* Test1_SceneKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test1_SceneKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		77DFAD3422E84C56006DCBEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		77DFAD3622E84C56006DCBEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77DFAD3B22E84C56006DCBEE /* Test1_SceneKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Test1_SceneKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77DFAD4022E84C56006DCBEE /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
@@ -147,6 +168,7 @@
 				77DFAD1722E84C54006DCBEE /* GameController.swift */,
 				77DFAD1822E84C54006DCBEE /* Art.scnassets */,
 				77DFAD1922E84C56006DCBEE /* Assets.xcassets */,
+				0898EC3122F05203007C32DD /* Test1_SceneKit watchOS App-Bridging-Header.h */,
 			);
 			path = "Test1_SceneKit Shared";
 			sourceTree = "<group>";
@@ -165,9 +187,16 @@
 		77DFAD2022E84C56006DCBEE /* Test1_SceneKit iOS */ = {
 			isa = PBXGroup;
 			children = (
+				0898EC2E22F051A2007C32DD /* Main.storyboard */,
+				0898EC2222F05146007C32DD /* ChordsPickerViewController.swift */,
+				0898EC2122F05146007C32DD /* GameModeViewController.swift */,
+				0898EC2422F05146007C32DD /* Guitar.swift */,
+				0898EC2322F05146007C32DD /* NotationTableViewCell.swift */,
+				0898EC2622F05146007C32DD /* NotationTableViewController.swift */,
+				0898EC2022F05146007C32DD /* SettingsTableViewController.swift */,
+				0898EC2522F05146007C32DD /* ViewController.swift */,
 				77DFAD2122E84C56006DCBEE /* AppDelegate.swift */,
 				77DFAD2322E84C56006DCBEE /* GameViewController.swift */,
-				77DFAD2522E84C56006DCBEE /* Main.storyboard */,
 				77DFAD2822E84C56006DCBEE /* LaunchScreen.storyboard */,
 				77DFAD2B22E84C56006DCBEE /* Info.plist */,
 			);
@@ -177,7 +206,7 @@
 		77DFAD3222E84C56006DCBEE /* Test1_SceneKit watchOS App */ = {
 			isa = PBXGroup;
 			children = (
-				77DFAD3322E84C56006DCBEE /* Interface.storyboard */,
+				0898EC1D22F0508B007C32DD /* Interface.storyboard */,
 				77DFAD3622E84C56006DCBEE /* Info.plist */,
 			);
 			path = "Test1_SceneKit watchOS App";
@@ -186,6 +215,9 @@
 		77DFAD3F22E84C56006DCBEE /* Test1_SceneKit watchOS App Extension */ = {
 			isa = PBXGroup;
 			children = (
+				0898EC1722F0502E007C32DD /* MotionManager.swift */,
+				0898EC1622F0502E007C32DD /* NotificationController.swift */,
+				0898EC1522F0502E007C32DD /* WatchController.swift */,
 				77DFAD4022E84C56006DCBEE /* InterfaceController.swift */,
 				77DFAD4222E84C56006DCBEE /* ExtensionDelegate.swift */,
 				77DFAD4422E84C56006DCBEE /* Info.plist */,
@@ -294,6 +326,7 @@
 					};
 					77DFAD2D22E84C56006DCBEE = {
 						CreatedOnToolsVersion = 10.3;
+						LastSwiftMigration = 1030;
 					};
 					77DFAD3A22E84C56006DCBEE = {
 						CreatedOnToolsVersion = 10.3;
@@ -329,10 +362,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77DFAD2722E84C56006DCBEE /* Main.storyboard in Resources */,
 				77DFAD2A22E84C56006DCBEE /* LaunchScreen.storyboard in Resources */,
 				77DFAD5922E84C56006DCBEE /* Assets.xcassets in Resources */,
 				77DFAD5622E84C56006DCBEE /* Art.scnassets in Resources */,
+				0898EC3022F051A2007C32DD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,8 +373,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0898EC1F22F0508B007C32DD /* Interface.storyboard in Resources */,
 				77DFAD5A22E84C56006DCBEE /* Assets.xcassets in Resources */,
-				77DFAD3522E84C56006DCBEE /* Interface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,9 +404,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0898EC2C22F05146007C32DD /* ViewController.swift in Sources */,
 				77DFAD2422E84C56006DCBEE /* GameViewController.swift in Sources */,
+				0898EC2822F05146007C32DD /* GameModeViewController.swift in Sources */,
+				0898EC2922F05146007C32DD /* ChordsPickerViewController.swift in Sources */,
+				0898EC2B22F05146007C32DD /* Guitar.swift in Sources */,
+				0898EC2722F05146007C32DD /* SettingsTableViewController.swift in Sources */,
 				77DFAD5322E84C56006DCBEE /* GameController.swift in Sources */,
+				0898EC2A22F05146007C32DD /* NotationTableViewCell.swift in Sources */,
 				779E565022EB090400ACC1BF /* SessionManager.swift in Sources */,
+				0898EC2D22F05146007C32DD /* NotationTableViewController.swift in Sources */,
 				77DFAD2222E84C56006DCBEE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -382,9 +422,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0898EC1A22F0502F007C32DD /* NotificationController.swift in Sources */,
+				0898EC1B22F0502F007C32DD /* MotionManager.swift in Sources */,
 				77DFAD4322E84C56006DCBEE /* ExtensionDelegate.swift in Sources */,
 				77DFAD5422E84C56006DCBEE /* GameController.swift in Sources */,
 				77DFAD4122E84C56006DCBEE /* InterfaceController.swift in Sources */,
+				0898EC1922F0502F007C32DD /* WatchController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,10 +459,18 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		77DFAD2522E84C56006DCBEE /* Main.storyboard */ = {
+		0898EC1D22F0508B007C32DD /* Interface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				77DFAD2622E84C56006DCBEE /* Base */,
+				0898EC1E22F0508B007C32DD /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+		0898EC2E22F051A2007C32DD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0898EC2F22F051A2007C32DD /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -430,14 +481,6 @@
 				77DFAD2922E84C56006DCBEE /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		77DFAD3322E84C56006DCBEE /* Interface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				77DFAD3422E84C56006DCBEE /* Base */,
-			);
-			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 		77DFAD4F22E84C56006DCBEE /* Main.storyboard */ = {
@@ -610,15 +653,23 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K8WJKQA676;
 				IBSC_MODULE = Test1_SceneKit_Extension;
 				INFOPLIST_FILE = "Test1_SceneKit watchOS App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "it.unisa.applefoundationprogram.GuitAir.Test1-SceneKit.watchkitapp";
 				PRODUCT_NAME = Test1_SceneKit;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Test1_SceneKit Shared/Test1_SceneKit watchOS App-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 5.3;
@@ -630,15 +681,22 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K8WJKQA676;
 				IBSC_MODULE = Test1_SceneKit_Extension;
 				INFOPLIST_FILE = "Test1_SceneKit watchOS App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "it.unisa.applefoundationprogram.GuitAir.Test1-SceneKit.watchkitapp";
 				PRODUCT_NAME = Test1_SceneKit;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Test1_SceneKit Shared/Test1_SceneKit watchOS App-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
