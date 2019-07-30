@@ -1,73 +1,40 @@
 //
-//  GameController.swift
-//  Test1_SceneKit Shared
+//  File.swift
+//  Test1_SceneKit tvOS
 //
-//  Created by Gennaro Giaquinto on 24/07/2019.
+//  Created by Gennaro Giaquinto on 30/07/2019.
 //  Copyright © 2019 Gennaro Giaquinto. All rights reserved.
 //
 
 import SceneKit
 
 #if os(watchOS)
-    import WatchKit
+import WatchKit
 #endif
 
 #if os(macOS)
-    typealias SCNColor = NSColor
+typealias SCNColor2 = NSColor
 #else
-    typealias SCNColor = UIColor
+typealias SCNColor2 = UIColor
 #endif
 
 class GameController: NSObject, SCNSceneRendererDelegate {
-
+    
     let scene: SCNScene
     let sceneRenderer: SCNSceneRenderer
     
     init(sceneRenderer renderer: SCNSceneRenderer) {
         sceneRenderer = renderer
-        scene = SCNScene(named: "Art.scnassets/MainScene.scn")!
+        scene = SCNScene(named: "Art.scnassets/GameScene.scn")!
         
         super.init()
         
         sceneRenderer.delegate = self
-        
-        if let ship = scene.rootNode.childNode(withName: "ship", recursively: true) {
-            ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
-        }
-        
         sceneRenderer.scene = scene
-    }
-    
-    func highlightNodes(atPoint point: CGPoint) {
-        let hitResults = self.sceneRenderer.hitTest(point, options: [:])
-        for result in hitResults {
-            // get its material
-            guard let material = result.node.geometry?.firstMaterial else {
-                return
-            }
-            
-            // highlight it
-            SCNTransaction.begin()
-            SCNTransaction.animationDuration = 0.5
-            
-            // on completion - unhighlight
-            SCNTransaction.completionBlock = {
-                SCNTransaction.begin()
-                SCNTransaction.animationDuration = 0.5
-                
-                material.emission.contents = SCNColor.black
-                
-                SCNTransaction.commit()
-            }
-            
-            material.emission.contents = SCNColor.red
-            
-            SCNTransaction.commit()
-        }
     }
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         // Called before each frame is rendered
     }
-
+    
 }

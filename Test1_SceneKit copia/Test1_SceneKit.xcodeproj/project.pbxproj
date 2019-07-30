@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		776713DA22EF852B0020E22C /* GuitarsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776713D922EF852B0020E22C /* GuitarsEnum.swift */; };
 		777BB7B222E99C9D001BF9E9 /* Smoke Effect in Resources */ = {isa = PBXBuildFile; fileRef = 777BB7AF22E99C9D001BF9E9 /* Smoke Effect */; };
 		779E565022EB090400ACC1BF /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779E564F22EB090300ACC1BF /* SessionManager.swift */; };
 		779E565122EB090400ACC1BF /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779E564F22EB090300ACC1BF /* SessionManager.swift */; };
@@ -21,17 +22,19 @@
 		77DFAD4122E84C56006DCBEE /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFAD4022E84C56006DCBEE /* InterfaceController.swift */; };
 		77DFAD4322E84C56006DCBEE /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFAD4222E84C56006DCBEE /* ExtensionDelegate.swift */; };
 		77DFAD4C22E84C56006DCBEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFAD4B22E84C56006DCBEE /* AppDelegate.swift */; };
-		77DFAD4E22E84C56006DCBEE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFAD4D22E84C56006DCBEE /* GameViewController.swift */; };
+		77DFAD4E22E84C56006DCBEE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFAD4D22E84C56006DCBEE /* MainViewController.swift */; };
 		77DFAD5122E84C56006DCBEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77DFAD4F22E84C56006DCBEE /* Main.storyboard */; };
-		77DFAD5322E84C56006DCBEE /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFAD1722E84C54006DCBEE /* GameController.swift */; };
-		77DFAD5422E84C56006DCBEE /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFAD1722E84C54006DCBEE /* GameController.swift */; };
-		77DFAD5522E84C56006DCBEE /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFAD1722E84C54006DCBEE /* GameController.swift */; };
+		77DFAD5322E84C56006DCBEE /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFAD1722E84C54006DCBEE /* MainController.swift */; };
+		77DFAD5422E84C56006DCBEE /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFAD1722E84C54006DCBEE /* MainController.swift */; };
+		77DFAD5522E84C56006DCBEE /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFAD1722E84C54006DCBEE /* MainController.swift */; };
 		77DFAD5622E84C56006DCBEE /* Art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 77DFAD1822E84C54006DCBEE /* Art.scnassets */; };
 		77DFAD5722E84C56006DCBEE /* Art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 77DFAD1822E84C54006DCBEE /* Art.scnassets */; };
 		77DFAD5822E84C56006DCBEE /* Art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 77DFAD1822E84C54006DCBEE /* Art.scnassets */; };
 		77DFAD5922E84C56006DCBEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77DFAD1922E84C56006DCBEE /* Assets.xcassets */; };
 		77DFAD5A22E84C56006DCBEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77DFAD1922E84C56006DCBEE /* Assets.xcassets */; };
 		77DFAD5B22E84C56006DCBEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77DFAD1922E84C56006DCBEE /* Assets.xcassets */; };
+		77FE01C722F048E300861C78 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FE01C622F048E300861C78 /* GameViewController.swift */; };
+		77FE01C922F04CDA00861C78 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FE01C822F04CDA00861C78 /* GameController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,10 +80,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		776713D922EF852B0020E22C /* GuitarsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuitarsEnum.swift; sourceTree = "<group>"; };
 		777BB7AF22E99C9D001BF9E9 /* Smoke Effect */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Smoke Effect"; sourceTree = "<group>"; };
 		779E564F22EB090300ACC1BF /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		779E565222EB0A3200ACC1BF /* DeviceDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDictionary.swift; sourceTree = "<group>"; };
-		77DFAD1722E84C54006DCBEE /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
+		77DFAD1722E84C54006DCBEE /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		77DFAD1822E84C54006DCBEE /* Art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Art.scnassets; sourceTree = "<group>"; };
 		77DFAD1922E84C56006DCBEE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		77DFAD1E22E84C56006DCBEE /* Test1_SceneKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test1_SceneKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,9 +102,11 @@
 		77DFAD4422E84C56006DCBEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77DFAD4922E84C56006DCBEE /* Test1_SceneKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test1_SceneKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77DFAD4B22E84C56006DCBEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		77DFAD4D22E84C56006DCBEE /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		77DFAD4D22E84C56006DCBEE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		77DFAD5022E84C56006DCBEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		77DFAD5222E84C56006DCBEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		77FE01C622F048E300861C78 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		77FE01C822F04CDA00861C78 /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,7 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				779E564F22EB090300ACC1BF /* SessionManager.swift */,
-				77DFAD1722E84C54006DCBEE /* GameController.swift */,
+				77DFAD1722E84C54006DCBEE /* MainController.swift */,
+				77FE01C822F04CDA00861C78 /* GameController.swift */,
 				77DFAD1822E84C54006DCBEE /* Art.scnassets */,
 				77DFAD1922E84C56006DCBEE /* Assets.xcassets */,
 			);
@@ -197,11 +204,13 @@
 			isa = PBXGroup;
 			children = (
 				77DFAD4B22E84C56006DCBEE /* AppDelegate.swift */,
-				77DFAD4D22E84C56006DCBEE /* GameViewController.swift */,
+				77DFAD4D22E84C56006DCBEE /* MainViewController.swift */,
+				77FE01C622F048E300861C78 /* GameViewController.swift */,
 				777BB7AF22E99C9D001BF9E9 /* Smoke Effect */,
 				77DFAD4F22E84C56006DCBEE /* Main.storyboard */,
 				77DFAD5222E84C56006DCBEE /* Info.plist */,
 				779E565222EB0A3200ACC1BF /* DeviceDictionary.swift */,
+				776713D922EF852B0020E22C /* GuitarsEnum.swift */,
 			);
 			path = "Test1_SceneKit tvOS";
 			sourceTree = "<group>";
@@ -372,7 +381,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				77DFAD2422E84C56006DCBEE /* GameViewController.swift in Sources */,
-				77DFAD5322E84C56006DCBEE /* GameController.swift in Sources */,
+				77DFAD5322E84C56006DCBEE /* MainController.swift in Sources */,
 				779E565022EB090400ACC1BF /* SessionManager.swift in Sources */,
 				77DFAD2222E84C56006DCBEE /* AppDelegate.swift in Sources */,
 			);
@@ -383,7 +392,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				77DFAD4322E84C56006DCBEE /* ExtensionDelegate.swift in Sources */,
-				77DFAD5422E84C56006DCBEE /* GameController.swift in Sources */,
+				77DFAD5422E84C56006DCBEE /* MainController.swift in Sources */,
 				77DFAD4122E84C56006DCBEE /* InterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -392,10 +401,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77DFAD4E22E84C56006DCBEE /* GameViewController.swift in Sources */,
-				77DFAD5522E84C56006DCBEE /* GameController.swift in Sources */,
+				77FE01C722F048E300861C78 /* GameViewController.swift in Sources */,
+				77DFAD4E22E84C56006DCBEE /* MainViewController.swift in Sources */,
+				77DFAD5522E84C56006DCBEE /* MainController.swift in Sources */,
 				779E565322EB0A3200ACC1BF /* DeviceDictionary.swift in Sources */,
 				779E565122EB090400ACC1BF /* SessionManager.swift in Sources */,
+				77FE01C922F04CDA00861C78 /* GameController.swift in Sources */,
+				776713DA22EF852B0020E22C /* GuitarsEnum.swift in Sources */,
 				77DFAD4C22E84C56006DCBEE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
