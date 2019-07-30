@@ -1,0 +1,36 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'Test1_SceneKit iOS' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Test1_SceneKit iOS
+pod 'AudioKit', '~> 4.7'
+
+end
+
+target 'Test1_SceneKit tvOS' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Test1_SceneKit tvOS
+pod 'AudioKit', '~> 4.7'
+
+end
+
+target 'Test1_SceneKit watchOS App' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Test1_SceneKit watchOS App
+
+end
+
+target 'Test1_SceneKit watchOS App Extension' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Test1_SceneKit watchOS App Extension
+
+end
