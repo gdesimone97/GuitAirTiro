@@ -1,0 +1,6 @@
+framework module Pods_Test1_SceneKit_iOS {
+  umbrella header "Pods-Test1_SceneKit iOS-umbrella.h"
+
+  export *
+  module * { export * }
+}
