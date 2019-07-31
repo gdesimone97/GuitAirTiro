@@ -9,15 +9,15 @@
 import UIKit
 import MultipeerConnectivity
 
-@objc protocol SessionManagerDelegate: class {
+ protocol SessionManagerDelegate: class {
     /** Rilevazione di un peer */
     func peerFound(_ manger: SessionManager, peer: MCPeerID)
     /** Uno dei peer della sessione ha cambiato stato: connesso o disconnesso dalla sessione */
     func nearPeerHasChangedState(_ manager: SessionManager,peer change: MCPeerID, connected: Int)
     /** Segnala la ricezione di un messaggio */
-    @objc optional func mexReceived(_ manager: SessionManager,didMessaggeReceived: UInt8)
+    func mexReceived(_ manager: SessionManager,didMessaggeReceived: SignalCode)
     /** Connessione con peer persa */
-    @objc optional func peerLost(_ manager: SessionManager,peer lost: MCPeerID)
+    func peerLost(_ manager: SessionManager,peer lost: MCPeerID)
 }
 
 
@@ -141,7 +141,9 @@ extension SessionManager: MCSessionDelegate {
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         print("Messaggio ricevuto da: \(peerID), messaggio: \(data)")
         let intData = data.first
-        self.delegate?.mexReceived?(self, didMessaggeReceived: intData!)
+        let code = SignalCode.init(rawValue: intData!)
+        guard code != nil else { return }
+        self.delegate?.mexReceived(self, didMessaggeReceived: code!)
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
@@ -166,7 +168,7 @@ extension SessionManager: MCNearbyServiceBrowserDelegate {
     
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
         print("peer perso: \(peerID)")
-        self.delegate?.peerLost?(self, peer: peerID)
+        self.delegate?.peerLost(self, peer: peerID)
     }
 }
 
