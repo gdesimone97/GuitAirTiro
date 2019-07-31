@@ -26,7 +26,7 @@
 		08D464BE22F1907E00B8D43B /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FE01C822F04CDA00861C78 /* GameController.swift */; };
 		259FCF7A4466898030E2854A /* Pods_Test1_SceneKit_watchOS_App_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E921CE1C6D8E8B53642FAF /* Pods_Test1_SceneKit_watchOS_App_Extension.framework */; };
 		4DCC5A52BA1C80F0803B3382 /* Pods_Test1_SceneKit_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F1AB350036D84B5016AEC19 /* Pods_Test1_SceneKit_tvOS.framework */; };
-		776713DA22EF852B0020E22C /* GuitarsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776713D922EF852B0020E22C /* GuitarsEnum.swift */; };
+		776713DA22EF852B0020E22C /* Guitars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776713D922EF852B0020E22C /* Guitars.swift */; };
 		777BB7B222E99C9D001BF9E9 /* Smoke Effect in Resources */ = {isa = PBXBuildFile; fileRef = 777BB7AF22E99C9D001BF9E9 /* Smoke Effect */; };
 		779E565022EB090400ACC1BF /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779E564F22EB090300ACC1BF /* SessionManager.swift */; };
 		779E565122EB090400ACC1BF /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779E564F22EB090300ACC1BF /* SessionManager.swift */; };
@@ -121,7 +121,7 @@
 		5F9512767E613292E5B6A54E /* Pods-Test1_SceneKit iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test1_SceneKit iOS.debug.xcconfig"; path = "Target Support Files/Pods-Test1_SceneKit iOS/Pods-Test1_SceneKit iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		74E921CE1C6D8E8B53642FAF /* Pods_Test1_SceneKit_watchOS_App_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Test1_SceneKit_watchOS_App_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75C085316D097790450E475D /* Pods-Test1_SceneKit tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test1_SceneKit tvOS.release.xcconfig"; path = "Target Support Files/Pods-Test1_SceneKit tvOS/Pods-Test1_SceneKit tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		776713D922EF852B0020E22C /* GuitarsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuitarsEnum.swift; sourceTree = "<group>"; };
+		776713D922EF852B0020E22C /* Guitars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guitars.swift; sourceTree = "<group>"; };
 		777BB7AF22E99C9D001BF9E9 /* Smoke Effect */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Smoke Effect"; sourceTree = "<group>"; };
 		779E564F22EB090300ACC1BF /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		779E565222EB0A3200ACC1BF /* DeviceDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDictionary.swift; sourceTree = "<group>"; };
@@ -280,7 +280,7 @@
 				77DFAD4F22E84C56006DCBEE /* Main.storyboard */,
 				77DFAD5222E84C56006DCBEE /* Info.plist */,
 				779E565222EB0A3200ACC1BF /* DeviceDictionary.swift */,
-				776713D922EF852B0020E22C /* GuitarsEnum.swift */,
+				776713D922EF852B0020E22C /* Guitars.swift */,
 				77F9DD1B22F0851800B0C37F /* TextManager.swift */,
 				77F9DD1D22F08F0B00B0C37F /* GameGuitarManager.swift */,
 			);
@@ -616,7 +616,7 @@
 				779E565322EB0A3200ACC1BF /* DeviceDictionary.swift in Sources */,
 				779E565122EB090400ACC1BF /* SessionManager.swift in Sources */,
 				77FE01C922F04CDA00861C78 /* GameController.swift in Sources */,
-				776713DA22EF852B0020E22C /* GuitarsEnum.swift in Sources */,
+				776713DA22EF852B0020E22C /* Guitars.swift in Sources */,
 				77DFAD4C22E84C56006DCBEE /* AppDelegate.swift in Sources */,
 				77F9DD1C22F0851800B0C37F /* TextManager.swift in Sources */,
 				77F9DD1E22F08F0B00B0C37F /* GameGuitarManager.swift in Sources */,

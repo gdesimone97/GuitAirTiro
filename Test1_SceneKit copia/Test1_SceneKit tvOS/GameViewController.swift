@@ -8,6 +8,7 @@
 
 import UIKit
 import SceneKit
+import MultipeerConnectivity
 
 
 class GameViewController: UIViewController {
@@ -33,14 +34,39 @@ class GameViewController: UIViewController {
         
         gameGuitarManager = GameGuitarManager(scene: gameView.scene!, width: 4, length: 10, z: -10)
         
-        run()
     }
     
-    func run() {
-        gameGuitarManager.showNode(column: 1)
-        gameGuitarManager.showNode(column: 2)
-        gameGuitarManager.showNode(column: 3)
-        gameGuitarManager.showNode(column: 4)
+}
+
+extension GameViewController: SessionManagerDelegate {
+    func peerFound(_ manger: SessionManager, peer: MCPeerID) {
+        
+    }
+    
+    
+    func nearPeerHasChangedState(_ manager: SessionManager, peer change: MCPeerID, connected: Int) {
+        
+    }
+    
+    func mexReceived(_ manager: SessionManager, didMessaggeReceived: UInt8) {
+        
+        switch didMessaggeReceived {
+        case 4: // Stop the game session
+            performSegue(withIdentifier: "MainSegue", sender: nil)
+        case 5: // Box in col1
+            gameGuitarManager.showNode(column: 1)
+        case 6: // Box in col2
+            gameGuitarManager.showNode(column: 2)
+        case 7: // Box in col3
+            gameGuitarManager.showNode(column: 3)
+        case 8: // Box in col4
+            gameGuitarManager.showNode(column: 4)
+            
+            
+        // Add more cases here
+        default:
+            break
+        }
     }
     
 }

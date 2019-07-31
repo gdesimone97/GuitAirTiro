@@ -19,18 +19,17 @@ class MainViewController: UIViewController {
     
     var mainController: MainController!
     var textManager: TextManager!
+    var guitarsManager: Guitars!
     
     var electricGuitar: SCNNode!
     var acousticGuitar: SCNNode!
     var keyNode: SCNNode!
     var plane: SCNNode!
-    var camera: SCNNode!
     var spot: SCNNode!
     
     
     var numGuitar: Int = 2 // 2 for electric guitar, 1 for acoustic guitar
     // Assegnamento da fare in base alle UsersDefaults e NON QUI
-    var flagGuitar = false
     
     var dictionary = DeviceDictionary()
     var session = SessionManager.share
@@ -182,41 +181,15 @@ class MainViewController: UIViewController {
     }
     
     func addContent() {
+        self.guitarsManager = Guitars(scene: self.gameView.scene!, actualNode: nil)
+        
         let node = self.gameView.scene!.rootNode.childNode(withName: "Node", recursively: false)
         self.gameView.scene!.rootNode.enumerateChildNodes { (node, _) in
-            if node.name == "electricGuitar" {
-                electricGuitar = node
-                electricGuitar.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: electricGuitar, options: nil))
-                electricGuitar.physicsBody?.isAffectedByGravity = false
-                electricGuitar.physicsBody?.restitution = 1
-                electricGuitar.runAction(SCNAction.repeatForever(SCNAction.rotate(by: CGFloat.pi, around: SCNVector3(0, 1, 0), duration: 3)))
-            }
-            if node.name == "acousticGuitar" {
-                acousticGuitar = node
-                acousticGuitar.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: acousticGuitar, options: nil))
-                acousticGuitar.physicsBody?.isAffectedByGravity = false
-                acousticGuitar.physicsBody?.restitution = 1
-                acousticGuitar.runAction(SCNAction.repeatForever(SCNAction.rotate(by: CGFloat.pi, around: SCNVector3(0, 1, 0), duration: 3)))
-            }
-            if node.name == "camera" {
-                camera = node
-            }
             if node.name == "spot" {
                 spot = node
             }
         }
     }
-    
-    
-//    func addEmitter() {
-//        fog(x: 7, y: 0.2, z: -3, roll: 0)
-//        fog(x: -7, y: 0.2, z: -3, roll: 0)
-//        fog(x: -6.5, y: 0.2, z: 0, roll: -CGFloat.pi/6)
-//        fog(x: 6.5, y: 0.2, z: 0, roll: CGFloat.pi/6)
-//        fog(x: -4, y: 0.2, z: 4, roll: -CGFloat.pi/3)
-//        fog(x: 4, y: 0.2, z: 4, roll: CGFloat.pi/3)
-//        fog(x: 0, y: 0.2, z: 4, roll: 0)
-//    }
     
     func showPlane() {
         if planeNode == nil {
@@ -301,6 +274,17 @@ class MainViewController: UIViewController {
         }
     }
     
+    
+//    func addEmitter() {
+//        fog(x: 7, y: 0.2, z: -3, roll: 0)
+//        fog(x: -7, y: 0.2, z: -3, roll: 0)
+//        fog(x: -6.5, y: 0.2, z: 0, roll: -CGFloat.pi/6)
+//        fog(x: 6.5, y: 0.2, z: 0, roll: CGFloat.pi/6)
+//        fog(x: -4, y: 0.2, z: 4, roll: -CGFloat.pi/3)
+//        fog(x: 4, y: 0.2, z: 4, roll: CGFloat.pi/3)
+//        fog(x: 0, y: 0.2, z: 4, roll: 0)
+//    }
+//
 //    func fog(x: Float, y: Float, z: Float, roll: CGFloat) {
 //        let particleSystem = SCNParticleSystem(named: "Smoke Effect/SceneKit Particle System.scnp", inDirectory: nil)
 //
@@ -346,43 +330,18 @@ extension MainViewController: SessionManagerDelegate {
     
     func mexReceived(_ manager: SessionManager, didMessaggeReceived: UInt8) {
         DispatchQueue.main.async {
-            switch Int(didMessaggeReceived) {
-            case 1: // Guitar #1 has been selected (Acoustic)
+            
+            switch didMessaggeReceived {
+            case 1: // Switch to acoustic guitar
+                self.guitarsManager.changeGuitar(newGuitar: .acoustic)
+            case 2: // Switch to electric guitar
+                self.guitarsManager.changeGuitar(newGuitar: .electric)
+            case 3: // Start the game session
+                self.performSegue(withIdentifier: "GameSegue", sender: nil)
                 
-                // See what was the selected guitar
-                switch self.numGuitar {
-                case 2: // Guitar #2 was selected (Electric)
-                    self.electricGuitar.runAction(SCNAction.move(by: SCNVector3(x: -10, y: 0, z: 0), duration: 0.7))
-                    
-                // If you add more guitars, you must add the other cases here
-                default:
-                    break
-                }
+            
                 
-                if self.numGuitar != 1 {
-                    self.numGuitar = Int(didMessaggeReceived)
-                    self.acousticGuitar.position = SCNVector3(x: 10, y: 1, z: 0)
-                    self.acousticGuitar.runAction(SCNAction.move(by: SCNVector3(x: -10, y: 0, z: 0), duration: 0.7))
-                }
-                
-            case 2: // Guitar #2 has been selected (Electric)
-                
-                // See what was the selected guitar
-                switch self.numGuitar {
-                case 1: // Guitar #1 was selected (Acoustic)
-                    self.acousticGuitar.runAction(SCNAction.move(by: SCNVector3(x: -10, y: 0, z: 0), duration: 0.7))
-                    
-                // If you add more guitars, you must add the other cases here
-                default:
-                    break
-                }
-                
-                if self.numGuitar != 2 {
-                    self.numGuitar = Int(didMessaggeReceived)
-                    self.electricGuitar.position = SCNVector3(x: 10, y: -0.7, z: 0)
-                    self.electricGuitar.runAction(SCNAction.move(by: SCNVector3(x: -10, y: 0, z: 0), duration: 0.7))
-                }
-                
+            // Add more cases here
             default:
                 break
             }
