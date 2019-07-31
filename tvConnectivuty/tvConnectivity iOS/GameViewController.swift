@@ -42,6 +42,14 @@ class GameViewControllerPhone: UIViewController {
 }
 
 extension GameViewControllerPhone: SessionManagerDelegate {
+    func mexReceived(_ manager: SessionManager, didMessaggeReceived: SignalCode) {
+        print("Messaggio ricevuto: \(didMessaggeReceived)")
+    }
+    
+    func peerLost(_ manager: SessionManager, peer lost: MCPeerID) {
+        return
+    }
+    
     
     func peerFound(_ manger: SessionManager, peer: MCPeerID) {
         print("peer trovato: \(peer)")
@@ -56,10 +64,6 @@ extension GameViewControllerPhone: SessionManagerDelegate {
                 self.label.text = "disconnected"
             }
         }
-    }
-    
-    func mexReceived(_ manager: SessionManager, didMessaggeReceived: UInt8) {
-        print("Messaggio ricevuto: \(didMessaggeReceived)")
     }
     
 }

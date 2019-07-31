@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0858181B22E8B5EB009550B5 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0858181A22E8B5EB009550B5 /* SessionManager.swift */; };
-		0858181C22E8B5EB009550B5 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0858181A22E8B5EB009550B5 /* SessionManager.swift */; };
 		088AC18E22E8526F00F00462 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088AC18D22E8526F00F00462 /* AppDelegate.swift */; };
 		088AC19022E8526F00F00462 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088AC18F22E8526F00F00462 /* GameViewController.swift */; };
 		088AC19322E8526F00F00462 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 088AC19122E8526F00F00462 /* Main.storyboard */; };
@@ -24,12 +22,13 @@
 		088AC1AB22E8526F00F00462 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088AC18422E8526B00F00462 /* GameScene.swift */; };
 		088AC1AC22E8526F00F00462 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 088AC18522E8526F00F00462 /* Assets.xcassets */; };
 		088AC1AD22E8526F00F00462 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 088AC18522E8526F00F00462 /* Assets.xcassets */; };
-		08B5E78122F1C43100A6FF05 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B5E78022F1C43000A6FF05 /* SessionManager.swift */; };
-		08B5E78222F1C43100A6FF05 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B5E78022F1C43000A6FF05 /* SessionManager.swift */; };
+		08B5E78422F1CB9D00A6FF05 /* SignalCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B5E78322F1CB9C00A6FF05 /* SignalCode.swift */; };
+		08B5E78522F1CB9D00A6FF05 /* SignalCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B5E78322F1CB9C00A6FF05 /* SignalCode.swift */; };
+		08B5E78722F1CC0400A6FF05 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B5E78622F1CC0400A6FF05 /* SessionManager.swift */; };
+		08B5E78822F1CC0400A6FF05 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B5E78622F1CC0400A6FF05 /* SessionManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0858181A22E8B5EB009550B5 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = SOURCE_ROOT; };
 		0863E73722E9A18000839DDE /* tvConnectivity.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tvConnectivity.entitlements; sourceTree = "<group>"; };
 		088AC18222E8526B00F00462 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		088AC18322E8526B00F00462 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -46,7 +45,8 @@
 		088AC1A022E8526F00F00462 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		088AC1A322E8526F00F00462 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		088AC1A522E8526F00F00462 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		08B5E78022F1C43000A6FF05 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = "../../Test1_SceneKit copia/Test1_SceneKit Shared/SessionManager.swift"; sourceTree = "<group>"; };
+		08B5E78322F1CB9C00A6FF05 /* SignalCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalCode.swift; sourceTree = "<group>"; };
+		08B5E78622F1CC0400A6FF05 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = "../../Test1_SceneKit copia/Test1_SceneKit Shared/SessionManager.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,8 +88,8 @@
 		088AC18122E8526B00F00462 /* tvConnectivity Shared */ = {
 			isa = PBXGroup;
 			children = (
-				0858181A22E8B5EB009550B5 /* SessionManager.swift */,
-				08B5E78022F1C43000A6FF05 /* SessionManager.swift */,
+				08B5E78622F1CC0400A6FF05 /* SessionManager.swift */,
+				08B5E78322F1CB9C00A6FF05 /* SignalCode.swift */,
 				088AC18222E8526B00F00462 /* Actions.sks */,
 				088AC18322E8526B00F00462 /* GameScene.sks */,
 				088AC18422E8526B00F00462 /* GameScene.swift */,
@@ -252,10 +252,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08B5E78422F1CB9D00A6FF05 /* SignalCode.swift in Sources */,
 				088AC1AA22E8526F00F00462 /* GameScene.swift in Sources */,
 				088AC19022E8526F00F00462 /* GameViewController.swift in Sources */,
-				0858181B22E8B5EB009550B5 /* SessionManager.swift in Sources */,
-				08B5E78122F1C43100A6FF05 /* SessionManager.swift in Sources */,
+				08B5E78722F1CC0400A6FF05 /* SessionManager.swift in Sources */,
 				088AC18E22E8526F00F00462 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,10 +264,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08B5E78522F1CB9D00A6FF05 /* SignalCode.swift in Sources */,
 				088AC1AB22E8526F00F00462 /* GameScene.swift in Sources */,
 				088AC1A122E8526F00F00462 /* GameViewController.swift in Sources */,
-				0858181C22E8B5EB009550B5 /* SessionManager.swift in Sources */,
-				08B5E78222F1C43100A6FF05 /* SessionManager.swift in Sources */,
+				08B5E78822F1CC0400A6FF05 /* SessionManager.swift in Sources */,
 				088AC19F22E8526F00F00462 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
