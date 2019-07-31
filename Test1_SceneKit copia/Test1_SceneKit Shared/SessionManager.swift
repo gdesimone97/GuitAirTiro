@@ -9,13 +9,13 @@
 import UIKit
 import MultipeerConnectivity
 
- protocol SessionManagerDelegate: class {
+protocol SessionManagerDelegate: class {
     /** Rilevazione di un peer */
     func peerFound(_ manger: SessionManager, peer: MCPeerID)
     /** Uno dei peer della sessione ha cambiato stato: connesso o disconnesso dalla sessione */
     func nearPeerHasChangedState(_ manager: SessionManager,peer change: MCPeerID, connected: Int)
     /** Segnala la ricezione di un messaggio */
-    func mexReceived(_ manager: SessionManager,didMessaggeReceived: SignalCode)
+    func mexReceived(_ manager: SessionManager,didMessageReceived: SignalCode)
     /** Connessione con peer persa */
     func peerLost(_ manager: SessionManager,peer lost: MCPeerID)
 }

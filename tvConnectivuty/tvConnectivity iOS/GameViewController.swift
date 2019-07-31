@@ -35,14 +35,14 @@ class GameViewControllerPhone: UIViewController {
     
     @IBAction func button2(_ sender: Any) {
         if let deviceList = session.showConncetedDevices() {
-            var messaggio = text.text as! String
+            let messaggio = text.text as! String
             session.sendSignal(deviceList[0], message: UInt8(messaggio)!)
         }
     } 
 }
 
 extension GameViewControllerPhone: SessionManagerDelegate {
-    func mexReceived(_ manager: SessionManager, didMessaggeReceived: SignalCode) {
+    func mexReceived(_ manager: SessionManager, didMessageReceived: SignalCode) {
         print("Messaggio ricevuto: \(didMessaggeReceived)")
     }
     
