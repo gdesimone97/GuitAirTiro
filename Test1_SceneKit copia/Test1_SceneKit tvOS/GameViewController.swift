@@ -38,6 +38,16 @@ class GameViewController: UIViewController {
         
         gameGuitarManager = GameGuitarManager(scene: gameView.scene!, width: 4, length: 20, z: -17)
         
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        var gestureRecognizers = gameView.gestureRecognizers ?? []
+        gestureRecognizers.insert(tapGesture, at: 0)
+        self.gameView.gestureRecognizers = gestureRecognizers
+    
+    }
+    
+    @objc func handleTap(_ gestureRecognizer: UIGestureRecognizer) {
+        gameGuitarManager.showNode(column: 3)
     }
     
 }
@@ -52,7 +62,11 @@ extension GameViewController: SessionManagerDelegate {
     
     
     func nearPeerHasChangedState(_ manager: SessionManager, peer change: MCPeerID, connected: Int) {
-        
+        DispatchQueue.main.async {
+            if connected == 0 {
+                //torna indietro
+            }
+        }
     }
     
     func mexReceived(_ manager: SessionManager, didMessageReceived: SignalCode) {

@@ -321,10 +321,12 @@ extension MainViewController: SessionManagerDelegate {
             }
             else if self.connected == 0 && connected == 0 {
                 self.deviceNode = self.textManager.addTextAtPosition(str: "Device denied the request!", x: -5.5, y: 0.5)
-                self.deviceNode?.runAction(SCNAction.run{_ in 
-                    SCNAction.wait(duration: 3)
+                let wait = SCNAction.wait(duration: 5)
+                let change = SCNAction.run{_ in
                     self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5)
-                })
+                }
+                let remove = SCNAction.removeFromParentNode()
+                self.deviceNode?.runAction(SCNAction.sequence([wait, change, remove]))
             }
             else if self.peerConnected == change && self.connected == 2 && connected == 0 {
                 self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5)
@@ -342,7 +344,10 @@ extension MainViewController: SessionManagerDelegate {
         case .showElectricGuitar:
             self.guitarsManager.changeGuitar(newGuitar: .electric)
         case .openGame:
-            self.performSegue(withIdentifier: "GameSegue", sender: nil)
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "GameSegue", sender: nil)
+            }
+            
             
             
             

@@ -40,18 +40,18 @@ class GameGuitarManager {
 
     // Parameter indicates the column of the guitar
     func showNode(column: Int) {
-        let box = SCNBox(width: 1, height: 1, length: 1, chamferRadius: 1)
+        let box = SCNBox(width: 1, height: 1, length: 1, chamferRadius: 3)
         let boxNode = SCNNode(geometry: box)
-        
-        let boxMaterial = SCNMaterial()
-        boxMaterial.diffuse.contents = UIColor.red
-        boxMaterial.specular.contents = UIColor.red
-        boxMaterial.emission.contents = UIColor.red
-        boxMaterial.shininess = 1.0
-        boxNode.geometry?.firstMaterial = boxMaterial
         
         if let col = findColumn(column: column) {
             boxNode.position = SCNVector3(col.xPosition, 0, z)
+            
+            let boxMaterial = SCNMaterial()
+            boxMaterial.diffuse.contents = col.color
+            boxMaterial.specular.contents = col.color
+            boxMaterial.emission.contents = col.color
+            boxMaterial.shininess = 1.0
+            boxNode.geometry?.firstMaterial = boxMaterial
         }
         
         let appearMoving = SCNAction.group( [SCNAction.fadeIn(duration: 0.4), SCNAction.move(by: SCNVector3(x: 0, y: 0, z: length), duration: 5)] )
