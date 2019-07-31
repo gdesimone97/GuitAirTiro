@@ -18,6 +18,7 @@ class MainViewController: UIViewController {
     }
     
     var mainController: MainController!
+    var textManager: TextManager!
     
     var electricGuitar: SCNNode!
     var acousticGuitar: SCNNode!
@@ -69,6 +70,8 @@ class MainViewController: UIViewController {
         
         gameView.scene?.rootNode.runAction(SCNAction.sequence([initAction, waitAction, initAction2]))
         
+        self.textManager = TextManager(scene: gameView.scene!)
+        
         self.addGestures()
         
         peerListQueue.async {
@@ -104,9 +107,9 @@ class MainViewController: UIViewController {
                         print("Selezionato \(peerID)")
                         do {
                             try session.invitePeer(invite: peerID)
-                            addNotification(str: "Request sent to the device", color: UIColor.green)
+                            textManager.addNotification(str: "Request sent to the device", color: UIColor.green)
                         } catch {
-                            addNotification(str: "Can't send the request!", color: UIColor.red)
+                            textManager.addNotification(str: "Can't send the request!", color: UIColor.red)
                         }
                     }
                     hidePlane()
@@ -169,22 +172,12 @@ class MainViewController: UIViewController {
     }
     
     func addElements() {
-        // Add a camera
-//        let camera = SCNCamera()
-//        camera.fieldOfView = 60
-//
-//        let cameraNode = SCNNode()
-//        cameraNode.camera = camera
-//        cameraNode.position = SCNVector3(x: 0, y: 3, z: 9)
-//        cameraNode.eulerAngles = SCNVector3(x: 4, y: 0, z: 0)
-//        gameView.scene?.rootNode.addChildNode(cameraNode)
-        
         // Add a Fog Emitter
 //        addEmitter()
         
         DispatchQueue.main.async {
-            self.addCenteredText(str: "GuitAir")
-            self.deviceNode = self.addTextAtPosition(str: "No device connected! Press the central button on the remote control to see the available devices", x: -5.5, y: 0.5)
+            self.textManager.addCenteredText(str: "GuitAir")
+            self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected! Press the central button on the remote control to see the available devices", x: -5.5, y: 0.5)
         }
     }
     
@@ -215,15 +208,15 @@ class MainViewController: UIViewController {
     }
     
     
-    func addEmitter() {
-        fog(x: 7, y: 0.2, z: -3, roll: 0)
-        fog(x: -7, y: 0.2, z: -3, roll: 0)
-        fog(x: -6.5, y: 0.2, z: 0, roll: -CGFloat.pi/6)
-        fog(x: 6.5, y: 0.2, z: 0, roll: CGFloat.pi/6)
-        fog(x: -4, y: 0.2, z: 4, roll: -CGFloat.pi/3)
-        fog(x: 4, y: 0.2, z: 4, roll: CGFloat.pi/3)
-        fog(x: 0, y: 0.2, z: 4, roll: 0)
-    }
+//    func addEmitter() {
+//        fog(x: 7, y: 0.2, z: -3, roll: 0)
+//        fog(x: -7, y: 0.2, z: -3, roll: 0)
+//        fog(x: -6.5, y: 0.2, z: 0, roll: -CGFloat.pi/6)
+//        fog(x: 6.5, y: 0.2, z: 0, roll: CGFloat.pi/6)
+//        fog(x: -4, y: 0.2, z: 4, roll: -CGFloat.pi/3)
+//        fog(x: 4, y: 0.2, z: 4, roll: CGFloat.pi/3)
+//        fog(x: 0, y: 0.2, z: 4, roll: 0)
+//    }
     
     func showPlane() {
         if planeNode == nil {
@@ -277,44 +270,11 @@ class MainViewController: UIViewController {
         
         // Re-write all nodes present in the dictionary
         for pair in dictionary.dictionary {
-            let text = SCNText(string: pair.key.displayName, extrusionDepth: 0.2)
-            text.font = UIFont.italicSystemFont(ofSize: 1)
-            let textNode = SCNNode(geometry: text)
-            textNode.name = "Text:\(pair.value)"
-            
-            let textMaterial = SCNMaterial()
-            textMaterial.diffuse.contents = UIColor.black
-            textMaterial.specular.contents = UIColor.black
-            textMaterial.emission.contents = UIColor.black
-            textMaterial.shininess = 1.0
-            textNode.geometry?.firstMaterial = textMaterial
-            
-            textNode.position = SCNVector3(x: -2, y: Float(5.95 - Double(Int(pair.value)!)/2.2), z: 1)
-            textNode.scale = SCNVector3(x: 0, y: 0, z: 0)
-            self.gameView.scene?.rootNode.addChildNode(textNode)
-            let wait = SCNAction.wait(duration: 0.3)
-            let scale = SCNAction.scale(to: 0.3, duration: 0.01)
-            textNode.runAction(SCNAction.sequence([wait, scale]))
+            textManager.addTextAtPosition(str1: pair.key.displayName, str2: pair.value, x: -2, y: Float(5.95 - Double(Int(pair.value)!)/2.2), z: 1)
         }
         
         // Then add the "CLOSE" label
-        let text = SCNText(string: "CLOSE", extrusionDepth: 0.2)
-        text.font = UIFont.italicSystemFont(ofSize: 1)
-        let textNode = SCNNode(geometry: text)
-        textNode.name = "Text:\(dictionary.dim + 1)"
-        
-        let textMaterial = SCNMaterial()
-        textMaterial.diffuse.contents = UIColor.black
-        textMaterial.specular.contents = UIColor.black
-        textMaterial.emission.contents = UIColor.black
-        textMaterial.shininess = 1.0
-        textNode.geometry?.firstMaterial = textMaterial
-        textNode.position = SCNVector3(x: -2, y: Float(5.95 - Double((dictionary.dim + 1))/2.2), z: 1)
-        textNode.scale = SCNVector3(x: 0, y: 0, z: 0)
-        self.gameView.scene?.rootNode.addChildNode(textNode)
-        let wait = SCNAction.wait(duration: 0.3)
-        let scale = SCNAction.scale(to: 0.3, duration: 0.01)
-        textNode.runAction(SCNAction.sequence([wait, scale]))
+        textManager.addTextAtPosition(str1: "EXIT", str2: String(dictionary.dim + 1), x: -2, y: Float(5.95 - Double((dictionary.dim + 1))/2.2), z: 1)
     }
     
     // Pass 0 to hide the key
@@ -341,80 +301,15 @@ class MainViewController: UIViewController {
         }
     }
     
-    func addCenteredText(str: String) {
-        let text = SCNText(string: str, extrusionDepth: 0.2)
-        text.font = UIFont.italicSystemFont(ofSize: 1)
-        let textNode = SCNNode(geometry: text)
-        let xLenght = (textNode.boundingBox.max.x - textNode.boundingBox.min.x)
-        let yLenght = (textNode.boundingBox.max.y - textNode.boundingBox.min.y)
-        // Positioned slightly to the left, and above the capsule (which is 10 units high)
-        textNode.position = SCNVector3(x: -xLenght/2, y: 10, z: 1)
-        self.gameView.scene?.rootNode.addChildNode(textNode)
-        let appear = SCNAction.move(to: SCNVector3(x: -xLenght/2, y: 3 + yLenght/2, z: 1), duration: 1)
-        let wait = SCNAction.wait(duration: 3)
-        let run = SCNAction.move(to: SCNVector3(x: -xLenght/2, y: -4, z: 1), duration: 1)
-        let remove = SCNAction.removeFromParentNode()
-        textNode.runAction(SCNAction.sequence([appear, wait, run, remove]))
-    }
-    
-    // Position relative to the center of the screen
-    // x -> MIN: -5.5, MAX: 5.5
-    // y -> MIN: 0, MAX:
-    func addTextAtPosition(str: String, x: Float, y: Float) -> SCNNode {
-        let text = SCNText(string: str, extrusionDepth: 0.2)
-        text.font = UIFont.systemFont(ofSize: 1)
-        let textNode = SCNNode(geometry: text)
-
-//        textNode.eulerAngles = SCNVector3(x: 0, y: -0.2, z: 0)
-        textNode.scale = SCNVector3(x: 0.2, y: 0.2, z: 0.2)
-        self.gameView.scene?.rootNode.addChildNode(textNode)
-        textNode.position = SCNVector3(x: x, y: y, z: 1)
-        
-//        let compareAction = SCNAction.move(to: SCNVector3(x: x - xLenght/2, y: 3 + y, z: -3), duration: 2)
-//        let right = SCNAction.rotate(by: 0.4, around: SCNVector3(x: 0, y: 1, z: 0), duration: 3)
-//        let left = SCNAction.rotate(by: -0.4, around: SCNVector3(x: 0, y: 1, z: 0), duration: 3)
-//        let repeatAction = SCNAction.repeatForever(SCNAction.sequence([right, left]))
-//        textNode.runAction(SCNAction.sequence([compareAction, repeatAction]))
-        
-        return textNode
-    }
-    
-    func addNotification(str: String, color: UIColor) {
-        let text = SCNText(string: str, extrusionDepth: 0.2)
-        text.font = UIFont.italicSystemFont(ofSize: 1)
-        let textNode = SCNNode(geometry: text)
-
-        
-        let textMaterial = SCNMaterial()
-        textMaterial.diffuse.contents = color
-        textMaterial.specular.contents = color
-        textMaterial.emission.contents = color
-        textMaterial.shininess = 1.0
-        textNode.geometry?.firstMaterial = textMaterial
-        
-        textNode.scale = SCNVector3(x: 0.5, y: 0.5, z: 0.1)
-        let xLenght = (textNode.boundingBox.max.x - textNode.boundingBox.min.x)
-        let yLenght = (textNode.boundingBox.max.y - textNode.boundingBox.min.y)
-        textNode.position = SCNVector3(x: -xLenght/4, y: 1 + yLenght/2, z: 1)
-        
-        DispatchQueue.main.async {
-            self.gameView.scene?.rootNode.addChildNode(textNode)
-            let wait = SCNAction.wait(duration: 2)
-            let disappear = SCNAction.fadeOut(duration: 1)
-            let remove = SCNAction.removeFromParentNode()
-            textNode.runAction(SCNAction.sequence([wait, disappear, remove]))
-        }
-    }
-    
-    func fog(x: Float, y: Float, z: Float, roll: CGFloat) {
-        let particleSystem = SCNParticleSystem(named: "Smoke Effect/SceneKit Particle System.scnp", inDirectory: nil)
-        
-        let particleNode = SCNNode()
-        particleNode.addParticleSystem(particleSystem!)
-        self.gameView.scene?.rootNode.addChildNode(particleNode)
-        particleNode.position = SCNVector3(x, y, z)
-        particleNode.eulerAngles = SCNVector3(CGFloat.pi/2, roll, 0)
-    }
+//    func fog(x: Float, y: Float, z: Float, roll: CGFloat) {
+//        let particleSystem = SCNParticleSystem(named: "Smoke Effect/SceneKit Particle System.scnp", inDirectory: nil)
+//
+//        let particleNode = SCNNode()
+//        particleNode.addParticleSystem(particleSystem!)
+//        self.gameView.scene?.rootNode.addChildNode(particleNode)
+//        particleNode.position = SCNVector3(x, y, z)
+//        particleNode.eulerAngles = SCNVector3(CGFloat.pi/2, roll, 0)
+//    }
     
     
 }
@@ -435,14 +330,14 @@ extension MainViewController: SessionManagerDelegate {
             self.deviceNode!.removeFromParentNode()
             
             if self.connected == 0 && connected == 1 {
-                self.deviceNode = self.addTextAtPosition(str: "Connecting to \(change.displayName) ...", x: -5.5, y: 0.5)
+                self.deviceNode = self.textManager.addTextAtPosition(str: "Connecting to \(change.displayName) ...", x: -5.5, y: 0.5)
             }
             else if self.connected == 1 && connected == 2 {
-                self.deviceNode = self.addTextAtPosition(str: "Device Connected: \(change.displayName)", x: -5.5, y: 0.5)
+                self.deviceNode = self.textManager.addTextAtPosition(str: "Device Connected: \(change.displayName)", x: -5.5, y: 0.5)
                 self.peerConnected = change
             }
             else if self.peerConnected == change && self.connected == 2 && connected == 0 {
-                self.deviceNode = self.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5)
+                self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5)
             }
             
             self.connected = connected
