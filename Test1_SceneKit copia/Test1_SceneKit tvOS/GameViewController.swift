@@ -54,7 +54,7 @@ extension GameViewController: SessionManagerDelegate {
     func nearPeerHasChangedState(_ manager: SessionManager, peer change: MCPeerID, connected: Int) {
     }
     
-    func mexReceived(_ manager: SessionManager, didMessaggeReceived: SignalCode) {
+    func mexReceived(_ manager: SessionManager, didMessageReceived didMessaggeReceived: SignalCode) {
         switch didMessaggeReceived {
         case .closeGame: // Stop the game session
             performSegue(withIdentifier: "MainSegue", sender: nil)

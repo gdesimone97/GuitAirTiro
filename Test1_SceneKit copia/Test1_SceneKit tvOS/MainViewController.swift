@@ -330,7 +330,7 @@ extension MainViewController: SessionManagerDelegate {
         }
     }
     
-    func mexReceived(_ manager: SessionManager, didMessaggeReceived: SignalCode) {
+    func mexReceived(_ manager: SessionManager, didMessageReceived didMessaggeReceived: SignalCode) {
         switch didMessaggeReceived {
         case .showAcousticGuitar:
             self.guitarsManager.changeGuitar(newGuitar: .acoustic)

@@ -43,7 +43,7 @@ class GameViewControllerPhone: UIViewController {
 
 extension GameViewControllerPhone: SessionManagerDelegate {
     func mexReceived(_ manager: SessionManager, didMessageReceived: SignalCode) {
-        print("Messaggio ricevuto: \(didMessaggeReceived)")
+        print("Messaggio ricevuto: \(didMessageReceived)")
     }
     
     func peerLost(_ manager: SessionManager, peer lost: MCPeerID) {
