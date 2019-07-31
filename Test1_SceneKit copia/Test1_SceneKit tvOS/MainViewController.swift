@@ -29,18 +29,18 @@ class MainViewController: UIViewController {
     var numGuitar: Int = 2 // 2 for electric guitar, 1 for acoustic guitar
     // Assegnamento da fare in base alle UsersDefaults e NON QUI
     
-    var dictionary = DeviceDictionary()
+    
     var session = SessionManager.share
     let semaphore = DispatchSemaphore(value: 1)
     let peerListQueue = DispatchQueue(label: "peerListQueue", qos: .userInteractive)
     var peerConnected: MCPeerID?
     var connected: Int = 0 // -> 0: Disconnected, 1: Connecting, 2: Connected
-    
     var deviceNode: SCNNode?
     
     
     
     // Connection Properties
+    var dictionary = DeviceDictionary()
     var planeNode: SCNNode!
     var flagPanelConnection = false
     var row = 0
@@ -297,6 +297,7 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: SessionManagerDelegate {
+    
     func peerFound(_ manger: SessionManager, peer: MCPeerID) {
         dictionary.addSample(peer: peer)
         semaphore.signal()
@@ -318,6 +319,9 @@ extension MainViewController: SessionManagerDelegate {
                 self.deviceNode = self.textManager.addTextAtPosition(str: "Device Connected: \(change.displayName)", x: -5.5, y: 0.5)
                 self.peerConnected = change
             }
+            else if self.connected == 1 && connected == 0 {
+                self.deviceNode = self.textManager.addTextAtPosition(str: "Device denied the request!", x: -5.5, y: 0.5)
+            }
             else if self.peerConnected == change && self.connected == 2 && connected == 0 {
                 self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5)
             }
@@ -326,25 +330,23 @@ extension MainViewController: SessionManagerDelegate {
         }
     }
     
-    func mexReceived(_ manager: SessionManager, didMessaggeReceived: UInt8) {
-        DispatchQueue.main.async {
+    func mexReceived(_ manager: SessionManager, didMessaggeReceived: SignalCode) {
+        switch didMessaggeReceived {
+        case .showAcousticGuitar:
+            self.guitarsManager.changeGuitar(newGuitar: .acoustic)
+        case .showElectricGuitar:
+            self.guitarsManager.changeGuitar(newGuitar: .electric)
+        case .openGame:
+            self.performSegue(withIdentifier: "GameSegue", sender: nil)
             
-            switch didMessaggeReceived {
-            case 1: // Switch to acoustic guitar
-                self.guitarsManager.changeGuitar(newGuitar: .acoustic)
-            case 2: // Switch to electric guitar
-                self.guitarsManager.changeGuitar(newGuitar: .electric)
-            case 3: // Start the game session
-                self.performSegue(withIdentifier: "GameSegue", sender: nil)
-                
             
-                
-            // Add more cases here
-            default:
-                break
-            }
+            
+        // Add more cases here
+        default:
+            break
         }
     }
+    
 }
 
 

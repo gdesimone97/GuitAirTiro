@@ -221,10 +221,10 @@
 				779E564F22EB090300ACC1BF /* SessionManager.swift */,
 				77DFAD1722E84C54006DCBEE /* MainController.swift */,
 				77FE01C822F04CDA00861C78 /* GameController.swift */,
+				08B5E77D22F1C3C500A6FF05 /* SignalCode.swift */,
 				77DFAD1822E84C54006DCBEE /* Art.scnassets */,
 				77DFAD1922E84C56006DCBEE /* Assets.xcassets */,
 				0898EC3122F05203007C32DD /* Test1_SceneKit watchOS App-Bridging-Header.h */,
-				08B5E77D22F1C3C500A6FF05 /* SignalCode.swift */,
 			);
 			path = "Test1_SceneKit Shared";
 			sourceTree = "<group>";

@@ -59,6 +59,7 @@ class GameGuitarManager {
         
         DispatchQueue.main.async {
             self.scene.rootNode.addChildNode(boxNode)
+            print("ciao")
             boxNode.runAction(sequence)
         }
         
