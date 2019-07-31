@@ -57,6 +57,7 @@ extension GameViewController: SessionManagerDelegate {
     
     func mexReceived(_ manager: SessionManager, didMessageReceived: SignalCode) {
         switch didMessageReceived {
+		
         case .closeGame: // Stop the game session
             performSegue(withIdentifier: "MainSegue", sender: nil)
         case .note1: // Box in col1

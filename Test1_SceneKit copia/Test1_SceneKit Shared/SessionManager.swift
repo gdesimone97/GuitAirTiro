@@ -67,7 +67,7 @@ class SessionManager: NSObject {
         self.serviceAdverticer.stopAdvertisingPeer()
     }
     
-    func invitePeer(invite peer: MCPeerID) throws {
+    func invitePeer(invite peer: MCPeerID) {
         print("Connessione in corso...")
         invitePeerSetUp()
         sleep(2)
@@ -143,7 +143,7 @@ extension SessionManager: MCSessionDelegate {
         let intData = data.first
         let code = SignalCode.init(rawValue: intData!)
         guard code != nil else { return }
-        self.delegate?.mexReceived(self, didMessaggeReceived: code!)
+        self.delegate?.mexReceived(self, didMessageReceived: code!)
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
