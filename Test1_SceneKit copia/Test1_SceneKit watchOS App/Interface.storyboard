@@ -12,7 +12,7 @@
         <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="GuitAir_WatchKit_App" customModuleProvider="target"/>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Test1_SceneKit" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="220" y="345"/>
         </scene>
@@ -36,21 +36,21 @@
         <!--Notification Controller-->
         <scene sceneID="ZPc-GJ-vnh">
             <objects>
-                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="GuitAir_WatchKit_App" customModuleProvider="target"/>
+                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="Test1_SceneKit" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="468" y="643"/>
         </scene>
         <!--Notification Controller-->
         <scene sceneID="Niz-AI-uX2">
             <objects>
-                <controller id="eXb-UN-Cd0" customClass="NotificationController" customModule="GuitAir_WatchKit_App" customModuleProvider="target"/>
+                <controller id="eXb-UN-Cd0" customClass="NotificationController" customModule="Test1_SceneKit" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="468" y="345"/>
         </scene>
         <!--mainScene-->
         <scene sceneID="IZ8-6N-hpu">
             <objects>
-                <controller identifier="mainScene" id="ElM-mC-NpM" customClass="WatchController" customModule="GuitAir_WatchKit_Extension">
+                <controller identifier="mainScene" id="ElM-mC-NpM" customClass="WatchController" customModule="Test1_SceneKit_Extension">
                     <items>
                         <separator alignment="left" id="nAu-ye-pB0"/>
                         <label alignment="left" text="Welcome Back!" id="BQ0-dt-gDh"/>
@@ -71,7 +71,7 @@
         <!--PlayScene-->
         <scene sceneID="1DU-8E-NcB">
             <objects>
-                <controller identifier="playingScene" title="PlayScene" id="2Ba-SE-ZHF" customClass="WatchController" customModule="GuitAir_WatchKit_Extension">
+                <controller identifier="playingScene" title="PlayScene" id="2Ba-SE-ZHF" customClass="WatchController" customModule="Test1_SceneKit_Extension">
                     <items>
                         <separator alignment="left" id="UDi-xw-fVI"/>
                         <label alignment="left" text="Playing Session" id="Qes-xF-Dks"/>

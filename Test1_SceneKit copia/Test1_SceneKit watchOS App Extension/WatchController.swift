@@ -37,10 +37,12 @@ class WatchController: WKInterfaceController, MotionManagerDelegate {
         WKExtension.shared().isFrontmostTimeoutExtended = true
         
         if WCSession.isSupported() {
+//            print("Sono nella willActivate")
             session.delegate = self
             session.activate()
         }
         sleep(2)
+//        connectionStatus = checkConnection()
         self.setTitle("")
         
         if isFirstAppearance{
@@ -61,6 +63,10 @@ class WatchController: WKInterfaceController, MotionManagerDelegate {
     
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
+//        if manager.motionManager.isDeviceMotionActive {
+//            manager.stopUpdates()
+//            dismiss()
+//        }
         super.didDeactivate()
     }
     
@@ -70,6 +76,14 @@ class WatchController: WKInterfaceController, MotionManagerDelegate {
 
 extension WatchController: WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        /*
+        if activationState == WCSessionActivationState.activated{
+            stateLabel.setText("Connected to the iPhone!\nReady to play")
+        }
+        else{
+            stateLabel.setText("Can't connect to the iPhone!")
+        }
+ */
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
@@ -113,6 +127,20 @@ extension WatchController: WCSessionDelegate {
 }
 
 extension WatchController {
+//    func checkConnection() -> Bool{
+//        guard self.sessionStatus == WCSessionActivationState.activated else {
+//            stateLabel.setText("Connection not available")
+//            return false
+//        }
+//        guard self.session.isReachable else {
+//            if  self.session.iOSDeviceNeedsUnlockAfterRebootForReachability {
+//                stateLabel.setText("iPhone not reacheable!")
+//            }
+//            return false
+//        }
+//        return true
+//    }
+    
     func sendData() {
         session.sendMessage(["payload": "1"], replyHandler: nil)
     }
