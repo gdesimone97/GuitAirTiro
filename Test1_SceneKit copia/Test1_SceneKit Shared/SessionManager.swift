@@ -20,9 +20,6 @@ import MultipeerConnectivity
     @objc optional func peerLost(_ manager: SessionManager,peer lost: MCPeerID)
 }
 
-enum SignalCode: UInt8 {
-    case disconnectPeerSignal = 0
-}
 
 class SessionManager: NSObject {
     // Initiating a Session

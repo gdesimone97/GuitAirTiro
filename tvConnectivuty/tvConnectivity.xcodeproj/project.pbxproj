@@ -24,6 +24,8 @@
 		088AC1AB22E8526F00F00462 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088AC18422E8526B00F00462 /* GameScene.swift */; };
 		088AC1AC22E8526F00F00462 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 088AC18522E8526F00F00462 /* Assets.xcassets */; };
 		088AC1AD22E8526F00F00462 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 088AC18522E8526F00F00462 /* Assets.xcassets */; };
+		08B5E78122F1C43100A6FF05 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B5E78022F1C43000A6FF05 /* SessionManager.swift */; };
+		08B5E78222F1C43100A6FF05 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B5E78022F1C43000A6FF05 /* SessionManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,7 @@
 		088AC1A022E8526F00F00462 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		088AC1A322E8526F00F00462 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		088AC1A522E8526F00F00462 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		08B5E78022F1C43000A6FF05 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = "../../Test1_SceneKit copia/Test1_SceneKit Shared/SessionManager.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				0858181A22E8B5EB009550B5 /* SessionManager.swift */,
+				08B5E78022F1C43000A6FF05 /* SessionManager.swift */,
 				088AC18222E8526B00F00462 /* Actions.sks */,
 				088AC18322E8526B00F00462 /* GameScene.sks */,
 				088AC18422E8526B00F00462 /* GameScene.swift */,
@@ -251,6 +255,7 @@
 				088AC1AA22E8526F00F00462 /* GameScene.swift in Sources */,
 				088AC19022E8526F00F00462 /* GameViewController.swift in Sources */,
 				0858181B22E8B5EB009550B5 /* SessionManager.swift in Sources */,
+				08B5E78122F1C43100A6FF05 /* SessionManager.swift in Sources */,
 				088AC18E22E8526F00F00462 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,6 +267,7 @@
 				088AC1AB22E8526F00F00462 /* GameScene.swift in Sources */,
 				088AC1A122E8526F00F00462 /* GameViewController.swift in Sources */,
 				0858181C22E8B5EB009550B5 /* SessionManager.swift in Sources */,
+				08B5E78222F1C43100A6FF05 /* SessionManager.swift in Sources */,
 				088AC19F22E8526F00F00462 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
