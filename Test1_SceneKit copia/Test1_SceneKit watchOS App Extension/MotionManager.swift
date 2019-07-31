@@ -10,33 +10,48 @@ import Foundation
 import CoreMotion
 import WatchKit
 
-
+/**
+ `MotionManagerDelegate` exists to inform delegates of motion changes.
+ These contexts can be used to enable application specific behavior.
+ */
 protocol MotionManagerDelegate: class {
     func updatedRead(sound: Bool)
 }
 
 class MotionManager {
-   
+    // MARK: Properties
     
     let motionManager = CMMotionManager()
     let queue = OperationQueue()
     
+//    var buffer = PlayingBuffer(size: 1)
+    
     var flag: Bool = false
     var flag1: Bool = false
+    
+    
+    // MARK: Application Specific Constants
     
     let startThreshold = 3.00
     let soundThreshold = 2.00
     let raisingThreshold = 2.00
     
+    
+    // The app is using 100hz data and the buffer is going to hold 1s worth of data.
     let sampleInterval = 1.0 / 100
     
     weak var delegate: MotionManagerDelegate?
     
+    
+    // MARK: Initialization
+    
     init() {
+        // Serial queue for sample handling and calculations.
         queue.maxConcurrentOperationCount = 1
         queue.name = "MotionManagerQueue"
     }
     
+    // MARK: Motion Manager
     
     func startUpdates() {
         if !motionManager.isDeviceMotionAvailable {
@@ -76,13 +91,24 @@ class MotionManager {
         }
     }
     
+    // MARK: Motion Processing
     
     func processDeviceMotion(x: Double, z: Double) {
         
         //give more weight to the rotation around the yaw than the pitch
         let sum = (-x + z*2)/3
         
+        
+//        buffer.addSample(sum)
+        
+//        if !buffer.isFull() {
+//            return
+//        }
         flag = false
+        
+//        let sumAvg = buffer.sum()/buffer.size
+//        buffer.reset()
+//        buffer_pitch.reset()
         
         delegate!.updatedRead(sound: sum >= soundThreshold)
     }
