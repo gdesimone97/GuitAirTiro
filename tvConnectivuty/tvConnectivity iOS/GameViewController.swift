@@ -11,7 +11,9 @@ import MultipeerConnectivity
 
 class GameViewControllerPhone: UIViewController {
     
+    @IBOutlet var text: UITextField!
     @IBOutlet var label: UILabel!
+    
     var session = SessionManager.share
     var i: UInt8 = 1
     
@@ -33,7 +35,8 @@ class GameViewControllerPhone: UIViewController {
     
     @IBAction func button2(_ sender: Any) {
         if let deviceList = session.showConncetedDevices() {
-            session.sendSignal(deviceList[0], message: 2)
+            var messaggio = text.text as! String
+            session.sendSignal(deviceList[0], message: UInt8(messaggio)!)
         }
     } 
 }

@@ -22,8 +22,6 @@ import MultipeerConnectivity
 
 enum SignalCode: UInt8 {
     case disconnectPeerSignal = 0
-    case accept = 3
-    case decline = 4
 }
 
 class SessionManager: NSObject {
