@@ -50,7 +50,18 @@ class GameGuitarManager {
         boxMaterial.shininess = 1.0
         boxNode.geometry?.firstMaterial = boxMaterial
         
-        boxNode.position = SCNVector3(column1, 0, z)
+        boxNode.position = SCNVector3(column1.xPosition, 0, z)
+        
+        let appear = SCNAction.fadeIn(duration: 0.5)
+        let move = SCNAction.move(by: SCNVector3(x: 0, y: 0, z: 10), duration: 2)
+        let remove = SCNAction.removeFromParentNode()
+        let sequence = SCNAction.sequence([appear, move, remove])
+        
+        DispatchQueue.main.async {
+            self.scene.rootNode.addChildNode(boxNode)
+            boxNode.runAction(sequence)
+        }
+        
     }
 
 }

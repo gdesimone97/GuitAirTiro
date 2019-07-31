@@ -17,6 +17,7 @@ class GameViewController: UIViewController {
     }
     
     var gameController: GameController!
+    var gameGuitarManager: GameGuitarManager!
 
 
     override func viewDidLoad() {
@@ -30,16 +31,16 @@ class GameViewController: UIViewController {
         // Show statistics such as fps and timing information
         self.gameView.showsStatistics = true
         
-        self.addContent()
+        gameGuitarManager = GameGuitarManager(scene: gameView.scene!, width: 4, length: 10, z: -10)
+        
+        run()
     }
     
-    func addContent() {
-        let node = self.gameView.scene!.rootNode.childNode(withName: "Node", recursively: false)
-        self.gameView.scene!.rootNode.enumerateChildNodes { (node, _) in
-            if node.name == "box" {
-                
-            }
-        }
+    func run() {
+        gameGuitarManager.showNode(column: 1)
+        gameGuitarManager.showNode(column: 2)
+        gameGuitarManager.showNode(column: 3)
+        gameGuitarManager.showNode(column: 4)
     }
     
 }
