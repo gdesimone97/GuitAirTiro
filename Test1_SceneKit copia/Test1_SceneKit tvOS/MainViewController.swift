@@ -174,7 +174,7 @@ class MainViewController: UIViewController {
         
         DispatchQueue.main.async {
             self.textManager.addCenteredText(str: "GuitAir")
-            self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected! Press the central button on the remote control to see the available devices", x: -5.5, y: 0.5)
+            self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected! Press the central button on the remote to see the available devices", x: -5.5, y: 0.5)
         }
     }
     
@@ -319,8 +319,12 @@ extension MainViewController: SessionManagerDelegate {
                 self.deviceNode = self.textManager.addTextAtPosition(str: "Device Connected: \(change.displayName)", x: -5.5, y: 0.5)
                 self.peerConnected = change
             }
-            else if self.connected == 1 && connected == 0 {
+            else if self.connected == 0 && connected == 0 {
                 self.deviceNode = self.textManager.addTextAtPosition(str: "Device denied the request!", x: -5.5, y: 0.5)
+                self.deviceNode?.runAction(SCNAction.run{_ in 
+                    SCNAction.wait(duration: 3)
+                    self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5)
+                })
             }
             else if self.peerConnected == change && self.connected == 2 && connected == 0 {
                 self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5)
@@ -330,8 +334,8 @@ extension MainViewController: SessionManagerDelegate {
         }
     }
     
-    func mexReceived(_ manager: SessionManager, didMessaggeReceived: SignalCode) {
-        switch didMessaggeReceived {
+    func mexReceived(_ manager: SessionManager, didMessageReceived: SignalCode) {
+        switch didMessageReceived {
         case .showAcousticGuitar:
             self.guitarsManager.changeGuitar(newGuitar: .acoustic)
         case .showElectricGuitar:

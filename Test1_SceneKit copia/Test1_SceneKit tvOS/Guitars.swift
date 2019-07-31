@@ -65,13 +65,14 @@ class Guitars {
     }
     
     func changeGuitar(newGuitar: GuitarsEnum) {
-        if let guitar = actualGuitar {
-            guitar.guitarNode.runAction(SCNAction.sequence( [SCNAction.move(by: SCNVector3(x: -15, y: 0, z: 0), duration: 0.7), SCNAction.move(by: SCNVector3(x: 30, y: guitar.y!, z: 0), duration: 0) ] ) )
+        DispatchQueue.main.async {
+            if let guitar = self.actualGuitar {
+                guitar.guitarNode.runAction(SCNAction.sequence( [SCNAction.move(by: SCNVector3(x: -15, y: 0, z: 0), duration: 0.7), SCNAction.move(by: SCNVector3(x: 30, y: guitar.y!, z: 0), duration: 0) ] ) )
+            }
+            
+            self.assign(guitar: newGuitar)
+            self.actualGuitar!.guitarNode.runAction(SCNAction.move(to: SCNVector3(x: 0, y: self.actualGuitar!.y!, z: 0), duration: 0.7))
         }
-        
-        assign(guitar: newGuitar)
-        actualGuitar!.guitarNode.runAction(SCNAction.move(to: SCNVector3(x: 0, y: actualGuitar!.y!, z: 0), duration: 0.7))
-        
     }
     
     private func assign(guitar: GuitarsEnum) {

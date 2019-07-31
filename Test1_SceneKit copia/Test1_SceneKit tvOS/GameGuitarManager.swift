@@ -50,19 +50,34 @@ class GameGuitarManager {
         boxMaterial.shininess = 1.0
         boxNode.geometry?.firstMaterial = boxMaterial
         
-        boxNode.position = SCNVector3(column1.xPosition, 0, z)
+        if let col = findColumn(column: column) {
+            boxNode.position = SCNVector3(col.xPosition, 0, z)
+        }
         
-        let appear = SCNAction.fadeIn(duration: 0.5)
-        let move = SCNAction.move(by: SCNVector3(x: 0, y: 0, z: 10), duration: 2)
+        let appearMoving = SCNAction.group( [SCNAction.fadeIn(duration: 0.4), SCNAction.move(by: SCNVector3(x: 0, y: 0, z: length), duration: 5)] )
         let remove = SCNAction.removeFromParentNode()
-        let sequence = SCNAction.sequence([appear, move, remove])
+        let sequence = SCNAction.sequence([appearMoving, remove])
         
         DispatchQueue.main.async {
             self.scene.rootNode.addChildNode(boxNode)
-            print("ciao")
             boxNode.runAction(sequence)
         }
         
+    }
+    
+    private func findColumn(column: Int) -> ColumnType? {
+        switch column {
+        case 1:
+            return column1
+        case 2:
+            return column2
+        case 3:
+            return column3
+        case 4:
+            return column4
+        default:
+            return nil
+        }
     }
 
 }

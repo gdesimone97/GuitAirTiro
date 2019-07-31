@@ -36,7 +36,7 @@ class GameViewController: UIViewController {
         // Show statistics such as fps and timing information
         self.gameView.showsStatistics = true
         
-        gameGuitarManager = GameGuitarManager(scene: gameView.scene!, width: 4, length: 10, z: -10)
+        gameGuitarManager = GameGuitarManager(scene: gameView.scene!, width: 4, length: 20, z: -17)
         
     }
     
@@ -52,10 +52,11 @@ extension GameViewController: SessionManagerDelegate {
     
     
     func nearPeerHasChangedState(_ manager: SessionManager, peer change: MCPeerID, connected: Int) {
+        
     }
     
-    func mexReceived(_ manager: SessionManager, didMessaggeReceived: SignalCode) {
-        switch didMessaggeReceived {
+    func mexReceived(_ manager: SessionManager, didMessageReceived: SignalCode) {
+        switch didMessageReceived {
         case .closeGame: // Stop the game session
             performSegue(withIdentifier: "MainSegue", sender: nil)
         case .note1: // Box in col1
