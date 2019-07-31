@@ -11,16 +11,9 @@ import SceneKit
 
 class GameGuitarManager {
     
-    enum Column : Int {
-        case 1 = ColumnType(UIColor.red, column1)
-        case 2 = [color: UIColor.green, position: column2]
-        case 3 = [color: UIColor.yellow, position: column3]
-        case 4 = [color: UIColor.blue, position: column4]
-    }
-    
     struct ColumnType {
-        var color: UIColor
-        var position: Float
+        let color: UIColor
+        let xPosition: Float
     }
     
     private let scene: SCNScene
@@ -28,16 +21,21 @@ class GameGuitarManager {
     private var length: Float
     private var z: Float
     
-    private var column1: Float { return -width/4 - width/2 }
-    private var column2: Float { return -width/4 }
-    private var column3: Float { return width/4 }
-    private var column4: Float { return width/4 + width/2 }
+    private let column1: ColumnType
+    private let column2: ColumnType
+    private let column3: ColumnType
+    private let column4: ColumnType
     
     init(scene: SCNScene, width: Float, length: Float, z: Float) {
         self.scene = scene
         self.width = width
         self.length = length
         self.z = z
+        
+        column1 = ColumnType(color: UIColor.red, xPosition: Float(-width/4 - width/2))
+        column2 = ColumnType(color: UIColor.green, xPosition: Float(-width/4))
+        column3 = ColumnType(color: UIColor.blue, xPosition: Float(width/4))
+        column4 = ColumnType(color: UIColor.yellow, xPosition: Float(width/4 + width/2))
     }
 
     // Parameter indicates the column of the guitar
