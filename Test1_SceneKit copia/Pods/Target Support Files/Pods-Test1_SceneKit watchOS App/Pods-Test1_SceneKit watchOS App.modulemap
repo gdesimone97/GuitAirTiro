@@ -1,0 +1,6 @@
+framework module Pods_Test1_SceneKit_watchOS_App {
+  umbrella header "Pods-Test1_SceneKit watchOS App-umbrella.h"
+
+  export *
+  module * { export * }
+}

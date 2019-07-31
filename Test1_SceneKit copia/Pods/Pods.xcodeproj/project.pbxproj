@@ -1,0 +1,1379 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		3BD689D37642679AAD369722AED468AD /* AudioKit-tvOS */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 79E7D3F83B31FC0AF12D26558C8D77D3 /* Build configuration list for PBXAggregateTarget "AudioKit-tvOS" */;
+			buildPhases = (
+			);
+			dependencies = (
+			);
+			name = "AudioKit-tvOS";
+		};
+		45115D17087258CBD6AF8E9C9C10F1EC /* AudioKit-iOS */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = F925CFDD83DB34C33B8AC0CF5CEA3C1D /* Build configuration list for PBXAggregateTarget "AudioKit-iOS" */;
+			buildPhases = (
+			);
+			dependencies = (
+			);
+			name = "AudioKit-iOS";
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		0E63E61FCF88EB49F09C3470614099F3 /* Pods-Test1_SceneKit iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F73F0991A11F07E803E9506AD30CD29E /* Pods-Test1_SceneKit iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21CDED965732D9B8D81C7E2F01F0D41B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94CB5B71DBED504C6A7980B6C1A15131 /* Foundation.framework */; };
+		23B219841FA33F56146A436041A23328 /* Pods-Test1_SceneKit tvOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 12F566BC23EE04B340D3765D5F14B45F /* Pods-Test1_SceneKit tvOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		52271C65BB1419A77D25AFADF715A9F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E9FEA51A166C1C0C00CD1B99394CAC /* Foundation.framework */; };
+		872C8A800892D58F8C6473AD890505E4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4AC6EBE496E68AC30738FEB6E504F8D /* Foundation.framework */; };
+		8A2E095CA481CB343CF8D21F901DFF15 /* Pods-Test1_SceneKit watchOS App Extension-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A019EC48A43B8A5CF6EF4D1E39E0243E /* Pods-Test1_SceneKit watchOS App Extension-dummy.m */; };
+		8D2CE0CE0E6F62D447675F706F45B14C /* Pods-Test1_SceneKit watchOS App-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 950BB3B0508C7E62DE82FEBEF95F9984 /* Pods-Test1_SceneKit watchOS App-dummy.m */; };
+		A2C5C4E48B5330E939929DEC21CF6BA5 /* Pods-Test1_SceneKit tvOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4326F4C3481DB5784AC40DDBB5C2D54F /* Pods-Test1_SceneKit tvOS-dummy.m */; };
+		B5FB6A3D78C04F0696C1D703A0BEB20B /* Pods-Test1_SceneKit watchOS App-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D6552D59CB2169AD09771F2C4FF5EC9 /* Pods-Test1_SceneKit watchOS App-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BBDFF59BB4AB1131F334FCBB74B39C2E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E9FEA51A166C1C0C00CD1B99394CAC /* Foundation.framework */; };
+		EB4FD6FC981E34D8D0C6B853E1B4F191 /* Pods-Test1_SceneKit watchOS App Extension-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 944791D008CBEA89C1861DFEB5FCD49C /* Pods-Test1_SceneKit watchOS App Extension-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FAEBA44BF60DEE0F6FD4FCBBF9A76EE7 /* Pods-Test1_SceneKit iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F9EE2DE6AEC6D69B79F2F144ACB5E40C /* Pods-Test1_SceneKit iOS-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		088C3F90BCF6302294B0372092876065 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3BD689D37642679AAD369722AED468AD;
+			remoteInfo = "AudioKit-tvOS";
+		};
+		9B817F60F852D56558550CF51422219C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 45115D17087258CBD6AF8E9C9C10F1EC;
+			remoteInfo = "AudioKit-iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		017D8206A0B7791E71C060791BC9EE81 /* EZAudioFloatConverter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioFloatConverter.h; path = tvOS/AudioKit.framework/Headers/EZAudioFloatConverter.h; sourceTree = "<group>"; };
+		07632BA8440E158F56C09941687F2210 /* AKTesterAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKTesterAudioUnit.h; path = iOS/AudioKit.framework/Headers/AKTesterAudioUnit.h; sourceTree = "<group>"; };
+		080F337BF833880BBE1C297E6F3DEEDF /* AKDynaRageCompressorAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKDynaRageCompressorAudioUnit.h; path = tvOS/AudioKit.framework/Headers/AKDynaRageCompressorAudioUnit.h; sourceTree = "<group>"; };
+		0AE9FD1B248658D2F553630AEA2651EF /* AKInterop.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKInterop.h; path = tvOS/AudioKit.framework/Headers/AKInterop.h; sourceTree = "<group>"; };
+		0CE0ECBF11E83B938AE55ADC29CEBE69 /* AKMandolinAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKMandolinAudioUnit.h; path = tvOS/AudioKit.framework/Headers/AKMandolinAudioUnit.h; sourceTree = "<group>"; };
+		0E6BB538B7FB5A838F066AFFAB18FB87 /* Pods_Test1_SceneKit_watchOS_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Test1_SceneKit_watchOS_App.framework; path = "Pods-Test1_SceneKit watchOS App.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F88E5DE9BA094A03F35770C10507049 /* EZAudioDisplayLink.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioDisplayLink.h; path = tvOS/AudioKitUI.framework/Headers/EZAudioDisplayLink.h; sourceTree = "<group>"; };
+		0FB0914E9BBAA6308FBEE924370D1FCF /* BufferedAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BufferedAudioUnit.h; path = iOS/AudioKit.framework/Headers/BufferedAudioUnit.h; sourceTree = "<group>"; };
+		10D564775AE31A1AA78EF0C24ABEA130 /* EZAudioDisplayLink.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioDisplayLink.h; path = iOS/AudioKitUI.framework/Headers/EZAudioDisplayLink.h; sourceTree = "<group>"; };
+		12F566BC23EE04B340D3765D5F14B45F /* Pods-Test1_SceneKit tvOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Test1_SceneKit tvOS-umbrella.h"; sourceTree = "<group>"; };
+		13B79D47057D4E7800B04ADC0352BDE7 /* Pods-Test1_SceneKit tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Test1_SceneKit tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		1536C619704B52D21D28323B27507047 /* EZAudioFFT.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioFFT.h; path = tvOS/AudioKit.framework/Headers/EZAudioFFT.h; sourceTree = "<group>"; };
+		199784930B87559B8C17196DF4F338B1 /* AKCallbackInstrumentAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKCallbackInstrumentAudioUnit.h; path = iOS/AudioKit.framework/Headers/AKCallbackInstrumentAudioUnit.h; sourceTree = "<group>"; };
+		1A0B4A296B58F647A84BBE6492C8D099 /* AKBankAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKBankAudioUnit.h; path = iOS/AudioKit.framework/Headers/AKBankAudioUnit.h; sourceTree = "<group>"; };
+		1C346158A10E2C85464C3BF570DD75E1 /* AKLazyTap.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKLazyTap.h; path = tvOS/AudioKit.framework/Headers/AKLazyTap.h; sourceTree = "<group>"; };
+		1CF3EAF986CF5F97AAD839F0C15E00B3 /* EZAudioFileMarker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioFileMarker.h; path = iOS/AudioKit.framework/Headers/EZAudioFileMarker.h; sourceTree = "<group>"; };
+		1EE9ED9E47B1400B5FB094D22EB9E7BE /* Pods_Test1_SceneKit_watchOS_App_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Test1_SceneKit_watchOS_App_Extension.framework; path = "Pods-Test1_SceneKit watchOS App Extension.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F586696CF1F9756A7D6C84A6E76A021 /* dr_wav.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = dr_wav.h; path = tvOS/AudioKit.framework/Headers/dr_wav.h; sourceTree = "<group>"; };
+		1F7D6B0100A0466B07DF1878341DD7EB /* soundpipe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = soundpipe.h; path = tvOS/AudioKit.framework/Headers/soundpipe.h; sourceTree = "<group>"; };
+		221ABFED6853216D030BADE048AA4B25 /* AKGeneratorAudioUnitBase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKGeneratorAudioUnitBase.h; path = tvOS/AudioKit.framework/Headers/AKGeneratorAudioUnitBase.h; sourceTree = "<group>"; };
+		22AFF1A0BA7BB235015ECCB01A4A0A61 /* Pods-Test1_SceneKit iOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Test1_SceneKit iOS-acknowledgements.plist"; sourceTree = "<group>"; };
+		2324F570E7E8E1D00AB3F7C01DE40B2C /* Pods-Test1_SceneKit watchOS App-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Test1_SceneKit watchOS App-acknowledgements.plist"; sourceTree = "<group>"; };
+		236CC4B067B02C02ED29A762715A3048 /* AudioKitUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AudioKitUI.h; path = tvOS/AudioKitUI.framework/Headers/AudioKitUI.h; sourceTree = "<group>"; };
+		25B29D647F3462DA802BADFC00B7F84B /* soundpipe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = soundpipe.h; path = iOS/AudioKit.framework/Headers/soundpipe.h; sourceTree = "<group>"; };
+		2646B08E0F548D55A236A7FED29D1927 /* AKOperationEffectAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKOperationEffectAudioUnit.h; path = tvOS/AudioKit.framework/Headers/AKOperationEffectAudioUnit.h; sourceTree = "<group>"; };
+		26F51AC127C41B34D63E12FC0E80C9AA /* AKOperationGeneratorAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKOperationGeneratorAudioUnit.h; path = iOS/AudioKit.framework/Headers/AKOperationGeneratorAudioUnit.h; sourceTree = "<group>"; };
+		2709395978EF8CA60EA0A9F55C649C1F /* Pods-Test1_SceneKit watchOS App Extension-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Test1_SceneKit watchOS App Extension-Info.plist"; sourceTree = "<group>"; };
+		278FDF44E655ED281FE775A2D5B04568 /* Pods-Test1_SceneKit watchOS App Extension-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Test1_SceneKit watchOS App Extension-acknowledgements.markdown"; sourceTree = "<group>"; };
+		28DEA8F2AD36BB90DD316DC36D85054E /* Pods-Test1_SceneKit tvOS-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Test1_SceneKit tvOS-Info.plist"; sourceTree = "<group>"; };
+		2AB87B03AF04BB26DCFF9F2ED06002FF /* EZAudioPlayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioPlayer.h; path = iOS/AudioKit.framework/Headers/EZAudioPlayer.h; sourceTree = "<group>"; };
+		2CAFBE4FEFF42C6BF0F3CA09EAFF1933 /* AKOfflineRenderAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKOfflineRenderAudioUnit.h; path = iOS/AudioKit.framework/Headers/AKOfflineRenderAudioUnit.h; sourceTree = "<group>"; };
+		2D012317D87FCDA8475709D9363E5761 /* EZAudioFloatConverter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioFloatConverter.h; path = iOS/AudioKit.framework/Headers/EZAudioFloatConverter.h; sourceTree = "<group>"; };
+		2DABBB6B7B2A5D39EEF9981FFC5404F9 /* Pods-Test1_SceneKit watchOS App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Test1_SceneKit watchOS App.release.xcconfig"; sourceTree = "<group>"; };
+		3088827BE1F81E3D4006FB0078F3A95C /* Pods-Test1_SceneKit tvOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Test1_SceneKit tvOS-acknowledgements.plist"; sourceTree = "<group>"; };
+		320477C05AD03080F6C68B24BB47AEBE /* EZAudioDevice.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioDevice.h; path = iOS/AudioKit.framework/Headers/EZAudioDevice.h; sourceTree = "<group>"; };
+		342968FE7E7FD1B2C3BA5151B63A5207 /* AKModulatedDelay_Typedefs.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKModulatedDelay_Typedefs.h; path = iOS/AudioKit.framework/Headers/AKModulatedDelay_Typedefs.h; sourceTree = "<group>"; };
+		39D66DE950E45480299CF6AD543B1A55 /* EZAudio.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudio.h; path = iOS/AudioKit.framework/Headers/EZAudio.h; sourceTree = "<group>"; };
+		3ABD608C5980AB8549B05381E0CE5A2A /* AKGeneratorAudioUnitBase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKGeneratorAudioUnitBase.h; path = iOS/AudioKit.framework/Headers/AKGeneratorAudioUnitBase.h; sourceTree = "<group>"; };
+		3D6552D59CB2169AD09771F2C4FF5EC9 /* Pods-Test1_SceneKit watchOS App-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Test1_SceneKit watchOS App-umbrella.h"; sourceTree = "<group>"; };
+		3D8607A3279CF1573B61F777D741BA2C /* AKSamplerMetronome.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKSamplerMetronome.h; path = tvOS/AudioKit.framework/Headers/AKSamplerMetronome.h; sourceTree = "<group>"; };
+		3D89FE5BD7C9DB5FFFA3C686AC16BA23 /* AudioKitUI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AudioKitUI.h; path = iOS/AudioKitUI.framework/Headers/AudioKitUI.h; sourceTree = "<group>"; };
+		3F382DC9A65CA414393A5A6DCF5E6315 /* AudioKit-iOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "AudioKit-iOS.xcconfig"; sourceTree = "<group>"; };
+		42BB8CAE865BCBF4B6DF438D84ED891A /* AKAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKAudioUnit.h; path = tvOS/AudioKit.framework/Headers/AKAudioUnit.h; sourceTree = "<group>"; };
+		4326F4C3481DB5784AC40DDBB5C2D54F /* Pods-Test1_SceneKit tvOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Test1_SceneKit tvOS-dummy.m"; sourceTree = "<group>"; };
+		44EAE1BEA5E65E5998124656C5E81436 /* EZAudioFFT.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioFFT.h; path = iOS/AudioKit.framework/Headers/EZAudioFFT.h; sourceTree = "<group>"; };
+		45862C3CDC2BA94E380359AF1AB26E5C /* AKWaveTableAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKWaveTableAudioUnit.h; path = tvOS/AudioKit.framework/Headers/AKWaveTableAudioUnit.h; sourceTree = "<group>"; };
+		467141624AC21CE08059FD82C10F4E32 /* EZAudioUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioUtilities.h; path = tvOS/AudioKit.framework/Headers/EZAudioUtilities.h; sourceTree = "<group>"; };
+		4835655D187BCF1F695C17D8DA2C9502 /* AKSporthStack.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKSporthStack.h; path = iOS/AudioKit.framework/Headers/AKSporthStack.h; sourceTree = "<group>"; };
+		486A8ED6D1A23E63B10BE378CA962191 /* Pods-Test1_SceneKit iOS-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Test1_SceneKit iOS-Info.plist"; sourceTree = "<group>"; };
+		4A628F095566B1E718DBB66DC4416009 /* AudioKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AudioKit.h; path = iOS/AudioKit.framework/Headers/AudioKit.h; sourceTree = "<group>"; };
+		4DC809E6B934CCD5E6CBE9EF4CA40E31 /* AKPWMOscillatorBankAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKPWMOscillatorBankAudioUnit.h; path = iOS/AudioKit.framework/Headers/AKPWMOscillatorBankAudioUnit.h; sourceTree = "<group>"; };
+		4EBFC4F09A0F2E0252B5F320F9543A46 /* AKRhinoGuitarProcessorAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKRhinoGuitarProcessorAudioUnit.h; path = tvOS/AudioKit.framework/Headers/AKRhinoGuitarProcessorAudioUnit.h; sourceTree = "<group>"; };
+		4F4DCCBFD792A9347DEE8DD782543D14 /* Pods-Test1_SceneKit iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Test1_SceneKit iOS.release.xcconfig"; sourceTree = "<group>"; };
+		4F8FF378B9662CFB0B7BF445AE0FD628 /* AKLazyTap.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKLazyTap.h; path = iOS/AudioKit.framework/Headers/AKLazyTap.h; sourceTree = "<group>"; };
+		4FF997536C8F4EACE731121781038110 /* AKTimeline.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKTimeline.h; path = iOS/AudioKit.framework/Headers/AKTimeline.h; sourceTree = "<group>"; };
+		51EC0C8F9EBB1740FF88C1ECB35D36E2 /* AKAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKAudioUnit.h; path = iOS/AudioKit.framework/Headers/AKAudioUnit.h; sourceTree = "<group>"; };
+		538BE6E3D404A56B87E7EC4372233B3E /* AKAudioUnitBase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKAudioUnitBase.h; path = iOS/AudioKit.framework/Headers/AKAudioUnitBase.h; sourceTree = "<group>"; };
+		55058ACE15B6CD8FE87568D56FEB5C0E /* AKTimelineTap.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKTimelineTap.h; path = tvOS/AudioKit.framework/Headers/AKTimelineTap.h; sourceTree = "<group>"; };
+		58B8E722D77DE0626B0C6F2EAE601233 /* vocwrapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = vocwrapper.h; path = iOS/AudioKit.framework/Headers/vocwrapper.h; sourceTree = "<group>"; };
+		597BF278F7570A30358B24E9794895F9 /* AKMandolinAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKMandolinAudioUnit.h; path = iOS/AudioKit.framework/Headers/AKMandolinAudioUnit.h; sourceTree = "<group>"; };
+		5C76F0106D697FCEFB0C4A8ABE8021C2 /* EZAudioFloatData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioFloatData.h; path = tvOS/AudioKit.framework/Headers/EZAudioFloatData.h; sourceTree = "<group>"; };
+		5D36C0E19A2E5F042CCF1D542F708179 /* EZRecorder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZRecorder.h; path = iOS/AudioKit.framework/Headers/EZRecorder.h; sourceTree = "<group>"; };
+		5DBD638B369EAA57849ED835B3E8A5C0 /* Pods-Test1_SceneKit watchOS App Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Test1_SceneKit watchOS App Extension.release.xcconfig"; sourceTree = "<group>"; };
+		5E0DE6C131F5E556B435961B7CEA2F23 /* Pods-Test1_SceneKit watchOS App Extension.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Test1_SceneKit watchOS App Extension.modulemap"; sourceTree = "<group>"; };
+		5E58FE1C013B35FCD78E95B01452E19C /* EZPlot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZPlot.h; path = iOS/AudioKitUI.framework/Headers/EZPlot.h; sourceTree = "<group>"; };
+		6217B6C74DA7CB77CA720770ED45F538 /* ExceptionCatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ExceptionCatcher.h; path = tvOS/AudioKit.framework/Headers/ExceptionCatcher.h; sourceTree = "<group>"; };
+		648ACFFB7B4B1139814A3812FCA131C4 /* Pods-Test1_SceneKit watchOS App-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Test1_SceneKit watchOS App-Info.plist"; sourceTree = "<group>"; };
+		67B78518BFA6A6A534F2B473BA6A9C7E /* AudioKit-tvOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "AudioKit-tvOS.xcconfig"; path = "../AudioKit-tvOS/AudioKit-tvOS.xcconfig"; sourceTree = "<group>"; };
+		6AC40B20A9E2E6FFCE90A1E000F0E4E0 /* AKInterop.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKInterop.h; path = iOS/AudioKit.framework/Headers/AKInterop.h; sourceTree = "<group>"; };
+		6BDFD96239C7DC372E34E8F8C3581B29 /* vocwrapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = vocwrapper.h; path = tvOS/AudioKit.framework/Headers/vocwrapper.h; sourceTree = "<group>"; };
+		6C7C81F819E0D81637CB7D5CB6B8C02D /* AKFMOscillatorBankAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKFMOscillatorBankAudioUnit.h; path = tvOS/AudioKit.framework/Headers/AKFMOscillatorBankAudioUnit.h; sourceTree = "<group>"; };
+		71BDE17C940267F87BFA2E35C2E6AE6E /* AudioEngineUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AudioEngineUnit.h; path = tvOS/AudioKit.framework/Headers/AudioEngineUnit.h; sourceTree = "<group>"; };
+		72CC5C5FB7B825E36BF7B96B4F056893 /* AKSampler_Typedefs.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKSampler_Typedefs.h; path = tvOS/AudioKit.framework/Headers/AKSampler_Typedefs.h; sourceTree = "<group>"; };
+		75252677485CEC62E91A42431DD8B2B4 /* AKAmplitudeTrackerAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKAmplitudeTrackerAudioUnit.h; path = iOS/AudioKit.framework/Headers/AKAmplitudeTrackerAudioUnit.h; sourceTree = "<group>"; };
+		7867D62FBBE31D000DB6930439118AF7 /* EZAudioUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioUtilities.h; path = iOS/AudioKit.framework/Headers/EZAudioUtilities.h; sourceTree = "<group>"; };
+		7D4336244402C317BF8BAF266F272E85 /* EZAudioPlayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioPlayer.h; path = tvOS/AudioKit.framework/Headers/EZAudioPlayer.h; sourceTree = "<group>"; };
+		804DD8DBA4EAF0DA6FED8BF0D46315AA /* Pods-Test1_SceneKit iOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Test1_SceneKit iOS-acknowledgements.markdown"; sourceTree = "<group>"; };
+		8104CE48B497B30651E3C7C2479A0F2C /* AKBalancerAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKBalancerAudioUnit.h; path = iOS/AudioKit.framework/Headers/AKBalancerAudioUnit.h; sourceTree = "<group>"; };
+		8321179266A16E07B5CF43DF28212EE6 /* AKModulatedDelay_Typedefs.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKModulatedDelay_Typedefs.h; path = tvOS/AudioKit.framework/Headers/AKModulatedDelay_Typedefs.h; sourceTree = "<group>"; };
+		84107AF6213663598215AFA9CF15287D /* Pods-Test1_SceneKit watchOS App Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Test1_SceneKit watchOS App Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		84E9FEA51A166C1C0C00CD1B99394CAC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		88C7F51A333168BEC0325A8E59CB81E3 /* Pods-Test1_SceneKit watchOS App.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Test1_SceneKit watchOS App.modulemap"; sourceTree = "<group>"; };
+		8A810152A4D35C4266E5854E8A7F6D6D /* EZAudioFloatData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioFloatData.h; path = iOS/AudioKit.framework/Headers/EZAudioFloatData.h; sourceTree = "<group>"; };
+		8AE1E1E80E4F870231B9A0FFD645F700 /* TPCircularBuffer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TPCircularBuffer.h; path = tvOS/AudioKit.framework/Headers/TPCircularBuffer.h; sourceTree = "<group>"; };
+		8EE1C3F51F247F1F418F44137BC8C401 /* AKFrequencyTrackerAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKFrequencyTrackerAudioUnit.h; path = tvOS/AudioKit.framework/Headers/AKFrequencyTrackerAudioUnit.h; sourceTree = "<group>"; };
+		8EF7D90EFC481553CC9ACDC5D7B5EB4E /* EZOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZOutput.h; path = tvOS/AudioKit.framework/Headers/EZOutput.h; sourceTree = "<group>"; };
+		905055CD3CBF34A3120511EC3DE911E7 /* EZAudio.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudio.h; path = tvOS/AudioKit.framework/Headers/EZAudio.h; sourceTree = "<group>"; };
+		918EFA540734DC6C1B53296073078034 /* AKAmplitudeTrackerAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKAmplitudeTrackerAudioUnit.h; path = tvOS/AudioKit.framework/Headers/AKAmplitudeTrackerAudioUnit.h; sourceTree = "<group>"; };
+		91A6C03044D816DB1E57DA2986F7992B /* Pods_Test1_SceneKit_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Test1_SceneKit_tvOS.framework; path = "Pods-Test1_SceneKit tvOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9359F7A2E3C4824FC5F7B89A7703C70A /* AKSampler_Typedefs.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKSampler_Typedefs.h; path = iOS/AudioKit.framework/Headers/AKSampler_Typedefs.h; sourceTree = "<group>"; };
+		94200460DEF760C330D15EBB9D33042D /* Pods-Test1_SceneKit tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Test1_SceneKit tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		944791D008CBEA89C1861DFEB5FCD49C /* Pods-Test1_SceneKit watchOS App Extension-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Test1_SceneKit watchOS App Extension-umbrella.h"; sourceTree = "<group>"; };
+		9449A385D05288FAEEC7A2C493345137 /* EZAudioFile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioFile.h; path = tvOS/AudioKit.framework/Headers/EZAudioFile.h; sourceTree = "<group>"; };
+		94CB5B71DBED504C6A7980B6C1A15131 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		950BB3B0508C7E62DE82FEBEF95F9984 /* Pods-Test1_SceneKit watchOS App-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Test1_SceneKit watchOS App-dummy.m"; sourceTree = "<group>"; };
+		963EE83814FD2DCF816D8FAB583EE497 /* AudioKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AudioKit.h; path = tvOS/AudioKit.framework/Headers/AudioKit.h; sourceTree = "<group>"; };
+		97FF43504CA6852FE2BF74289F0BE06D /* AKMorphingOscillatorBankAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKMorphingOscillatorBankAudioUnit.h; path = tvOS/AudioKit.framework/Headers/AKMorphingOscillatorBankAudioUnit.h; sourceTree = "<group>"; };
+		989E7C1E9EB6AC7CDE2746A681AF978A /* BufferedAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BufferedAudioUnit.h; path = tvOS/AudioKit.framework/Headers/BufferedAudioUnit.h; sourceTree = "<group>"; };
+		98B0F05752677A521570BA7B94A1FED2 /* AKWaveTableAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKWaveTableAudioUnit.h; path = iOS/AudioKit.framework/Headers/AKWaveTableAudioUnit.h; sourceTree = "<group>"; };
+		9B20482D8ADF197DB843662003E89FA5 /* TPCircularBuffer+AudioBufferList.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TPCircularBuffer+AudioBufferList.h"; path = "tvOS/AudioKit.framework/Headers/TPCircularBuffer+AudioBufferList.h"; sourceTree = "<group>"; };
+		9C0C5BEAB9014934663F48BA14765E26 /* AKFrequencyTrackerAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKFrequencyTrackerAudioUnit.h; path = iOS/AudioKit.framework/Headers/AKFrequencyTrackerAudioUnit.h; sourceTree = "<group>"; };
+		9C66E20765CF8E446EFAE88DC462B009 /* AKAudioUnitBase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKAudioUnitBase.h; path = tvOS/AudioKit.framework/Headers/AKAudioUnitBase.h; sourceTree = "<group>"; };
+		9CF633FAF96EC736136ADC582838E40B /* Pods-Test1_SceneKit watchOS App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Test1_SceneKit watchOS App.debug.xcconfig"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9EA5B6FA010A8758258DF618DE38FF15 /* AKRenderTap.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKRenderTap.h; path = tvOS/AudioKit.framework/Headers/AKRenderTap.h; sourceTree = "<group>"; };
+		9F924AA78EE86E953BCDB264AFC3BB6A /* EZMicrophone.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZMicrophone.h; path = iOS/AudioKit.framework/Headers/EZMicrophone.h; sourceTree = "<group>"; };
+		A019EC48A43B8A5CF6EF4D1E39E0243E /* Pods-Test1_SceneKit watchOS App Extension-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Test1_SceneKit watchOS App Extension-dummy.m"; sourceTree = "<group>"; };
+		A4EE6F4945891208A83A332C0A35EF1E /* EZAudioFileMarker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioFileMarker.h; path = tvOS/AudioKit.framework/Headers/EZAudioFileMarker.h; sourceTree = "<group>"; };
+		A7E6C7638095C5300B9333BB46B97EDC /* AKDynaRageCompressorAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKDynaRageCompressorAudioUnit.h; path = iOS/AudioKit.framework/Headers/AKDynaRageCompressorAudioUnit.h; sourceTree = "<group>"; };
+		AAC737E804ADE4866956FD68B706B003 /* AKPhaseDistortionOscillatorBankAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKPhaseDistortionOscillatorBankAudioUnit.h; path = iOS/AudioKit.framework/Headers/AKPhaseDistortionOscillatorBankAudioUnit.h; sourceTree = "<group>"; };
+		AAEE21566201D26D0741EF8D0548E2AF /* AKOperationEffectAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKOperationEffectAudioUnit.h; path = iOS/AudioKit.framework/Headers/AKOperationEffectAudioUnit.h; sourceTree = "<group>"; };
+		ABB69AA880DBC5314987F31896090ECE /* AKOfflineRenderAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKOfflineRenderAudioUnit.h; path = tvOS/AudioKit.framework/Headers/AKOfflineRenderAudioUnit.h; sourceTree = "<group>"; };
+		ABC663E9F65517EA08C9201226001A26 /* Pods-Test1_SceneKit watchOS App-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Test1_SceneKit watchOS App-acknowledgements.markdown"; sourceTree = "<group>"; };
+		ABEEE73C571720A9F7B9EF2BE0ABE620 /* AKPWMOscillatorBankAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKPWMOscillatorBankAudioUnit.h; path = tvOS/AudioKit.framework/Headers/AKPWMOscillatorBankAudioUnit.h; sourceTree = "<group>"; };
+		AC90073C64C8C8830FEA8708560760DA /* AKRenderTap.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKRenderTap.h; path = iOS/AudioKit.framework/Headers/AKRenderTap.h; sourceTree = "<group>"; };
+		AF7369D757E70FE2CD5F3BF11C6E213C /* AKPresetManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKPresetManager.h; path = iOS/AudioKit.framework/Headers/AKPresetManager.h; sourceTree = "<group>"; };
+		B2AB63D264CD26241CC30E1CF8C0236E /* AKBalancerAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKBalancerAudioUnit.h; path = tvOS/AudioKit.framework/Headers/AKBalancerAudioUnit.h; sourceTree = "<group>"; };
+		B3367AC9EB5612DD4CF4D81EAF58771B /* EZOutput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZOutput.h; path = iOS/AudioKit.framework/Headers/EZOutput.h; sourceTree = "<group>"; };
+		B3497FDE811F5D2054F8A25243EDDDD6 /* AKPresetManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKPresetManager.h; path = tvOS/AudioKit.framework/Headers/AKPresetManager.h; sourceTree = "<group>"; };
+		B5119F449174DEF044A9B3113924B876 /* AKTimeline.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKTimeline.h; path = tvOS/AudioKit.framework/Headers/AKTimeline.h; sourceTree = "<group>"; };
+		B73257908B55DF3F86C7AD7924E5C005 /* AKTesterAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKTesterAudioUnit.h; path = tvOS/AudioKit.framework/Headers/AKTesterAudioUnit.h; sourceTree = "<group>"; };
+		B7A7C89583CF8BFDA8338F804251582B /* AudioKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKitUI.framework; path = iOS/AudioKitUI.framework; sourceTree = "<group>"; };
+		BE48FD4D4401E9EB247B115F173FAF9B /* AKTimelineTap.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKTimelineTap.h; path = iOS/AudioKit.framework/Headers/AKTimelineTap.h; sourceTree = "<group>"; };
+		C413A952C38C31328358AD4BD6028F7D /* dr_wav.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = dr_wav.h; path = iOS/AudioKit.framework/Headers/dr_wav.h; sourceTree = "<group>"; };
+		C5FF4B1E5359B7E4FCA0DFBF8F57B92F /* EZAudioPlotGL.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioPlotGL.h; path = tvOS/AudioKitUI.framework/Headers/EZAudioPlotGL.h; sourceTree = "<group>"; };
+		C7046E676DFDFE5BAD1172DACB04C8BB /* EZAudioDevice.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioDevice.h; path = tvOS/AudioKit.framework/Headers/EZAudioDevice.h; sourceTree = "<group>"; };
+		C903CF2D8177E430EFCE1115F361A66A /* AudioKit-Swift.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "AudioKit-Swift.h"; path = "tvOS/AudioKit.framework/Headers/AudioKit-Swift.h"; sourceTree = "<group>"; };
+		CA52124A3AD542F886E534065E30750A /* EZMicrophone.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZMicrophone.h; path = tvOS/AudioKit.framework/Headers/EZMicrophone.h; sourceTree = "<group>"; };
+		CEA08EC0E43EEC4D008A8634873BBE86 /* EZAudioPlotGL.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioPlotGL.h; path = iOS/AudioKitUI.framework/Headers/EZAudioPlotGL.h; sourceTree = "<group>"; };
+		D1B5C6F2BDB865FBC668C427843D6E7A /* TPCircularBuffer+AudioBufferList.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TPCircularBuffer+AudioBufferList.h"; path = "iOS/AudioKit.framework/Headers/TPCircularBuffer+AudioBufferList.h"; sourceTree = "<group>"; };
+		D2461D05DA84683A34B85CEB2B7B6676 /* Pods-Test1_SceneKit iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Test1_SceneKit iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		D2890432209687471B371B67E8418D66 /* AKDiskStreamerAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKDiskStreamerAudioUnit.h; path = iOS/AudioKit.framework/Headers/AKDiskStreamerAudioUnit.h; sourceTree = "<group>"; };
+		D43178B66A99676ACA9F278BC84914FB /* AKPhaseDistortionOscillatorBankAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKPhaseDistortionOscillatorBankAudioUnit.h; path = tvOS/AudioKit.framework/Headers/AKPhaseDistortionOscillatorBankAudioUnit.h; sourceTree = "<group>"; };
+		D5CC6524E9705A6BD8AFA10B2C4A6D91 /* ExceptionCatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ExceptionCatcher.h; path = iOS/AudioKit.framework/Headers/ExceptionCatcher.h; sourceTree = "<group>"; };
+		D7E6DC027A41EE2907C107EBDB6B4F24 /* AKDiskStreamerAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKDiskStreamerAudioUnit.h; path = tvOS/AudioKit.framework/Headers/AKDiskStreamerAudioUnit.h; sourceTree = "<group>"; };
+		D84037E5A17AB8DB866FE944C66AB4B2 /* Pods_Test1_SceneKit_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Test1_SceneKit_iOS.framework; path = "Pods-Test1_SceneKit iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D97A56FE7633A43846E6A3D3D0A1F548 /* EZPlot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZPlot.h; path = tvOS/AudioKitUI.framework/Headers/EZPlot.h; sourceTree = "<group>"; };
+		DC85155D17A87B5049091AB63F91E38B /* AKOscillatorBankAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKOscillatorBankAudioUnit.h; path = tvOS/AudioKit.framework/Headers/AKOscillatorBankAudioUnit.h; sourceTree = "<group>"; };
+		DCE4F7B7F6DCCC61766138DB8DC0292E /* AKOperationGeneratorAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKOperationGeneratorAudioUnit.h; path = tvOS/AudioKit.framework/Headers/AKOperationGeneratorAudioUnit.h; sourceTree = "<group>"; };
+		DD56089ECFFA5DC9A26AA0E5475AAF57 /* EZAudioFile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioFile.h; path = iOS/AudioKit.framework/Headers/EZAudioFile.h; sourceTree = "<group>"; };
+		DE25A3F654EA9EEB57B41BA1A2743594 /* AudioKitUI-Swift.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "AudioKitUI-Swift.h"; path = "iOS/AudioKitUI.framework/Headers/AudioKitUI-Swift.h"; sourceTree = "<group>"; };
+		E0C75E8F6AD98BF259B62ADE4BD1D934 /* TPCircularBuffer+Unit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TPCircularBuffer+Unit.h"; path = "iOS/AudioKit.framework/Headers/TPCircularBuffer+Unit.h"; sourceTree = "<group>"; };
+		E0F23E2267B30C2F14FA79D7FBCD8824 /* Pods-Test1_SceneKit tvOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Test1_SceneKit tvOS.modulemap"; sourceTree = "<group>"; };
+		E4C68A0B8FEC2F24976F8ABFBD0D7404 /* Pods-Test1_SceneKit iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Test1_SceneKit iOS.modulemap"; sourceTree = "<group>"; };
+		E65E72E2327232FC6C986098792AB8D4 /* AKSamplerMetronome.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKSamplerMetronome.h; path = iOS/AudioKit.framework/Headers/AKSamplerMetronome.h; sourceTree = "<group>"; };
+		E6FC5684F8436260F81B790834F53C09 /* AudioKit-Swift.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "AudioKit-Swift.h"; path = "iOS/AudioKit.framework/Headers/AudioKit-Swift.h"; sourceTree = "<group>"; };
+		E84518EE767D03980FA648A4EE72A7F9 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = tvOS/AudioKit.framework; sourceTree = "<group>"; };
+		E8730CD258522ED9E6E39133846458FA /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = iOS/AudioKit.framework; sourceTree = "<group>"; };
+		EDBDD5BCB7833781EDEB3061342553FF /* AKMorphingOscillatorBankAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKMorphingOscillatorBankAudioUnit.h; path = iOS/AudioKit.framework/Headers/AKMorphingOscillatorBankAudioUnit.h; sourceTree = "<group>"; };
+		F20242BE5D2159DB803FD087F59A1105 /* Pods-Test1_SceneKit watchOS App Extension-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Test1_SceneKit watchOS App Extension-acknowledgements.plist"; sourceTree = "<group>"; };
+		F262763C9A1AD0640F6379B22FA06002 /* TPCircularBuffer+Unit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TPCircularBuffer+Unit.h"; path = "tvOS/AudioKit.framework/Headers/TPCircularBuffer+Unit.h"; sourceTree = "<group>"; };
+		F4464B75D6B6EC658F9323112901B9E2 /* AKFMOscillatorBankAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKFMOscillatorBankAudioUnit.h; path = iOS/AudioKit.framework/Headers/AKFMOscillatorBankAudioUnit.h; sourceTree = "<group>"; };
+		F4AC6EBE496E68AC30738FEB6E504F8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		F52D3F02E99B5C6AC79117966BDCAF71 /* EZRecorder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZRecorder.h; path = tvOS/AudioKit.framework/Headers/EZRecorder.h; sourceTree = "<group>"; };
+		F68E426D656967A6C5A1B7A1AD056D30 /* AKOscillatorBankAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKOscillatorBankAudioUnit.h; path = iOS/AudioKit.framework/Headers/AKOscillatorBankAudioUnit.h; sourceTree = "<group>"; };
+		F73F0991A11F07E803E9506AD30CD29E /* Pods-Test1_SceneKit iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Test1_SceneKit iOS-umbrella.h"; sourceTree = "<group>"; };
+		F7844145E80B41A3A7C905D95A5D1FC8 /* AudioKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKitUI.framework; path = tvOS/AudioKitUI.framework; sourceTree = "<group>"; };
+		F82CFF7B2F2287BF23304F78E4903BF4 /* Pods-Test1_SceneKit tvOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Test1_SceneKit tvOS-acknowledgements.markdown"; sourceTree = "<group>"; };
+		F9C5130FDBD1829EB713D7B11C4B43B1 /* TPCircularBuffer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TPCircularBuffer.h; path = iOS/AudioKit.framework/Headers/TPCircularBuffer.h; sourceTree = "<group>"; };
+		F9EE2DE6AEC6D69B79F2F144ACB5E40C /* Pods-Test1_SceneKit iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Test1_SceneKit iOS-dummy.m"; sourceTree = "<group>"; };
+		FAEF05969019BAC9384477BC3E5AED7D /* AKRhinoGuitarProcessorAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKRhinoGuitarProcessorAudioUnit.h; path = iOS/AudioKit.framework/Headers/AKRhinoGuitarProcessorAudioUnit.h; sourceTree = "<group>"; };
+		FC3625B797FECE6D6AE20B5B70500166 /* EZAudioPlot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioPlot.h; path = tvOS/AudioKitUI.framework/Headers/EZAudioPlot.h; sourceTree = "<group>"; };
+		FCD7979135AB9511665E4F66977008AD /* AudioEngineUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AudioEngineUnit.h; path = iOS/AudioKit.framework/Headers/AudioEngineUnit.h; sourceTree = "<group>"; };
+		FCF4C07BC2242023B0FB7250BD96FDF8 /* AKSporthStack.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKSporthStack.h; path = tvOS/AudioKit.framework/Headers/AKSporthStack.h; sourceTree = "<group>"; };
+		FD52DFF5158D9E66D7180F2F5A720624 /* AudioKitUI-Swift.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "AudioKitUI-Swift.h"; path = "tvOS/AudioKitUI.framework/Headers/AudioKitUI-Swift.h"; sourceTree = "<group>"; };
+		FD62D1A9DC5A2670464677FB644C5755 /* AKBankAudioUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKBankAudioUnit.h; path = tvOS/AudioKit.framework/Headers/AKBankAudioUnit.h; sourceTree = "<group>"; };
+		FE49BE073C2C3D4642A2B0D0F44DF3E9 /* AKMicrophoneTrackerEngine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKMicrophoneTrackerEngine.h; path = iOS/AudioKit.framework/Headers/AKMicrophoneTrackerEngine.h; sourceTree = "<group>"; };
+		FF03D1E06A0BB996CA3DEB67FF0042CF /* EZAudioPlot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EZAudioPlot.h; path = iOS/AudioKitUI.framework/Headers/EZAudioPlot.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		12548A440664AD6074DE0CD6139E36AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BBDFF59BB4AB1131F334FCBB74B39C2E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E8E3C3C15C5BF833E9B5F9A8CC99FE4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21CDED965732D9B8D81C7E2F01F0D41B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A93870DEE2950F088DA9E9422624EF55 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				872C8A800892D58F8C6473AD890505E4 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF41961451A24B425CC269471D1961F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52271C65BB1419A77D25AFADF715A9F3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0E9705E137ED117AA16FD7DA4FF22604 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D84037E5A17AB8DB866FE944C66AB4B2 /* Pods_Test1_SceneKit_iOS.framework */,
+				91A6C03044D816DB1E57DA2986F7992B /* Pods_Test1_SceneKit_tvOS.framework */,
+				0E6BB538B7FB5A838F066AFFAB18FB87 /* Pods_Test1_SceneKit_watchOS_App.framework */,
+				1EE9ED9E47B1400B5FB094D22EB9E7BE /* Pods_Test1_SceneKit_watchOS_App_Extension.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		338FF448D3EAB49C376BD30FE7B92AC4 /* watchOS */ = {
+			isa = PBXGroup;
+			children = (
+				84E9FEA51A166C1C0C00CD1B99394CAC /* Foundation.framework */,
+			);
+			name = watchOS;
+			sourceTree = "<group>";
+		};
+		3774440FE52837F818D6C921491CCEFC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E8730CD258522ED9E6E39133846458FA /* AudioKit.framework */,
+				E84518EE767D03980FA648A4EE72A7F9 /* AudioKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		41B8324AC9934E747200BA3A19981A4F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				66DD1C4EEB5C9397033DD82B045A24D3 /* AudioKit */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		66DD1C4EEB5C9397033DD82B045A24D3 /* AudioKit */ = {
+			isa = PBXGroup;
+			children = (
+				A4924C5082D1EC0F689C1D93A094BB9E /* Core */,
+				79B9238F9D347DBDBA411B6FE71604A0 /* Support Files */,
+				BC2D21C594FC88DDE203E40DB621C488 /* UI */,
+			);
+			name = AudioKit;
+			path = AudioKit;
+			sourceTree = "<group>";
+		};
+		79B9238F9D347DBDBA411B6FE71604A0 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				3F382DC9A65CA414393A5A6DCF5E6315 /* AudioKit-iOS.xcconfig */,
+				67B78518BFA6A6A534F2B473BA6A9C7E /* AudioKit-tvOS.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/AudioKit-iOS";
+			sourceTree = "<group>";
+		};
+		8C6F5F709157A716C9B3F357EA3F880A /* Pods-Test1_SceneKit iOS */ = {
+			isa = PBXGroup;
+			children = (
+				E4C68A0B8FEC2F24976F8ABFBD0D7404 /* Pods-Test1_SceneKit iOS.modulemap */,
+				804DD8DBA4EAF0DA6FED8BF0D46315AA /* Pods-Test1_SceneKit iOS-acknowledgements.markdown */,
+				22AFF1A0BA7BB235015ECCB01A4A0A61 /* Pods-Test1_SceneKit iOS-acknowledgements.plist */,
+				F9EE2DE6AEC6D69B79F2F144ACB5E40C /* Pods-Test1_SceneKit iOS-dummy.m */,
+				486A8ED6D1A23E63B10BE378CA962191 /* Pods-Test1_SceneKit iOS-Info.plist */,
+				F73F0991A11F07E803E9506AD30CD29E /* Pods-Test1_SceneKit iOS-umbrella.h */,
+				D2461D05DA84683A34B85CEB2B7B6676 /* Pods-Test1_SceneKit iOS.debug.xcconfig */,
+				4F4DCCBFD792A9347DEE8DD782543D14 /* Pods-Test1_SceneKit iOS.release.xcconfig */,
+			);
+			name = "Pods-Test1_SceneKit iOS";
+			path = "Target Support Files/Pods-Test1_SceneKit iOS";
+			sourceTree = "<group>";
+		};
+		8FDA21A84EE38AC2A710240618250FD9 /* Pods-Test1_SceneKit watchOS App */ = {
+			isa = PBXGroup;
+			children = (
+				88C7F51A333168BEC0325A8E59CB81E3 /* Pods-Test1_SceneKit watchOS App.modulemap */,
+				ABC663E9F65517EA08C9201226001A26 /* Pods-Test1_SceneKit watchOS App-acknowledgements.markdown */,
+				2324F570E7E8E1D00AB3F7C01DE40B2C /* Pods-Test1_SceneKit watchOS App-acknowledgements.plist */,
+				950BB3B0508C7E62DE82FEBEF95F9984 /* Pods-Test1_SceneKit watchOS App-dummy.m */,
+				648ACFFB7B4B1139814A3812FCA131C4 /* Pods-Test1_SceneKit watchOS App-Info.plist */,
+				3D6552D59CB2169AD09771F2C4FF5EC9 /* Pods-Test1_SceneKit watchOS App-umbrella.h */,
+				9CF633FAF96EC736136ADC582838E40B /* Pods-Test1_SceneKit watchOS App.debug.xcconfig */,
+				2DABBB6B7B2A5D39EEF9981FFC5404F9 /* Pods-Test1_SceneKit watchOS App.release.xcconfig */,
+			);
+			name = "Pods-Test1_SceneKit watchOS App";
+			path = "Target Support Files/Pods-Test1_SceneKit watchOS App";
+			sourceTree = "<group>";
+		};
+		94832ADB83155925637C7CE9B3E8ADE6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D8FBBA3CA6659F9A0395326DFB983396 /* iOS */,
+				C105C5E4BAEF45D34F144749039DCCC5 /* tvOS */,
+				338FF448D3EAB49C376BD30FE7B92AC4 /* watchOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9494AD302FE5B6B4D737F3630753984B /* Pods-Test1_SceneKit tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				E0F23E2267B30C2F14FA79D7FBCD8824 /* Pods-Test1_SceneKit tvOS.modulemap */,
+				F82CFF7B2F2287BF23304F78E4903BF4 /* Pods-Test1_SceneKit tvOS-acknowledgements.markdown */,
+				3088827BE1F81E3D4006FB0078F3A95C /* Pods-Test1_SceneKit tvOS-acknowledgements.plist */,
+				4326F4C3481DB5784AC40DDBB5C2D54F /* Pods-Test1_SceneKit tvOS-dummy.m */,
+				28DEA8F2AD36BB90DD316DC36D85054E /* Pods-Test1_SceneKit tvOS-Info.plist */,
+				12F566BC23EE04B340D3765D5F14B45F /* Pods-Test1_SceneKit tvOS-umbrella.h */,
+				94200460DEF760C330D15EBB9D33042D /* Pods-Test1_SceneKit tvOS.debug.xcconfig */,
+				13B79D47057D4E7800B04ADC0352BDE7 /* Pods-Test1_SceneKit tvOS.release.xcconfig */,
+			);
+			name = "Pods-Test1_SceneKit tvOS";
+			path = "Target Support Files/Pods-Test1_SceneKit tvOS";
+			sourceTree = "<group>";
+		};
+		A4924C5082D1EC0F689C1D93A094BB9E /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				75252677485CEC62E91A42431DD8B2B4 /* AKAmplitudeTrackerAudioUnit.h */,
+				918EFA540734DC6C1B53296073078034 /* AKAmplitudeTrackerAudioUnit.h */,
+				42BB8CAE865BCBF4B6DF438D84ED891A /* AKAudioUnit.h */,
+				51EC0C8F9EBB1740FF88C1ECB35D36E2 /* AKAudioUnit.h */,
+				538BE6E3D404A56B87E7EC4372233B3E /* AKAudioUnitBase.h */,
+				9C66E20765CF8E446EFAE88DC462B009 /* AKAudioUnitBase.h */,
+				8104CE48B497B30651E3C7C2479A0F2C /* AKBalancerAudioUnit.h */,
+				B2AB63D264CD26241CC30E1CF8C0236E /* AKBalancerAudioUnit.h */,
+				FD62D1A9DC5A2670464677FB644C5755 /* AKBankAudioUnit.h */,
+				1A0B4A296B58F647A84BBE6492C8D099 /* AKBankAudioUnit.h */,
+				199784930B87559B8C17196DF4F338B1 /* AKCallbackInstrumentAudioUnit.h */,
+				D2890432209687471B371B67E8418D66 /* AKDiskStreamerAudioUnit.h */,
+				D7E6DC027A41EE2907C107EBDB6B4F24 /* AKDiskStreamerAudioUnit.h */,
+				080F337BF833880BBE1C297E6F3DEEDF /* AKDynaRageCompressorAudioUnit.h */,
+				A7E6C7638095C5300B9333BB46B97EDC /* AKDynaRageCompressorAudioUnit.h */,
+				6C7C81F819E0D81637CB7D5CB6B8C02D /* AKFMOscillatorBankAudioUnit.h */,
+				F4464B75D6B6EC658F9323112901B9E2 /* AKFMOscillatorBankAudioUnit.h */,
+				9C0C5BEAB9014934663F48BA14765E26 /* AKFrequencyTrackerAudioUnit.h */,
+				8EE1C3F51F247F1F418F44137BC8C401 /* AKFrequencyTrackerAudioUnit.h */,
+				3ABD608C5980AB8549B05381E0CE5A2A /* AKGeneratorAudioUnitBase.h */,
+				221ABFED6853216D030BADE048AA4B25 /* AKGeneratorAudioUnitBase.h */,
+				0AE9FD1B248658D2F553630AEA2651EF /* AKInterop.h */,
+				6AC40B20A9E2E6FFCE90A1E000F0E4E0 /* AKInterop.h */,
+				1C346158A10E2C85464C3BF570DD75E1 /* AKLazyTap.h */,
+				4F8FF378B9662CFB0B7BF445AE0FD628 /* AKLazyTap.h */,
+				0CE0ECBF11E83B938AE55ADC29CEBE69 /* AKMandolinAudioUnit.h */,
+				597BF278F7570A30358B24E9794895F9 /* AKMandolinAudioUnit.h */,
+				FE49BE073C2C3D4642A2B0D0F44DF3E9 /* AKMicrophoneTrackerEngine.h */,
+				8321179266A16E07B5CF43DF28212EE6 /* AKModulatedDelay_Typedefs.h */,
+				342968FE7E7FD1B2C3BA5151B63A5207 /* AKModulatedDelay_Typedefs.h */,
+				EDBDD5BCB7833781EDEB3061342553FF /* AKMorphingOscillatorBankAudioUnit.h */,
+				97FF43504CA6852FE2BF74289F0BE06D /* AKMorphingOscillatorBankAudioUnit.h */,
+				ABB69AA880DBC5314987F31896090ECE /* AKOfflineRenderAudioUnit.h */,
+				2CAFBE4FEFF42C6BF0F3CA09EAFF1933 /* AKOfflineRenderAudioUnit.h */,
+				2646B08E0F548D55A236A7FED29D1927 /* AKOperationEffectAudioUnit.h */,
+				AAEE21566201D26D0741EF8D0548E2AF /* AKOperationEffectAudioUnit.h */,
+				26F51AC127C41B34D63E12FC0E80C9AA /* AKOperationGeneratorAudioUnit.h */,
+				DCE4F7B7F6DCCC61766138DB8DC0292E /* AKOperationGeneratorAudioUnit.h */,
+				F68E426D656967A6C5A1B7A1AD056D30 /* AKOscillatorBankAudioUnit.h */,
+				DC85155D17A87B5049091AB63F91E38B /* AKOscillatorBankAudioUnit.h */,
+				D43178B66A99676ACA9F278BC84914FB /* AKPhaseDistortionOscillatorBankAudioUnit.h */,
+				AAC737E804ADE4866956FD68B706B003 /* AKPhaseDistortionOscillatorBankAudioUnit.h */,
+				B3497FDE811F5D2054F8A25243EDDDD6 /* AKPresetManager.h */,
+				AF7369D757E70FE2CD5F3BF11C6E213C /* AKPresetManager.h */,
+				ABEEE73C571720A9F7B9EF2BE0ABE620 /* AKPWMOscillatorBankAudioUnit.h */,
+				4DC809E6B934CCD5E6CBE9EF4CA40E31 /* AKPWMOscillatorBankAudioUnit.h */,
+				AC90073C64C8C8830FEA8708560760DA /* AKRenderTap.h */,
+				9EA5B6FA010A8758258DF618DE38FF15 /* AKRenderTap.h */,
+				4EBFC4F09A0F2E0252B5F320F9543A46 /* AKRhinoGuitarProcessorAudioUnit.h */,
+				FAEF05969019BAC9384477BC3E5AED7D /* AKRhinoGuitarProcessorAudioUnit.h */,
+				9359F7A2E3C4824FC5F7B89A7703C70A /* AKSampler_Typedefs.h */,
+				72CC5C5FB7B825E36BF7B96B4F056893 /* AKSampler_Typedefs.h */,
+				3D8607A3279CF1573B61F777D741BA2C /* AKSamplerMetronome.h */,
+				E65E72E2327232FC6C986098792AB8D4 /* AKSamplerMetronome.h */,
+				4835655D187BCF1F695C17D8DA2C9502 /* AKSporthStack.h */,
+				FCF4C07BC2242023B0FB7250BD96FDF8 /* AKSporthStack.h */,
+				07632BA8440E158F56C09941687F2210 /* AKTesterAudioUnit.h */,
+				B73257908B55DF3F86C7AD7924E5C005 /* AKTesterAudioUnit.h */,
+				B5119F449174DEF044A9B3113924B876 /* AKTimeline.h */,
+				4FF997536C8F4EACE731121781038110 /* AKTimeline.h */,
+				55058ACE15B6CD8FE87568D56FEB5C0E /* AKTimelineTap.h */,
+				BE48FD4D4401E9EB247B115F173FAF9B /* AKTimelineTap.h */,
+				98B0F05752677A521570BA7B94A1FED2 /* AKWaveTableAudioUnit.h */,
+				45862C3CDC2BA94E380359AF1AB26E5C /* AKWaveTableAudioUnit.h */,
+				FCD7979135AB9511665E4F66977008AD /* AudioEngineUnit.h */,
+				71BDE17C940267F87BFA2E35C2E6AE6E /* AudioEngineUnit.h */,
+				963EE83814FD2DCF816D8FAB583EE497 /* AudioKit.h */,
+				4A628F095566B1E718DBB66DC4416009 /* AudioKit.h */,
+				E6FC5684F8436260F81B790834F53C09 /* AudioKit-Swift.h */,
+				C903CF2D8177E430EFCE1115F361A66A /* AudioKit-Swift.h */,
+				0FB0914E9BBAA6308FBEE924370D1FCF /* BufferedAudioUnit.h */,
+				989E7C1E9EB6AC7CDE2746A681AF978A /* BufferedAudioUnit.h */,
+				1F586696CF1F9756A7D6C84A6E76A021 /* dr_wav.h */,
+				C413A952C38C31328358AD4BD6028F7D /* dr_wav.h */,
+				6217B6C74DA7CB77CA720770ED45F538 /* ExceptionCatcher.h */,
+				D5CC6524E9705A6BD8AFA10B2C4A6D91 /* ExceptionCatcher.h */,
+				39D66DE950E45480299CF6AD543B1A55 /* EZAudio.h */,
+				905055CD3CBF34A3120511EC3DE911E7 /* EZAudio.h */,
+				C7046E676DFDFE5BAD1172DACB04C8BB /* EZAudioDevice.h */,
+				320477C05AD03080F6C68B24BB47AEBE /* EZAudioDevice.h */,
+				1536C619704B52D21D28323B27507047 /* EZAudioFFT.h */,
+				44EAE1BEA5E65E5998124656C5E81436 /* EZAudioFFT.h */,
+				DD56089ECFFA5DC9A26AA0E5475AAF57 /* EZAudioFile.h */,
+				9449A385D05288FAEEC7A2C493345137 /* EZAudioFile.h */,
+				A4EE6F4945891208A83A332C0A35EF1E /* EZAudioFileMarker.h */,
+				1CF3EAF986CF5F97AAD839F0C15E00B3 /* EZAudioFileMarker.h */,
+				2D012317D87FCDA8475709D9363E5761 /* EZAudioFloatConverter.h */,
+				017D8206A0B7791E71C060791BC9EE81 /* EZAudioFloatConverter.h */,
+				8A810152A4D35C4266E5854E8A7F6D6D /* EZAudioFloatData.h */,
+				5C76F0106D697FCEFB0C4A8ABE8021C2 /* EZAudioFloatData.h */,
+				7D4336244402C317BF8BAF266F272E85 /* EZAudioPlayer.h */,
+				2AB87B03AF04BB26DCFF9F2ED06002FF /* EZAudioPlayer.h */,
+				467141624AC21CE08059FD82C10F4E32 /* EZAudioUtilities.h */,
+				7867D62FBBE31D000DB6930439118AF7 /* EZAudioUtilities.h */,
+				9F924AA78EE86E953BCDB264AFC3BB6A /* EZMicrophone.h */,
+				CA52124A3AD542F886E534065E30750A /* EZMicrophone.h */,
+				8EF7D90EFC481553CC9ACDC5D7B5EB4E /* EZOutput.h */,
+				B3367AC9EB5612DD4CF4D81EAF58771B /* EZOutput.h */,
+				5D36C0E19A2E5F042CCF1D542F708179 /* EZRecorder.h */,
+				F52D3F02E99B5C6AC79117966BDCAF71 /* EZRecorder.h */,
+				25B29D647F3462DA802BADFC00B7F84B /* soundpipe.h */,
+				1F7D6B0100A0466B07DF1878341DD7EB /* soundpipe.h */,
+				F9C5130FDBD1829EB713D7B11C4B43B1 /* TPCircularBuffer.h */,
+				8AE1E1E80E4F870231B9A0FFD645F700 /* TPCircularBuffer.h */,
+				D1B5C6F2BDB865FBC668C427843D6E7A /* TPCircularBuffer+AudioBufferList.h */,
+				9B20482D8ADF197DB843662003E89FA5 /* TPCircularBuffer+AudioBufferList.h */,
+				E0C75E8F6AD98BF259B62ADE4BD1D934 /* TPCircularBuffer+Unit.h */,
+				F262763C9A1AD0640F6379B22FA06002 /* TPCircularBuffer+Unit.h */,
+				58B8E722D77DE0626B0C6F2EAE601233 /* vocwrapper.h */,
+				6BDFD96239C7DC372E34E8F8C3581B29 /* vocwrapper.h */,
+				3774440FE52837F818D6C921491CCEFC /* Frameworks */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		BC2D21C594FC88DDE203E40DB621C488 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				236CC4B067B02C02ED29A762715A3048 /* AudioKitUI.h */,
+				3D89FE5BD7C9DB5FFFA3C686AC16BA23 /* AudioKitUI.h */,
+				DE25A3F654EA9EEB57B41BA1A2743594 /* AudioKitUI-Swift.h */,
+				FD52DFF5158D9E66D7180F2F5A720624 /* AudioKitUI-Swift.h */,
+				10D564775AE31A1AA78EF0C24ABEA130 /* EZAudioDisplayLink.h */,
+				0F88E5DE9BA094A03F35770C10507049 /* EZAudioDisplayLink.h */,
+				FF03D1E06A0BB996CA3DEB67FF0042CF /* EZAudioPlot.h */,
+				FC3625B797FECE6D6AE20B5B70500166 /* EZAudioPlot.h */,
+				CEA08EC0E43EEC4D008A8634873BBE86 /* EZAudioPlotGL.h */,
+				C5FF4B1E5359B7E4FCA0DFBF8F57B92F /* EZAudioPlotGL.h */,
+				5E58FE1C013B35FCD78E95B01452E19C /* EZPlot.h */,
+				D97A56FE7633A43846E6A3D3D0A1F548 /* EZPlot.h */,
+				D36E53331B33DC8E92A06EB4AEB56631 /* Frameworks */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		C105C5E4BAEF45D34F144749039DCCC5 /* tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				94CB5B71DBED504C6A7980B6C1A15131 /* Foundation.framework */,
+			);
+			name = tvOS;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				94832ADB83155925637C7CE9B3E8ADE6 /* Frameworks */,
+				41B8324AC9934E747200BA3A19981A4F /* Pods */,
+				0E9705E137ED117AA16FD7DA4FF22604 /* Products */,
+				F345E8020B6267970B48FD32548AE8C2 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D36E53331B33DC8E92A06EB4AEB56631 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B7A7C89583CF8BFDA8338F804251582B /* AudioKitUI.framework */,
+				F7844145E80B41A3A7C905D95A5D1FC8 /* AudioKitUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D8FBBA3CA6659F9A0395326DFB983396 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				F4AC6EBE496E68AC30738FEB6E504F8D /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		E6A0C4EF37CE5C9C30216E4DD2B87D8A /* Pods-Test1_SceneKit watchOS App Extension */ = {
+			isa = PBXGroup;
+			children = (
+				5E0DE6C131F5E556B435961B7CEA2F23 /* Pods-Test1_SceneKit watchOS App Extension.modulemap */,
+				278FDF44E655ED281FE775A2D5B04568 /* Pods-Test1_SceneKit watchOS App Extension-acknowledgements.markdown */,
+				F20242BE5D2159DB803FD087F59A1105 /* Pods-Test1_SceneKit watchOS App Extension-acknowledgements.plist */,
+				A019EC48A43B8A5CF6EF4D1E39E0243E /* Pods-Test1_SceneKit watchOS App Extension-dummy.m */,
+				2709395978EF8CA60EA0A9F55C649C1F /* Pods-Test1_SceneKit watchOS App Extension-Info.plist */,
+				944791D008CBEA89C1861DFEB5FCD49C /* Pods-Test1_SceneKit watchOS App Extension-umbrella.h */,
+				84107AF6213663598215AFA9CF15287D /* Pods-Test1_SceneKit watchOS App Extension.debug.xcconfig */,
+				5DBD638B369EAA57849ED835B3E8A5C0 /* Pods-Test1_SceneKit watchOS App Extension.release.xcconfig */,
+			);
+			name = "Pods-Test1_SceneKit watchOS App Extension";
+			path = "Target Support Files/Pods-Test1_SceneKit watchOS App Extension";
+			sourceTree = "<group>";
+		};
+		F345E8020B6267970B48FD32548AE8C2 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				8C6F5F709157A716C9B3F357EA3F880A /* Pods-Test1_SceneKit iOS */,
+				9494AD302FE5B6B4D737F3630753984B /* Pods-Test1_SceneKit tvOS */,
+				8FDA21A84EE38AC2A710240618250FD9 /* Pods-Test1_SceneKit watchOS App */,
+				E6A0C4EF37CE5C9C30216E4DD2B87D8A /* Pods-Test1_SceneKit watchOS App Extension */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		0B67270053E81FC76543A7FB4B0E45A4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB4FD6FC981E34D8D0C6B853E1B4F191 /* Pods-Test1_SceneKit watchOS App Extension-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13D3A527772A33DC853448F569AD442C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E63E61FCF88EB49F09C3470614099F3 /* Pods-Test1_SceneKit iOS-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C828FBB7C1AA5D4E2F85D0B612596BBA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23B219841FA33F56146A436041A23328 /* Pods-Test1_SceneKit tvOS-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD8657A18DFEFF99A018F271026EE798 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5FB6A3D78C04F0696C1D703A0BEB20B /* Pods-Test1_SceneKit watchOS App-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		4542CD4D0CB60B8ACD693CEA53D85769 /* Pods-Test1_SceneKit watchOS App Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 99B0EE7374A7DC0D28DAD59AB469A733 /* Build configuration list for PBXNativeTarget "Pods-Test1_SceneKit watchOS App Extension" */;
+			buildPhases = (
+				0B67270053E81FC76543A7FB4B0E45A4 /* Headers */,
+				A51C654640D8610D637AB796D2E6177C /* Sources */,
+				12548A440664AD6074DE0CD6139E36AB /* Frameworks */,
+				31EE272BBCA686F3B8595E960F44E809 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-Test1_SceneKit watchOS App Extension";
+			productName = "Pods-Test1_SceneKit watchOS App Extension";
+			productReference = 1EE9ED9E47B1400B5FB094D22EB9E7BE /* Pods_Test1_SceneKit_watchOS_App_Extension.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		5D597865F2E31D2368224F33932AA6D3 /* Pods-Test1_SceneKit tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7775693942F0D4543395F91AF7CA5FFE /* Build configuration list for PBXNativeTarget "Pods-Test1_SceneKit tvOS" */;
+			buildPhases = (
+				C828FBB7C1AA5D4E2F85D0B612596BBA /* Headers */,
+				C1C622BB20F5EA9E2D34CF6B966230DE /* Sources */,
+				3E8E3C3C15C5BF833E9B5F9A8CC99FE4 /* Frameworks */,
+				6A65D54E96D2F6641F38D9A084CCDC7A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9C45C71ACB5B7AC2C7347AE86AA5F153 /* PBXTargetDependency */,
+			);
+			name = "Pods-Test1_SceneKit tvOS";
+			productName = "Pods-Test1_SceneKit tvOS";
+			productReference = 91A6C03044D816DB1E57DA2986F7992B /* Pods_Test1_SceneKit_tvOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		705587F440C75541C87ED40D32BA5C7C /* Pods-Test1_SceneKit watchOS App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A843935A063CAAF7DC7D3646DA29EF48 /* Build configuration list for PBXNativeTarget "Pods-Test1_SceneKit watchOS App" */;
+			buildPhases = (
+				FD8657A18DFEFF99A018F271026EE798 /* Headers */,
+				92BAF7D34A00B68A588F13195523D72C /* Sources */,
+				EF41961451A24B425CC269471D1961F4 /* Frameworks */,
+				E385C1EB2AFEB45E59B9F9E2D128C10C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-Test1_SceneKit watchOS App";
+			productName = "Pods-Test1_SceneKit watchOS App";
+			productReference = 0E6BB538B7FB5A838F066AFFAB18FB87 /* Pods_Test1_SceneKit_watchOS_App.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		90BF69DB7A28850CD76A770C0068C8A0 /* Pods-Test1_SceneKit iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 38DF5CB2B3A859A51D8011044E832889 /* Build configuration list for PBXNativeTarget "Pods-Test1_SceneKit iOS" */;
+			buildPhases = (
+				13D3A527772A33DC853448F569AD442C /* Headers */,
+				8E1C90634E27C18DB7B5A26F21BBF785 /* Sources */,
+				A93870DEE2950F088DA9E9422624EF55 /* Frameworks */,
+				3249EAA7E9F5E5C91F9B546B112904C9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2ED2FCB07402A29F648E5626EB2054D4 /* PBXTargetDependency */,
+			);
+			name = "Pods-Test1_SceneKit iOS";
+			productName = "Pods-Test1_SceneKit iOS";
+			productReference = D84037E5A17AB8DB866FE944C66AB4B2 /* Pods_Test1_SceneKit_iOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 0E9705E137ED117AA16FD7DA4FF22604 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				45115D17087258CBD6AF8E9C9C10F1EC /* AudioKit-iOS */,
+				3BD689D37642679AAD369722AED468AD /* AudioKit-tvOS */,
+				90BF69DB7A28850CD76A770C0068C8A0 /* Pods-Test1_SceneKit iOS */,
+				5D597865F2E31D2368224F33932AA6D3 /* Pods-Test1_SceneKit tvOS */,
+				705587F440C75541C87ED40D32BA5C7C /* Pods-Test1_SceneKit watchOS App */,
+				4542CD4D0CB60B8ACD693CEA53D85769 /* Pods-Test1_SceneKit watchOS App Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		31EE272BBCA686F3B8595E960F44E809 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3249EAA7E9F5E5C91F9B546B112904C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A65D54E96D2F6641F38D9A084CCDC7A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E385C1EB2AFEB45E59B9F9E2D128C10C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8E1C90634E27C18DB7B5A26F21BBF785 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAEBA44BF60DEE0F6FD4FCBBF9A76EE7 /* Pods-Test1_SceneKit iOS-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92BAF7D34A00B68A588F13195523D72C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D2CE0CE0E6F62D447675F706F45B14C /* Pods-Test1_SceneKit watchOS App-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A51C654640D8610D637AB796D2E6177C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A2E095CA481CB343CF8D21F901DFF15 /* Pods-Test1_SceneKit watchOS App Extension-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1C622BB20F5EA9E2D34CF6B966230DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2C5C4E48B5330E939929DEC21CF6BA5 /* Pods-Test1_SceneKit tvOS-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2ED2FCB07402A29F648E5626EB2054D4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "AudioKit-iOS";
+			target = 45115D17087258CBD6AF8E9C9C10F1EC /* AudioKit-iOS */;
+			targetProxy = 9B817F60F852D56558550CF51422219C /* PBXContainerItemProxy */;
+		};
+		9C45C71ACB5B7AC2C7347AE86AA5F153 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "AudioKit-tvOS";
+			target = 3BD689D37642679AAD369722AED468AD /* AudioKit-tvOS */;
+			targetProxy = 088C3F90BCF6302294B0372092876065 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		00C7D02DD633DFE863755D3C4C09B509 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13B79D47057D4E7800B04ADC0352BDE7 /* Pods-Test1_SceneKit tvOS.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Test1_SceneKit tvOS/Pods-Test1_SceneKit tvOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Test1_SceneKit tvOS/Pods-Test1_SceneKit tvOS.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 12.4;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		22BEFF0ED3DD1F093CF77F92850C201B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9CF633FAF96EC736136ADC582838E40B /* Pods-Test1_SceneKit watchOS App.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Test1_SceneKit watchOS App/Pods-Test1_SceneKit watchOS App-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Test1_SceneKit watchOS App/Pods-Test1_SceneKit watchOS App.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 5.3;
+			};
+			name = Debug;
+		};
+		3512394FF02975FA31C8CF47570AB0BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84107AF6213663598215AFA9CF15287D /* Pods-Test1_SceneKit watchOS App Extension.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Test1_SceneKit watchOS App Extension/Pods-Test1_SceneKit watchOS App Extension-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Test1_SceneKit watchOS App Extension/Pods-Test1_SceneKit watchOS App Extension.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 5.3;
+			};
+			name = Debug;
+		};
+		593316C86FC936AD6F87FA2B9F8B3569 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 94200460DEF760C330D15EBB9D33042D /* Pods-Test1_SceneKit tvOS.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Test1_SceneKit tvOS/Pods-Test1_SceneKit tvOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Test1_SceneKit tvOS/Pods-Test1_SceneKit tvOS.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 12.4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		5A4A5624C999A417AA393A1F3A939475 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+				TVOS_DEPLOYMENT_TARGET = 12.4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.3;
+			};
+			name = Debug;
+		};
+		5D4EB11B65EAB772A79E16486842FF2B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5DBD638B369EAA57849ED835B3E8A5C0 /* Pods-Test1_SceneKit watchOS App Extension.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Test1_SceneKit watchOS App Extension/Pods-Test1_SceneKit watchOS App Extension-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Test1_SceneKit watchOS App Extension/Pods-Test1_SceneKit watchOS App Extension.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 5.3;
+			};
+			name = Release;
+		};
+		5F6572D50F3C3F549DEA14D38E558238 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67B78518BFA6A6A534F2B473BA6A9C7E /* AudioKit-tvOS.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		75A9D82CA8836137AB79B4B61535CB3E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2DABBB6B7B2A5D39EEF9981FFC5404F9 /* Pods-Test1_SceneKit watchOS App.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Test1_SceneKit watchOS App/Pods-Test1_SceneKit watchOS App-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Test1_SceneKit watchOS App/Pods-Test1_SceneKit watchOS App.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 5.3;
+			};
+			name = Release;
+		};
+		9B4FACA57B176F8727D8D50896A9E790 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F382DC9A65CA414393A5A6DCF5E6315 /* AudioKit-iOS.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A3D8B1518AC07CB220913C009D7B35D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D2461D05DA84683A34B85CEB2B7B6676 /* Pods-Test1_SceneKit iOS.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Test1_SceneKit iOS/Pods-Test1_SceneKit iOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Test1_SceneKit iOS/Pods-Test1_SceneKit iOS.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A626B14492D1756F84320D2A0F68F868 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+				TVOS_DEPLOYMENT_TARGET = 12.4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.3;
+			};
+			name = Release;
+		};
+		A7FE9C7EF568ABE72CCB95304276FB55 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67B78518BFA6A6A534F2B473BA6A9C7E /* AudioKit-tvOS.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		B4F36D41F666C0798B0B52E09C7C8535 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4F4DCCBFD792A9347DEE8DD782543D14 /* Pods-Test1_SceneKit iOS.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Test1_SceneKit iOS/Pods-Test1_SceneKit iOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Test1_SceneKit iOS/Pods-Test1_SceneKit iOS.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D79EC9E4C2EE285CDCB02E22A2784343 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F382DC9A65CA414393A5A6DCF5E6315 /* AudioKit-iOS.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		38DF5CB2B3A859A51D8011044E832889 /* Build configuration list for PBXNativeTarget "Pods-Test1_SceneKit iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3D8B1518AC07CB220913C009D7B35D5 /* Debug */,
+				B4F36D41F666C0798B0B52E09C7C8535 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A4A5624C999A417AA393A1F3A939475 /* Debug */,
+				A626B14492D1756F84320D2A0F68F868 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7775693942F0D4543395F91AF7CA5FFE /* Build configuration list for PBXNativeTarget "Pods-Test1_SceneKit tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				593316C86FC936AD6F87FA2B9F8B3569 /* Debug */,
+				00C7D02DD633DFE863755D3C4C09B509 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		79E7D3F83B31FC0AF12D26558C8D77D3 /* Build configuration list for PBXAggregateTarget "AudioKit-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7FE9C7EF568ABE72CCB95304276FB55 /* Debug */,
+				5F6572D50F3C3F549DEA14D38E558238 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		99B0EE7374A7DC0D28DAD59AB469A733 /* Build configuration list for PBXNativeTarget "Pods-Test1_SceneKit watchOS App Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3512394FF02975FA31C8CF47570AB0BF /* Debug */,
+				5D4EB11B65EAB772A79E16486842FF2B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A843935A063CAAF7DC7D3646DA29EF48 /* Build configuration list for PBXNativeTarget "Pods-Test1_SceneKit watchOS App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22BEFF0ED3DD1F093CF77F92850C201B /* Debug */,
+				75A9D82CA8836137AB79B4B61535CB3E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F925CFDD83DB34C33B8AC0CF5CEA3C1D /* Build configuration list for PBXAggregateTarget "AudioKit-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9B4FACA57B176F8727D8D50896A9E790 /* Debug */,
+				D79EC9E4C2EE285CDCB02E22A2784343 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

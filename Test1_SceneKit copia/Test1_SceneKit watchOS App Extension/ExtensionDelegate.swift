@@ -1,15 +1,15 @@
 //
 //  ExtensionDelegate.swift
-//  Test1_SceneKit watchOS App Extension
+//  GuitAir WatchKit Extension
 //
-//  Created by Gennaro Giaquinto on 24/07/2019.
-//  Copyright © 2019 Gennaro Giaquinto. All rights reserved.
+//  Created by Giuseppe De Simone on 16/07/2019.
+//  Copyright © 2019 Giuseppe De Simone. All rights reserved.
 //
 
 import WatchKit
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
-
+    
     func applicationDidFinishLaunching() {
         // Perform any final initialization of your application.
     }
@@ -41,7 +41,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 // Be sure to complete the URL session task once you’re done.
                 urlSessionTask.setTaskCompletedWithSnapshot(false)
             case let relevantShortcutTask as WKRelevantShortcutRefreshBackgroundTask:
-                // Be sure to complete the relevant-action task once you're done.
+                // Be sure to complete the relevant-shortcut task once you're done.
                 relevantShortcutTask.setTaskCompletedWithSnapshot(false)
             case let intentDidRunTask as WKIntentDidRunRefreshBackgroundTask:
                 // Be sure to complete the intent-did-run task once you're done.
