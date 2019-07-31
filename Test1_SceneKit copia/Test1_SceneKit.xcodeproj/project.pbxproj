@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -293,7 +293,6 @@
 				DB96BC2531D53A4C6A7A5973 /* Pods-Test1_SceneKit watchOS App Extension.debug.xcconfig */,
 				2A15CD72FB1605F801D79853 /* Pods-Test1_SceneKit watchOS App Extension.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -401,7 +400,7 @@
 				};
 			};
 			buildConfigurationList = 77DFAD1522E84C54006DCBEE /* Build configuration list for PBXProject "Test1_SceneKit" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
