@@ -21,8 +21,6 @@ class MainViewController: UIViewController {
     var textManager: TextManager!
     var guitarsManager: Guitars!
     
-    var electricGuitar: SCNNode!
-    var acousticGuitar: SCNNode!
     var keyNode: SCNNode!
     var plane: SCNNode!
     var spot: SCNNode!

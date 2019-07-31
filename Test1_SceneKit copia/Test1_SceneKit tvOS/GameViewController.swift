@@ -19,12 +19,16 @@ class GameViewController: UIViewController {
     
     var gameController: GameController!
     var gameGuitarManager: GameGuitarManager!
+    
+    var session = SessionManager.share
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.gameController = GameController(sceneRenderer: gameView)
+        
+        session.delegate = self
         
         // Allow the user to manipulate the camera
         self.gameView.allowsCameraControl = false
@@ -54,6 +58,7 @@ extension GameViewController: SessionManagerDelegate {
         case 4: // Stop the game session
             performSegue(withIdentifier: "MainSegue", sender: nil)
         case 5: // Box in col1
+            print("ciao")
             gameGuitarManager.showNode(column: 1)
         case 6: // Box in col2
             gameGuitarManager.showNode(column: 2)
