@@ -22,7 +22,7 @@ class InterfaceController: WKInterfaceController {
     func handleTap(_ gestureRecognizer: WKTapGestureRecognizer) {
         // Highlight the tapped nodes
         let p = gestureRecognizer.locationInObject()
-        gameController.highlightNodes(atPoint: p)
+        //gameController.highlightNodes(atPoint: p)
     }
     
     override func willActivate() {
