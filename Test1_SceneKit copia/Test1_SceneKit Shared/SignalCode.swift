@@ -17,4 +17,12 @@ enum SignalCode: UInt8 {
     case note2 = 6
     case note3 = 7
     case note4 = 8
+    case key1Pressed = 11
+    case key2Pressed = 12
+    case key3Pressed = 13
+    case key4Pressed = 14
+    case key1Released = 15
+    case key2Released = 16
+    case key3Released = 17
+    case key4Released = 18
 }
