@@ -12,7 +12,6 @@ import WatchConnectivity
 class ViewController: UIViewController{
 
     let userDefault = UserDefaults.standard
-    let USER_DEFAULT_KEY_STRING = "chords_string"
     var userDataChords: Array<String>?
     
     //Session for comunicating with watch
