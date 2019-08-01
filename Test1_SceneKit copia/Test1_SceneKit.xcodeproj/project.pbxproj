@@ -27,7 +27,6 @@
 		08D465B322F1A77600B8D43B /* PlayingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D465AB22F1A77600B8D43B /* PlayingBuffer.swift */; };
 		08D465B422F1A77600B8D43B /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D465AC22F1A77600B8D43B /* ExtensionDelegate.swift */; };
 		08D465B522F1A77600B8D43B /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D465AD22F1A77600B8D43B /* NotificationController.swift */; };
-		08D465B622F1A77600B8D43B /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D465AE22F1A77600B8D43B /* SessionManager.swift */; };
 		08D465BA22F1A78100B8D43B /* LogoWatch.png in Resources */ = {isa = PBXBuildFile; fileRef = 08D465B722F1A78000B8D43B /* LogoWatch.png */; };
 		08D465BB22F1A78100B8D43B /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08D465B822F1A78100B8D43B /* Interface.storyboard */; };
 		08D465BC22F1A78100B8D43B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08D465B922F1A78100B8D43B /* Assets.xcassets */; };
@@ -124,7 +123,6 @@
 		08D465AB22F1A77600B8D43B /* PlayingBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingBuffer.swift; sourceTree = "<group>"; };
 		08D465AC22F1A77600B8D43B /* ExtensionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		08D465AD22F1A77600B8D43B /* NotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
-		08D465AE22F1A77600B8D43B /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		08D465B722F1A78000B8D43B /* LogoWatch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LogoWatch.png; path = "../../../../Progetti/porca miseria/porca miseria WatchKit App/LogoWatch.png"; sourceTree = "<group>"; };
 		08D465B822F1A78100B8D43B /* Interface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Interface.storyboard; sourceTree = "<group>"; };
 		08D465B922F1A78100B8D43B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../../Progetti/porca miseria/porca miseria WatchKit App/Assets.xcassets"; sourceTree = "<group>"; };
@@ -279,7 +277,6 @@
 				08D465AA22F1A77600B8D43B /* MotionManager.swift */,
 				08D465AD22F1A77600B8D43B /* NotificationController.swift */,
 				08D465AB22F1A77600B8D43B /* PlayingBuffer.swift */,
-				08D465AE22F1A77600B8D43B /* SessionManager.swift */,
 				08D465A822F1A77500B8D43B /* WatchController.swift */,
 				08D465A722F1A77500B8D43B /* PushNotificationPayload.apns */,
 				77DFAD4422E84C56006DCBEE /* Info.plist */,
@@ -623,7 +620,6 @@
 				08D465B522F1A77600B8D43B /* NotificationController.swift in Sources */,
 				08D464BE22F1907E00B8D43B /* GameController.swift in Sources */,
 				08D465B322F1A77600B8D43B /* PlayingBuffer.swift in Sources */,
-				08D465B622F1A77600B8D43B /* SessionManager.swift in Sources */,
 				08D465B222F1A77600B8D43B /* MotionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
