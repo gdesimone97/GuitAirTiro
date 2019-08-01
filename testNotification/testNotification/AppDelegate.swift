@@ -108,6 +108,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             completionHandler(.sound)
             return
         }
-        completionHandler(UNNotificationPresentationOptions(rawValue: 0))
+        completionHandler(.alert)
     }
 }
