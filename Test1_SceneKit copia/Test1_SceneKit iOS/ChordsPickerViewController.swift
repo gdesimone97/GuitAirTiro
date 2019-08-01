@@ -8,6 +8,12 @@
 
 import UIKit
 
+
+enum GuitarType {
+    case elettric
+    case classic
+}
+
 class ChordsPickerViewController: UIViewController,
 UIPickerViewDataSource, UIPickerViewDelegate {
     
@@ -27,6 +33,8 @@ UIPickerViewDataSource, UIPickerViewDelegate {
     let USER_DEFAULT_KEY_ROW = "chords_row"
     let USER_DEFAULT_KEY_STRING = "chords_string"
     let USER_LANGUAGE = "PreferredNotation"
+    let GUITAR = "guitar_selected"
+    
     var language: String {
         get {
             return userDefaults.string(forKey: USER_LANGUAGE)!
@@ -159,6 +167,7 @@ UIPickerViewDataSource, UIPickerViewDelegate {
         
         userDefaults.set(valuesToStore, forKey: USER_DEFAULT_KEY_ROW)
         userDefaults.set(str, forKey: USER_DEFAULT_KEY_STRING)
+        
         print(valuesToStore)
         print(chords.count);
         var choice = "< ";
