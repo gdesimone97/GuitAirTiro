@@ -33,6 +33,12 @@ class GameViewController: UIViewController {
     }
     
     
+    var button1: SCNPlane!
+    var button2: SCNNode!
+    var button3: SCNNode!
+    var button4: SCNNode!
+    
+    
     var guitar1: Guitar?
     var guitar2: Guitar?
 
@@ -46,18 +52,15 @@ class GameViewController: UIViewController {
         // Allow the user to manipulate the camera
         self.gameView.allowsCameraControl = false
         
-        // Show statistics such as fps and timing information
-        self.gameView.showsStatistics = true
-        
-        gameGuitarManager = GameGuitarManager(scene: gameView.scene!, width: 2.5, length: 10, z: -17)
+        gameGuitarManager = GameGuitarManager(scene: gameView.scene!, width: 2.5, length: 20, z: -17)
         
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         var gestureRecognizers = gameView.gestureRecognizers ?? []
         gestureRecognizers.insert(tapGesture, at: 0)
         self.gameView.gestureRecognizers = gestureRecognizers
-    
         
+        addElements()
         
         do {
             guitar1 = try Guitar(file: "A.wav")
@@ -78,6 +81,24 @@ class GameViewController: UIViewController {
     @objc func handleTap(_ gestureRecognizer: UIGestureRecognizer) {
         guitar1?.playGuitar()
         gameGuitarManager.showNode(column: 3)
+    }
+    
+    func addElements() {
+        let node = self.gameView.scene!.rootNode.childNode(withName: "planes", recursively: false)
+        self.gameView.scene!.rootNode.enumerateChildNodes { (node, _) in
+            if node.name == "plane1" {
+                button1 = node
+            }
+            if node.name == "plane2" {
+                button2 = node
+            }
+            if node.name == "plane3" {
+                button3 = node
+            }
+            if node.name == "plane4" {
+                button4 = node
+            }
+        }
     }
     
 }
@@ -115,6 +136,23 @@ extension GameViewController: SessionManagerDelegate {
             gameGuitarManager.showNode(column: 3)
         case .note4: // Box in col4
             gameGuitarManager.showNode(column: 4)
+        case .key1Pressed:
+            
+        case .key2Pressed:
+            button2.firstMaterial?.metalness = 0
+        case .key3Pressed:
+            button3.firstMaterial?.metalness = 0
+        case .key4Pressed:
+            button4.firstMaterial?.metalness = 0
+        case .key1Released:
+            button1.firstMaterial?.metalness = 1
+        case .key2Released:
+            button1.firstMaterial?.metalness = 1
+        case .key3Released:
+            button1.firstMaterial?.metalness = 1
+        case .key4Released:
+            button1.firstMaterial?.metalness = 1
+            
             
             
         // Add more cases here

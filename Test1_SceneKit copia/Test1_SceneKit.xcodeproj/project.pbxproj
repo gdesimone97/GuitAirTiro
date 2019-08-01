@@ -67,8 +67,6 @@
 		77DFAD5322E84C56006DCBEE /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFAD1722E84C54006DCBEE /* MainController.swift */; };
 		77DFAD5422E84C56006DCBEE /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFAD1722E84C54006DCBEE /* MainController.swift */; };
 		77DFAD5522E84C56006DCBEE /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFAD1722E84C54006DCBEE /* MainController.swift */; };
-		77DFAD5622E84C56006DCBEE /* Art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 77DFAD1822E84C54006DCBEE /* Art.scnassets */; };
-		77DFAD5722E84C56006DCBEE /* Art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 77DFAD1822E84C54006DCBEE /* Art.scnassets */; };
 		77DFAD5822E84C56006DCBEE /* Art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 77DFAD1822E84C54006DCBEE /* Art.scnassets */; };
 		77DFAD5922E84C56006DCBEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77DFAD1922E84C56006DCBEE /* Assets.xcassets */; };
 		77DFAD5A22E84C56006DCBEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77DFAD1922E84C56006DCBEE /* Assets.xcassets */; };
@@ -523,7 +521,6 @@
 				77DFAD2A22E84C56006DCBEE /* LaunchScreen.storyboard in Resources */,
 				088E1CC622F345F1006A197D /* rock@2x (1).png in Resources */,
 				77DFAD5922E84C56006DCBEE /* Assets.xcassets in Resources */,
-				77DFAD5622E84C56006DCBEE /* Art.scnassets in Resources */,
 				088E1CBB22F345F1006A197D /* rock@2x.png in Resources */,
 				0898EC3022F051A2007C32DD /* Main.storyboard in Resources */,
 				088E1CCA22F34681006A197D /* Confirmed.png in Resources */,
@@ -550,7 +547,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				086325BA22F33E7300513E1B /* Assets.xcassets in Resources */,
-				77DFAD5722E84C56006DCBEE /* Art.scnassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
