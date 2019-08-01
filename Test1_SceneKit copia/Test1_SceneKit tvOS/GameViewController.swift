@@ -9,6 +9,7 @@
 import UIKit
 import SceneKit
 import MultipeerConnectivity
+import AudioKit
 
 
 class GameViewController: UIViewController {
@@ -27,8 +28,13 @@ class GameViewController: UIViewController {
     var callbackClosure: ( () -> Void )?
     
     override func viewWillDisappear(_ animated: Bool) {
+        try! AudioKit.stop()
         callbackClosure?()
     }
+    
+    
+    var guitar1: Guitar?
+    var guitar2: Guitar?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,9 +57,26 @@ class GameViewController: UIViewController {
         gestureRecognizers.insert(tapGesture, at: 0)
         self.gameView.gestureRecognizers = gestureRecognizers
     
+        
+        
+        do {
+            guitar1 = try Guitar(file: "A.wav")
+            guitar2 = try Guitar(file: "Am.wav")
+        } catch {
+            print("Could not find guitar files")
+        }
+        let mixer = AKMixer(guitar1?.chord, guitar2?.chord)
+        AudioKit.output = mixer
+        do{
+            try AudioKit.start()
+        }catch{
+            print("Audiokit motor couldn't start!")
+        }
+        
     }
     
     @objc func handleTap(_ gestureRecognizer: UIGestureRecognizer) {
+        guitar1?.playGuitar()
         gameGuitarManager.showNode(column: 3)
     }
     
@@ -85,9 +108,9 @@ extension GameViewController: SessionManagerDelegate {
                 self.dismiss(animated: false, completion: nil)
             }
         case .note1: // Box in col1
-            gameGuitarManager.showNode(column: 1)
+            guitar1?.playGuitar()
         case .note2: // Box in col2
-            gameGuitarManager.showNode(column: 2)
+            guitar2?.playGuitar()
         case .note3: // Box in col3
             gameGuitarManager.showNode(column: 3)
         case .note4: // Box in col4

@@ -47,7 +47,7 @@ class Guitars {
                 self.electric = initGuitar(node: node, y: -0.7)
             }
             if node.name == "acousticGuitar" {
-                self.acoustic = initGuitar(node: node, y: 1)
+                self.acoustic = initGuitar(node: node, y: -0.5)
             }
         }
     }
@@ -55,7 +55,7 @@ class Guitars {
     private func initGuitar(node: SCNNode, y: Float) -> GuitarType {
         let guitar = GuitarType(guitarNode: node, y: y)
         
-        guitar.guitarNode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: guitar.guitarNode, options: nil))
+//        guitar.guitarNode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: guitar.guitarNode, options: nil))
         guitar.guitarNode.physicsBody?.isAffectedByGravity = false
         guitar.guitarNode.physicsBody?.restitution = 1
         guitar.guitarNode.position = SCNVector3(x: 15, y: guitar.y!, z: 0)
@@ -67,7 +67,7 @@ class Guitars {
     func changeGuitar(newGuitar: GuitarsEnum) {
         DispatchQueue.main.async {
             if let guitar = self.actualGuitar {
-                guitar.guitarNode.runAction(SCNAction.sequence( [SCNAction.move(by: SCNVector3(x: -15, y: 0, z: 0), duration: 0.7), SCNAction.move(by: SCNVector3(x: 30, y: guitar.y!, z: 0), duration: 0) ] ) )
+                guitar.guitarNode.runAction(SCNAction.sequence( [SCNAction.move(by: SCNVector3(x: -15, y: 0, z: 0), duration: 0.7), SCNAction.move(to: SCNVector3(x: 15, y: self.actualGuitar!.y!, z: 0), duration: 0) ] ) )
             }
             
             self.assign(guitar: newGuitar)

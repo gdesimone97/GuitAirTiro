@@ -24,6 +24,7 @@ class MainViewController: UIViewController {
     var keyNode: SCNNode!
     var plane: SCNNode!
     var spot: SCNNode!
+    var phone: SCNNode!
     
     
     var numGuitar: Int = 2 // 2 for electric guitar, 1 for acoustic guitar
@@ -186,6 +187,12 @@ class MainViewController: UIViewController {
             if node.name == "spot" {
                 spot = node
             }
+            if node.name == "phone" {
+                phone = node
+                phone.physicsBody?.isAffectedByGravity = false
+                phone.physicsBody?.restitution = 1
+                phone.runAction(SCNAction.repeatForever(SCNAction.rotate(by: CGFloat.pi, around: SCNVector3(0, 1, 0), duration: 3)))
+            }
         }
     }
     
@@ -278,9 +285,19 @@ class MainViewController: UIViewController {
             let GameViewController = segue.destination as! GameViewController
             GameViewController.callbackClosure = {
                 self.session.delegate = self
+                self.checkConnection()
             }
         default:
             print(#function)
+        }
+    }
+    
+    func checkConnection() {
+        if !session.isConnected(peerConnected) {
+            self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5)
+            self.phone.runAction(SCNAction.move(to: SCNVector3(0, 0, 0), duration: 0.7))
+            self.peerConnected = nil
+            textManager.addNotification(str: "Device disconnected!", color: UIColor.red)
         }
     }
     
@@ -330,18 +347,22 @@ extension MainViewController: SessionManagerDelegate {
             else if self.connected == 1 && connected == 2 {
                 self.deviceNode = self.textManager.addTextAtPosition(str: "Device Connected: \(change.displayName)", x: -5.5, y: 0.5)
                 self.peerConnected = change
+                self.phone.runAction(SCNAction.move(to: SCNVector3(15, 0, 0), duration: 0.7))
             }
             else if self.connected == 0 && connected == 0 {
                 self.deviceNode = self.textManager.addTextAtPosition(str: "Device denied the request!", x: -5.5, y: 0.5)
                 let wait = SCNAction.wait(duration: 5)
                 let change = SCNAction.run{_ in
                     self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5)
+                    self.phone.runAction(SCNAction.move(to: SCNVector3(0, 0, 0), duration: 0.7))
                 }
                 let remove = SCNAction.removeFromParentNode()
                 self.deviceNode?.runAction(SCNAction.sequence([wait, change, remove]))
             }
             else if self.peerConnected == change && self.connected == 2 && connected == 0 {
                 self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5)
+                self.phone.runAction(SCNAction.move(to: SCNVector3(0, 0, 0), duration: 0.7))
+                self.peerConnected = nil
             }
             
             self.connected = connected

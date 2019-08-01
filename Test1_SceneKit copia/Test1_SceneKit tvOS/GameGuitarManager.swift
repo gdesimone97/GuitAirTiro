@@ -27,6 +27,9 @@ class GameGuitarManager {
     private let column3: ColumnType
     private let column4: ColumnType
     
+    
+    
+    
     init(scene: SCNScene, width: Float, length: Float, z: Float) {
         self.scene = scene
         self.width = width
@@ -37,6 +40,7 @@ class GameGuitarManager {
         column2 = ColumnType(color: UIColor.green, xPosition: Float(-width/4))
         column3 = ColumnType(color: UIColor.blue, xPosition: Float(width/4))
         column4 = ColumnType(color: UIColor.yellow, xPosition: Float(width/4 + width/2))
+        
     }
 
     // Parameter indicates the column of the guitar
