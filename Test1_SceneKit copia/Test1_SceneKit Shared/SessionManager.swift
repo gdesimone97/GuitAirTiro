@@ -22,6 +22,7 @@ protocol SessionManagerDelegate: class {
 
 
 class SessionManager: NSObject {
+    private var i = 0
     // Initiating a Session
     private var peerID = MCPeerID(displayName: UIDevice.current.name ) // ID peer ugaule all'identificativo del device
     
@@ -139,7 +140,8 @@ extension SessionManager: MCSessionDelegate {
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        //print("Messaggio ricevuto da: \(peerID), messaggio: \(data)")
+        print("Messaggio \(i) ricevuto da: \(peerID), messaggio: \(data)")
+        i+=1
         let intData = data.first
         let code = SignalCode.init(rawValue: intData!)
         guard code != nil else { return }
