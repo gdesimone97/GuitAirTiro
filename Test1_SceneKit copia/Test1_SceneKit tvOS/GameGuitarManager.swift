@@ -37,9 +37,9 @@ class GameGuitarManager {
         self.z = z
         
         column1 = ColumnType(color: UIColor.red, xPosition: Float(-width/4 - width/2))
-        column2 = ColumnType(color: UIColor.green, xPosition: Float(-width/4))
-        column3 = ColumnType(color: UIColor.blue, xPosition: Float(width/4))
-        column4 = ColumnType(color: UIColor.yellow, xPosition: Float(width/4 + width/2))
+        column2 = ColumnType(color: UIColor.blue, xPosition: Float(-width/4))
+        column3 = ColumnType(color: UIColor.green, xPosition: Float(width/4))
+        column4 = ColumnType(color: UIColor.purple, xPosition: Float(width/4 + width/2))
         
     }
 
