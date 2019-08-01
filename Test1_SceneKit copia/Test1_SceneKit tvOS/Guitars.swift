@@ -9,7 +9,7 @@
 import UIKit
 import SceneKit
 
-struct Guitar {
+struct GuitarType {
     var guitarNode: SCNNode
     var y: Float?
 }
@@ -21,10 +21,10 @@ enum GuitarsEnum {
 
 class Guitars {
     
-    var actualGuitar: Guitar?
+    var actualGuitar: GuitarType?
     
-    var acoustic: Guitar?
-    var electric: Guitar?
+    var acoustic: GuitarType?
+    var electric: GuitarType?
     
     private let scene: SCNScene
     
@@ -35,7 +35,7 @@ class Guitars {
         initializeNodes()
         
         if let node = actualNode {
-            actualGuitar = Guitar(guitarNode: node, y: nil)
+            actualGuitar = GuitarType(guitarNode: node, y: nil)
         }
     }
     
@@ -52,8 +52,8 @@ class Guitars {
         }
     }
     
-    private func initGuitar(node: SCNNode, y: Float) -> Guitar {
-        let guitar = Guitar(guitarNode: node, y: y)
+    private func initGuitar(node: SCNNode, y: Float) -> GuitarType {
+        let guitar = GuitarType(guitarNode: node, y: y)
         
         guitar.guitarNode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(node: guitar.guitarNode, options: nil))
         guitar.guitarNode.physicsBody?.isAffectedByGravity = false
