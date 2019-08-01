@@ -21,7 +21,14 @@ class GameViewController: UIViewController {
     var gameGuitarManager: GameGuitarManager!
     
     var session = SessionManager.share
-
+    
+    // This closure is used for setting the Session Delegate when the this View is dismissed
+    // It is setted by the View that opens this view
+    var callbackClosure: ( () -> Void )?
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        callbackClosure?()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +43,7 @@ class GameViewController: UIViewController {
         // Show statistics such as fps and timing information
         self.gameView.showsStatistics = true
         
-        gameGuitarManager = GameGuitarManager(scene: gameView.scene!, width: 4, length: 20, z: -17)
+        gameGuitarManager = GameGuitarManager(scene: gameView.scene!, width: 2.5, length: 10, z: -17)
         
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
@@ -53,18 +60,19 @@ class GameViewController: UIViewController {
 }
 
 extension GameViewController: SessionManagerDelegate {
-    
-    func peerLost(_ manager: SessionManager, peer lost: MCPeerID) {
+    func peerFound(_ manger: SessionManager, peer: MCPeerID) {
     }
     
-    func peerFound(_ manger: SessionManager, peer: MCPeerID) {
+    func peerLost(_ manager: SessionManager, peer lost: MCPeerID) {
     }
     
     
     func nearPeerHasChangedState(_ manager: SessionManager, peer change: MCPeerID, connected: Int) {
         DispatchQueue.main.async {
             if connected == 0 {
-                //torna indietro
+                DispatchQueue.main.async {
+                    self.dismiss(animated: false, completion: nil)
+                }
             }
         }
     }
@@ -73,7 +81,9 @@ extension GameViewController: SessionManagerDelegate {
         switch didMessageReceived {
 		
         case .closeGame: // Stop the game session
-            performSegue(withIdentifier: "MainSegue", sender: nil)
+            DispatchQueue.main.async {
+                self.dismiss(animated: false, completion: nil)
+            }
         case .note1: // Box in col1
             gameGuitarManager.showNode(column: 1)
         case .note2: // Box in col2

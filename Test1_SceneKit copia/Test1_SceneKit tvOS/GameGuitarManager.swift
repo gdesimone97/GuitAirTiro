@@ -54,7 +54,7 @@ class GameGuitarManager {
             boxNode.geometry?.firstMaterial = boxMaterial
         }
         
-        let appearMoving = SCNAction.group( [SCNAction.fadeIn(duration: 0.4), SCNAction.move(by: SCNVector3(x: 0, y: 0, z: length), duration: 5)] )
+        let appearMoving = SCNAction.group( [SCNAction.fadeIn(duration: 0.7), SCNAction.move(by: SCNVector3(x: 0, y: 0, z: length), duration: 5)] )
         let remove = SCNAction.removeFromParentNode()
         let sequence = SCNAction.sequence([appearMoving, remove])
         

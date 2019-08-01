@@ -272,6 +272,18 @@ class MainViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "GameSegue":
+            let GameViewController = segue.destination as! GameViewController
+            GameViewController.callbackClosure = {
+                self.session.delegate = self
+            }
+        default:
+            print(#function)
+        }
+    }
+    
     
 //    func addEmitter() {
 //        fog(x: 7, y: 0.2, z: -3, roll: 0)
@@ -347,8 +359,6 @@ extension MainViewController: SessionManagerDelegate {
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "GameSegue", sender: nil)
             }
-            
-            
             
             
         // Add more cases here

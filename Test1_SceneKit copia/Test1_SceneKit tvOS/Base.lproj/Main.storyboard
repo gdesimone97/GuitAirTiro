@@ -34,9 +34,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </sceneKitView>
-                    <connections>
-                        <segue destination="499-42-d0g" kind="show" identifier="MainSegue" id="ZN2-3r-n2e"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mZX-kF-mmL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
