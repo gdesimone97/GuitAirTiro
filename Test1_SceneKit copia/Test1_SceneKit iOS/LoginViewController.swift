@@ -9,14 +9,23 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    
+    let userDefaults = UserDefaults.standard
+    @IBOutlet var usernameText: UITextField!
+    @IBOutlet var passwordText: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
 
-
+    
+    @IBAction func SignUpButton(_ sender: Any) {
+        userDefaults.set(true, forKey: LOGIN)
+    }
+    
+    
     /*
     // MARK: - Navigation
 

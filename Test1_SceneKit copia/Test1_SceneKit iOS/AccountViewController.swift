@@ -19,10 +19,15 @@ class AccountViewController: UIViewController {
             self.performSegue(withIdentifier: "login_view", sender: nil)
         }
         
+        
         // Do any additional setup after loading the view.
     }
 
-
+    @IBAction func logOutButton(_ sender: Any) {
+        userDefaults.set(false,forKey: LOGIN)
+        
+    }
+    
     /*
     // MARK: - Navigation
 

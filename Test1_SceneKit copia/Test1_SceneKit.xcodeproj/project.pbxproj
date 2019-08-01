@@ -298,7 +298,6 @@
 				088E1CB022F345F0006A197D /* settings@2x.png */,
 				088E1CAF22F345F0006A197D /* treble@2x.png */,
 				0898EC2E22F051A2007C32DD /* Main.storyboard */,
-				086325B522F3328800513E1B /* LoginViewController.swift */,
 				0898EC2222F05146007C32DD /* ChordsPickerViewController.swift */,
 				0898EC2122F05146007C32DD /* GameModeViewController.swift */,
 				0898EC2322F05146007C32DD /* NotationTableViewCell.swift */,
@@ -309,6 +308,7 @@
 				77DFAD2822E84C56006DCBEE /* LaunchScreen.storyboard */,
 				77DFAD2B22E84C56006DCBEE /* Info.plist */,
 				086325AD22F320D600513E1B /* AccountViewController.swift */,
+				086325B522F3328800513E1B /* LoginViewController.swift */,
 				086325B722F33A5100513E1B /* NavigationController.swift */,
 			);
 			path = "Test1_SceneKit iOS";
@@ -983,7 +983,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K8WJKQA676;
 				INFOPLIST_FILE = "Test1_SceneKit iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1005,7 +1005,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K8WJKQA676;
 				INFOPLIST_FILE = "Test1_SceneKit iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
