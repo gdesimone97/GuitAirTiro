@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -131,9 +131,9 @@
 		08D465AB22F1A77600B8D43B /* PlayingBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingBuffer.swift; sourceTree = "<group>"; };
 		08D465AC22F1A77600B8D43B /* ExtensionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		08D465AD22F1A77600B8D43B /* NotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
-		08D465B722F1A78000B8D43B /* LogoWatch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LogoWatch.png; path = "../../../../Progetti/porca miseria/porca miseria WatchKit App/LogoWatch.png"; sourceTree = "<group>"; };
+		08D465B722F1A78000B8D43B /* LogoWatch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoWatch.png; sourceTree = "<group>"; };
 		08D465B822F1A78100B8D43B /* Interface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Interface.storyboard; sourceTree = "<group>"; };
-		08D465B922F1A78100B8D43B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../../Progetti/porca miseria/porca miseria WatchKit App/Assets.xcassets"; sourceTree = "<group>"; };
+		08D465B922F1A78100B8D43B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A15CD72FB1605F801D79853 /* Pods-Test1_SceneKit watchOS App Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test1_SceneKit watchOS App Extension.release.xcconfig"; path = "Target Support Files/Pods-Test1_SceneKit watchOS App Extension/Pods-Test1_SceneKit watchOS App Extension.release.xcconfig"; sourceTree = "<group>"; };
 		37A58CE124B71E8151DB7139 /* Pods_Test1_SceneKit_watchOS_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Test1_SceneKit_watchOS_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4217021D0952E689A6BEE811 /* Pods-Test1_SceneKit iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test1_SceneKit iOS.release.xcconfig"; path = "Target Support Files/Pods-Test1_SceneKit iOS/Pods-Test1_SceneKit iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -444,7 +444,7 @@
 				};
 			};
 			buildConfigurationList = 77DFAD1522E84C54006DCBEE /* Build configuration list for PBXProject "Test1_SceneKit" */;
-			compatibilityVersion = "Xcode 10.0";
+			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -927,7 +927,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K8WJKQA676;
 				INFOPLIST_FILE = "Test1_SceneKit iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -949,7 +949,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K8WJKQA676;
 				INFOPLIST_FILE = "Test1_SceneKit iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
