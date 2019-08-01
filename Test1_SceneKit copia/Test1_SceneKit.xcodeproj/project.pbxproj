@@ -24,7 +24,6 @@
 		08B5E77F22F1C3C500A6FF05 /* SignalCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B5E77D22F1C3C500A6FF05 /* SignalCode.swift */; };
 		08D464B922F18E4500B8D43B /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FE01C822F04CDA00861C78 /* GameController.swift */; };
 		08D464BE22F1907E00B8D43B /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FE01C822F04CDA00861C78 /* GameController.swift */; };
-		08D465AF22F1A77600B8D43B /* PushNotificationPayload.apns in Resources */ = {isa = PBXBuildFile; fileRef = 08D465A722F1A77500B8D43B /* PushNotificationPayload.apns */; };
 		08D465B022F1A77600B8D43B /* WatchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D465A822F1A77500B8D43B /* WatchController.swift */; };
 		08D465B122F1A77600B8D43B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08D465A922F1A77600B8D43B /* Assets.xcassets */; };
 		08D465B222F1A77600B8D43B /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D465AA22F1A77600B8D43B /* MotionManager.swift */; };
@@ -126,7 +125,6 @@
 		0898EC2F22F051A2007C32DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0898EC3122F05203007C32DD /* Test1_SceneKit watchOS App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Test1_SceneKit watchOS App-Bridging-Header.h"; sourceTree = "<group>"; };
 		08B5E77D22F1C3C500A6FF05 /* SignalCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalCode.swift; sourceTree = "<group>"; };
-		08D465A722F1A77500B8D43B /* PushNotificationPayload.apns */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = PushNotificationPayload.apns; path = "../../../../Progetti/porca miseria/porca miseria WatchKit Extension/PushNotificationPayload.apns"; sourceTree = "<group>"; };
 		08D465A822F1A77500B8D43B /* WatchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchController.swift; sourceTree = "<group>"; };
 		08D465A922F1A77600B8D43B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../../Progetti/porca miseria/porca miseria WatchKit Extension/Assets.xcassets"; sourceTree = "<group>"; };
 		08D465AA22F1A77600B8D43B /* MotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
@@ -294,7 +292,6 @@
 				08D465AD22F1A77600B8D43B /* NotificationController.swift */,
 				08D465AB22F1A77600B8D43B /* PlayingBuffer.swift */,
 				08D465A822F1A77500B8D43B /* WatchController.swift */,
-				08D465A722F1A77500B8D43B /* PushNotificationPayload.apns */,
 				77DFAD4422E84C56006DCBEE /* Info.plist */,
 			);
 			path = "Test1_SceneKit watchOS App Extension";
@@ -498,7 +495,6 @@
 			files = (
 				77DFAD5722E84C56006DCBEE /* Art.scnassets in Resources */,
 				08D465B122F1A77600B8D43B /* Assets.xcassets in Resources */,
-				08D465AF22F1A77600B8D43B /* PushNotificationPayload.apns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
