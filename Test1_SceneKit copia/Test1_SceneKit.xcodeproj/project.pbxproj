@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		086325AE22F320D600513E1B /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086325AD22F320D600513E1B /* AccountViewController.swift */; };
 		086325B022F326B600513E1B /* userDefaultKeysString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086325AF22F326B600513E1B /* userDefaultKeysString.swift */; };
+		086325B622F3328800513E1B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086325B522F3328800513E1B /* LoginViewController.swift */; };
+		086325B822F33A5100513E1B /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086325B722F33A5100513E1B /* NavigationController.swift */; };
 		0872DCFF22F0837B0077860E /* icone in Resources */ = {isa = PBXBuildFile; fileRef = 0872DCFE22F0837B0077860E /* icone */; };
 		0898EC2722F05146007C32DD /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898EC2022F05146007C32DD /* SettingsTableViewController.swift */; };
 		0898EC2822F05146007C32DD /* GameModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898EC2122F05146007C32DD /* GameModeViewController.swift */; };
@@ -111,6 +113,8 @@
 /* Begin PBXFileReference section */
 		086325AD22F320D600513E1B /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		086325AF22F326B600513E1B /* userDefaultKeysString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userDefaultKeysString.swift; sourceTree = "<group>"; };
+		086325B522F3328800513E1B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		086325B722F33A5100513E1B /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		0872DCFE22F0837B0077860E /* icone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icone; sourceTree = "<group>"; };
 		0898EC2022F05146007C32DD /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		0898EC2122F05146007C32DD /* GameModeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModeViewController.swift; sourceTree = "<group>"; };
@@ -254,6 +258,7 @@
 			children = (
 				0872DCFE22F0837B0077860E /* icone */,
 				0898EC2E22F051A2007C32DD /* Main.storyboard */,
+				086325B522F3328800513E1B /* LoginViewController.swift */,
 				0898EC2222F05146007C32DD /* ChordsPickerViewController.swift */,
 				0898EC2122F05146007C32DD /* GameModeViewController.swift */,
 				0898EC2322F05146007C32DD /* NotationTableViewCell.swift */,
@@ -264,6 +269,7 @@
 				77DFAD2822E84C56006DCBEE /* LaunchScreen.storyboard */,
 				77DFAD2B22E84C56006DCBEE /* Info.plist */,
 				086325AD22F320D600513E1B /* AccountViewController.swift */,
+				086325B722F33A5100513E1B /* NavigationController.swift */,
 			);
 			path = "Test1_SceneKit iOS";
 			sourceTree = "<group>";
@@ -611,6 +617,7 @@
 				086325AE22F320D600513E1B /* AccountViewController.swift in Sources */,
 				0898EC2822F05146007C32DD /* GameModeViewController.swift in Sources */,
 				0898EC2922F05146007C32DD /* ChordsPickerViewController.swift in Sources */,
+				086325B822F33A5100513E1B /* NavigationController.swift in Sources */,
 				0898EC2B22F05146007C32DD /* Guitar.swift in Sources */,
 				0898EC2722F05146007C32DD /* SettingsTableViewController.swift in Sources */,
 				77DFAD5322E84C56006DCBEE /* MainController.swift in Sources */,
@@ -618,6 +625,7 @@
 				779E565022EB090400ACC1BF /* SessionManager.swift in Sources */,
 				0898EC2D22F05146007C32DD /* NotationTableViewController.swift in Sources */,
 				08B5E77E22F1C3C500A6FF05 /* SignalCode.swift in Sources */,
+				086325B622F3328800513E1B /* LoginViewController.swift in Sources */,
 				086325B022F326B600513E1B /* userDefaultKeysString.swift in Sources */,
 				77DFAD2222E84C56006DCBEE /* AppDelegate.swift in Sources */,
 				08D464B922F18E4500B8D43B /* GameController.swift in Sources */,
