@@ -45,7 +45,7 @@ class GameGuitarManager {
 
     // Parameter indicates the column of the guitar
     func showNode(column: Int) {
-        let box = SCNBox(width: 1, height: 1, length: 1, chamferRadius: 3)
+        let box = SCNBox(width: 1, height: 1, length: 1, chamferRadius: 5)
         let boxNode = SCNNode(geometry: box)
         
         if let col = findColumn(column: column) {
@@ -59,7 +59,9 @@ class GameGuitarManager {
             boxNode.geometry?.firstMaterial = boxMaterial
         }
         
-        let appearMoving = SCNAction.group( [SCNAction.fadeIn(duration: 0.7), SCNAction.move(by: SCNVector3(x: 0, y: 0, z: length), duration: 5)] )
+        boxNode.opacity = 0
+        
+        let appearMoving = SCNAction.group( [SCNAction.fadeIn(duration: 0.5), SCNAction.move(by: SCNVector3(x: 0, y: 0, z: length), duration: 3.5)] )
         let remove = SCNAction.removeFromParentNode()
         let sequence = SCNAction.sequence([appearMoving, remove])
         

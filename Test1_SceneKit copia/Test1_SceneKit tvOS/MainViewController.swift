@@ -293,11 +293,12 @@ class MainViewController: UIViewController {
     }
     
     func checkConnection() {
-        if !session.isConnected(peerConnected) {
+        if !session.isConnected(peerConnected!) {
+            self.deviceNode!.removeFromParentNode()
             self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5)
             self.phone.runAction(SCNAction.move(to: SCNVector3(0, 0, 0), duration: 0.7))
             self.peerConnected = nil
-            textManager.addNotification(str: "Device disconnected!", color: UIColor.red)
+            textManager.addNotification(str: "Device disconnected!", color: UIColor.yellow)
         }
     }
     

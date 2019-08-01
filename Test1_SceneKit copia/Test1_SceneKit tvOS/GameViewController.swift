@@ -46,18 +46,15 @@ class GameViewController: UIViewController {
         // Allow the user to manipulate the camera
         self.gameView.allowsCameraControl = false
         
-        // Show statistics such as fps and timing information
-        self.gameView.showsStatistics = true
-        
-        gameGuitarManager = GameGuitarManager(scene: gameView.scene!, width: 2.5, length: 10, z: -17)
+        gameGuitarManager = GameGuitarManager(scene: gameView.scene!, width: 2.5, length: 20, z: -17)
         
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         var gestureRecognizers = gameView.gestureRecognizers ?? []
         gestureRecognizers.insert(tapGesture, at: 0)
         self.gameView.gestureRecognizers = gestureRecognizers
-    
         
+        gameView.backgroundColor = UIColor.black
         
         do {
             guitar1 = try Guitar(file: "A.wav")
