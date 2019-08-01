@@ -11,6 +11,7 @@
 		086325B022F326B600513E1B /* userDefaultKeysString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086325AF22F326B600513E1B /* userDefaultKeysString.swift */; };
 		086325B622F3328800513E1B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086325B522F3328800513E1B /* LoginViewController.swift */; };
 		086325B822F33A5100513E1B /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086325B722F33A5100513E1B /* NavigationController.swift */; };
+		086325BA22F33E7300513E1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 086325B922F33E7300513E1B /* Assets.xcassets */; };
 		0872DCFF22F0837B0077860E /* icone in Resources */ = {isa = PBXBuildFile; fileRef = 0872DCFE22F0837B0077860E /* icone */; };
 		0898EC2722F05146007C32DD /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898EC2022F05146007C32DD /* SettingsTableViewController.swift */; };
 		0898EC2822F05146007C32DD /* GameModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898EC2122F05146007C32DD /* GameModeViewController.swift */; };
@@ -25,7 +26,6 @@
 		08D464B922F18E4500B8D43B /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FE01C822F04CDA00861C78 /* GameController.swift */; };
 		08D464BE22F1907E00B8D43B /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FE01C822F04CDA00861C78 /* GameController.swift */; };
 		08D465B022F1A77600B8D43B /* WatchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D465A822F1A77500B8D43B /* WatchController.swift */; };
-		08D465B122F1A77600B8D43B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08D465A922F1A77600B8D43B /* Assets.xcassets */; };
 		08D465B222F1A77600B8D43B /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D465AA22F1A77600B8D43B /* MotionManager.swift */; };
 		08D465B322F1A77600B8D43B /* PlayingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D465AB22F1A77600B8D43B /* PlayingBuffer.swift */; };
 		08D465B422F1A77600B8D43B /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D465AC22F1A77600B8D43B /* ExtensionDelegate.swift */; };
@@ -114,6 +114,7 @@
 		086325AF22F326B600513E1B /* userDefaultKeysString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userDefaultKeysString.swift; sourceTree = "<group>"; };
 		086325B522F3328800513E1B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		086325B722F33A5100513E1B /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		086325B922F33E7300513E1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0872DCFE22F0837B0077860E /* icone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icone; sourceTree = "<group>"; };
 		0898EC2022F05146007C32DD /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		0898EC2122F05146007C32DD /* GameModeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModeViewController.swift; sourceTree = "<group>"; };
@@ -126,7 +127,6 @@
 		0898EC3122F05203007C32DD /* Test1_SceneKit watchOS App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Test1_SceneKit watchOS App-Bridging-Header.h"; sourceTree = "<group>"; };
 		08B5E77D22F1C3C500A6FF05 /* SignalCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalCode.swift; sourceTree = "<group>"; };
 		08D465A822F1A77500B8D43B /* WatchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchController.swift; sourceTree = "<group>"; };
-		08D465A922F1A77600B8D43B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../../Progetti/porca miseria/porca miseria WatchKit Extension/Assets.xcassets"; sourceTree = "<group>"; };
 		08D465AA22F1A77600B8D43B /* MotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		08D465AB22F1A77600B8D43B /* PlayingBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingBuffer.swift; sourceTree = "<group>"; };
 		08D465AC22F1A77600B8D43B /* ExtensionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
@@ -286,7 +286,7 @@
 		77DFAD3F22E84C56006DCBEE /* Test1_SceneKit watchOS App Extension */ = {
 			isa = PBXGroup;
 			children = (
-				08D465A922F1A77600B8D43B /* Assets.xcassets */,
+				086325B922F33E7300513E1B /* Assets.xcassets */,
 				08D465AC22F1A77600B8D43B /* ExtensionDelegate.swift */,
 				08D465AA22F1A77600B8D43B /* MotionManager.swift */,
 				08D465AD22F1A77600B8D43B /* NotificationController.swift */,
@@ -493,8 +493,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				086325BA22F33E7300513E1B /* Assets.xcassets in Resources */,
 				77DFAD5722E84C56006DCBEE /* Art.scnassets in Resources */,
-				08D465B122F1A77600B8D43B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
