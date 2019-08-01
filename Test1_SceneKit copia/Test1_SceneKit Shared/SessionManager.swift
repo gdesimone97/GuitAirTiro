@@ -130,7 +130,10 @@ class SessionManager: NSObject {
     
     func isConnected(_ peer: MCPeerID) -> Bool {
         let deviceList = session.connectedPeers
-        deviceList.contains(peer) ? true : false
+        if deviceList.contains(peer) {
+            return true
+        }
+        return false
     }
 }
 
