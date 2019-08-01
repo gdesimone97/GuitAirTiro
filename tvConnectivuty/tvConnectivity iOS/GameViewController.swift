@@ -37,7 +37,7 @@ class GameViewControllerPhone: UIViewController {
         if let deviceList = session.showConncetedDevices() {
             let messaggio = text.text as! String
             session.sendSignal(deviceList[0], message: UInt8(messaggio)!)
-            session.sendSignal(deviceList[0], message: UInt8(messaggio)!)
+           // session.sendSignal(deviceList[0], message: UInt8(messaggio)!)
         }
     } 
 }
