@@ -33,6 +33,7 @@
 		08D465BC22F1A78100B8D43B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08D465B922F1A78100B8D43B /* Assets.xcassets */; };
 		259FCF7A4466898030E2854A /* Pods_Test1_SceneKit_watchOS_App_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E921CE1C6D8E8B53642FAF /* Pods_Test1_SceneKit_watchOS_App_Extension.framework */; };
 		4DCC5A52BA1C80F0803B3382 /* Pods_Test1_SceneKit_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F1AB350036D84B5016AEC19 /* Pods_Test1_SceneKit_tvOS.framework */; };
+		774CDDAB22F3137300760FC9 /* Guitar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898EC2422F05146007C32DD /* Guitar.swift */; };
 		776713DA22EF852B0020E22C /* Guitars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776713D922EF852B0020E22C /* Guitars.swift */; };
 		777BB7B222E99C9D001BF9E9 /* Smoke Effect in Resources */ = {isa = PBXBuildFile; fileRef = 777BB7AF22E99C9D001BF9E9 /* Smoke Effect */; };
 		779E565022EB090400ACC1BF /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779E564F22EB090300ACC1BF /* SessionManager.swift */; };
@@ -222,6 +223,7 @@
 				77DFAD1722E84C54006DCBEE /* MainController.swift */,
 				77FE01C822F04CDA00861C78 /* GameController.swift */,
 				08B5E77D22F1C3C500A6FF05 /* SignalCode.swift */,
+				0898EC2422F05146007C32DD /* Guitar.swift */,
 				77DFAD1822E84C54006DCBEE /* Art.scnassets */,
 				77DFAD1922E84C56006DCBEE /* Assets.xcassets */,
 				0898EC3122F05203007C32DD /* Test1_SceneKit watchOS App-Bridging-Header.h */,
@@ -247,7 +249,6 @@
 				0898EC2E22F051A2007C32DD /* Main.storyboard */,
 				0898EC2222F05146007C32DD /* ChordsPickerViewController.swift */,
 				0898EC2122F05146007C32DD /* GameModeViewController.swift */,
-				0898EC2422F05146007C32DD /* Guitar.swift */,
 				0898EC2322F05146007C32DD /* NotationTableViewCell.swift */,
 				0898EC2622F05146007C32DD /* NotationTableViewController.swift */,
 				0898EC2022F05146007C32DD /* SettingsTableViewController.swift */,
@@ -634,6 +635,7 @@
 				77FE01C722F048E300861C78 /* GameViewController.swift in Sources */,
 				77DFAD4E22E84C56006DCBEE /* MainViewController.swift in Sources */,
 				77DFAD5522E84C56006DCBEE /* MainController.swift in Sources */,
+				774CDDAB22F3137300760FC9 /* Guitar.swift in Sources */,
 				779E565322EB0A3200ACC1BF /* DeviceDictionary.swift in Sources */,
 				779E565122EB090400ACC1BF /* SessionManager.swift in Sources */,
 				77FE01C922F04CDA00861C78 /* GameController.swift in Sources */,
