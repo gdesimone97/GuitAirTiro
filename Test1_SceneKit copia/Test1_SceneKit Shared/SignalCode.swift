@@ -8,11 +8,17 @@
 
 
 enum SignalCode: UInt8 {
+    
+    // Main View
     case disconnectPeerSignal = 0
     case showAcousticGuitar = 1
     case showElectricGuitar = 2
-    case openGame = 3
+    
+    // Game
+    case openGameWithWatch = 3
     case closeGame = 4
+    case openGameWithoutWatch = 9
+    
     case signal1 = 5
     case signal2 = 6
     case signal3 = 7

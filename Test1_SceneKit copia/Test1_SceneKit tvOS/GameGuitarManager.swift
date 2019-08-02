@@ -27,9 +27,8 @@ class GameGuitarManager {
     private let column3: ColumnType
     private let column4: ColumnType
     
-    let particleSystem = SCNParticleSystem(named: "Art.scnassets/Bokeh Effect/SceneKit Particle System.scnp", inDirectory: nil)
-    
-    
+    let bokehEffect = SCNParticleSystem(named: "Art.scnassets/Bokeh Effect/SceneKit Particle System.scnp", inDirectory: nil)
+    let fireEffect = SCNParticleSystem(named: "Art.scnassets/Fire Effect/SceneKit Particle System.scnp", inDirectory: nil)
     
     init(scene: SCNScene, width: Float, length: Float, z: Float) {
         self.scene = scene
@@ -41,7 +40,6 @@ class GameGuitarManager {
         column2 = ColumnType(color: UIColor.blue, xPosition: Float(-width/4))
         column3 = ColumnType(color: UIColor.green, xPosition: Float(width/4))
         column4 = ColumnType(color: UIColor.purple, xPosition: Float(width/4 + width/2))
-        
     }
 
     // Parameter indicates the column of the guitar
@@ -84,7 +82,7 @@ class GameGuitarManager {
         scene.rootNode.enumerateChildNodes { (node, _) in
             if let pos = findPos(column: column) {
                 if node.name == "note" && node.position.x == pos {
-                    if node.position.z > -1.6 && node.position.z < -0 {
+                    if node.position.z > -2 && node.position.z < 0 {
                         flag = true
                         node.removeFromParentNode()
                         bokeh(column: column)
@@ -99,7 +97,10 @@ class GameGuitarManager {
     
     func bokeh(column: Int) {
         let particleNode = SCNNode()
-        particleNode.addParticleSystem(particleSystem!)
+        
+        bokehEffect!.particleColor = findColumn(column: column)!.color
+        
+        particleNode.addParticleSystem(bokehEffect!)
         particleNode.position = SCNVector3(findPos(column: column)!, 0.1, -1)
         self.scene.rootNode.addChildNode(particleNode)
 
@@ -109,7 +110,29 @@ class GameGuitarManager {
         DispatchQueue.main.async {
             particleNode.runAction(SCNAction.sequence([wait, remove]))
         }
+    }
+    
+    func fire() {
+        let particleNode1 = SCNNode()
+        let particleNode2 = SCNNode()
         
+        particleNode1.addParticleSystem(fireEffect!)
+        particleNode2.addParticleSystem(fireEffect!)
+        particleNode1.position = SCNVector3(-3.5, 0, -3)
+        particleNode1.eulerAngles = SCNVector3(0, 0, -0.2)
+        particleNode2.position = SCNVector3(3.5, 0, -3)
+        particleNode2.eulerAngles = SCNVector3(0, 0, 0.2)
+        
+        self.scene.rootNode.addChildNode(particleNode1)
+        self.scene.rootNode.addChildNode(particleNode2)
+        
+        let wait = SCNAction.wait(duration: 5)
+        let remove = SCNAction.removeFromParentNode()
+        
+        DispatchQueue.main.async {
+            particleNode1.runAction(SCNAction.sequence([wait, remove]))
+            particleNode2.runAction(SCNAction.sequence([wait, remove]))
+        }
     }
     
     
@@ -142,5 +165,7 @@ class GameGuitarManager {
             return nil
         }
     }
+    
+    
 
 }

@@ -46,6 +46,7 @@ class GameViewController: UIViewController {
     
     var playing: Bool = false
     var points: Int!
+    var watch: Bool! // true -> watch is present, false -> watch not present
     
     let noteQueue = DispatchQueue(label: "noteQueue", qos: .userInteractive)
 
@@ -63,10 +64,10 @@ class GameViewController: UIViewController {
         textManager = TextManager(scene: gameView.scene!)
         
         
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-//        var gestureRecognizers = gameView.gestureRecognizers ?? []
-//        gestureRecognizers.insert(tapGesture, at: 0)
-//        self.gameView.gestureRecognizers = gestureRecognizers
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        var gestureRecognizers = gameView.gestureRecognizers ?? []
+        gestureRecognizers.insert(tapGesture, at: 0)
+        self.gameView.gestureRecognizers = gestureRecognizers
         
         addElements()
         
@@ -100,10 +101,15 @@ class GameViewController: UIViewController {
         
     }
     
-//    @objc func handleTap(_ gestureRecognizer: UIGestureRecognizer) {
-//        guitar1?.playGuitar()
-//        gameGuitarManager.showNode(column: 3)
-//    }
+    @objc func handleTap(_ gestureRecognizer: UIGestureRecognizer) {
+        if watch {
+            gameGuitarManager.fire()
+            textManager.addGameNotification(str: "Mario è GAY!", color: UIColor.red)
+        }
+        else {
+            
+        }
+    }
     
     func addElements() {
         let node = self.gameView.scene!.rootNode.childNode(withName: "nodes", recursively: false)
@@ -152,40 +158,40 @@ extension GameViewController: SessionManagerDelegate {
                 self.dismiss(animated: false, completion: nil)
             
             case .signal1:
+                //                self.guitar1?.playGuitar()
                 if self.gameGuitarManager.checkPoint(column: 1) {
                     self.points += 1
                 }
                 else {
                     self.points -= 1
                 }
-//                self.guitar1?.playGuitar()
                 
             case .signal2:
+                //                self.guitar2?.playGuitar()
                 if self.gameGuitarManager.checkPoint(column: 2) {
                     self.points += 1
                 }
                 else {
                     self.points -= 1
                 }
-//                self.guitar2?.playGuitar()
                 
             case .signal3:
+                //                self.guitar3?.playGuitar()
                 if self.gameGuitarManager.checkPoint(column: 3) {
                     self.points += 1
                 }
                 else {
                     self.points -= 1
                 }
-//                self.guitar3?.playGuitar()
                 
             case .signal4:
+                //                self.guitar4?.playGuitar()
                 if self.gameGuitarManager.checkPoint(column: 4) {
                     self.points += 1
                 }
                 else {
                     self.points -= 1
                 }
-//                self.guitar4?.playGuitar()
                 
 
             case .key1Pressed:

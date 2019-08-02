@@ -26,6 +26,8 @@ class MainViewController: UIViewController {
     var spot: SCNNode!
     var phone: SCNNode!
     
+    var withWatch: Bool!
+    
     
     var numGuitar: Int = 2 // 2 for electric guitar, 1 for acoustic guitar
     // Assegnamento da fare in base alle UsersDefaults e NON QUI
@@ -287,6 +289,7 @@ class MainViewController: UIViewController {
                 self.session.delegate = self
                 self.checkConnection()
             }
+            GameViewController.watch = self.withWatch
         default:
             print(#function)
         }
@@ -377,8 +380,14 @@ extension MainViewController: SessionManagerDelegate {
             self.guitarsManager.changeGuitar(newGuitar: .acoustic)
         case .showElectricGuitar:
             self.guitarsManager.changeGuitar(newGuitar: .electric)
-        case .openGame:
+        case .openGameWithWatch:
             DispatchQueue.main.async {
+                self.withWatch = true
+                self.performSegue(withIdentifier: "GameSegue", sender: nil)
+            }
+        case .openGameWithoutWatch:
+            DispatchQueue.main.async {
+                self.withWatch = false
                 self.performSegue(withIdentifier: "GameSegue", sender: nil)
             }
             
