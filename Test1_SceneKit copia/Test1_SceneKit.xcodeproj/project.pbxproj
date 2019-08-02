@@ -37,6 +37,7 @@
 		0898EC3022F051A2007C32DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0898EC2E22F051A2007C32DD /* Main.storyboard */; };
 		08B5E77E22F1C3C500A6FF05 /* SignalCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B5E77D22F1C3C500A6FF05 /* SignalCode.swift */; };
 		08B5E77F22F1C3C500A6FF05 /* SignalCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B5E77D22F1C3C500A6FF05 /* SignalCode.swift */; };
+		08C7E9CB22F41FC000EAF7B4 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 08C7E9CA22F41FC000EAF7B4 /* profile.png */; };
 		08D464B922F18E4500B8D43B /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FE01C822F04CDA00861C78 /* GameController.swift */; };
 		08D464BE22F1907E00B8D43B /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FE01C822F04CDA00861C78 /* GameController.swift */; };
 		08D465B022F1A77600B8D43B /* WatchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D465A822F1A77500B8D43B /* WatchController.swift */; };
@@ -152,6 +153,7 @@
 		0898EC2F22F051A2007C32DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0898EC3122F05203007C32DD /* Test1_SceneKit watchOS App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Test1_SceneKit watchOS App-Bridging-Header.h"; sourceTree = "<group>"; };
 		08B5E77D22F1C3C500A6FF05 /* SignalCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalCode.swift; sourceTree = "<group>"; };
+		08C7E9CA22F41FC000EAF7B4 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
 		08D465A822F1A77500B8D43B /* WatchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchController.swift; sourceTree = "<group>"; };
 		08D465AA22F1A77600B8D43B /* MotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		08D465AB22F1A77600B8D43B /* PlayingBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingBuffer.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 		77DFAD2022E84C56006DCBEE /* Test1_SceneKit iOS */ = {
 			isa = PBXGroup;
 			children = (
+				08C7E9CA22F41FC000EAF7B4 /* profile.png */,
 				088E1CC822F34681006A197D /* Confirmed.png */,
 				088E1CC722F34681006A197D /* Keyboard.png */,
 				088E1CB722F345F0006A197D /* BlueButton.png */,
@@ -512,6 +515,7 @@
 				088E1CC922F34681006A197D /* Keyboard.png in Resources */,
 				088E1CC022F345F1006A197D /* sett@2x.png in Resources */,
 				088E1CBC22F345F1006A197D /* treble@2x.png in Resources */,
+				08C7E9CB22F41FC000EAF7B4 /* profile.png in Resources */,
 				088E1CBD22F345F1006A197D /* settings@2x.png in Resources */,
 				088E1CC222F345F1006A197D /* GreenButton.png in Resources */,
 				088E1CC522F345F1006A197D /* pick.png in Resources */,
