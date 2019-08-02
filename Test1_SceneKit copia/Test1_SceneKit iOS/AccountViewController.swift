@@ -10,6 +10,7 @@ import UIKit
 
 class AccountViewController: UIViewController {
     @IBOutlet var pickButton: UIButton!
+    @IBOutlet var innerView: UIView!
     
     let userDefaults = UserDefaults.standard
     @IBOutlet var imageProfile: UIImageView!
@@ -23,7 +24,7 @@ class AccountViewController: UIViewController {
         
         self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2;
         self.imageProfile.clipsToBounds = true;
-        
+        innerView.layer.cornerRadius = 14
         // Do any additional setup after loading the view.
     }
 
