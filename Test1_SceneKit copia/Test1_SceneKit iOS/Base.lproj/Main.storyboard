@@ -548,6 +548,7 @@
                     </view>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="gamerTag" destination="Q5v-vZ-l6n" id="yhp-22-Tpd"/>
                         <outlet property="imageProfile" destination="QjZ-SO-isT" id="I10-Sm-T9H"/>
                         <outlet property="innerView" destination="Uql-PX-ocb" id="ojj-BJ-Keo"/>
                         <outlet property="pickButton" destination="4IH-RA-wK1" id="RxO-Q2-mrI"/>
@@ -849,7 +850,7 @@
         <image name="nota-musicale.png" width="48" height="48"/>
         <image name="pareggio-image.png" width="96" height="96"/>
         <image name="pick.png" width="168" height="201"/>
-        <image name="profile.png" width="384" height="384"/>
+        <image name="profile.png" width="72" height="72"/>
         <image name="settings.png" width="25" height="25"/>
         <image name="treble.png" width="25" height="25"/>
     </resources>

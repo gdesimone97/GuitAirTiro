@@ -11,9 +11,10 @@ import UIKit
 class AccountViewController: UIViewController {
     @IBOutlet var pickButton: UIButton!
     @IBOutlet var innerView: UIView!
+    @IBOutlet var imageProfile: UIImageView!
+    @IBOutlet var gamerTag: UILabel!
     
     let userDefaults = UserDefaults.standard
-    @IBOutlet var imageProfile: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
