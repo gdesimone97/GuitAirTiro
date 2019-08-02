@@ -128,6 +128,7 @@
 		086325B522F3328800513E1B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		086325B722F33A5100513E1B /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		086325B922F33E7300513E1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0887360C22F43F1B00472B14 /* Test1_SceneKit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Test1_SceneKit.entitlements; sourceTree = "<group>"; };
 		088E1CAD22F345F0006A197D /* metal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "metal@2x.png"; sourceTree = "<group>"; };
 		088E1CAE22F345F0006A197D /* rock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rock@2x.png"; sourceTree = "<group>"; };
 		088E1CAF22F345F0006A197D /* treble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "treble@2x.png"; sourceTree = "<group>"; };
@@ -282,6 +283,7 @@
 		77DFAD2022E84C56006DCBEE /* Test1_SceneKit iOS */ = {
 			isa = PBXGroup;
 			children = (
+				0887360C22F43F1B00472B14 /* Test1_SceneKit.entitlements */,
 				08C7E9CA22F41FC000EAF7B4 /* profile.png */,
 				088E1CC822F34681006A197D /* Confirmed.png */,
 				088E1CC722F34681006A197D /* Keyboard.png */,
@@ -473,6 +475,11 @@
 				TargetAttributes = {
 					77DFAD1D22E84C56006DCBEE = {
 						CreatedOnToolsVersion = 10.3;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					77DFAD2D22E84C56006DCBEE = {
 						CreatedOnToolsVersion = 10.3;
@@ -979,8 +986,9 @@
 			baseConfigurationReference = 5F9512767E613292E5B6A54E /* Pods-Test1_SceneKit iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Test1_SceneKit iOS/Test1_SceneKit.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = K8WJKQA676;
 				INFOPLIST_FILE = "Test1_SceneKit iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
@@ -988,8 +996,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "it.unisa.applefoundationprogram.GuitAir.Test1-SceneKit";
+				PRODUCT_BUNDLE_IDENTIFIER = it.unisa.applefoundationprogram.GuitAir;
 				PRODUCT_NAME = Test1_SceneKit;
+				PROVISIONING_PROFILE_SPECIFIER = guitairprofile;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1001,8 +1010,9 @@
 			baseConfigurationReference = 4217021D0952E689A6BEE811 /* Pods-Test1_SceneKit iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Test1_SceneKit iOS/Test1_SceneKit.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = K8WJKQA676;
 				INFOPLIST_FILE = "Test1_SceneKit iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
@@ -1010,8 +1020,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "it.unisa.applefoundationprogram.GuitAir.Test1-SceneKit";
+				PRODUCT_BUNDLE_IDENTIFIER = it.unisa.applefoundationprogram.GuitAir;
 				PRODUCT_NAME = Test1_SceneKit;
+				PROVISIONING_PROFILE_SPECIFIER = guitairprofile;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
