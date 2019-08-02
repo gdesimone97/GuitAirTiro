@@ -27,6 +27,7 @@ class GameGuitarManager {
     private let column3: ColumnType
     private let column4: ColumnType
     
+    let particleSystem = SCNParticleSystem(named: "Art.scnassets/Bokeh Effect/SceneKit Particle System.scnp", inDirectory: nil)
     
     
     
@@ -47,6 +48,7 @@ class GameGuitarManager {
     func showNode(column: Int) {
         let box = SCNBox(width: 1, height: 1, length: 1, chamferRadius: 5)
         let boxNode = SCNNode(geometry: box)
+        boxNode.name = "note"
         
         if let col = findColumn(column: column) {
             boxNode.position = SCNVector3(col.xPosition, 0, z)
@@ -72,6 +74,45 @@ class GameGuitarManager {
         
     }
     
+    
+    func checkPoint(column: Int) -> Bool {
+        var flag = false
+        
+        // Prendo tutti i nodi presenti nella scena, controllo se stanno nella colonna specificata e restituisco true se stanno sul pulsante o no
+        // Il pulsante è un cerchio di raggio = 1, posizione z = -1
+        let node = scene.rootNode.childNodes
+        scene.rootNode.enumerateChildNodes { (node, _) in
+            if let pos = findPos(column: column) {
+                if node.name == "note" && node.position.x == pos {
+                    if node.position.z > -1.6 && node.position.z < -0 {
+                        flag = true
+                        node.removeFromParentNode()
+                        bokeh(column: column)
+                    }
+                }
+            }
+        }
+        
+        return flag
+    }
+    
+    
+    func bokeh(column: Int) {
+        let particleNode = SCNNode()
+        particleNode.addParticleSystem(particleSystem!)
+        particleNode.position = SCNVector3(findPos(column: column)!, 0.1, -1)
+        self.scene.rootNode.addChildNode(particleNode)
+
+        let wait = SCNAction.wait(duration: 1)
+        let remove = SCNAction.removeFromParentNode()
+        
+        DispatchQueue.main.async {
+            particleNode.runAction(SCNAction.sequence([wait, remove]))
+        }
+        
+    }
+    
+    
     private func findColumn(column: Int) -> ColumnType? {
         switch column {
         case 1:
@@ -82,6 +123,21 @@ class GameGuitarManager {
             return column3
         case 4:
             return column4
+        default:
+            return nil
+        }
+    }
+    
+    func findPos(column: Int) -> Float? {
+        switch column {
+        case 1:
+            return -width/4 - width/2
+        case 2:
+            return -width/4
+        case 3:
+            return width/4
+        case 4:
+            return width/4 + width/2
         default:
             return nil
         }

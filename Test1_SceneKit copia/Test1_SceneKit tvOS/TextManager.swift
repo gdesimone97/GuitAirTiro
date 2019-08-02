@@ -43,6 +43,33 @@ class TextManager {
         }
     }
     
+    func addGameNotification(str: String, color: UIColor) {
+        let text = SCNText(string: str, extrusionDepth: 0.2)
+        text.font = UIFont.italicSystemFont(ofSize: 1)
+        let textNode = SCNNode(geometry: text)
+        
+        
+        let textMaterial = SCNMaterial()
+        textMaterial.diffuse.contents = color
+        textMaterial.specular.contents = color
+        textMaterial.emission.contents = color
+        textMaterial.shininess = 1.0
+        textNode.geometry?.firstMaterial = textMaterial
+        
+        textNode.scale = SCNVector3(x: 0.5, y: 0.5, z: 0.1)
+        let xLenght = (textNode.boundingBox.max.x - textNode.boundingBox.min.x)
+        let yLenght = (textNode.boundingBox.max.y - textNode.boundingBox.min.y)
+        textNode.position = SCNVector3(x: -xLenght/4, y: 3 + yLenght/2, z: 1)
+        
+        DispatchQueue.main.async {
+            self.scene.rootNode.addChildNode(textNode)
+            let wait = SCNAction.wait(duration: 2)
+            let disappear = SCNAction.fadeOut(duration: 0.5)
+            let remove = SCNAction.removeFromParentNode()
+            textNode.runAction(SCNAction.sequence([wait, disappear, remove]))
+        }
+    }
+    
     
     func addCenteredText(str: String) {
         let text = SCNText(string: str, extrusionDepth: 0.2)

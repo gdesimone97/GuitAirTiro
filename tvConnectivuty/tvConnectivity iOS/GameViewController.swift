@@ -23,17 +23,31 @@ class GameViewControllerPhone: UIViewController {
         label.text = "nulla"
     }
     
-    @IBAction func controller(_ sender: Any) {
-        session.disconnectedPeer()
-    }
-    
-    @IBAction func button(_ sender: Any) {
+    @IBAction func button1(_ sender: Any) {
         if let deviceList = session.showConncetedDevices() {
-            session.sendSignal(deviceList[0], message: 1)
+            session.sendSignal(deviceList[0], message: UInt8(5))
         }
     }
     
     @IBAction func button2(_ sender: Any) {
+        if let deviceList = session.showConncetedDevices() {
+            session.sendSignal(deviceList[0], message: UInt8(6))
+        }
+    }
+    
+    @IBAction func button3(_ sender: Any) {
+        if let deviceList = session.showConncetedDevices() {
+            session.sendSignal(deviceList[0], message: UInt8(7))
+        }
+    }
+    
+    @IBAction func button4(_ sender: Any) {
+        if let deviceList = session.showConncetedDevices() {
+            session.sendSignal(deviceList[0], message: UInt8(8))
+        }
+    }
+    
+    @IBAction func buttonSend(_ sender: Any) {
         if let deviceList = session.showConncetedDevices() {
             let messaggio = text.text as! String
             session.sendSignal(deviceList[0], message: UInt8(messaggio)!)
