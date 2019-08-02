@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import WatchConnectivity
+import  UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let udef = UserDefaults.standard;
     let NOTATION_KEY = "PreferredNotation";
-    
+    let notificationCenter = UNUserNotificationCenter.current()
+    let CATEGORY: String = "INVITATION"
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -42,6 +44,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             udef.set("IT", forKey: NOTATION_KEY);
         }
         
+        // *** Notifiche ***
+        // Autorizzazioni
+        notificationCenter.requestAuthorization(options: [.alert , .sound, .providesAppNotificationSettings]) { (granted, error) in /* funzionalità in base all'autorizzazione */ }
+        notificationCenter.getNotificationSettings { (settings) in
+            guard settings.authorizationStatus == .authorized else { return }
+            DispatchQueue.main.async {
+                // Registrazione per le push notification
+                application.registerForRemoteNotifications()
+            }
+            self.notificationCategory()
+            if settings.alertSetting == .enabled {
+                /* Fai qualcosa se hai i permessi per l'allert */
+            }
+            else { /* Fai altro */ }
+        }
+        
+        // Fine autorizzazioni
+        notificationCenter.delegate = self
         
         
         return true
@@ -150,6 +170,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
+    
+    func notificationCategory() {
+        
+        let acceptAction = UNNotificationAction(identifier: "ACCEPT_ACTION", title: "Accept Invite", options: UNNotificationActionOptions.init(rawValue: 0))
+        let declineAction = UNNotificationAction(identifier: "DECLINE_ACTION", title: "Decline Invite", options: UNNotificationActionOptions(rawValue: 0))
+        let inviteCategory = UNNotificationCategory(identifier: CATEGORY, actions: [acceptAction,declineAction], intentIdentifiers: [], hiddenPreviewsBodyPlaceholder: "", options: .customDismissAction)
+        notificationCenter.setNotificationCategories([inviteCategory])
+        
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        
+        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+        let token = tokenParts.joined()
+        print("Device Token: \(token)")
+        
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Push notification non attive")
+    }
+    
 }
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        let gamerTag = userInfo["GAMERTAG"]
+        switch response.actionIdentifier {
+        case "ACCEPT_ACTION":
+            print("invito accettato")
+            /* fai qualcosa */
+        case "DECLINE_ACTION":
+            print("invito declinato")
+            /* fai qualcosa */
+        default:
+            break
+        }
+        completionHandler()
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        if notification.request.content.categoryIdentifier == CATEGORY {
+            completionHandler([.alert,.sound])
+            return
+        }
+        completionHandler(.alert)
+    }
+}
+
 

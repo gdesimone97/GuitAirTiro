@@ -12,6 +12,8 @@
 		086325B622F3328800513E1B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086325B522F3328800513E1B /* LoginViewController.swift */; };
 		086325B822F33A5100513E1B /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086325B722F33A5100513E1B /* NavigationController.swift */; };
 		086325BA22F33E7300513E1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 086325B922F33E7300513E1B /* Assets.xcassets */; };
+		0887361022F444DC00472B14 /* guitar-player.png in Resources */ = {isa = PBXBuildFile; fileRef = 0887360F22F444DC00472B14 /* guitar-player.png */; };
+		0887361422F4498400472B14 /* account@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0887361322F4498400472B14 /* account@2x.png */; };
 		088E1CBA22F345F1006A197D /* metal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 088E1CAD22F345F0006A197D /* metal@2x.png */; };
 		088E1CBB22F345F1006A197D /* rock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 088E1CAE22F345F0006A197D /* rock@2x.png */; };
 		088E1CBC22F345F1006A197D /* treble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 088E1CAF22F345F0006A197D /* treble@2x.png */; };
@@ -37,6 +39,7 @@
 		0898EC3022F051A2007C32DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0898EC2E22F051A2007C32DD /* Main.storyboard */; };
 		08B5E77E22F1C3C500A6FF05 /* SignalCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B5E77D22F1C3C500A6FF05 /* SignalCode.swift */; };
 		08B5E77F22F1C3C500A6FF05 /* SignalCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B5E77D22F1C3C500A6FF05 /* SignalCode.swift */; };
+		08C7E9CB22F41FC000EAF7B4 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 08C7E9CA22F41FC000EAF7B4 /* profile.png */; };
 		08D464B922F18E4500B8D43B /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FE01C822F04CDA00861C78 /* GameController.swift */; };
 		08D464BE22F1907E00B8D43B /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FE01C822F04CDA00861C78 /* GameController.swift */; };
 		08D465B022F1A77600B8D43B /* WatchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D465A822F1A77500B8D43B /* WatchController.swift */; };
@@ -126,6 +129,9 @@
 		086325B522F3328800513E1B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		086325B722F33A5100513E1B /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		086325B922F33E7300513E1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0887360C22F43F1B00472B14 /* Test1_SceneKit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Test1_SceneKit.entitlements; sourceTree = "<group>"; };
+		0887360F22F444DC00472B14 /* guitar-player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guitar-player.png"; sourceTree = "<group>"; };
+		0887361322F4498400472B14 /* account@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "account@2x.png"; sourceTree = "<group>"; };
 		088E1CAD22F345F0006A197D /* metal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "metal@2x.png"; sourceTree = "<group>"; };
 		088E1CAE22F345F0006A197D /* rock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rock@2x.png"; sourceTree = "<group>"; };
 		088E1CAF22F345F0006A197D /* treble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "treble@2x.png"; sourceTree = "<group>"; };
@@ -151,6 +157,7 @@
 		0898EC2F22F051A2007C32DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0898EC3122F05203007C32DD /* Test1_SceneKit watchOS App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Test1_SceneKit watchOS App-Bridging-Header.h"; sourceTree = "<group>"; };
 		08B5E77D22F1C3C500A6FF05 /* SignalCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalCode.swift; sourceTree = "<group>"; };
+		08C7E9CA22F41FC000EAF7B4 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
 		08D465A822F1A77500B8D43B /* WatchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchController.swift; sourceTree = "<group>"; };
 		08D465AA22F1A77600B8D43B /* MotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		08D465AB22F1A77600B8D43B /* PlayingBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingBuffer.swift; sourceTree = "<group>"; };
@@ -278,6 +285,10 @@
 		77DFAD2022E84C56006DCBEE /* Test1_SceneKit iOS */ = {
 			isa = PBXGroup;
 			children = (
+				0887361322F4498400472B14 /* account@2x.png */,
+				0887360F22F444DC00472B14 /* guitar-player.png */,
+				0887360C22F43F1B00472B14 /* Test1_SceneKit.entitlements */,
+				08C7E9CA22F41FC000EAF7B4 /* profile.png */,
 				088E1CC822F34681006A197D /* Confirmed.png */,
 				088E1CC722F34681006A197D /* Keyboard.png */,
 				088E1CB722F345F0006A197D /* BlueButton.png */,
@@ -467,6 +478,11 @@
 				TargetAttributes = {
 					77DFAD1D22E84C56006DCBEE = {
 						CreatedOnToolsVersion = 10.3;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					77DFAD2D22E84C56006DCBEE = {
 						CreatedOnToolsVersion = 10.3;
@@ -509,11 +525,14 @@
 				088E1CC922F34681006A197D /* Keyboard.png in Resources */,
 				088E1CC022F345F1006A197D /* sett@2x.png in Resources */,
 				088E1CBC22F345F1006A197D /* treble@2x.png in Resources */,
+				08C7E9CB22F41FC000EAF7B4 /* profile.png in Resources */,
 				088E1CBD22F345F1006A197D /* settings@2x.png in Resources */,
 				088E1CC222F345F1006A197D /* GreenButton.png in Resources */,
 				088E1CC522F345F1006A197D /* pick.png in Resources */,
 				088E1CC122F345F1006A197D /* PinkButton.png in Resources */,
 				088E1CC422F345F1006A197D /* BlueButton.png in Resources */,
+				0887361022F444DC00472B14 /* guitar-player.png in Resources */,
+				0887361422F4498400472B14 /* account@2x.png in Resources */,
 				088E1CBA22F345F1006A197D /* metal@2x.png in Resources */,
 				77DFAD2A22E84C56006DCBEE /* LaunchScreen.storyboard in Resources */,
 				088E1CC622F345F1006A197D /* rock@2x (1).png in Resources */,
@@ -971,8 +990,9 @@
 			baseConfigurationReference = 5F9512767E613292E5B6A54E /* Pods-Test1_SceneKit iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Test1_SceneKit iOS/Test1_SceneKit.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = K8WJKQA676;
 				INFOPLIST_FILE = "Test1_SceneKit iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
@@ -980,8 +1000,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "it.unisa.applefoundationprogram.GuitAir.Test1-SceneKit";
+				PRODUCT_BUNDLE_IDENTIFIER = it.unisa.applefoundationprogram.GuitAir;
 				PRODUCT_NAME = Test1_SceneKit;
+				PROVISIONING_PROFILE_SPECIFIER = guitairprofile;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -993,8 +1014,9 @@
 			baseConfigurationReference = 4217021D0952E689A6BEE811 /* Pods-Test1_SceneKit iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Test1_SceneKit iOS/Test1_SceneKit.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = K8WJKQA676;
 				INFOPLIST_FILE = "Test1_SceneKit iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
@@ -1002,8 +1024,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "it.unisa.applefoundationprogram.GuitAir.Test1-SceneKit";
+				PRODUCT_BUNDLE_IDENTIFIER = it.unisa.applefoundationprogram.GuitAir;
 				PRODUCT_NAME = Test1_SceneKit;
+				PROVISIONING_PROFILE_SPECIFIER = guitairprofile;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

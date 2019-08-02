@@ -9,17 +9,22 @@
 import UIKit
 
 class AccountViewController: UIViewController {
-
+    @IBOutlet var pickButton: UIButton!
+    @IBOutlet var innerView: UIView!
+    
     let userDefaults = UserDefaults.standard
+    @IBOutlet var imageProfile: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        pickButton.setTitle("", for: UIControl.State.normal  )
         if  !userDefaults.bool(forKey: LOGIN) {
             self.performSegue(withIdentifier: "login_view", sender: nil)
         }
         
-        
+        self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2;
+        self.imageProfile.clipsToBounds = true;
+        innerView.layer.cornerRadius = 14
         // Do any additional setup after loading the view.
     }
 
@@ -27,6 +32,11 @@ class AccountViewController: UIViewController {
         userDefaults.set(false,forKey: LOGIN)
         
     }
+    
+    @IBAction func takePhoto(_ sender: Any) {
+        //print("Bottone premuto")
+    }
+    
     
     /*
     // MARK: - Navigation
