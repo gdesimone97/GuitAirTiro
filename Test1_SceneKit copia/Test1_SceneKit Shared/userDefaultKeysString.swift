@@ -20,6 +20,9 @@ let userDefault = UserDefaults.standard
 enum GuitarType: Int {
     case elettric = 0
     case classic = 1
+    func getName() -> String {
+        
+    }
 }
 
 extension UserDefaults {

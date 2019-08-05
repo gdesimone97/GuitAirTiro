@@ -827,10 +827,10 @@
             </objects>
             <point key="canvasLocation" x="2968.115942028986" y="883.92857142857144"/>
         </scene>
-        <!--View Controller-->
+        <!--Guitar Selected View Controller-->
         <scene sceneID="baz-F1-7qd">
             <objects>
-                <viewController id="wBl-Oy-WHv" sceneMemberID="viewController">
+                <viewController id="wBl-Oy-WHv" customClass="GuitarSelectedViewController" customModule="Test1_SceneKit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="buQ-J6-BVM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -839,23 +839,29 @@
                                 <rect key="frame" x="87" y="143" width="240" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="EWz-yu-Rka">
-                                <rect key="frame" x="112" y="486" width="191.5" height="32"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="78" translatesAutoresizingMaskIntoConstraints="NO" id="EWz-yu-Rka">
+                                <rect key="frame" x="67" y="501" width="281.5" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9YJ-bz-INE">
                                         <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
                                         <state key="normal" image="frecciasx.png"/>
+                                        <connections>
+                                            <action selector="sxButton:" destination="wBl-Oy-WHv" eventType="touchUpInside" id="lch-Lc-hAr"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xr8-Xe-Bkr">
-                                        <rect key="frame" x="65" y="0.0" width="61.5" height="32"/>
+                                        <rect key="frame" x="110" y="0.0" width="61.5" height="32"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lej-Ge-emK">
-                                        <rect key="frame" x="159.5" y="0.0" width="32" height="32"/>
+                                        <rect key="frame" x="249.5" y="0.0" width="32" height="32"/>
                                         <state key="normal" image="frecciadx.png"/>
+                                        <connections>
+                                            <action selector="dxButton:" destination="wBl-Oy-WHv" eventType="touchUpInside" id="ece-ut-sRg"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -863,10 +869,14 @@
                         <color key="backgroundColor" red="0.10618691891431808" green="0.12509804964065552" blue="0.14902287721633911" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <viewLayoutGuide key="safeArea" id="28H-T5-W8l"/>
                     </view>
+                    <connections>
+                        <outlet property="guitarLabel" destination="xr8-Xe-Bkr" id="Abw-Cp-sDC"/>
+                        <outlet property="imageView" destination="wfW-a1-QVI" id="eLX-bG-aN1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CCZ-R5-Ufe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4200" y="884"/>
+            <point key="canvasLocation" x="4200" y="883.92857142857144"/>
         </scene>
         <!--Settings-->
         <scene sceneID="NWn-dk-Vdp">

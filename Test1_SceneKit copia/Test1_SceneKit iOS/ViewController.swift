@@ -38,7 +38,7 @@ class ViewController: UIViewController{
         // Do any additional setup after loading the view.
 
         deviceStatus?.layer.cornerRadius = 8.34
-
+        
         // Updating of chords label
         //fourthChordLabel?.text = "Gm"
 
@@ -106,9 +106,7 @@ class ViewController: UIViewController{
             UserDefaults.setGuitar(guitar: GuitarType.classic, forKey: GUITAR)
             inizializeGuitarLabel(GuitarType.classic)
         }
-        
         setLabelBoard()
-        
     }
     
     func inizializeGuitarLabel (_ guitar: GuitarType) {
