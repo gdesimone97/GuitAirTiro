@@ -20,10 +20,10 @@ class GuitarSelectedViewController: UIViewController {
         super.viewDidLoad()
         guitarLabel.text = selectGuitar(guitar!)
         if let device = session.showConncetedDevices() {
-            if guitar == GuitarType.classic {
+            if guitar == TypeOfGuitar.classic {
                 session.sendSignal(device[0], message: SignalCode.showElectricGuitar)
             }
-            else if guitar == GuitarType.elettric {
+            else if guitar == TypeOfGuitar.elettric {
                 session.sendSignal(device[0], message: SignalCode.showAcousticGuitar)
             }
         }
@@ -31,20 +31,20 @@ class GuitarSelectedViewController: UIViewController {
     
     @IBAction func dxButton(_ sender: Any) {
         if let device = session.showConncetedDevices() {
-            if guitar == GuitarType.classic {
+            if guitar == TypeOfGuitar.classic {
                 session.sendSignal(device[0], message: SignalCode.showElectricGuitar)
             }
-            else if guitar == GuitarType.elettric {
+            else if guitar == TypeOfGuitar.elettric {
                 session.sendSignal(device[0], message: SignalCode.showAcousticGuitar)
             }
         }
     }
     @IBAction func sxButton(_ sender: Any) {
         if let device = session.showConncetedDevices() {
-            if guitar == GuitarType.classic {
+            if guitar == TypeOfGuitar.classic {
                 session.sendSignal(device[0], message: SignalCode.showElectricGuitar)
             }
-            else if guitar == GuitarType.elettric {
+            else if guitar == TypeOfGuitar.elettric {
                 session.sendSignal(device[0], message: SignalCode.showAcousticGuitar)
             }
         }
@@ -58,7 +58,7 @@ class GuitarSelectedViewController: UIViewController {
     }
     
     
-    func selectGuitar(_ guitar: GuitarType) -> String {
+    func selectGuitar(_ guitar: TypeOfGuitar) -> String {
         switch guitar {
         case .classic:
             return "classic"
@@ -69,7 +69,7 @@ class GuitarSelectedViewController: UIViewController {
         }
     }
     
-    func selectGuitar(_ guitar: String) -> GuitarType? {
+    func selectGuitar(_ guitar: String) -> TypeOfGuitar? {
         switch guitar {
         case "classic":
             return .classic

@@ -105,13 +105,13 @@ class ViewController: UIViewController{
             inizializeGuitarLabel(testGuitar)
         }
         else {
-            UserDefaults.setGuitar(guitar: GuitarType.classic, forKey: GUITAR)
-            inizializeGuitarLabel(GuitarType.classic)
+            UserDefaults.setGuitar(guitar: TypeOfGuitar.classic, forKey: GUITAR)
+            inizializeGuitarLabel(TypeOfGuitar.classic)
         }
         setLabelBoard()
     }
     
-    func inizializeGuitarLabel (_ guitar: GuitarType) {
+    func inizializeGuitarLabel (_ guitar: TypeOfGuitar) {
         let strClassic = "Classic Guitar Selected"
         let strElettric = "Electric Guitar Selected"
         switch guitar {
