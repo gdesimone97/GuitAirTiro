@@ -318,7 +318,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8B7-As-GFL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3033.3333333333335" y="1706.9196428571429"/>
+            <point key="canvasLocation" x="3943.4782608695655" y="1706.9196428571429"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="Ynu-qN-dlE">
@@ -386,7 +386,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fv8-0d-sRs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4156.521739130435" y="1706.9196428571429"/>
+            <point key="canvasLocation" x="5066.666666666667" y="1706.9196428571429"/>
         </scene>
         <!--Notation Table View Controller-->
         <scene sceneID="ekL-eC-aBY">
@@ -630,7 +630,7 @@
                                 <state key="normal" title="Logout"/>
                                 <connections>
                                     <action selector="logOutButton:" destination="h2b-uc-Vxe" eventType="touchUpInside" id="Iep-pK-zor"/>
-                                    <segue destination="jSL-of-bI0" kind="presentation" modalPresentationStyle="overCurrentContext" id="mOg-Ac-Zwy"/>
+                                    <segue destination="5TL-V9-hlP" kind="presentation" modalPresentationStyle="currentContext" id="7vg-9k-q1K"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -756,7 +756,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tul-tk-3mR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="281.15942028985512" y="1611.8303571428571"/>
+            <point key="canvasLocation" x="-80" y="1612"/>
         </scene>
         <!--Account-->
         <scene sceneID="T8r-5d-EJO">
@@ -772,7 +772,7 @@
                     </navigationBar>
                     <connections>
                         <segue destination="h2b-uc-Vxe" kind="show" identifier="account_view_segue" id="bK8-Qq-Lpo"/>
-                        <segue destination="jSL-of-bI0" kind="show" identifier="login_view_segue" id="EEK-h0-b4A"/>
+                        <segue destination="b7w-Ta-xYM" kind="show" identifier="login_view_segue" id="86D-gt-G8l"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5nP-0S-2Lr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1010,7 +1010,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ff4-TU-biM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2123.1884057971015" y="1706.9196428571429"/>
+            <point key="canvasLocation" x="3033.3333333333335" y="1706.9196428571429"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="tTF-de-q2i">
@@ -1079,6 +1079,7 @@
                         <viewLayoutGuide key="safeArea" id="Qe1-Qf-Rjk"/>
                     </view>
                     <navigationItem key="navigationItem" id="Z7e-pf-Jz7"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="passwordText" destination="Zbh-1z-AeS" id="3A5-1b-vws"/>
@@ -1110,25 +1111,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5YR-gf-WDI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2057.971014492754" y="883.92857142857144"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="T1k-UP-zzV">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jSL-of-bI0" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="74p-2C-r2Z">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.26709032059999999" green="0.29354044800000001" blue="0.32941681150000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="b7w-Ta-xYM" kind="relationship" relationship="rootViewController" id="nT7-nK-qS1"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8gl-rn-aND" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-628.98550724637687" y="1611.8303571428571"/>
         </scene>
         <!--Notation Table View Controller-->
         <scene sceneID="2cK-k9-Ig0">
@@ -1186,6 +1168,25 @@
             </objects>
             <point key="canvasLocation" x="3247.826086956522" y="2514.5089285714284"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="p4r-EO-xvi">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5TL-V9-hlP" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5LN-bf-5IT">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.20392156859999999" green="0.2470588235" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="b7w-Ta-xYM" kind="relationship" relationship="rootViewController" id="Syo-nr-nPe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="68U-tt-FpO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-904" y="1612"/>
+        </scene>
     </scenes>
     <resources>
         <image name="BlueButton.png" width="302" height="169"/>
@@ -1210,6 +1211,6 @@
         <image name="treble.png" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mOg-Ac-Zwy"/>
+        <segue reference="Syo-nr-nPe"/>
     </inferredMetricsTieBreakers>
 </document>
