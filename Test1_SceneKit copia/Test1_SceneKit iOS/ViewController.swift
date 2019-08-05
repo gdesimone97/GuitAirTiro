@@ -17,7 +17,7 @@ class ViewController: UIViewController{
     
     //Session for comunicating with watch
     var session: WCSession!
-    
+    var sessionTv = SessionManager.share
     //func to set in the GameView
     var toCall: (()->Void)!
 
@@ -66,7 +66,9 @@ class ViewController: UIViewController{
     @IBAction func playButtonPressed(_ sender: UIButton) {
         if session != nil {
             session.sendMessage(["payload": "start"], replyHandler: nil, errorHandler: nil)
-            
+        }
+        if let device = sessionTv.showConncetedDevices() {
+            sessionTv.sendSignal(device[0], message: SignalCode.openGame)
         }
     }
 
