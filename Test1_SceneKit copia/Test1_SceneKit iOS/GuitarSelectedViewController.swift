@@ -19,6 +19,14 @@ class GuitarSelectedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         guitarLabel.text = selectGuitar(guitar!)
+        if let device = session.showConncetedDevices() {
+            if guitar == GuitarType.classic {
+                session.sendSignal(device[0], message: SignalCode.showElectricGuitar)
+            }
+            else if guitar == GuitarType.elettric {
+                session.sendSignal(device[0], message: SignalCode.showAcousticGuitar)
+            }
+        }
     }
     
     @IBAction func dxButton(_ sender: Any) {
@@ -26,10 +34,20 @@ class GuitarSelectedViewController: UIViewController {
             if guitar == GuitarType.classic {
                 session.sendSignal(device[0], message: SignalCode.showElectricGuitar)
             }
+            else if guitar == GuitarType.elettric {
+                session.sendSignal(device[0], message: SignalCode.showAcousticGuitar)
+            }
         }
     }
     @IBAction func sxButton(_ sender: Any) {
-        
+        if let device = session.showConncetedDevices() {
+            if guitar == GuitarType.classic {
+                session.sendSignal(device[0], message: SignalCode.showElectricGuitar)
+            }
+            else if guitar == GuitarType.elettric {
+                session.sendSignal(device[0], message: SignalCode.showAcousticGuitar)
+            }
+        }
     }
     
     

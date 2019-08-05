@@ -30,8 +30,7 @@ class AccountViewController: UIViewController {
     }
 
     @IBAction func logOutButton(_ sender: Any) {
-        userDefaults.set(false,forKey: LOGIN)
-        
+        userDefaults.set(0,forKey: LOGIN)
     }
     
     @IBAction func takePhoto(_ sender: Any) {

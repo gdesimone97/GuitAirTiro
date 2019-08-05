@@ -22,7 +22,7 @@ class LoginViewController: UIViewController {
 
     
     @IBAction func SignUpButton(_ sender: Any) {
-        userDefaults.set(true, forKey: LOGIN)
+        userDefaults.set(1, forKey: LOGIN)
     }
     
     
