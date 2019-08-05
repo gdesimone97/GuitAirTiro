@@ -50,12 +50,6 @@ class MainViewController: UIViewController {
         
         self.mainController = MainController(sceneRenderer: gameView)
         
-        // Allow the user to manipulate the camera
-        self.gameView.allowsCameraControl = false
-            
-        // Show statistics such as fps and timing information
-//        self.gameView.showsStatistics = true
-        
         let waitAction = SCNAction.wait(duration: 5)
         let initAction = SCNAction.run{ _ in
             self.addContent()
@@ -69,7 +63,6 @@ class MainViewController: UIViewController {
         self.textManager = TextManager(scene: gameView.scene!)
         
         self.addGestures()
-        semaphore.signal()
         
         peerListQueue.async {
             while true {
@@ -77,10 +70,6 @@ class MainViewController: UIViewController {
                 self.semaphore.wait()
             }
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        semaphore.signal()
     }
     
     
@@ -105,13 +94,8 @@ class MainViewController: UIViewController {
             for index in 0...rows {
                 if index == row {
                     if let peerID = dictionary.keyForValue(value: String(index)) {
-                        print("Selezionato \(peerID)")
-                        do {
-                            try session.invitePeer(invite: peerID)
-                            textManager.addNotification(str: "Request sent to the device", color: UIColor.green)
-                        } catch {
-                            textManager.addNotification(str: "Can't send the request!", color: UIColor.red)
-                        }
+                        session.invitePeer(invite: peerID)
+                        textManager.addNotification(str: "Request sent to the device", color: UIColor.green)
                     }
                     hidePlane()
                     showKey(pos: 0)
@@ -178,7 +162,7 @@ class MainViewController: UIViewController {
         
         DispatchQueue.main.async {
             self.textManager.addCenteredText(str: "GuitAir")
-            self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected! Press the central button on the remote to see the available devices", x: -5.5, y: 0.5)
+            self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected! Press the central button on the remote to see the available devices", x: -5.5, y: 0.5, z: 1)
         }
     }
     
@@ -254,7 +238,7 @@ class MainViewController: UIViewController {
             textManager.addTextAtPosition(str1: pair.key.displayName, str2: pair.value, x: -2, y: Float(5.95 - Double(Int(pair.value)!)/2.2), z: 1)
         }
         
-        // Then add the "CLOSE" label
+        // Then add the "EXIT" label
         textManager.addTextAtPosition(str1: "EXIT", str2: String(dictionary.dim + 1), x: -2, y: Float(5.95 - Double((dictionary.dim + 1))/2.2), z: 1)
     }
     
@@ -303,7 +287,7 @@ class MainViewController: UIViewController {
     func checkConnection() {
         if !session.isConnected(peerConnected!) {
             self.deviceNode!.removeFromParentNode()
-            self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5)
+            self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5, z: 1)
             self.phone.runAction(SCNAction.move(to: SCNVector3(0, 0, 0), duration: 0.7))
             guitarsManager.removeActual()
             textManager.addNotification(str: "Device disconnected!", color: UIColor.yellow)
@@ -312,6 +296,9 @@ class MainViewController: UIViewController {
         }
     }
     
+    func removeAllFromDictionary() {
+        dictionary.dictionary.removeAll()
+    }
     
 //    func addEmitter() {
 //        fog(x: 7, y: 0.2, z: -3, roll: 0)
@@ -353,25 +340,25 @@ extension MainViewController: SessionManagerDelegate {
             self.deviceNode!.removeFromParentNode()
             
             if self.connected == 0 && connected == 1 {
-                self.deviceNode = self.textManager.addTextAtPosition(str: "Connecting to \(change.displayName) ...", x: -5.5, y: 0.5)
+                self.deviceNode = self.textManager.addTextAtPosition(str: "Connecting to \(change.displayName) ...", x: -5.5, y: 0.5, z: 1)
             }
             else if self.connected == 1 && connected == 2 {
-                self.deviceNode = self.textManager.addTextAtPosition(str: "Device Connected: \(change.displayName)", x: -5.5, y: 0.5)
+                self.deviceNode = self.textManager.addTextAtPosition(str: "Device Connected: \(change.displayName)", x: -5.5, y: 0.5, z: 1)
                 self.peerConnected = change
                 self.phone.runAction(SCNAction.move(to: SCNVector3(15, 0, 0), duration: 0.7))
             }
             else if self.connected == 0 && connected == 0 {
-                self.deviceNode = self.textManager.addTextAtPosition(str: "Device denied the request!", x: -5.5, y: 0.5)
+                self.deviceNode = self.textManager.addTextAtPosition(str: "Device denied the request!", x: -5.5, y: 0.5, z: 1)
                 let wait = SCNAction.wait(duration: 5)
                 let change = SCNAction.run{_ in
-                    self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5)
+                    self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5, z: 1)
                     self.phone.runAction(SCNAction.move(to: SCNVector3(0, 0, 0), duration: 0.7))
                 }
                 let remove = SCNAction.removeFromParentNode()
                 self.deviceNode?.runAction(SCNAction.sequence([wait, change, remove]))
             }
             else if self.peerConnected == change && self.connected == 2 && connected == 0 {
-                self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5)
+                self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5, z: 1)
                 self.phone.runAction(SCNAction.move(to: SCNVector3(0, 0, 0), duration: 0.7))
                 self.peerConnected = nil
             }

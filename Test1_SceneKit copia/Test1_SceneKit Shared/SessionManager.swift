@@ -96,7 +96,7 @@ class SessionManager: NSObject {
     
     func sendSignal (_ peer: MCPeerID, message: UInt8) {
         var mex = message
-        guard mex != 0 else {print("Non puoi mandare 0, questo metodo verà cancellatto successivamente"); return}
+        guard mex != 0 else {print("Non puoi mandare 0, questo metodo verà cancellato successivamente"); return}
         if self.session.connectedPeers.count > 0 {
             print("Messaggio inviato")
             let data = withUnsafeBytes(of: &mex) { Data($0) }
