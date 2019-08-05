@@ -60,6 +60,7 @@
 		774CDDAB22F3137300760FC9 /* Guitar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898EC2422F05146007C32DD /* Guitar.swift */; };
 		774CDDAD22F3150200760FC9 /* Chords in Resources */ = {isa = PBXBuildFile; fileRef = 774CDDAC22F3150200760FC9 /* Chords */; };
 		774CDDAE22F3150200760FC9 /* Chords in Resources */ = {isa = PBXBuildFile; fileRef = 774CDDAC22F3150200760FC9 /* Chords */; };
+		7762443322F8277000B36008 /* userDefaultKeysString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086325AF22F326B600513E1B /* userDefaultKeysString.swift */; };
 		776713DA22EF852B0020E22C /* Guitars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776713D922EF852B0020E22C /* Guitars.swift */; };
 		779E565022EB090400ACC1BF /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779E564F22EB090300ACC1BF /* SessionManager.swift */; };
 		779E565122EB090400ACC1BF /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779E564F22EB090300ACC1BF /* SessionManager.swift */; };
@@ -743,6 +744,7 @@
 				776713DA22EF852B0020E22C /* Guitars.swift in Sources */,
 				77DFAD4C22E84C56006DCBEE /* AppDelegate.swift in Sources */,
 				77F9DD1C22F0851800B0C37F /* TextManager.swift in Sources */,
+				7762443322F8277000B36008 /* userDefaultKeysString.swift in Sources */,
 				08B5E77F22F1C3C500A6FF05 /* SignalCode.swift in Sources */,
 				77F9DD1E22F08F0B00B0C37F /* GameGuitarManager.swift in Sources */,
 			);

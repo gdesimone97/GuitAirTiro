@@ -73,6 +73,7 @@ class GameGuitarManager {
     }
     
     
+    // This func checks if a tap is good or not
     func checkPoint(column: Int) -> Bool {
         var flag = false
         
