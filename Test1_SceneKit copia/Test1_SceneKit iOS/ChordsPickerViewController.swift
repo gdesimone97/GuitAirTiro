@@ -17,6 +17,8 @@ enum GuitarType {
 class ChordsPickerViewController: UIViewController,
 UIPickerViewDataSource, UIPickerViewDelegate {
     
+    @IBOutlet var guitarLabel: UILabel!
+    
     //confirm picked
     @IBOutlet weak var confirmNotification: UIImageView!
     
