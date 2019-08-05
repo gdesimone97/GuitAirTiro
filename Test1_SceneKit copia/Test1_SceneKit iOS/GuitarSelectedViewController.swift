@@ -7,38 +7,58 @@
 //
 
 import UIKit
+import MultipeerConnectivity
 
 class GuitarSelectedViewController: UIViewController {
     
     let session = SessionManager.share
-    
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var guitarLabel: UILabel!
     let guitar = UserDefaults.getGuitar(forKey: GUITAR)
     
-    let classicGuitar = UIImage(named: "classic_guitar")
-    let elettricGuitar = UIImage(named: "elettronic_guitar")
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        var arrayImages: Array<UIImage> = [classicGuitar!,elettricGuitar!]
-        imageView.animationImages = arrayImages
-         guitarLabel.text = selectGuitar(guitar!)
+        guitarLabel.text = selectGuitar(guitar!)
     }
-
+    
     @IBAction func dxButton(_ sender: Any) {
-        
+        if let device = session.showConncetedDevices() {
+            if guitar == GuitarType.classic {
+                session.sendSignal(device[0], message: SignalCode.showElectricGuitar)
+            }
+        }
     }
     @IBAction func sxButton(_ sender: Any) {
         
     }
     
+    
+    
+     override func viewDidDisappear(_ animated: Bool) {
+        var guitar = selectGuitar(guitarLabel.text!)
+        UserDefaults.setGuitar(guitar: guitar!, forKey: GUITAR)
+    }
+    
+    
     func selectGuitar(_ guitar: GuitarType) -> String {
         switch guitar {
         case .classic:
             return "classic"
+        case .elettric:
+            return "electric"
         default:
-            return "elettric"
+            break
+        }
+    }
+    
+    func selectGuitar(_ guitar: String) -> GuitarType? {
+        switch guitar {
+        case "classic":
+            return .classic
+        case "electric":
+            return .elettric
+        default:
+            return nil
         }
     }
     
