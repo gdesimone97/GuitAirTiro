@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Test1_SceneKit iOS/frecciadx@2x.png">
+   </FileRef>
+   <FileRef
+      location = "group:Test1_SceneKit iOS/profile@2x.png">
+   </FileRef>
+   <FileRef
       location = "group:Test1_SceneKit.xcodeproj">
    </FileRef>
    <FileRef
