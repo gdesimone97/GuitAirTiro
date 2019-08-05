@@ -10,7 +10,9 @@ import UIKit
 import WatchConnectivity
 
 class ViewController: UIViewController{
-
+    
+    @IBOutlet var guitarLabel: UILabel!
+    
     var userDataChords: Array<String>?
     
     //Session for comunicating with watch
@@ -87,6 +89,7 @@ class ViewController: UIViewController{
         }
         
         
+        
         if session.isReachable{
             playButton.isEnabled = true
             deviceStatus?.backgroundColor = .green
@@ -95,6 +98,38 @@ class ViewController: UIViewController{
             deviceStatus?.backgroundColor = .red
             playButton.isEnabled = false
         }
+        
+        if let testGuitar = UserDefaults.getGuitar(forKey: GUITAR) {
+            inizializeGuitarLabel(testGuitar)
+        }
+        else {
+            UserDefaults.setGuitar(guitar: GuitarType.classic, forKey: GUITAR)
+            inizializeGuitarLabel(GuitarType.classic)
+        }
+        
+        setLabelBoard()
+        
+    }
+    
+    func inizializeGuitarLabel (_ guitar: GuitarType) {
+        let strClassic = "Classic Guitar Selected"
+        let strElettric = "Elettric Guitar Selected"
+        switch guitar {
+        case .elettric:
+            guitarLabel.text = strElettric
+            break;
+        case .classic:
+            guitarLabel.text = strClassic
+            break
+        default:
+            break;
+        }
+    }
+    
+    func setLabelBoard() {
+        guitarLabel.layer.frame = CGRect(x: 30.51, y: 583.67, width: 153.02, height: 47);
+        guitarLabel.layer.backgroundColor = UIColor(red: 0.28, green: 0.32, blue: 0.37, alpha: 1).cgColor;
+        guitarLabel.layer.cornerRadius = 8;
     }
 }
 
