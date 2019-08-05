@@ -43,8 +43,23 @@
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9KW-4G-TWg">
+                                <rect key="frame" x="123" y="265" width="168" height="201"/>
+                                <state key="normal" image="pick.png"/>
+                                <connections>
+                                    <action selector="playButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hF8-9x-wZU"/>
+                                    <segue destination="O1g-0y-a0f" kind="show" identifier="showGame" animates="NO" id="6JW-r5-b8j"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ds-l2-Z6a">
+                                <rect key="frame" x="186" y="749" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SWW-8d-fMy">
-                                <rect key="frame" x="38" y="647.5" width="338" height="101"/>
+                                <rect key="frame" x="38" y="611" width="338" height="101"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Keyboard.png" translatesAutoresizingMaskIntoConstraints="NO" id="NED-AM-NCq">
                                         <rect key="frame" x="0.0" y="0.0" width="342" height="101"/>
@@ -81,27 +96,19 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.20392156862745098" green="0.24705882352941178" blue="0.29411764705882354" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9KW-4G-TWg">
-                                <rect key="frame" x="123" y="265" width="168" height="201"/>
-                                <state key="normal" image="pick.png"/>
-                                <connections>
-                                    <action selector="playButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hF8-9x-wZU"/>
-                                    <segue destination="O1g-0y-a0f" kind="show" identifier="showGame" animates="NO" id="6JW-r5-b8j"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.20392156862745098" green="0.24705882352941178" blue="0.29411764705882354" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="N5W-zS-CTD" secondAttribute="trailing" constant="179" id="0Zg-dB-4hv"/>
                             <constraint firstItem="SWW-8d-fMy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="38" id="8LV-PQ-IGw"/>
                             <constraint firstItem="9KW-4G-TWg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="123" id="K4v-mj-f72"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="SWW-8d-fMy" secondAttribute="bottom" constant="64.5" id="QDs-QI-ea8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="SWW-8d-fMy" secondAttribute="bottom" constant="101" id="QDs-QI-ea8"/>
                             <constraint firstItem="N5W-zS-CTD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="179" id="SAd-g2-Srm"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9KW-4G-TWg" secondAttribute="trailing" constant="123" id="az7-5E-GLQ"/>
                             <constraint firstItem="2qi-s3-tIZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="35" id="b0G-4U-xMv"/>
                             <constraint firstItem="2qi-s3-tIZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="35" id="mKf-qx-gdi"/>
                             <constraint firstItem="N5W-zS-CTD" firstAttribute="top" secondItem="9KW-4G-TWg" secondAttribute="bottom" constant="100" id="pCj-AS-oWY"/>
-                            <constraint firstItem="SWW-8d-fMy" firstAttribute="top" secondItem="N5W-zS-CTD" secondAttribute="bottom" constant="61" id="peG-u5-dH1"/>
+                            <constraint firstItem="SWW-8d-fMy" firstAttribute="top" secondItem="N5W-zS-CTD" secondAttribute="bottom" constant="24.5" id="peG-u5-dH1"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2qi-s3-tIZ" secondAttribute="trailing" constant="35" id="rcM-L2-fkk"/>
                             <constraint firstItem="9KW-4G-TWg" firstAttribute="top" secondItem="2qi-s3-tIZ" secondAttribute="bottom" constant="170" id="vS4-8s-uj9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SWW-8d-fMy" secondAttribute="trailing" constant="38" id="x46-N1-mHq"/>
@@ -685,7 +692,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="AOx-ZC-yQV"/>
-                        <segue destination="bKR-OX-dVT" kind="relationship" relationship="viewControllers" id="GU4-ax-bwJ"/>
+                        <segue destination="hic-DU-OKK" kind="relationship" relationship="viewControllers" id="GU4-ax-bwJ"/>
                         <segue destination="Fcu-A0-aRf" kind="relationship" relationship="viewControllers" id="P4I-Vl-M2h"/>
                         <segue destination="GHu-Nl-ZBo" kind="relationship" relationship="viewControllers" id="UXh-32-5sX"/>
                     </connections>
@@ -694,7 +701,7 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
         </scene>
-        <!--Chords-->
+        <!--Chords Picker View Controller-->
         <scene sceneID="gjc-bN-99N">
             <objects>
                 <viewController id="bKR-OX-dVT" customClass="ChordsPickerViewController" customModule="Test1_SceneKit" customModuleProvider="target" sceneMemberID="viewController">
@@ -703,7 +710,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="9lo-57-brc">
-                                <rect key="frame" x="28" y="64" width="356" height="500"/>
+                                <rect key="frame" x="28" y="108" width="356" height="500"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECT YOUR CHORDS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bq9-D3-sCo">
                                         <rect key="frame" x="74" y="0.0" width="208" height="93"/>
@@ -756,14 +763,14 @@
                                 </constraints>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Confirmed.png" translatesAutoresizingMaskIntoConstraints="NO" id="cAs-n6-9Bn">
-                                <rect key="frame" x="186" y="740" width="42" height="41"/>
+                                <rect key="frame" x="186" y="722" width="42" height="41"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="41" id="G8t-zd-MwO"/>
-                                    <constraint firstAttribute="width" constant="42" id="bpk-5Y-sQO"/>
+                                    <constraint firstAttribute="width" constant="42" id="WYS-r2-kd3"/>
+                                    <constraint firstAttribute="height" constant="41" id="kVz-M1-Rnd"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GC2-f5-QMa">
-                                <rect key="frame" x="57" y="698" width="300" height="34"/>
+                                <rect key="frame" x="57" y="661" width="300" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Confirm">
                                     <color key="titleColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -772,48 +779,90 @@
                                     <action selector="confirmButton:" destination="bKR-OX-dVT" eventType="touchUpInside" id="hit-8N-J2G"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hDe-7F-cVX">
-                                <rect key="frame" x="146" y="508" width="120" height="120"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFS-lI-ilK">
-                                <rect key="frame" x="176" y="653" width="60" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDI-tf-KWV">
+                                <rect key="frame" x="56" y="608" width="300" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Change Guitar">
+                                    <color key="titleColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </state>
+                                <connections>
+                                    <segue destination="wBl-Oy-WHv" kind="show" id="lwU-cz-eUb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.20392156859999999" green="0.2470588235" blue="0.29411764709999999" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="tGh-kz-q27" firstAttribute="bottom" secondItem="cAs-n6-9Bn" secondAttribute="bottom" constant="50" id="2GQ-hg-QLG"/>
                             <constraint firstItem="9lo-57-brc" firstAttribute="top" secondItem="tGh-kz-q27" secondAttribute="top" constant="20" id="462-ey-TFZ"/>
-                            <constraint firstItem="tGh-kz-q27" firstAttribute="bottom" secondItem="cAs-n6-9Bn" secondAttribute="bottom" constant="32" id="80G-hX-byE"/>
                             <constraint firstItem="9lo-57-brc" firstAttribute="leading" secondItem="tGh-kz-q27" secondAttribute="leading" constant="28" id="9vq-Nf-o2d"/>
                             <constraint firstItem="9lo-57-brc" firstAttribute="trailing" secondItem="GhN-by-Pl3" secondAttribute="trailingMargin" constant="-10" id="9yl-UC-yct"/>
-                            <constraint firstItem="cAs-n6-9Bn" firstAttribute="leading" secondItem="tGh-kz-q27" secondAttribute="leading" constant="186" id="EGj-gB-6Oy"/>
-                            <constraint firstItem="GC2-f5-QMa" firstAttribute="leading" secondItem="tGh-kz-q27" secondAttribute="leading" constant="57" id="FwM-4u-C0D"/>
-                            <constraint firstItem="tGh-kz-q27" firstAttribute="trailing" secondItem="GC2-f5-QMa" secondAttribute="trailing" constant="57" id="NX6-kd-TLT"/>
-                            <constraint firstItem="tGh-kz-q27" firstAttribute="trailing" secondItem="cAs-n6-9Bn" secondAttribute="trailing" constant="186" id="ZqN-1V-qNC"/>
-                            <constraint firstItem="cAs-n6-9Bn" firstAttribute="top" secondItem="GC2-f5-QMa" secondAttribute="bottom" constant="8" id="mqx-0I-3Ac"/>
+                            <constraint firstItem="tGh-kz-q27" firstAttribute="trailing" secondItem="cAs-n6-9Bn" secondAttribute="trailing" constant="186" id="MHe-Gl-bMp"/>
+                            <constraint firstItem="cAs-n6-9Bn" firstAttribute="leading" secondItem="tGh-kz-q27" secondAttribute="leading" constant="186" id="RzN-h3-upf"/>
+                            <constraint firstItem="tGh-kz-q27" firstAttribute="trailing" secondItem="GC2-f5-QMa" secondAttribute="trailing" constant="57" id="bNH-B5-MMU"/>
+                            <constraint firstItem="GC2-f5-QMa" firstAttribute="top" secondItem="cDI-tf-KWV" secondAttribute="bottom" constant="19" id="ren-B5-0oC"/>
+                            <constraint firstItem="tGh-kz-q27" firstAttribute="trailing" secondItem="cDI-tf-KWV" secondAttribute="trailing" constant="58" id="tpL-UB-gtT"/>
+                            <constraint firstItem="cAs-n6-9Bn" firstAttribute="top" secondItem="GC2-f5-QMa" secondAttribute="bottom" constant="27" id="u5w-AZ-iGN"/>
+                            <constraint firstItem="GC2-f5-QMa" firstAttribute="leading" secondItem="tGh-kz-q27" secondAttribute="leading" constant="57" id="x6p-4A-hdn"/>
+                            <constraint firstItem="cDI-tf-KWV" firstAttribute="top" secondItem="9lo-57-brc" secondAttribute="bottom" id="x9J-fj-0z0"/>
+                            <constraint firstItem="cDI-tf-KWV" firstAttribute="leading" secondItem="tGh-kz-q27" secondAttribute="leading" constant="56" id="xED-uk-SXe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tGh-kz-q27"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Chords" image="treble.png" id="S0A-m4-c7P">
-                        <color key="badgeColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </tabBarItem>
+                    <navigationItem key="navigationItem" id="Fi3-No-vmm"/>
                     <connections>
                         <outlet property="confirmNotification" destination="cAs-n6-9Bn" id="RRf-f4-LHr"/>
-                        <outlet property="guitarLabel" destination="hFS-lI-ilK" id="Fhy-NH-UQ0"/>
                         <outletCollection property="chordPickers" destination="fiv-2L-JPK" collectionClass="NSMutableArray" id="WLK-WY-IpM"/>
                         <outletCollection property="chordPickers" destination="2Vw-it-Bgg" collectionClass="NSMutableArray" id="HjD-24-9iS"/>
                         <outletCollection property="chordPickers" destination="yvk-m1-9rb" collectionClass="NSMutableArray" id="SYx-yg-MhW"/>
                         <outletCollection property="chordPickers" destination="AFj-ch-7dH" collectionClass="NSMutableArray" id="e4q-g4-En5"/>
                         <outletCollection property="buttons" destination="GC2-f5-QMa" collectionClass="NSMutableArray" id="n2h-Ll-LQa"/>
+                        <outletCollection property="buttons" destination="cDI-tf-KWV" collectionClass="NSMutableArray" id="go6-pc-dFo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Viu-9a-IyG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2057.971014492754" y="883.92857142857144"/>
+            <point key="canvasLocation" x="2968.115942028986" y="883.92857142857144"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="baz-F1-7qd">
+            <objects>
+                <viewController id="wBl-Oy-WHv" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="buQ-J6-BVM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wfW-a1-QVI">
+                                <rect key="frame" x="87" y="143" width="240" height="240"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="EWz-yu-Rka">
+                                <rect key="frame" x="112" y="486" width="191.5" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9YJ-bz-INE">
+                                        <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                        <state key="normal" image="frecciasx.png"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xr8-Xe-Bkr">
+                                        <rect key="frame" x="65" y="0.0" width="61.5" height="32"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lej-Ge-emK">
+                                        <rect key="frame" x="159.5" y="0.0" width="32" height="32"/>
+                                        <state key="normal" image="frecciadx.png"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.10618691891431808" green="0.12509804964065552" blue="0.14902287721633911" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <viewLayoutGuide key="safeArea" id="28H-T5-W8l"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CCZ-R5-Ufe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4200" y="884"/>
         </scene>
         <!--Settings-->
         <scene sceneID="NWn-dk-Vdp">
@@ -900,6 +949,28 @@
             </objects>
             <point key="canvasLocation" x="-2339" y="2340"/>
         </scene>
+        <!--Chords-->
+        <scene sceneID="pOC-du-tgl">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hic-DU-OKK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Chords" image="treble.png" id="S0A-m4-c7P">
+                        <color key="badgeColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BiO-Zt-hfg">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.21232712268829346" green="0.24633479118347168" blue="0.29020199179649353" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bKR-OX-dVT" kind="relationship" relationship="rootViewController" id="z5y-3r-Uuo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5YR-gf-WDI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2057.971014492754" y="883.92857142857144"/>
+        </scene>
     </scenes>
     <resources>
         <image name="BlueButton.png" width="302" height="169"/>
@@ -910,6 +981,8 @@
         <image name="RedButton.png" width="302" height="169"/>
         <image name="account.png" width="24" height="24"/>
         <image name="coppa-image.png" width="96" height="96"/>
+        <image name="frecciadx.png" width="32" height="32"/>
+        <image name="frecciasx.png" width="32" height="32"/>
         <image name="guitar-player.png" width="512" height="512"/>
         <image name="lose-image.png" width="96" height="96"/>
         <image name="metal.png" width="25" height="25"/>
