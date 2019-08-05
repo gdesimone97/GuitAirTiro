@@ -111,7 +111,7 @@ class ViewController: UIViewController{
     
     func inizializeGuitarLabel (_ guitar: GuitarType) {
         let strClassic = "Classic Guitar Selected"
-        let strElettric = "Elettric Guitar Selected"
+        let strElettric = "Electric Guitar Selected"
         switch guitar {
         case .elettric:
             guitarLabel.text = strElettric
