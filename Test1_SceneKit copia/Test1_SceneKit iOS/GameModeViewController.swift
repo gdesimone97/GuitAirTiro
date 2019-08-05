@@ -14,8 +14,7 @@ class GameModeViewController: UIViewController {
     
     var sessionDelegate: ViewController!
     
-    let USER_DEFAULT_KEY_STRING = "chords_string"
-    var userDefault = UserDefaults.standard
+    
 
     // Labels shown in game mode, each label is associated with a button
     @IBOutlet weak var redButtonChord: UILabel!

@@ -11,7 +11,6 @@ import WatchConnectivity
 
 class ViewController: UIViewController{
 
-    let userDefault = UserDefaults.standard
     var userDataChords: Array<String>?
     
     //Session for comunicating with watch

@@ -29,11 +29,9 @@ UIPickerViewDataSource, UIPickerViewDelegate {
     
     var chords = Array<String>()
     
-    let userDefaults = UserDefaults.standard
-    
     var language: String {
         get {
-            return userDefaults.string(forKey: USER_LANGUAGE)!
+            return userDefault.string(forKey: USER_LANGUAGE)!
         }
     }
     @IBOutlet var chordPickers: [UIPickerView]!
@@ -75,7 +73,8 @@ UIPickerViewDataSource, UIPickerViewDelegate {
             
         }
         
-        if let testUserData = userDefaults.array(forKey: USER_DEFAULT_KEY_ROW) {
+        if let testUserData = userDefault
+            .array(forKey: USER_DEFAULT_KEY_ROW) {
             var valuesRead = testUserData as! [Int]
             var i : Int = 0;
             
@@ -161,8 +160,8 @@ UIPickerViewDataSource, UIPickerViewDelegate {
             j += 1
         }
         
-        userDefaults.set(valuesToStore, forKey: USER_DEFAULT_KEY_ROW)
-        userDefaults.set(str, forKey: USER_DEFAULT_KEY_STRING)
+        userDefault.set(valuesToStore, forKey: USER_DEFAULT_KEY_ROW)
+        userDefault.set(str, forKey: USER_DEFAULT_KEY_STRING)
         
         print(valuesToStore)
         print(chords.count);

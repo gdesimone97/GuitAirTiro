@@ -6,8 +6,12 @@
 //  Copyright © 2019 Gennaro Giaquinto. All rights reserved.
 //
 
+import UIKit
+
 let USER_DEFAULT_KEY_ROW = "chords_row"
 let USER_DEFAULT_KEY_STRING = "chords_string"
 let USER_LANGUAGE = "PreferredNotation"
 let GUITAR = "guitar_selected"
 let LOGIN = "login_user"
+
+let userDefault = UserDefaults.standard
