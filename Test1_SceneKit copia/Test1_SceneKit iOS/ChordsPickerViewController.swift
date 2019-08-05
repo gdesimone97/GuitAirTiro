@@ -86,12 +86,28 @@ UIPickerViewDataSource, UIPickerViewDelegate {
             }
         }
         
+        if let testGuitar = userDefault.object(forKey: GUITAR) {
+            var guitar = testGuitar as! GuitarType
+            inizializeGuitarLabel(guitar)
+        }
+        
         // Do any additional setup after loading the view.
         //Carico gli accordi lastUsed salvati negli userdefault
         
     }
     
-    
+    func inizializeGuitarLabel (_ guitar: GuitarType) {
+        switch guitar {
+        case .elettric:
+            guitarLabel.text = "elettric"
+            break;
+        case .classic:
+            guitarLabel.text = "classic"
+            break
+        default:
+            break;
+        }
+    }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
        
