@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0854421D22F8226E00C73B03 /* registrazione.png in Resources */ = {isa = PBXBuildFile; fileRef = 0854421C22F8226D00C73B03 /* registrazione.png */; };
 		086325AE22F320D600513E1B /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086325AD22F320D600513E1B /* AccountViewController.swift */; };
 		086325B022F326B600513E1B /* userDefaultKeysString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086325AF22F326B600513E1B /* userDefaultKeysString.swift */; };
 		086325B622F3328800513E1B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086325B522F3328800513E1B /* LoginViewController.swift */; };
@@ -128,6 +129,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0854421C22F8226D00C73B03 /* registrazione.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = registrazione.png; sourceTree = "<group>"; };
 		086325AD22F320D600513E1B /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		086325AF22F326B600513E1B /* userDefaultKeysString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userDefaultKeysString.swift; sourceTree = "<group>"; };
 		086325B522F3328800513E1B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 		77DFAD2022E84C56006DCBEE /* Test1_SceneKit iOS */ = {
 			isa = PBXGroup;
 			children = (
+				0854421C22F8226D00C73B03 /* registrazione.png */,
 				08CF906722F4817400F8B853 /* profile@2x.png */,
 				08CF906522F4774C00F8B853 /* pareggio-image.png */,
 				08CF906322F475A900F8B853 /* lose-image.png */,
@@ -541,6 +544,7 @@
 				08CF906222F4741100F8B853 /* coppa-image.png in Resources */,
 				088E1CBD22F345F1006A197D /* settings@2x.png in Resources */,
 				088E1CC222F345F1006A197D /* GreenButton.png in Resources */,
+				0854421D22F8226E00C73B03 /* registrazione.png in Resources */,
 				088E1CC522F345F1006A197D /* pick.png in Resources */,
 				088E1CC122F345F1006A197D /* PinkButton.png in Resources */,
 				088E1CC422F345F1006A197D /* BlueButton.png in Resources */,
