@@ -47,7 +47,8 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <state key="normal" title="1"/>
                                 <connections>
-                                    <action selector="button1:" destination="BV1-FR-VrT" eventType="touchUpInside" id="RLd-bF-a3w"/>
+                                    <action selector="button1Pressed:" destination="BV1-FR-VrT" eventType="touchDown" id="9VQ-cD-Lm5"/>
+                                    <action selector="button1ReleasedIn:" destination="BV1-FR-VrT" eventType="touchUpInside" id="nAv-ae-Lgc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZtU-ia-DjP">
@@ -56,7 +57,8 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <state key="normal" title="2"/>
                                 <connections>
-                                    <action selector="button2:" destination="BV1-FR-VrT" eventType="touchUpInside" id="AZ2-WM-c7l"/>
+                                    <action selector="button2Pressed:" destination="BV1-FR-VrT" eventType="touchDown" id="5fo-at-V69"/>
+                                    <action selector="button2Released:" destination="BV1-FR-VrT" eventType="touchUpInside" id="IGb-Fw-JMv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ybB-T4-wsL">
@@ -65,7 +67,8 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <state key="normal" title="3"/>
                                 <connections>
-                                    <action selector="button3:" destination="BV1-FR-VrT" eventType="touchUpInside" id="wId-Uy-DUm"/>
+                                    <action selector="button3Pressed:" destination="BV1-FR-VrT" eventType="touchDown" id="voL-zV-Ttp"/>
+                                    <action selector="button3ReleasedIn:" destination="BV1-FR-VrT" eventType="touchUpInside" id="riK-Lq-4WJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HzY-cl-qbj">
@@ -74,7 +77,8 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <state key="normal" title="4"/>
                                 <connections>
-                                    <action selector="button4:" destination="BV1-FR-VrT" eventType="touchUpInside" id="9hF-fV-YHN"/>
+                                    <action selector="button4Pressed:" destination="BV1-FR-VrT" eventType="touchDown" id="Je8-jQ-8Ar"/>
+                                    <action selector="button4ReleasedIn:" destination="BV1-FR-VrT" eventType="touchUpInside" id="0Ld-5v-HP5"/>
                                 </connections>
                             </button>
                         </subviews>

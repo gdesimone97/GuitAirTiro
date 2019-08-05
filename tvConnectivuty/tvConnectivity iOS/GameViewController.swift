@@ -53,8 +53,61 @@ class GameViewControllerPhone: UIViewController {
             session.sendSignal(deviceList[0], message: UInt8(messaggio)!)
            // session.sendSignal(deviceList[0], message: UInt8(messaggio)!)
         }
-    } 
+    }
+    
+    
+    
+    @IBAction func button1Pressed(_ sender: Any) {
+        if let deviceList = session.showConncetedDevices() {
+            session.sendSignal(deviceList[0], message: UInt8(11))
+        }
+    }
+    
+    @IBAction func button1ReleasedIn(_ sender: Any) {
+        if let deviceList = session.showConncetedDevices() {
+            session.sendSignal(deviceList[0], message: UInt8(15))
+        }
+    }
+    
+    @IBAction func button2Pressed(_ sender: Any) {
+        if let deviceList = session.showConncetedDevices() {
+            session.sendSignal(deviceList[0], message: UInt8(12))
+        }
+    }
+    
+    @IBAction func button2Released(_ sender: Any) {
+        if let deviceList = session.showConncetedDevices() {
+            session.sendSignal(deviceList[0], message: UInt8(16))
+        }
+    }
+    
+    @IBAction func button3Pressed(_ sender: Any) {
+        if let deviceList = session.showConncetedDevices() {
+            session.sendSignal(deviceList[0], message: UInt8(13))
+        }
+    }
+    
+    @IBAction func button3ReleasedIn(_ sender: Any) {
+        if let deviceList = session.showConncetedDevices() {
+            session.sendSignal(deviceList[0], message: UInt8(17))
+        }
+    }
+    
+    @IBAction func button4Pressed(_ sender: Any) {
+        if let deviceList = session.showConncetedDevices() {
+            session.sendSignal(deviceList[0], message: UInt8(14))
+        }
+    }
+    
+    @IBAction func button4ReleasedIn(_ sender: Any) {
+        if let deviceList = session.showConncetedDevices() {
+            session.sendSignal(deviceList[0], message: UInt8(18))
+        }
+    }
+    
+    
 }
+
 
 extension GameViewControllerPhone: SessionManagerDelegate {
     func mexReceived(_ manager: SessionManager, didMessageReceived: SignalCode) {
