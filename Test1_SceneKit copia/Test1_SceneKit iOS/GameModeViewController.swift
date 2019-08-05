@@ -131,8 +131,6 @@ class GameModeViewController: UIViewController {
         }
         
         //        create mixer, to allow repeated chords/multiple chords
-        //        SE NON SUONA E' PERCHE' HO MESSO CHORDS QUI DENTRO E QUINDI SIGNIFICA CHE LA COSA VA GESTITA
-        //        DIVERSAMENTE
         let mixer = AKMixer(guitar11?.chord, guitar21?.chord, guitar31?.chord, guitar41?.chord, guitar12?.chord, guitar22?.chord, guitar32?.chord, guitar42?.chord)
         AudioKit.output = mixer
         do{

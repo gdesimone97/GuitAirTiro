@@ -27,6 +27,7 @@ class MainViewController: UIViewController {
     var phone: SCNNode!
     
     var withWatch: Bool!
+    var chords: [Int]?
     
     
     var numGuitar: Int = 2 // 2 for electric guitar, 1 for acoustic guitar
@@ -285,11 +286,18 @@ class MainViewController: UIViewController {
         switch segue.identifier {
         case "GameSegue":
             let GameViewController = segue.destination as! GameViewController
+            
+            // Prima della segue che mi manda al gioco, preparo la funzione che verrà chiamata quando GameViewController verrà dismessa
             GameViewController.callbackClosure = {
                 self.session.delegate = self
                 self.checkConnection()
             }
-            GameViewController.watch = self.withWatch
+            // Setto la presenza o meno del watch
+            GameViewController.watch = withWatch
+            // Setto gli accordi che sono stati scelti dall'utente
+            GameViewController.chords = chords
+            
+            
         default:
             print(#function)
         }
@@ -380,6 +388,8 @@ extension MainViewController: SessionManagerDelegate {
             self.guitarsManager.changeGuitar(newGuitar: .acoustic)
         case .showElectricGuitar:
             self.guitarsManager.changeGuitar(newGuitar: .electric)
+            
+            
         case .openGameWithWatch:
             DispatchQueue.main.async {
                 self.withWatch = true
@@ -390,6 +400,8 @@ extension MainViewController: SessionManagerDelegate {
                 self.withWatch = false
                 self.performSegue(withIdentifier: "GameSegue", sender: nil)
             }
+            
+            // MI DEVI PASSARE GLI ACCORDI DAL TELEFONO!!!
             
             
         // Add more cases here
