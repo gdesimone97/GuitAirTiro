@@ -26,10 +26,6 @@ class MainViewController: UIViewController {
     var spot: SCNNode!
     var phone: SCNNode!
     
-    var withWatch: Bool!
-    var chords: [Int]?
-    
-    
     var numGuitar: Int = 2 // 2 for electric guitar, 1 for acoustic guitar
     // Assegnamento da fare in base alle UsersDefaults e NON QUI
     
@@ -40,7 +36,6 @@ class MainViewController: UIViewController {
     var peerConnected: MCPeerID?
     var connected: Int = 0 // -> 0: Disconnected, 1: Connecting, 2: Connected
     var deviceNode: SCNNode?
-    
     
     
     // Connection Properties
@@ -74,6 +69,7 @@ class MainViewController: UIViewController {
         self.textManager = TextManager(scene: gameView.scene!)
         
         self.addGestures()
+        semaphore.signal()
         
         peerListQueue.async {
             while true {
@@ -81,6 +77,10 @@ class MainViewController: UIViewController {
                 self.semaphore.wait()
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        semaphore.signal()
     }
     
     
@@ -292,10 +292,7 @@ class MainViewController: UIViewController {
                 self.session.delegate = self
                 self.checkConnection()
             }
-            // Setto la presenza o meno del watch
-            GameViewController.watch = withWatch
-            // Setto gli accordi che sono stati scelti dall'utente
-            GameViewController.chords = chords
+            GameViewController.dictionary = self.dictionary
             
             
         default:
@@ -308,8 +305,10 @@ class MainViewController: UIViewController {
             self.deviceNode!.removeFromParentNode()
             self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5)
             self.phone.runAction(SCNAction.move(to: SCNVector3(0, 0, 0), duration: 0.7))
-            self.peerConnected = nil
+            guitarsManager.removeActual()
             textManager.addNotification(str: "Device disconnected!", color: UIColor.yellow)
+            
+            self.peerConnected = nil
         }
     }
     
@@ -390,14 +389,8 @@ extension MainViewController: SessionManagerDelegate {
             self.guitarsManager.changeGuitar(newGuitar: .electric)
             
             
-        case .openGameWithWatch:
+        case .openGame:
             DispatchQueue.main.async {
-                self.withWatch = true
-                self.performSegue(withIdentifier: "GameSegue", sender: nil)
-            }
-        case .openGameWithoutWatch:
-            DispatchQueue.main.async {
-                self.withWatch = false
                 self.performSegue(withIdentifier: "GameSegue", sender: nil)
             }
             

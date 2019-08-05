@@ -23,6 +23,7 @@ class GameViewController: UIViewController {
     var textManager: TextManager!
     
     var session = SessionManager.share
+    var dictionary: DeviceDictionary!
     
     
     // This closure is used for setting the Session Delegate when the this View is dismissed
@@ -35,7 +36,6 @@ class GameViewController: UIViewController {
         callbackClosure?()
     }
     
-    var chords: [String]!
     
     var guitar11: Guitar?
     var guitar21: Guitar?
@@ -63,9 +63,15 @@ class GameViewController: UIViewController {
     
     var playing: Bool = false
     var points: Int!
-    var watch: Bool! // true -> watch is present, false -> watch not present
+    // I take the selected chords from the user
+    var chords: [String] = ["A.wav", "B.wav", "C.wav", "D.wav"]  //= userDefault.stringArray(forKey: USER_DEFAULT_KEY_STRING)!
+    // I take the watch settings : true -> watch is present, false -> watch not present
+    var watch: Bool! = false // userDefault bla bla
     
+    // This is the thread that shows nodes on the guitar
     let noteQueue = DispatchQueue(label: "noteQueue", qos: .userInteractive)
+    let pointsQueue = DispatchQueue(label: "pointsQueue", qos: .userInteractive)
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,18 +80,20 @@ class GameViewController: UIViewController {
         
         session.delegate = self
         
-        // Allow the user to manipulate the camera
-        self.gameView.allowsCameraControl = false
-        
         gameGuitarManager = GameGuitarManager(scene: gameView.scene!, width: 2.5, length: 20, z: -17)
         textManager = TextManager(scene: gameView.scene!)
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-        var gestureRecognizers = gameView.gestureRecognizers ?? []
-        gestureRecognizers.insert(tapGesture, at: 0)
-        self.gameView.gestureRecognizers = gestureRecognizers
+        
+        // Allow the tapGesture on the remote only if watch is not present
+        if !watch {
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+            var gestureRecognizers = gameView.gestureRecognizers ?? []
+            gestureRecognizers.insert(tapGesture, at: 0)
+            self.gameView.gestureRecognizers = gestureRecognizers
+        }
         
         addElements()
+        initAudioKit(file1: chords[0], file2: chords[1], file3: chords[2], file4: chords[3])
         
         
         noteQueue.async {
@@ -97,28 +105,60 @@ class GameViewController: UIViewController {
             }
         }
         
+        pointsQueue.async {
+            while self.playing == true {
+                
+            }
+        }
+        
+        
+        // Da sistemare
         playing = true
         points = 0
         
     }
     
+    // Function started only if watch is not present
     @objc func handleTap(_ gestureRecognizer: UIGestureRecognizer) {
         if watch {
             gameGuitarManager.fire()
-            textManager.addGameNotification(str: "Mario è GAY!", color: UIColor.red)
         }
         else {
             if button1Pressed {
-                self.gameGuitarManager.checkPoint(column: 1)
+                play(col: 1)
+                if self.gameGuitarManager.checkPoint(column: 1) {
+                    points += 1
+                }
+                else {
+                    points -= 1
+                }
             }
             if button2Pressed {
-                self.gameGuitarManager.checkPoint(column: 2)
+                play(col: 2)
+                if self.gameGuitarManager.checkPoint(column: 2) {
+                    points += 1
+                }
+                else {
+                    points -= 1
+                }
             }
             if button3Pressed {
-                self.gameGuitarManager.checkPoint(column: 3)
+                play(col: 3)
+                if self.gameGuitarManager.checkPoint(column: 3) {
+                    points += 1
+                }
+                else {
+                    points -= 1
+                }
             }
             if button4Pressed {
-                self.gameGuitarManager.checkPoint(column: 4)
+                play(col: 4)
+                if self.gameGuitarManager.checkPoint(column: 4) {
+                    points += 1
+                }
+                else {
+                    points -= 1
+                }
             }
         }
     }
@@ -169,13 +209,65 @@ class GameViewController: UIViewController {
     }
     
     
+    func play(col: Int){
+        
+        DispatchQueue.main.async {
+            switch col {
+            case 1:
+                if !self.flag1{
+                    self.guitar11!.playGuitar()
+                    self.flag1 = true
+                }
+                else{
+                    self.guitar12!.playGuitar()
+                    self.flag1 = false
+                }
+                
+            case 2:
+                if !self.flag2{
+                    self.guitar21!.playGuitar()
+                    self.flag2 = true
+                }
+                else{
+                    self.guitar22!.playGuitar()
+                    self.flag2 = false
+                }
+                
+            case 3:
+                if !self.flag3{
+                    self.guitar31!.playGuitar()
+                    self.flag3 = true
+                }
+                else{
+                    self.guitar32!.playGuitar()
+                    self.flag3 = false
+                }
+                
+            case 4:
+                if !self.flag4{
+                    self.guitar41!.playGuitar()
+                    self.flag4 = true
+                }
+                else{
+                    self.guitar42!.playGuitar()
+                    self.flag4 = false
+                }
+                
+            default:
+                break
+            }
+        }
+    }
+    
 }
 
 extension GameViewController: SessionManagerDelegate {
     func peerFound(_ manger: SessionManager, peer: MCPeerID) {
+        dictionary.addSample(peer: peer)
     }
     
     func peerLost(_ manager: SessionManager, peer lost: MCPeerID) {
+        dictionary.removeSample(peer: lost)
     }
     
     
@@ -198,7 +290,7 @@ extension GameViewController: SessionManagerDelegate {
                 self.dismiss(animated: false, completion: nil)
             
             case .signal1:
-                //                self.guitar1?.playGuitar()
+                self.play(col: 1)
                 if self.gameGuitarManager.checkPoint(column: 1) {
                     self.points += 1
                 }
@@ -207,7 +299,7 @@ extension GameViewController: SessionManagerDelegate {
                 }
                 
             case .signal2:
-                //                self.guitar2?.playGuitar()
+                self.play(col: 2)
                 if self.gameGuitarManager.checkPoint(column: 2) {
                     self.points += 1
                 }
@@ -216,7 +308,7 @@ extension GameViewController: SessionManagerDelegate {
                 }
                 
             case .signal3:
-                //                self.guitar3?.playGuitar()
+                self.play(col: 3)
                 if self.gameGuitarManager.checkPoint(column: 3) {
                     self.points += 1
                 }
@@ -225,7 +317,7 @@ extension GameViewController: SessionManagerDelegate {
                 }
                 
             case .signal4:
-                //                self.guitar4?.playGuitar()
+                self.play(col: 4)
                 if self.gameGuitarManager.checkPoint(column: 4) {
                     self.points += 1
                 }
@@ -270,5 +362,4 @@ extension GameViewController: SessionManagerDelegate {
             print(self.points!)
         }
     }
-    
 }
