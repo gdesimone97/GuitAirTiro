@@ -88,17 +88,14 @@ class TextManager {
     }
     
     
-    // Position relative to the center of the screen
-    // x -> MIN: -5.5, MAX: 5.5
-    // y -> MIN: 0, MAX:
-    func addTextAtPosition(str: String, x: Float, y: Float) -> SCNNode {
+    func addTextAtPosition(str: String, x: Float, y: Float, z: Float) -> SCNNode {
         let text = SCNText(string: str, extrusionDepth: 0.2)
         text.font = UIFont.systemFont(ofSize: 1)
         let textNode = SCNNode(geometry: text)
         
         textNode.scale = SCNVector3(x: 0.2, y: 0.2, z: 0.2)
         self.scene.rootNode.addChildNode(textNode)
-        textNode.position = SCNVector3(x: x, y: y, z: 1)
+        textNode.position = SCNVector3(x: x, y: y, z: z)
         
         return textNode
     }

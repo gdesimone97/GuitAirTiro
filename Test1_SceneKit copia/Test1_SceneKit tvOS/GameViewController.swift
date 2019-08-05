@@ -68,6 +68,8 @@ class GameViewController: UIViewController {
     // I take the watch settings : true -> watch is present, false -> watch not present
     var watch: Bool! = false // userDefault bla bla
     
+    var pointText: SCNNode?
+    
     // This is the thread that shows nodes on the guitar
     let noteQueue = DispatchQueue(label: "noteQueue", qos: .userInteractive)
     let pointsQueue = DispatchQueue(label: "pointsQueue", qos: .userInteractive)
@@ -105,16 +107,17 @@ class GameViewController: UIViewController {
             }
         }
         
-        pointsQueue.async {
-            while self.playing == true {
-                
-            }
-        }
-        
-        
         // Da sistemare
         playing = true
         points = 0
+        
+        
+        pointsQueue.async {
+            while self.playing == true {
+                self.updatePoints()
+                usleep(50000)
+            }
+        }
         
     }
     
@@ -124,6 +127,7 @@ class GameViewController: UIViewController {
             gameGuitarManager.fire()
         }
         else {
+            var flag = false
             if button1Pressed {
                 play(col: 1)
                 if self.gameGuitarManager.checkPoint(column: 1) {
@@ -132,6 +136,7 @@ class GameViewController: UIViewController {
                 else {
                     points -= 1
                 }
+                flag = true
             }
             if button2Pressed {
                 play(col: 2)
@@ -141,6 +146,7 @@ class GameViewController: UIViewController {
                 else {
                     points -= 1
                 }
+                flag = true
             }
             if button3Pressed {
                 play(col: 3)
@@ -150,6 +156,7 @@ class GameViewController: UIViewController {
                 else {
                     points -= 1
                 }
+                flag = true
             }
             if button4Pressed {
                 play(col: 4)
@@ -159,6 +166,11 @@ class GameViewController: UIViewController {
                 else {
                     points -= 1
                 }
+                flag = true
+            }
+            
+            if !flag {
+                points -= 1
             }
         }
     }
@@ -258,6 +270,16 @@ class GameViewController: UIViewController {
             }
         }
     }
+    
+    func updatePoints() {
+        DispatchQueue.main.async {
+            if let node = self.pointText {
+                node.removeFromParentNode()
+            }
+            self.pointText = self.textManager.addTextAtPosition(str: "Points: \(self.points!)", x: 2, y: 3, z: -0.5)
+        }
+    }
+    
     
 }
 
