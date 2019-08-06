@@ -23,6 +23,28 @@ enum TypeOfGuitar: Int {
     case classic = 1
 }
 
+func selectGuitar(_ guitar: TypeOfGuitar) -> String {
+    switch guitar {
+    case .classic:
+        return "classic"
+    case .elettric:
+        return "electric"
+    default:
+        break
+    }
+}
+
+func selectGuitar(_ guitar: String) -> TypeOfGuitar? {
+    switch guitar {
+    case "classic":
+        return .classic
+    case "electric":
+        return .elettric
+    default:
+        return nil
+    }
+}
+
 extension UserDefaults {
     class func setGuitar(guitar: TypeOfGuitar, forKey: String) {
         UserDefaults.standard.set(guitar.rawValue, forKey: GUITAR)
