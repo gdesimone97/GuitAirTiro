@@ -151,7 +151,7 @@ UIPickerViewDataSource, UIPickerViewDelegate {
         for pick in chordPickers {
             let row = pick.selectedRow(inComponent: 0)
             str[j] = chords[row % chords.count]
-            audioFile[j] = engChords[j] + ".wav"
+            audioFile[j] = engChords[row % chords.count] + ".wav"
             valuesToStore[j] = row
             j += 1
         }
