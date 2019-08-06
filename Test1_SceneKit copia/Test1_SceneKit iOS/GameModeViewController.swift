@@ -94,7 +94,7 @@ class GameModeViewController: UIViewController {
         
         //        Construct appropriate namefiles for selected chords
         var selectedChords = Array<String>()
-        if let testChords = userDefault.array(forKey: "chords_string") {
+        if let testChords = userDefault.array(forKey: USER_DEFAULT_KEY_STRING) {
             selectedChords = testChords as! Array<String>
         }
         else {
