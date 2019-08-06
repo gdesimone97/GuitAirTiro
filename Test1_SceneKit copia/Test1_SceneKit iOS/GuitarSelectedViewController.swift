@@ -14,7 +14,6 @@ class GuitarSelectedViewController: UIViewController {
     let session = SessionManager.share
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var guitarLabel: UILabel!
-    let guitar = UserDefaults.getGuitar(forKey: GUITAR)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,35 +21,38 @@ class GuitarSelectedViewController: UIViewController {
     }
     
     @IBAction func dxButton(_ sender: Any) {
-        if let device = session.showConncetedDevices() {
+        print("dx")
+        let guitar = UserDefaults.getGuitar(forKey: GUITAR)
             if guitar == TypeOfGuitar.classic {
                 print("classica")
-                session.sendSignal(device[0], message: SignalCode.showElectricGuitar)
+                if let device = session.showConncetedDevices() {
+                    session.sendSignal(device[0], message: SignalCode.showElectricGuitar)
+                }
+                UserDefaults.setGuitar(guitar: TypeOfGuitar.electric, forKey: GUITAR)
             }
-            else if guitar == TypeOfGuitar.elettric {
+            else if guitar == TypeOfGuitar.electric {
                 print("elettrica")
-                session.sendSignal(device[0], message: SignalCode.showAcousticGuitar)
+                if let device = session.showConncetedDevices() {
+                    session.sendSignal(device[0], message: SignalCode.showAcousticGuitar)
+                }
+                UserDefaults.setGuitar(guitar: TypeOfGuitar.classic, forKey: GUITAR)
             }
-        }
     }
     @IBAction func sxButton(_ sender: Any) {
-        if let device = session.showConncetedDevices() {
-            if guitar == TypeOfGuitar.classic {
+        let guitar = UserDefaults.getGuitar(forKey: GUITAR)
+        if guitar == TypeOfGuitar.classic {
+            print("classica")
+            if let device = session.showConncetedDevices() {
                 session.sendSignal(device[0], message: SignalCode.showElectricGuitar)
             }
-            else if guitar == TypeOfGuitar.elettric {
+            UserDefaults.setGuitar(guitar: TypeOfGuitar.electric, forKey: GUITAR)
+        }
+        else if guitar == TypeOfGuitar.electric {
+            print("elettrica")
+            if let device = session.showConncetedDevices() {
                 session.sendSignal(device[0], message: SignalCode.showAcousticGuitar)
             }
+            UserDefaults.setGuitar(guitar: TypeOfGuitar.classic, forKey: GUITAR)
         }
     }
-    
-    
-    
-     override func viewDidDisappear(_ animated: Bool) {
-        let guitarSelected = selectGuitar(guitarLabel.text!)
-        UserDefaults.setGuitar(guitar: guitarSelected!, forKey: GUITAR)
-    }
-    
-    
-    
 }

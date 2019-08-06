@@ -19,15 +19,15 @@ let userDefault = UserDefaults.standard
 
 
 enum TypeOfGuitar: Int {
-    case elettric = 0
-    case classic = 1
+    case electric = 1
+    case classic = 2
 }
 
 func selectGuitar(_ guitar: TypeOfGuitar) -> String {
     switch guitar {
     case .classic:
         return "classic"
-    case .elettric:
+    case .electric:
         return "electric"
     default:
         break
@@ -39,7 +39,7 @@ func selectGuitar(_ guitar: String) -> TypeOfGuitar? {
     case "classic":
         return .classic
     case "electric":
-        return .elettric
+        return .electric
     default:
         return nil
     }
@@ -47,11 +47,11 @@ func selectGuitar(_ guitar: String) -> TypeOfGuitar? {
 
 extension UserDefaults {
     class func setGuitar(guitar: TypeOfGuitar, forKey: String) {
-        UserDefaults.standard.set(guitar.rawValue, forKey: GUITAR)
+        UserDefaults.standard.set(guitar.rawValue, forKey: forKey)
     }
     
     class func getGuitar(forKey: String) -> TypeOfGuitar? {
-        let guitInt = UserDefaults.standard.integer(forKey: GUITAR)
+        let guitInt = UserDefaults.standard.integer(forKey: forKey)
         if guitInt ==  0 { return nil }
         return TypeOfGuitar.init(rawValue: guitInt)!
     }

@@ -16,12 +16,14 @@ class ViewController: UIViewController{
     
     var userDataChords: Array<String>?
     
+    let strClassic = "Classic Guitar Selected"
+    let strElettric = "Electric Guitar Selected"
+    
     //Session for comunicating with watch
     var session: WCSession!
     var sessionTv = SessionManager.share
     //func to set in the GameView
     var toCall: (()->Void)!
-    let guitar = UserDefaults.getGuitar(forKey: GUITAR)
     
     //    Pairing status "led"
     @IBOutlet weak var deviceStatus: UIView!
@@ -53,8 +55,7 @@ class ViewController: UIViewController{
             print("Could not activate session")
         }
         
-        
-        
+        print(UserDefaults.getGuitar(forKey: GUITAR))
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -74,6 +75,13 @@ class ViewController: UIViewController{
         }
         if let device = sessionTv.showConncetedDevices() {
             sessionTv.sendSignal(device[0], message: SignalCode.openGame)
+        }
+    }
+    
+     override func viewWillAppear(_ animated: Bool) {
+        let guitar = UserDefaults.getGuitar(forKey: GUITAR)
+        DispatchQueue.main.async {
+            self.inizializeGuitarLabel(guitar!)
         }
     }
     
@@ -117,12 +125,10 @@ class ViewController: UIViewController{
     }
     
     func inizializeGuitarLabel (_ guitar: TypeOfGuitar) {
-        let strClassic = "Classic Guitar Selected"
-        let strElettric = "Electric Guitar Selected"
         switch guitar {
-        case .elettric:
+        case .electric:
             guitarLabel.text = strElettric
-            break;
+            break
         case .classic:
             guitarLabel.text = strClassic
             break
@@ -207,16 +213,14 @@ extension ViewController: SessionManagerDelegate {
     }
     
     func nearPeerHasChangedState(_ manager: SessionManager, peer change: MCPeerID, connected: Int) {
+        let guitar = UserDefaults.getGuitar(forKey: GUITAR)
         if connected == 2 {
-            DispatchQueue.main.async {
-                self.guitarLabel.text = selectGuitar(self.guitar!)
-            }
             if let device = sessionTv.showConncetedDevices() {
                 if guitar == TypeOfGuitar.classic {
-                    sessionTv.sendSignal(device[0], message: SignalCode.showElectricGuitar)
-                }
-                else if guitar == TypeOfGuitar.elettric {
                     sessionTv.sendSignal(device[0], message: SignalCode.showAcousticGuitar)
+                }
+                else if guitar == TypeOfGuitar.electric {
+                    sessionTv.sendSignal(device[0], message: SignalCode.showElectricGuitar)
                 }
             }
         }

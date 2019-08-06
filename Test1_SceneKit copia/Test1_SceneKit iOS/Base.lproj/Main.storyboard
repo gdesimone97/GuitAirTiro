@@ -944,14 +944,14 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wfW-a1-QVI">
                                 <rect key="frame" x="87" y="143" width="240" height="240"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="102" translatesAutoresizingMaskIntoConstraints="NO" id="EWz-yu-Rka">
-                                <rect key="frame" x="43" y="495" width="329.5" height="32"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="58" translatesAutoresizingMaskIntoConstraints="NO" id="pSv-Fg-K8G">
+                                <rect key="frame" x="55" y="449" width="305.5" height="64"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9YJ-bz-INE">
-                                        <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="32" id="RNg-O2-fbi"/>
-                                            <constraint firstAttribute="height" constant="32" id="f06-HF-VQf"/>
+                                            <constraint firstAttribute="height" constant="64" id="1pr-dQ-Z3B"/>
+                                            <constraint firstAttribute="width" constant="64" id="HgK-sN-MpL"/>
                                         </constraints>
                                         <state key="normal" image="frecciasx.png"/>
                                         <connections>
@@ -959,16 +959,16 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xr8-Xe-Bkr">
-                                        <rect key="frame" x="134" y="0.0" width="61.5" height="32"/>
+                                        <rect key="frame" x="122" y="0.0" width="61.5" height="64"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                         <color key="textColor" red="0.20539060240000001" green="0.469960928" blue="0.96475261450000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lej-Ge-emK">
-                                        <rect key="frame" x="297.5" y="0.0" width="32" height="32"/>
+                                        <rect key="frame" x="241.5" y="0.0" width="64" height="64"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="32" id="7fy-Tv-8o4"/>
-                                            <constraint firstAttribute="height" constant="32" id="aoo-eB-SDM"/>
+                                            <constraint firstAttribute="height" constant="64" id="Sjr-l9-hzK"/>
+                                            <constraint firstAttribute="width" constant="64" id="kNI-81-Y9S"/>
                                         </constraints>
                                         <state key="normal" image="frecciadx.png"/>
                                         <connections>
@@ -980,12 +980,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.10618691891431808" green="0.12509804964065552" blue="0.14902287721633911" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="EWz-yu-Rka" firstAttribute="top" secondItem="wfW-a1-QVI" secondAttribute="bottom" constant="112" id="GX8-g8-8mv"/>
+                            <constraint firstItem="28H-T5-W8l" firstAttribute="bottom" secondItem="pSv-Fg-K8G" secondAttribute="bottom" constant="300" id="NvY-xF-A8u"/>
                             <constraint firstItem="28H-T5-W8l" firstAttribute="trailing" secondItem="wfW-a1-QVI" secondAttribute="trailing" constant="87" id="PVB-Xv-jvf"/>
-                            <constraint firstItem="28H-T5-W8l" firstAttribute="bottom" secondItem="EWz-yu-Rka" secondAttribute="bottom" constant="286" id="fEb-jA-0Lt"/>
+                            <constraint firstItem="pSv-Fg-K8G" firstAttribute="top" secondItem="wfW-a1-QVI" secondAttribute="bottom" constant="66" id="T7q-2P-yDx"/>
+                            <constraint firstItem="pSv-Fg-K8G" firstAttribute="leading" secondItem="28H-T5-W8l" secondAttribute="leading" constant="55" id="Y7k-0p-s08"/>
                             <constraint firstItem="wfW-a1-QVI" firstAttribute="leading" secondItem="28H-T5-W8l" secondAttribute="leading" constant="87" id="n9s-vi-m1Y"/>
                             <constraint firstItem="wfW-a1-QVI" firstAttribute="top" secondItem="28H-T5-W8l" secondAttribute="top" constant="55" id="o91-Uy-79c"/>
-                            <constraint firstItem="EWz-yu-Rka" firstAttribute="leading" secondItem="28H-T5-W8l" secondAttribute="leading" constant="43" id="qYu-kK-eG9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="28H-T5-W8l"/>
                     </view>
