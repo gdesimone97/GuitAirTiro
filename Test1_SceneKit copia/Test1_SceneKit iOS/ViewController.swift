@@ -120,7 +120,7 @@ class ViewController: UIViewController{
         
         
         
-        if session.isReachable{
+        if session != nil && session.isReachable{
             playButton.isEnabled = true
             deviceStatus?.backgroundColor = .green
         }
