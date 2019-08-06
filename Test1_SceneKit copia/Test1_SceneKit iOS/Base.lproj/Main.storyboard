@@ -154,6 +154,11 @@
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EIU-23-9KZ">
                                         <rect key="frame" x="0.0" y="0.0" width="302" height="169"/>
                                         <state key="normal" image="RedButton.png"/>
+                                        <connections>
+                                            <action selector="touchDownRed:" destination="O1g-0y-a0f" eventType="touchDown" id="1dM-0Z-dFf"/>
+                                            <action selector="touchExitRed:" destination="O1g-0y-a0f" eventType="touchDragExit" id="0oh-lr-HL7"/>
+                                            <action selector="touchUpInsideRed:" destination="O1g-0y-a0f" eventType="touchUpInside" id="Jl1-sg-ViH"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oEy-D7-cP8">
                                         <rect key="frame" x="0.0" y="202" width="302" height="169"/>

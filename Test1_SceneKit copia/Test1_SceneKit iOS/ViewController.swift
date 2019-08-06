@@ -46,17 +46,11 @@ class ViewController: UIViewController{
         // Updating of chords label
         //fourthChordLabel?.text = "Gm"
         
-        if WCSession.isSupported(){
-            session = WCSession.default
-            session!.delegate = self
-            session.activate()
-        }
-        else{
-            print("Could not activate session")
-        }
         
         print(UserDefaults.getGuitar(forKey: GUITAR))
     }
+    
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
@@ -82,6 +76,24 @@ class ViewController: UIViewController{
         let guitar = UserDefaults.getGuitar(forKey: GUITAR)
         DispatchQueue.main.async {
             self.inizializeGuitarLabel(guitar!)
+        }
+        
+        let user = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
+        if user == 0 {
+            if WCSession.isSupported() && session == nil {
+                session = WCSession.default
+                session!.delegate = self
+                session.activate()
+            }
+        }
+        else if user == 1 {
+            session = nil
+        }
+    }
+    
+     override func viewDidDisappear(_ animated: Bool) {
+        if let device = sessionTv.showConncetedDevices() {
+            sessionTv.sendSignal(device[0], message: SignalCode.closeGame)
         }
     }
     
