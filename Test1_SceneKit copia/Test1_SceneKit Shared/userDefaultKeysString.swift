@@ -13,6 +13,7 @@ let USER_DEFAULT_KEY_STRING = "chords_string"
 let USER_LANGUAGE = "PreferredNotation"
 let GUITAR = "guitar_selected"
 let LOGIN = "login_user"
+let GAME_DEVICE_SETTINGS = "game_device_settings"
 
 let userDefault = UserDefaults.standard
 
