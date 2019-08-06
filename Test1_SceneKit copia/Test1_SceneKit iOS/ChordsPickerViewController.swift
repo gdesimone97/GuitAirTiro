@@ -158,10 +158,9 @@ UIPickerViewDataSource, UIPickerViewDelegate {
         
         userDefault.set(valuesToStore, forKey: USER_DEFAULT_KEY_ROW)
         userDefault.set(str, forKey: USER_DEFAULT_KEY_STRING)
-        userDefault.set(str, forKey: AUDIO_FILE_NAME)
         
-        print(valuesToStore)
-        print(chords.count);
+        userDefault.set(audioFile, forKey: AUDIO_FILE_NAME)
+        
         var choice = "< ";
         for i in 0..<4{
             let post = i == 3 ? " >" : ", ";
