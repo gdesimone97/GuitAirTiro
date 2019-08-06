@@ -46,8 +46,11 @@ class ViewController: UIViewController{
         // Updating of chords label
         //fourthChordLabel?.text = "Gm"
         
+        if let guitar = UserDefaults.getGuitar(forKey: GUITAR) { }
+        else {
+            UserDefaults.setGuitar(guitar: TypeOfGuitar.classic, forKey: GUITAR)
+        }
         
-        print(UserDefaults.getGuitar(forKey: GUITAR))
     }
     
     
