@@ -14,6 +14,7 @@ let USER_LANGUAGE = "PreferredNotation"
 let GUITAR = "guitar_selected"
 let LOGIN = "login_user"
 let GAME_DEVICE_SETTINGS = "game_device_settings"
+let AUDIO_FILE_NAME = "audio_file_name"
 
 let userDefault = UserDefaults.standard
 
