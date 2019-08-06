@@ -64,11 +64,13 @@ class GameViewController: UIViewController {
     var playing: Bool = false
     var points: Int!
     // I take the selected chords from the user
-    var chords: [String] = ["A.wav", "B.wav", "C.wav", "D.wav"]  //= userDefault.stringArray(forKey: USER_DEFAULT_KEY_STRING)!
+    var chords: [String] = ["A.wav", "E.wav", "D.wav", "D.wav"]  //= userDefault.stringArray(forKey: USER_DEFAULT_KEY_STRING)!
     // I take the watch settings : true -> watch is present, false -> watch not present
     var watch: Bool! = false // userDefault bla bla
     
     var pointText: SCNNode?
+    var multiplierNode: SCNNode?
+    var multiplier = 1
     
     // This is the thread that shows nodes on the guitar
     let noteQueue = DispatchQueue(label: "noteQueue", qos: .userInteractive)
@@ -276,7 +278,11 @@ class GameViewController: UIViewController {
             if let node = self.pointText {
                 node.removeFromParentNode()
             }
-            self.pointText = self.textManager.addTextAtPosition(str: "Points: \(self.points!)", x: 2, y: 3, z: -0.5)
+            self.pointText = self.textManager.addTextAtPosition(str: "Points: \(self.points!)", x: 1.5, y: 3.3, z: -0.5)
+            self.pointText?.eulerAngles = SCNVector3(x: 0, y: -0.15, z: 0)
+            
+            self.multiplierNode = self.textManager.addTextAtPosition(str: "Multiplier: x\(self.multiplier)", x: 1.5, y: 3, z: -0.5)
+            self.multiplierNode?.eulerAngles = SCNVector3(x: 0, y: -0.15, z: 0)
         }
     }
     
