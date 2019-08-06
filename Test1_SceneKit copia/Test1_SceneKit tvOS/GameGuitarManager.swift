@@ -21,16 +21,19 @@ class GameGuitarManager {
     private var width: Float
     private var length: Float
     private var z: Float
+    private var changePoints: (Int, Bool) -> Void // This func is needed when this class have to directly modify the points of GameViewController
     
     private let column1: ColumnType
     private let column2: ColumnType
     private let column3: ColumnType
     private let column4: ColumnType
     
+    
     let bokehEffect = SCNParticleSystem(named: "Art.scnassets/Bokeh Effect/SceneKit Particle System.scnp", inDirectory: nil)
     let fireEffect = SCNParticleSystem(named: "Art.scnassets/Fire Effect/SceneKit Particle System.scnp", inDirectory: nil)
     
-    init(scene: SCNScene, width: Float, length: Float, z: Float) {
+    
+    init(scene: SCNScene, width: Float, length: Float, z: Float, function: @escaping (Int, Bool) -> Void) {
         self.scene = scene
         self.width = width
         self.length = length
@@ -40,6 +43,26 @@ class GameGuitarManager {
         column2 = ColumnType(color: UIColor.blue, xPosition: Float(-width/4))
         column3 = ColumnType(color: UIColor.green, xPosition: Float(width/4))
         column4 = ColumnType(color: UIColor.purple, xPosition: Float(width/4 + width/2))
+        
+        changePoints = function
+        
+        
+        DispatchQueue(label: "NotesNotPressed", qos: .userInteractive).async {
+            while true {
+                let node = scene.rootNode.childNodes
+                scene.rootNode.enumerateChildNodes { (node, _) in
+                    if node.name == "note" {
+                        // If a node exceeds the limit clickable, it's a -1 point
+                        if node.position.z > 0 {
+                            self.changePoints(-1, false)
+                            node.removeFromParentNode()
+                        }
+                    }
+                }
+                usleep(100000)
+            }
+            
+        }
     }
 
     // Parameter indicates the column of the guitar
@@ -167,6 +190,4 @@ class GameGuitarManager {
         }
     }
     
-    
-
 }

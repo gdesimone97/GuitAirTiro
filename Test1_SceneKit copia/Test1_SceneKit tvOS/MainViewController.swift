@@ -31,7 +31,7 @@ class MainViewController: UIViewController {
     
     
     var session = SessionManager.share
-    let semaphore = DispatchSemaphore(value: 1)
+    let semaphore = DispatchSemaphore(value: 0)
     let peerListQueue = DispatchQueue(label: "peerListQueue", qos: .userInteractive)
     var peerConnected: MCPeerID?
     var connected: Int = 0 // -> 0: Disconnected, 1: Connecting, 2: Connected
@@ -358,9 +358,7 @@ extension MainViewController: SessionManagerDelegate {
                 self.deviceNode?.runAction(SCNAction.sequence([wait, change, remove]))
             }
             else if self.peerConnected == change && self.connected == 2 && connected == 0 {
-                self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5, z: 1)
-                self.phone.runAction(SCNAction.move(to: SCNVector3(0, 0, 0), duration: 0.7))
-                self.peerConnected = nil
+                self.checkConnection()
             }
             
             self.connected = connected

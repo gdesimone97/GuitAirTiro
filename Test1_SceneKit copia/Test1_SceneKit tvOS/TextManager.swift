@@ -43,7 +43,7 @@ class TextManager {
         }
     }
     
-    func addGameNotification(str: String, color: UIColor) {
+    func addGameNotification(str: String, color: UIColor, duration: TimeInterval) {
         let text = SCNText(string: str, extrusionDepth: 0.2)
         text.font = UIFont.italicSystemFont(ofSize: 1)
         let textNode = SCNNode(geometry: text)
@@ -63,7 +63,7 @@ class TextManager {
         
         DispatchQueue.main.async {
             self.scene.rootNode.addChildNode(textNode)
-            let wait = SCNAction.wait(duration: 2)
+            let wait = SCNAction.wait(duration: duration)
             let disappear = SCNAction.fadeOut(duration: 0.5)
             let remove = SCNAction.removeFromParentNode()
             textNode.runAction(SCNAction.sequence([wait, disappear, remove]))

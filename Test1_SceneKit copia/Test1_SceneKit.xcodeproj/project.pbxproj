@@ -70,6 +70,8 @@
 		779E565022EB090400ACC1BF /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779E564F22EB090300ACC1BF /* SessionManager.swift */; };
 		779E565122EB090400ACC1BF /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779E564F22EB090300ACC1BF /* SessionManager.swift */; };
 		779E565322EB0A3200ACC1BF /* DeviceDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779E565222EB0A3200ACC1BF /* DeviceDictionary.swift */; };
+		77D0C60B22F987EF009AEB95 /* Sound Effects in Resources */ = {isa = PBXBuildFile; fileRef = 77D0C60A22F987EF009AEB95 /* Sound Effects */; };
+		77D0C60D22F9881B009AEB95 /* SoundEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D0C60C22F9881B009AEB95 /* SoundEffects.swift */; };
 		77DFAD2222E84C56006DCBEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFAD2122E84C56006DCBEE /* AppDelegate.swift */; };
 		77DFAD2A22E84C56006DCBEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77DFAD2822E84C56006DCBEE /* LaunchScreen.storyboard */; };
 		77DFAD2F22E84C56006DCBEE /* Test1_SceneKit.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 77DFAD2E22E84C56006DCBEE /* Test1_SceneKit.app */; };
@@ -197,6 +199,8 @@
 		776713D922EF852B0020E22C /* Guitars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guitars.swift; sourceTree = "<group>"; };
 		779E564F22EB090300ACC1BF /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		779E565222EB0A3200ACC1BF /* DeviceDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDictionary.swift; sourceTree = "<group>"; };
+		77D0C60A22F987EF009AEB95 /* Sound Effects */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Sound Effects"; sourceTree = "<group>"; };
+		77D0C60C22F9881B009AEB95 /* SoundEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundEffects.swift; sourceTree = "<group>"; };
 		77DFAD1722E84C54006DCBEE /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		77DFAD1822E84C54006DCBEE /* Art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Art.scnassets; sourceTree = "<group>"; };
 		77DFAD1922E84C56006DCBEE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -278,6 +282,7 @@
 		77DFAD1622E84C54006DCBEE /* Test1_SceneKit Shared */ = {
 			isa = PBXGroup;
 			children = (
+				77D0C60A22F987EF009AEB95 /* Sound Effects */,
 				774CDDAC22F3150200760FC9 /* Chords */,
 				779E564F22EB090300ACC1BF /* SessionManager.swift */,
 				77DFAD1722E84C54006DCBEE /* MainController.swift */,
@@ -389,6 +394,7 @@
 				776713D922EF852B0020E22C /* Guitars.swift */,
 				77F9DD1B22F0851800B0C37F /* TextManager.swift */,
 				77F9DD1D22F08F0B00B0C37F /* GameGuitarManager.swift */,
+				77D0C60C22F9881B009AEB95 /* SoundEffects.swift */,
 			);
 			path = "Test1_SceneKit tvOS";
 			sourceTree = "<group>";
@@ -614,6 +620,7 @@
 				77DFAD5122E84C56006DCBEE /* Main.storyboard in Resources */,
 				77DFAD5B22E84C56006DCBEE /* Assets.xcassets in Resources */,
 				77DFAD5822E84C56006DCBEE /* Art.scnassets in Resources */,
+				77D0C60B22F987EF009AEB95 /* Sound Effects in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -764,6 +771,7 @@
 				776713DA22EF852B0020E22C /* Guitars.swift in Sources */,
 				77DFAD4C22E84C56006DCBEE /* AppDelegate.swift in Sources */,
 				77F9DD1C22F0851800B0C37F /* TextManager.swift in Sources */,
+				77D0C60D22F9881B009AEB95 /* SoundEffects.swift in Sources */,
 				7762443322F8277000B36008 /* userDefaultKeysString.swift in Sources */,
 				08B5E77F22F1C3C500A6FF05 /* SignalCode.swift in Sources */,
 				77F9DD1E22F08F0B00B0C37F /* GameGuitarManager.swift in Sources */,

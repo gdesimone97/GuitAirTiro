@@ -18,10 +18,7 @@ enum SignalCode: UInt8 {
     case openGame = 3
     case closeGame = 4
     
-    case signal1 = 5
-    case signal2 = 6
-    case signal3 = 7
-    case signal4 = 8
+    case signal = 5
     case key1Pressed = 11
     case key2Pressed = 12
     case key3Pressed = 13
