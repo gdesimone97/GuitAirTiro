@@ -31,14 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if udef.string(forKey: NOTATION_KEY ) != nil{
             
-            print("Default esistono già");
-        
         }else{
-            
-            print("Default non presenti");
-            
-            if(udef.array(forKey: "chords_string") == nil ){
-                udef.setValue(["La","La","La","La"],forKey: "chords_string");
+
+            if(udef.array(forKey: USER_DEFAULT_KEY_STRING) == nil ){
+                udef.setValue(["La","La","La","La"],forKey: USER_DEFAULT_KEY_STRING);
             }
             
             udef.set("IT", forKey: NOTATION_KEY);
