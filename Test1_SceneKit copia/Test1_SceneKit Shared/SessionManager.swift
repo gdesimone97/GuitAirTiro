@@ -147,7 +147,7 @@ extension SessionManager: MCSessionDelegate {
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        print("Messaggio \(i) ricevuto da: \(peerID), messaggio: \(data)")
+        print("Messaggio ricevuto da: \(peerID), messaggio: \(data)")
         i+=1
         let intData = data.first
         let code = SignalCode.init(rawValue: intData!)

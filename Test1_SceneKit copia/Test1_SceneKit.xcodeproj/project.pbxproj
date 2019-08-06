@@ -20,6 +20,7 @@
 		087B1E5522F87A2700BDC2C1 /* elettric_guitar.png in Resources */ = {isa = PBXBuildFile; fileRef = 087B1E5322F87A2700BDC2C1 /* elettric_guitar.png */; };
 		0887361022F444DC00472B14 /* guitar-player.png in Resources */ = {isa = PBXBuildFile; fileRef = 0887360F22F444DC00472B14 /* guitar-player.png */; };
 		0887361422F4498400472B14 /* account@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0887361322F4498400472B14 /* account@2x.png */; };
+		088BAC3622F9720800784692 /* DevicesSettingsPaired.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BAC3522F9720800784692 /* DevicesSettingsPaired.swift */; };
 		088E1CBA22F345F1006A197D /* metal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 088E1CAD22F345F0006A197D /* metal@2x.png */; };
 		088E1CBB22F345F1006A197D /* rock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 088E1CAE22F345F0006A197D /* rock@2x.png */; };
 		088E1CBC22F345F1006A197D /* treble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 088E1CAF22F345F0006A197D /* treble@2x.png */; };
@@ -151,6 +152,7 @@
 		0887360C22F43F1B00472B14 /* Test1_SceneKit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Test1_SceneKit.entitlements; sourceTree = "<group>"; };
 		0887360F22F444DC00472B14 /* guitar-player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guitar-player.png"; sourceTree = "<group>"; };
 		0887361322F4498400472B14 /* account@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "account@2x.png"; sourceTree = "<group>"; };
+		088BAC3522F9720800784692 /* DevicesSettingsPaired.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesSettingsPaired.swift; sourceTree = "<group>"; };
 		088E1CAD22F345F0006A197D /* metal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "metal@2x.png"; sourceTree = "<group>"; };
 		088E1CAE22F345F0006A197D /* rock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rock@2x.png"; sourceTree = "<group>"; };
 		088E1CAF22F345F0006A197D /* treble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "treble@2x.png"; sourceTree = "<group>"; };
@@ -353,6 +355,7 @@
 				086325B522F3328800513E1B /* LoginViewController.swift */,
 				086325B722F33A5100513E1B /* NavigationController.swift */,
 				087B1E5022F878DE00BDC2C1 /* GuitarSelectedViewController.swift */,
+				088BAC3522F9720800784692 /* DevicesSettingsPaired.swift */,
 			);
 			path = "Test1_SceneKit iOS";
 			sourceTree = "<group>";
@@ -729,6 +732,7 @@
 				0898EC2922F05146007C32DD /* ChordsPickerViewController.swift in Sources */,
 				086325B822F33A5100513E1B /* NavigationController.swift in Sources */,
 				0898EC2B22F05146007C32DD /* Guitar.swift in Sources */,
+				088BAC3622F9720800784692 /* DevicesSettingsPaired.swift in Sources */,
 				0898EC2722F05146007C32DD /* SettingsTableViewController.swift in Sources */,
 				087B1E5122F878DE00BDC2C1 /* GuitarSelectedViewController.swift in Sources */,
 				77DFAD5322E84C56006DCBEE /* MainController.swift in Sources */,
