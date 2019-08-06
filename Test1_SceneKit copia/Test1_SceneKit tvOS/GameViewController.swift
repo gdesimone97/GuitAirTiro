@@ -57,9 +57,9 @@ class GameViewController: UIViewController {
     var playing: Bool = false
     var points: Int!
     // I take the selected chords from the user
-    var chords: [String] = ["A.wav", "E.wav", "D.wav", "D.wav"]  //= userDefault.stringArray(forKey: USER_DEFAULT_KEY_STRING)!
+    var chords: [String] = userDefault.stringArray(forKey: USER_DEFAULT_KEY_STRING)!
     // I take the watch settings : true -> watch is present, false -> watch not present
-    var watch: Bool! = false // userDefault bla bla
+    var watch: Bool = ( userDefault.integer(forKey: GAME_DEVICE_SETTINGS) == 0 ? true : false )
     
     var pointText: SCNNode?
     var multiplierNode: SCNNode?
@@ -74,6 +74,8 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(chords)
         
         self.gameController = GameController(sceneRenderer: gameView)
         
@@ -317,40 +319,42 @@ extension GameViewController: SessionManagerDelegate {
             case .closeGame: // Stop the game session
                 self.dismiss(animated: false, completion: nil)
             
-            case .signal1:
-                self.play(col: 1)
-                if self.gameGuitarManager.checkPoint(column: 1) {
-                    self.points += self.multiplier
+            case .signal:
+                if self.button1Pressed {
+                    self.play(col: 1)
+                    if self.gameGuitarManager.checkPoint(column: 1) {
+                        self.points += self.multiplier
+                    }
+                    else {
+                        self.points -= self.multiplier
+                    }
                 }
-                else {
-                    self.points -= self.multiplier
+                if self.button2Pressed {
+                    self.play(col: 2)
+                    if self.gameGuitarManager.checkPoint(column: 2) {
+                        self.points += self.multiplier
+                    }
+                    else {
+                        self.points -= self.multiplier
+                    }
                 }
-                
-            case .signal2:
-                self.play(col: 2)
-                if self.gameGuitarManager.checkPoint(column: 2) {
-                    self.points += self.multiplier
+                if self.button3Pressed {
+                    self.play(col: 3)
+                    if self.gameGuitarManager.checkPoint(column: 3) {
+                        self.points += self.multiplier
+                    }
+                    else {
+                        self.points -= self.multiplier
+                    }
                 }
-                else {
-                    self.points -= self.multiplier
-                }
-                
-            case .signal3:
-                self.play(col: 3)
-                if self.gameGuitarManager.checkPoint(column: 3) {
-                    self.points += self.multiplier
-                }
-                else {
-                    self.points -= self.multiplier
-                }
-                
-            case .signal4:
-                self.play(col: 4)
-                if self.gameGuitarManager.checkPoint(column: 4) {
-                    self.points += self.multiplier
-                }
-                else {
-                    self.points -= self.multiplier
+                if self.button4Pressed {
+                    self.play(col: 4)
+                    if self.gameGuitarManager.checkPoint(column: 4) {
+                        self.points += self.multiplier
+                    }
+                    else {
+                        self.points -= self.multiplier
+                    }
                 }
                 
 

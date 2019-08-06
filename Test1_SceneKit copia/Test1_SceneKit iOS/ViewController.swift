@@ -124,15 +124,17 @@ class ViewController: UIViewController{
         }
         
         
+        DispatchQueue.main.async {
+            if self.session != nil && self.session.isReachable{
+                self.playButton.isEnabled = true
+                self.deviceStatus?.backgroundColor = .green
+            }
+            else{
+                self.deviceStatus?.backgroundColor = .red
+                self.playButton.isEnabled = false
+            }
+        }
         
-        if session.isReachable{
-            playButton.isEnabled = true
-            deviceStatus?.backgroundColor = .green
-        }
-        else{
-            deviceStatus?.backgroundColor = .red
-            playButton.isEnabled = false
-        }
         
         if let testGuitar = UserDefaults.getGuitar(forKey: GUITAR) {
             inizializeGuitarLabel(testGuitar)
