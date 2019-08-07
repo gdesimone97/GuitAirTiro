@@ -81,6 +81,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
+        let sessionTv = SessionManager.share
+        if let device = sessionTv.showConncetedDevices() {
+            sessionTv.sendSignal(device[0], message: SignalCode.closeGame)
+            sessionTv.disconnectedPeer()
+        }
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
