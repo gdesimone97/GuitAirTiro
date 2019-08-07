@@ -16,7 +16,6 @@ class GameModeViewController: UIViewController {
     var sessionDelegate: ViewController!
     let sessionTv = SessionManager.share
     
-    
     // Labels shown in game mode, each label is associated with a button
     @IBOutlet weak var redButtonChord: UILabel!
     @IBOutlet weak var blueButtonChord: UILabel!
@@ -172,7 +171,7 @@ class GameModeViewController: UIViewController {
         
         self.dismiss(animated: false, completion: nil)
         
-        if sessionDelegate != nil{
+        if sessionDelegate.session != nil {
             sessionDelegate.session.sendMessage(["payload": "stop"], replyHandler: nil, errorHandler: nil)
         }
         
