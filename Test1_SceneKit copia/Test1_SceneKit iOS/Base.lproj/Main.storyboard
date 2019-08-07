@@ -163,14 +163,29 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oEy-D7-cP8">
                                         <rect key="frame" x="0.0" y="202" width="302" height="169"/>
                                         <state key="normal" image="BlueButton.png"/>
+                                        <connections>
+                                            <action selector="touchDownBlue:" destination="O1g-0y-a0f" eventType="touchUpInside" id="fJT-u4-s5Y"/>
+                                            <action selector="touchExitBlue:" destination="O1g-0y-a0f" eventType="touchUpInside" id="NqU-KT-jRO"/>
+                                            <action selector="touchUpInsideBlue:" destination="O1g-0y-a0f" eventType="touchUpInside" id="jf5-Nt-dTz"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w9s-lY-gPk">
                                         <rect key="frame" x="0.0" y="404" width="302" height="169"/>
                                         <state key="normal" image="GreenButton.png"/>
+                                        <connections>
+                                            <action selector="touchDownGreen:" destination="O1g-0y-a0f" eventType="touchUpInside" id="JpI-OA-v5z"/>
+                                            <action selector="touchExitGreen:" destination="O1g-0y-a0f" eventType="touchUpInside" id="w5p-Jc-Spv"/>
+                                            <action selector="touchUpInsideGreen:" destination="O1g-0y-a0f" eventType="touchUpInside" id="P74-23-YeP"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxT-jh-mcK">
                                         <rect key="frame" x="0.0" y="606" width="302" height="169"/>
                                         <state key="normal" image="PinkButton.png"/>
+                                        <connections>
+                                            <action selector="touchDownPink:" destination="O1g-0y-a0f" eventType="touchUpInside" id="5VA-Zn-Ioi"/>
+                                            <action selector="touchExitPink:" destination="O1g-0y-a0f" eventType="touchUpInside" id="7op-3w-L45"/>
+                                            <action selector="touchUpInsidePink:" destination="O1g-0y-a0f" eventType="touchUpInside" id="rv2-mV-1sQ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
