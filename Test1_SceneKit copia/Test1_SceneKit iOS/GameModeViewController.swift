@@ -133,27 +133,27 @@ class GameModeViewController: UIViewController {
         //        Il numero zero è associato al rosso e così via
         if let device = sessionTv.showConncetedDevices() {}
         else {
-        do{
-            guitar11 = try Guitar(file: toPlay[0])
-            guitar21 = try Guitar(file: toPlay[1])
-            guitar31 = try Guitar(file: toPlay[2])
-            guitar41 = try Guitar(file: toPlay[3])
-            guitar12 = try Guitar(file: toPlay[0])
-            guitar22 = try Guitar(file: toPlay[1])
-            guitar32 = try Guitar(file: toPlay[2])
-            guitar42 = try Guitar(file: toPlay[3])
-        }catch{
-            print("Could not find guitar files")
-        }
-        
-        //        create mixer, to allow repeated chords/multiple chords
-        let mixer = AKMixer(guitar11?.chord, guitar21?.chord, guitar31?.chord, guitar41?.chord, guitar12?.chord, guitar22?.chord, guitar32?.chord, guitar42?.chord)
-        AudioKit.output = mixer
-        do{
-            try AudioKit.start()
-        }catch{
-            print("Audiokit motor couldn't start!")
-        }
+            do{
+                guitar11 = try Guitar(file: toPlay[0])
+                guitar21 = try Guitar(file: toPlay[1])
+                guitar31 = try Guitar(file: toPlay[2])
+                guitar41 = try Guitar(file: toPlay[3])
+                guitar12 = try Guitar(file: toPlay[0])
+                guitar22 = try Guitar(file: toPlay[1])
+                guitar32 = try Guitar(file: toPlay[2])
+                guitar42 = try Guitar(file: toPlay[3])
+            }catch{
+                print("Could not find guitar files")
+            }
+            
+            //        create mixer, to allow repeated chords/multiple chords
+            let mixer = AKMixer(guitar11?.chord, guitar21?.chord, guitar31?.chord, guitar41?.chord, guitar12?.chord, guitar22?.chord, guitar32?.chord, guitar42?.chord)
+            AudioKit.output = mixer
+            do{
+                try AudioKit.start()
+            }catch{
+                print("Audiokit motor couldn't start!")
+            }
         }
     }
     
