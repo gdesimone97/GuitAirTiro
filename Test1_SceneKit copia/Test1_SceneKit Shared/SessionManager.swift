@@ -16,6 +16,7 @@ protocol SessionManagerDelegate: class {
     func nearPeerHasChangedState(_ manager: SessionManager,peer change: MCPeerID, connected: Int)
     /** Segnala la ricezione di un messaggio */
     func mexReceived(_ manager: SessionManager,didMessageReceived: SignalCode)
+    func mexReceived(_ manager: SessionManager,didMessageReceived: Dictionary<Int,String>)
     /** Connessione con peer persa */
     func peerLost(_ manager: SessionManager,peer lost: MCPeerID)
 }
@@ -94,6 +95,18 @@ class SessionManager: NSObject {
         }
     }
     
+    func sendSignal (_ peer: MCPeerID, message: Dictionary<Int,String>) {
+        do {
+            var mex = try NSKeyedArchiver.archivedData(withRootObject: message, requiringSecureCoding: false)
+         if self.session.connectedPeers.count > 0 {
+            try self.session.send(mex, toPeers: [peer], with: .unreliable)
+        }
+        }
+        catch _ {
+            print("errore")
+        }
+    }
+    
     func sendSignal (_ peer: MCPeerID, message: UInt8) {
         var mex = message
         guard mex != 0 else {print("Non puoi mandare 0, questo metodo verà cancellato successivamente"); return}
@@ -149,10 +162,17 @@ extension SessionManager: MCSessionDelegate {
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         print("Messaggio ricevuto da: \(peerID), messaggio: \(data)")
         i+=1
+        var nsData = NSData(data: data)
+        if nsData.length == 1 {
         let intData = data.first
         let code = SignalCode.init(rawValue: intData!)
         guard code != nil else { return }
         self.delegate?.mexReceived(self, didMessageReceived: code!)
+        }
+        else {
+            var dic = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! Dictionary<Int,String>
+            self.delegate?.mexReceived(self, didMessageReceived: dic)
+        }
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {

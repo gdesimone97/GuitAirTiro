@@ -55,7 +55,6 @@ class ViewController: UIViewController{
             let audioStandard = Array<String>(repeating: "A.wav", count: 4)
             userDefault.set(audioStandard, forKey: AUDIO_FILE_NAME)
         }
-        
     }
     
     
@@ -231,6 +230,11 @@ extension ViewController: WCSessionDelegate {
 }
 
 extension ViewController: SessionManagerDelegate {
+    
+    func mexReceived(_ manager: SessionManager, didMessageReceived: Dictionary<Int, String>) {
+        return
+    }
+    
     func peerFound(_ manger: SessionManager, peer: MCPeerID) {
         return
     }
@@ -245,7 +249,9 @@ extension ViewController: SessionManagerDelegate {
                 else if guitar == TypeOfGuitar.electric {
                     sessionTv.sendSignal(device[0], message: SignalCode.showElectricGuitar)
                 }
+                sessionTv.sendSignal(device[0], message: [1: "test"])
             }
+            
         }
     }
     
