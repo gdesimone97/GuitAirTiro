@@ -249,9 +249,13 @@ extension ViewController: SessionManagerDelegate {
                 else if guitar == TypeOfGuitar.electric {
                     sessionTv.sendSignal(device[0], message: SignalCode.showElectricGuitar)
                 }
-                sessionTv.sendSignal(device[0], message: [1: "test"])
+                let audio = userDefault.stringArray(forKey: AUDIO_FILE_NAME)!
+                var i = 0
+                for chord in audio {
+                    sessionTv.sendSignal(device[0], message: [i: chord])
+                    i += 1
+                }
             }
-            
         }
     }
     

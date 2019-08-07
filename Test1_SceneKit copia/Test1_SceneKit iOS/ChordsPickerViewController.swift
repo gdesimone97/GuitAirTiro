@@ -13,7 +13,7 @@ UIPickerViewDataSource, UIPickerViewDelegate {
     
     //confirm picked
     @IBOutlet weak var confirmNotification: UIImageView!
-    
+    let sessionTv = SessionManager.share
     
     //Datasource per i picker
     
@@ -86,7 +86,7 @@ UIPickerViewDataSource, UIPickerViewDelegate {
     
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-       
+        
         // confirm notification hidden
         confirmNotification.isHidden = true
         
@@ -146,16 +146,27 @@ UIPickerViewDataSource, UIPickerViewDelegate {
         
         var valuesToStore = Array <Int>(repeating: 0, count: 4)
         var str = Array<String>(repeating: "", count: 4)
+        var audioFile = Array<String>(repeating: "", count: 4)
         var j = 0
         for pick in chordPickers {
             let row = pick.selectedRow(inComponent: 0)
             str[j] = chords[row % chords.count]
+            audioFile[j] = engChords[row % chords.count] + ".wav"
             valuesToStore[j] = row
             j += 1
+        }
+        if let device = sessionTv.showConncetedDevices() {
+            let audio = audioFile
+            var i = 0
+            for chord in audio {
+                sessionTv.sendSignal(device[0], message: [i: chord])
+                i += 1
+            }
         }
         
         userDefault.set(valuesToStore, forKey: USER_DEFAULT_KEY_ROW)
         userDefault.set(str, forKey: USER_DEFAULT_KEY_STRING)
+        userDefault.set(audioFile, forKey: AUDIO_FILE_NAME)
         
         var choice = "< ";
         for i in 0..<4{
@@ -165,10 +176,6 @@ UIPickerViewDataSource, UIPickerViewDelegate {
         
         confirmNotification.isHidden = false
         
-//        let alert = UIAlertController(title: "Chords confirmed", message: "You selected : \(choice)", preferredStyle: .alert)
-//        alert.addAction( UIAlertAction(title:"Ok",style: .default, handler:nil) );
-//        self.present(alert,animated: true);
-//
     }
     
     
