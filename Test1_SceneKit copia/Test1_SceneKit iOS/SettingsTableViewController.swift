@@ -11,8 +11,11 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
     
+    @IBOutlet var tvSettingsCell: UITableViewCell!
+    @IBOutlet var tvSettingsLabel: UILabel!
+    
     let actLang = "Italiano";
-    var tvSettingsCell: UITableViewCell?
+    
     
     let sessionTv = SessionManager.share
     override func viewDidLoad() {
@@ -32,7 +35,7 @@ class SettingsTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return 2
     }
-
+/*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell?
         switch indexPath.row {
@@ -49,11 +52,12 @@ class SettingsTableViewController: UITableViewController {
 
         return cell!
     }
-
+*/
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if sessionTv.showConncetedDevices() == nil {
-            tvSettingsCell?.userInteractionEnabledWhileDragging = false
+            tvSettingsCell?.isUserInteractionEnabled = false
+            tvSettingsLabel.textColor = UIColor.gray
         }
     }
     
