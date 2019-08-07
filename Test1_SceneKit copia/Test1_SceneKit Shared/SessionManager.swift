@@ -35,6 +35,8 @@ class SessionManager: NSObject {
     
     private let typeOfService = "guit-air"
     weak var delegate: SessionManagerDelegate?
+    weak var delegateSettings: SessionManagerDelegate?
+    
     private let serviceBrowser: MCNearbyServiceBrowser
     private let serviceAdverticer: MCNearbyServiceAdvertiser
     //private let serviceAdverticerAssistant: MC
@@ -156,6 +158,8 @@ extension SessionManager: MCSessionDelegate {
     // Lo stato di un peer vicino è cambiato
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         self.delegate?.nearPeerHasChangedState(self, peer: peerID, connected: state.rawValue)
+        self.delegateSettings?.nearPeerHasChangedState(self, peer: peerID, connected: state.rawValue)
+        
         print("Stato della connessione: \(state.rawValue) di \(peerID)")
     }
     
