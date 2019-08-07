@@ -56,14 +56,16 @@ class GameViewController: UIViewController {
     
     var playing: Bool = false
     var points: Int!
-    // I take the selected chords from the user
-    var chords: [String] = userDefault.stringArray(forKey: USER_DEFAULT_KEY_STRING)!
+    // I take the selected chords from the user defaults
+    var chords: [String]!
     // I take the watch settings : true -> watch is present, false -> watch not present
     var watch: Bool = ( userDefault.integer(forKey: GAME_DEVICE_SETTINGS) == 0 ? true : false )
     
     var pointText: SCNNode?
     var multiplierNode: SCNNode?
     var multiplier = 1
+    
+    var song: String! = "1:2:1000000;2:3:4:1000000;1:4:1000000;1:3:1000000" // Da settare dal telefono
     
     // This is the thread that shows nodes on the guitar
     let noteQueue = DispatchQueue(label: "noteQueue", qos: .userInteractive)
@@ -75,7 +77,6 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(chords)
         
         self.gameController = GameController(sceneRenderer: gameView)
         
@@ -86,13 +87,11 @@ class GameViewController: UIViewController {
         soundEffect = SoundEffect(file1: chords[0], file2: chords[1], file3: chords[2], file4: chords[3])
         
         
-        // Allow the tapGesture on the remote only if watch is not present
-        if !watch {
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-            var gestureRecognizers = gameView.gestureRecognizers ?? []
-            gestureRecognizers.insert(tapGesture, at: 0)
-            self.gameView.gestureRecognizers = gestureRecognizers
-        }
+        // Allow the tapGesture on the remote
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        var gestureRecognizers = gameView.gestureRecognizers ?? []
+        gestureRecognizers.insert(tapGesture, at: 0)
+        self.gameView.gestureRecognizers = gestureRecognizers
         
         addElements()
         
@@ -136,9 +135,15 @@ class GameViewController: UIViewController {
             // This thread shows the buttons to play while gaming.
             self.semaphorePlay.wait()
             while self.playing == true {
-                let rand = Int(random(in: 1...5))
-                self.gameGuitarManager.showNode(column: rand)
-                usleep(2000000)
+                for pair in self.song.split(separator: ";") {
+                    let x = pair.split(separator: ":")
+                    for i in 0..<x.count-1 {
+                        self.gameGuitarManager.showNode(column: Int(x[i])!)
+                    }
+                    
+                    usleep(UInt32(x[x.count-1])!)
+                }
+                
             }
         }
         
@@ -286,12 +291,12 @@ class GameViewController: UIViewController {
         else {
             consecutivePoints = 0
         }
-        print("ciao")
     }
     
 }
 
 extension GameViewController: SessionManagerDelegate {
+    
     func peerFound(_ manger: SessionManager, peer: MCPeerID) {
         dictionary.addSample(peer: peer)
     }
@@ -309,6 +314,10 @@ extension GameViewController: SessionManagerDelegate {
                 }
             }
         }
+    }
+    
+    func mexReceived(_ manager: SessionManager, didMessageReceived: Array<String>) {
+        
     }
     
     func mexReceived(_ manager: SessionManager, didMessageReceived: SignalCode) {

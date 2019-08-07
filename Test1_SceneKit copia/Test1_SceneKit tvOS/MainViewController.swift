@@ -43,6 +43,7 @@ class MainViewController: UIViewController {
     var planeNode: SCNNode!
     var flagPanelConnection = false
     var row = 0
+    var chords: [String]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -277,6 +278,13 @@ class MainViewController: UIViewController {
                 self.checkConnection()
             }
             GameViewController.dictionary = self.dictionary
+            if let chords2 = self.chords {
+                GameViewController.chords = chords2
+            } else {
+                GameViewController.dismiss(animated: false, completion: nil)
+                textManager.addNotification(str: "Errore nel caricamento degli accordi", color: UIColor.red)
+                print("AOO")
+            }
             
             
         default:
@@ -363,6 +371,10 @@ extension MainViewController: SessionManagerDelegate {
             
             self.connected = connected
         }
+    }
+    
+    func mexReceived(_ manager: SessionManager, didMessageReceived: Array<String>) {
+        
     }
     
     func mexReceived(_ manager: SessionManager, didMessageReceived: SignalCode) {
