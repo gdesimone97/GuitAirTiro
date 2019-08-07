@@ -253,7 +253,7 @@ class GameModeViewController: UIViewController {
     
     @IBAction func touchUpInsideRed(_ sender: Any) {
         if let device = sessionTv.showConncetedDevices() {
-            sessionTv.sendSignal(device[0], message: SignalCode.key1Pressed)
+            sessionTv.sendSignal(device[0], message: SignalCode.key1Released)
         }
     }
     
@@ -265,7 +265,7 @@ class GameModeViewController: UIViewController {
     }
     @IBAction func touchDownRed(_ sender: Any) {
         if let device = sessionTv.showConncetedDevices() {
-            sessionTv.sendSignal(device[0], message: SignalCode.key1Released)
+            sessionTv.sendSignal(device[0], message: SignalCode.key1Pressed)
         }
     }
 }
