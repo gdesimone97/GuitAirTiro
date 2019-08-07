@@ -68,6 +68,7 @@
 		774CDDAE22F3150200760FC9 /* Chords in Resources */ = {isa = PBXBuildFile; fileRef = 774CDDAC22F3150200760FC9 /* Chords */; };
 		7762443322F8277000B36008 /* userDefaultKeysString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086325AF22F326B600513E1B /* userDefaultKeysString.swift */; };
 		776713DA22EF852B0020E22C /* Guitars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776713D922EF852B0020E22C /* Guitars.swift */; };
+		77879DBA22FB1B6C00CB29CA /* Songs in Resources */ = {isa = PBXBuildFile; fileRef = 77879DB922FB1B6C00CB29CA /* Songs */; };
 		779E565022EB090400ACC1BF /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779E564F22EB090300ACC1BF /* SessionManager.swift */; };
 		779E565122EB090400ACC1BF /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779E564F22EB090300ACC1BF /* SessionManager.swift */; };
 		779E565322EB0A3200ACC1BF /* DeviceDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779E565222EB0A3200ACC1BF /* DeviceDictionary.swift */; };
@@ -199,6 +200,7 @@
 		7703F79022FAE2A30075BF92 /* Songs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Songs.swift; sourceTree = "<group>"; };
 		774CDDAC22F3150200760FC9 /* Chords */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Chords; path = "Test1_SceneKit iOS/Chords"; sourceTree = SOURCE_ROOT; };
 		776713D922EF852B0020E22C /* Guitars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guitars.swift; sourceTree = "<group>"; };
+		77879DB922FB1B6C00CB29CA /* Songs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Songs; sourceTree = "<group>"; };
 		779E564F22EB090300ACC1BF /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		779E565222EB0A3200ACC1BF /* DeviceDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDictionary.swift; sourceTree = "<group>"; };
 		77D0C60A22F987EF009AEB95 /* Sound Effects */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Sound Effects"; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 		77DFAD1622E84C54006DCBEE /* Test1_SceneKit Shared */ = {
 			isa = PBXGroup;
 			children = (
+				77879DB922FB1B6C00CB29CA /* Songs */,
 				77D0C60A22F987EF009AEB95 /* Sound Effects */,
 				774CDDAC22F3150200760FC9 /* Chords */,
 				779E564F22EB090300ACC1BF /* SessionManager.swift */,
@@ -623,6 +626,7 @@
 				774CDDAE22F3150200760FC9 /* Chords in Resources */,
 				77DFAD5122E84C56006DCBEE /* Main.storyboard in Resources */,
 				77DFAD5B22E84C56006DCBEE /* Assets.xcassets in Resources */,
+				77879DBA22FB1B6C00CB29CA /* Songs in Resources */,
 				77DFAD5822E84C56006DCBEE /* Art.scnassets in Resources */,
 				77D0C60B22F987EF009AEB95 /* Sound Effects in Resources */,
 			);

@@ -20,6 +20,7 @@ class MainViewController: UIViewController {
     var mainController: MainController!
     var textManager: TextManager!
     var guitarsManager: Guitars!
+    var soundEffect: SoundEffect!
     
     var keyNode: SCNNode!
     var plane: SCNNode!
@@ -44,6 +45,7 @@ class MainViewController: UIViewController {
     var flagPanelConnection = false
     var row = 0
     var chords: [String]?
+    var watch: Bool!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +64,8 @@ class MainViewController: UIViewController {
         gameView.scene?.rootNode.runAction(SCNAction.sequence([initAction, waitAction, initAction2]))
         
         self.textManager = TextManager(scene: gameView.scene!)
+        soundEffect = SoundEffect()
+        soundEffect.startSongs()
         
         self.addGestures()
         
@@ -71,6 +75,7 @@ class MainViewController: UIViewController {
                 self.semaphore.wait()
             }
         }
+        
     }
     
     
@@ -278,11 +283,9 @@ class MainViewController: UIViewController {
                 self.checkConnection()
             }
             GameViewController.dictionary = self.dictionary
+            GameViewController.watch = self.watch
             if let chords2 = self.chords {
                 GameViewController.chords = chords2
-            } else {
-                // In qualche modo va dismessa la segue
-                textManager.addNotification(str: "Errore nel caricamento degli accordi", color: UIColor.red, y: 1)
             }
             
             
@@ -385,12 +388,18 @@ extension MainViewController: SessionManagerDelegate {
             self.guitarsManager.changeGuitar(newGuitar: .electric)
             
             
-        case .openGame:
+        case .OpenGameWithWatch:
             DispatchQueue.main.async {
+                self.soundEffect.stopSongs()
+                self.watch = true
                 self.performSegue(withIdentifier: "GameSegue", sender: nil)
             }
-            
-            // MI DEVI PASSARE GLI ACCORDI DAL TELEFONO!!!
+        case .OpenGameWithOutWatch:
+            DispatchQueue.main.async {
+                self.soundEffect.stopSongs()
+                self.watch = false
+                self.performSegue(withIdentifier: "GameSegue", sender: nil)
+            }
             
             
         // Add more cases here

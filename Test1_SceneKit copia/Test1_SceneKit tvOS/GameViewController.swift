@@ -59,7 +59,7 @@ class GameViewController: UIViewController {
     // I take the selected chords from the user defaults
     var chords: [String]!
     // I take the watch settings : true -> watch is present, false -> watch not present
-    var watch: Bool = false
+    var watch: Bool!
     
     var pointText: SCNNode?
     var multiplierNode: SCNNode?

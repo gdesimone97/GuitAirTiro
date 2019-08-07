@@ -15,13 +15,23 @@ enum SoundError: Error {
 
 class SoundEffect {
     
-    private var file: AKAudioFile?
     
+    // Sound Effects
     private var countdownPlayer: AKPlayer?
     
     
+    // Songs
+    private var song1: AKPlayer?
+    private var song2: AKPlayer?
+    private var song3: AKPlayer?
+    private var song4: AKPlayer?
+    private var song5: AKPlayer?
+    private var song6: AKPlayer?
+    private var song7: AKPlayer?
+    private var song8: AKPlayer?
     
     
+    // Guitars
     private var guitar11: Guitar?
     private var guitar21: Guitar?
     private var guitar31: Guitar?
@@ -36,11 +46,37 @@ class SoundEffect {
     private var flag3 = false
     private var flag4 = false
     
+    
+    // This is for MainViewController
+    init() {
+        do {
+            song1 = AKPlayer(audioFile: try findFile(str: "Songs/Give.mp3"))
+            song2 = AKPlayer(audioFile: try findFile(str: "Songs/Grassy_Hill.mp3"))
+            song3 = AKPlayer(audioFile: try findFile(str: "Songs/Jeremiah_s_Song.mp3"))
+            song4 = AKPlayer(audioFile: try findFile(str: "Songs/Love_On_File.mp3"))
+            song5 = AKPlayer(audioFile: try findFile(str: "Songs/The_Woods.mp3"))
+            song6 = AKPlayer(audioFile: try findFile(str: "Songs/Then_A_Left_Turn.mp3"))
+            song7 = AKPlayer(audioFile: try findFile(str: "Songs/Well_Worth_the_Wait.mp3"))
+            song8 = AKPlayer(audioFile: try findFile(str: "Songs/You_Can_t_Fail.mp3"))
+        }catch{
+            print("AUDIOKIT ERROR! Could not find sound files")
+        }
+        
+        AudioKit.output = AKMixer(song1!, song2!, song3!, song4!, song5!, song6!, song7!, song8!)
+        do{
+            try AudioKit.start()
+        }catch{
+            print("AUDIOKIT ERROR! Motor couldn't start!")
+        }
+        
+    }
+    
+    
+    // This is for GameViewController
     init(file1: String, file2: String, file3: String, file4: String) {
         
         do{
-            countdownPlayer = AKPlayer(audioFile: try findFile(str: "countdown.wav"))
-            
+            countdownPlayer = AKPlayer(audioFile: try findFile(str: "Sound Effects/countdown.wav"))
             
             guitar11 = try Guitar(file: file1)
             guitar21 = try Guitar(file: file2)
@@ -64,16 +100,11 @@ class SoundEffect {
     }
     
     private func findFile(str: String) throws -> AKAudioFile {
-        let file = try? AKAudioFile(readFileName: "Sound Effects/" + str, baseDir: .resources)
+        let file = try? AKAudioFile(readFileName: str, baseDir: .resources)
         guard file != nil else {
             throw SoundError.fileNotFound
         }
         return file!
-    }
-    
-    func initGuitars(file1: String, file2: String, file3: String, file4: String) {
-        
-        
     }
     
     func countdown() {
@@ -125,6 +156,19 @@ class SoundEffect {
             self.guitar42!.playGuitar()
             self.flag4 = false
         }
+    }
+    
+    func startSongs() {
+        DispatchQueue(label: "songs", qos: .userInitiated).async {
+            let time: Double
+            self.song1!.play()
+            print(self.song1!.duration)
+        }
+        
+    }
+    
+    func stopSongs() {
+        try! AudioKit.stop()
     }
     
 }
