@@ -268,4 +268,61 @@ class GameModeViewController: UIViewController {
             sessionTv.sendSignal(device[0], message: SignalCode.key1Pressed)
         }
     }
+    
+    
+    @IBAction func touchUpInsideBlue(_ sender: Any) {
+        if let device = sessionTv.showConncetedDevices() {
+            sessionTv.sendSignal(device[0], message: SignalCode.key2Released)
+        }
+    }
+    
+    @IBAction func touchExitBlue(_ sender: Any) {
+        if let device = sessionTv.showConncetedDevices() {
+            sessionTv.sendSignal(device[0], message: SignalCode.key2Released)
+        }
+        
+    }
+    @IBAction func touchDownBlue(_ sender: Any) {
+        if let device = sessionTv.showConncetedDevices() {
+            sessionTv.sendSignal(device[0], message: SignalCode.key2Pressed)
+        }
+    }
+    
+    
+    @IBAction func touchUpInsideGreen(_ sender: Any) {
+        if let device = sessionTv.showConncetedDevices() {
+            sessionTv.sendSignal(device[0], message: SignalCode.key3Released)
+        }
+    }
+    
+    @IBAction func touchExitGreen(_ sender: Any) {
+        if let device = sessionTv.showConncetedDevices() {
+            sessionTv.sendSignal(device[0], message: SignalCode.key3Released)
+        }
+        
+    }
+    @IBAction func touchDownGreen(_ sender: Any) {
+        if let device = sessionTv.showConncetedDevices() {
+            sessionTv.sendSignal(device[0], message: SignalCode.key3Pressed)
+        }
+    }
+    
+    
+    @IBAction func touchUpInsidePink(_ sender: Any) {
+        if let device = sessionTv.showConncetedDevices() {
+            sessionTv.sendSignal(device[0], message: SignalCode.key4Released)
+        }
+    }
+    
+    @IBAction func touchExitPink(_ sender: Any) {
+        if let device = sessionTv.showConncetedDevices() {
+            sessionTv.sendSignal(device[0], message: SignalCode.key4Released)
+        }
+        
+    }
+    @IBAction func touchDownPink(_ sender: Any) {
+        if let device = sessionTv.showConncetedDevices() {
+            sessionTv.sendSignal(device[0], message: SignalCode.key4Pressed)
+        }
+    }
 }
