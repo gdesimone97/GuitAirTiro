@@ -98,9 +98,9 @@ class SessionManager: NSObject {
     func sendSignal (_ peer: MCPeerID, message: Dictionary<Int,String>) {
         do {
             var mex = try NSKeyedArchiver.archivedData(withRootObject: message, requiringSecureCoding: false)
-         if self.session.connectedPeers.count > 0 {
-            try self.session.send(mex, toPeers: [peer], with: .unreliable)
-        }
+            if self.session.connectedPeers.count > 0 {
+                try self.session.send(mex, toPeers: [peer], with: .unreliable)
+            }
         }
         catch _ {
             print("errore")
@@ -164,10 +164,10 @@ extension SessionManager: MCSessionDelegate {
         i+=1
         var nsData = NSData(data: data)
         if nsData.length == 1 {
-        let intData = data.first
-        let code = SignalCode.init(rawValue: intData!)
-        guard code != nil else { return }
-        self.delegate?.mexReceived(self, didMessageReceived: code!)
+            let intData = data.first
+            let code = SignalCode.init(rawValue: intData!)
+            guard code != nil else { return }
+            self.delegate?.mexReceived(self, didMessageReceived: code!)
         }
         else {
             var dic = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! Dictionary<Int,String>
