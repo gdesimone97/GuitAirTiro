@@ -27,7 +27,7 @@ class ViewController: UIViewController{
     
     //    Pairing status "led"
     @IBOutlet weak var deviceStatus: UIView!
-    
+    @IBOutlet var tvStatus: UIView!
     @IBOutlet weak var playButton: UIButton!
     
     // Chords name displayed in home
@@ -42,6 +42,8 @@ class ViewController: UIViewController{
         // Do any additional setup after loading the view.
         
         deviceStatus?.layer.cornerRadius = 8.34
+        tvStatus?.layer.cornerRadius = 8.34
+        
         sessionTv.delegate = self
         // Updating of chords label
         //fourthChordLabel?.text = "Gm"
@@ -126,6 +128,7 @@ class ViewController: UIViewController{
                 self.deviceStatus?.backgroundColor = .red
                 self.playButton.isEnabled = false
             }
+            self.tvStatus.backgroundColor = .red
         }
         
         
@@ -244,6 +247,14 @@ extension ViewController: SessionManagerDelegate {
                 }
                 let audio = userDefault.stringArray(forKey: AUDIO_FILE_NAME)!
                 sessionTv.sendSignal(device[0], message: audio)
+                DispatchQueue.main.async {
+                    self.tvStatus.backgroundColor = .green
+                }
+            }
+        }
+        if connected == 0 {
+            DispatchQueue.main.async {
+                self.tvStatus.backgroundColor = .red
             }
         }
     }

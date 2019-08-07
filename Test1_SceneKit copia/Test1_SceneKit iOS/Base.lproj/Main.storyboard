@@ -19,16 +19,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="224" translatesAutoresizingMaskIntoConstraints="NO" id="2qi-s3-tIZ">
-                                <rect key="frame" x="35" y="79" width="344" height="16"/>
+                                <rect key="frame" x="35" y="79" width="340.5" height="16"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Device status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cje-bq-Y5d">
-                                        <rect key="frame" x="0.0" y="0.0" width="104" height="16"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Watch status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cje-bq-Y5d">
+                                        <rect key="frame" x="0.0" y="0.0" width="100.5" height="16"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5wW-vB-jmm">
-                                        <rect key="frame" x="328" y="0.0" width="16" height="16"/>
+                                        <rect key="frame" x="324.5" y="0.0" width="16" height="16"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="16" id="Jor-ii-yF9"/>
@@ -36,6 +36,9 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="340.5" id="FeL-eQ-jzd"/>
+                                </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chords" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5W-zS-CTD">
                                 <rect key="frame" x="179" y="566" width="56" height="20.5"/>
@@ -96,21 +99,46 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="255" translatesAutoresizingMaskIntoConstraints="NO" id="R57-91-ayM">
+                                <rect key="frame" x="35" y="114" width="341" height="16"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tv status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fLN-lw-uSE">
+                                        <rect key="frame" x="0.0" y="0.0" width="70" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZRc-z9-QW1">
+                                        <rect key="frame" x="325" y="0.0" width="16" height="16"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="16" id="2U1-84-aiU"/>
+                                            <constraint firstAttribute="height" constant="16" id="VFe-iY-6s6"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="341" id="fZ2-E3-md8"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.20392156862745098" green="0.24705882352941178" blue="0.29411764705882354" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="N5W-zS-CTD" secondAttribute="trailing" constant="179" id="0Zg-dB-4hv"/>
+                            <constraint firstItem="R57-91-ayM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="35" id="3r1-Lp-mk7"/>
                             <constraint firstItem="SWW-8d-fMy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="38" id="8LV-PQ-IGw"/>
                             <constraint firstItem="9KW-4G-TWg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="123" id="K4v-mj-f72"/>
+                            <constraint firstItem="9KW-4G-TWg" firstAttribute="top" secondItem="R57-91-ayM" secondAttribute="bottom" constant="135" id="Ngh-FP-bSz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="SWW-8d-fMy" secondAttribute="bottom" constant="101" id="QDs-QI-ea8"/>
                             <constraint firstItem="N5W-zS-CTD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="179" id="SAd-g2-Srm"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2qi-s3-tIZ" secondAttribute="trailing" constant="38.5" id="SMx-eS-Oww"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9KW-4G-TWg" secondAttribute="trailing" constant="123" id="az7-5E-GLQ"/>
-                            <constraint firstItem="2qi-s3-tIZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="35" id="b0G-4U-xMv"/>
-                            <constraint firstItem="2qi-s3-tIZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="35" id="mKf-qx-gdi"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="R57-91-ayM" secondAttribute="trailing" constant="38" id="dQr-BS-a80"/>
+                            <constraint firstItem="2qi-s3-tIZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="35" id="k2D-kl-B82"/>
                             <constraint firstItem="N5W-zS-CTD" firstAttribute="top" secondItem="9KW-4G-TWg" secondAttribute="bottom" constant="100" id="pCj-AS-oWY"/>
                             <constraint firstItem="SWW-8d-fMy" firstAttribute="top" secondItem="N5W-zS-CTD" secondAttribute="bottom" constant="24.5" id="peG-u5-dH1"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2qi-s3-tIZ" secondAttribute="trailing" constant="35" id="rcM-L2-fkk"/>
-                            <constraint firstItem="9KW-4G-TWg" firstAttribute="top" secondItem="2qi-s3-tIZ" secondAttribute="bottom" constant="170" id="vS4-8s-uj9"/>
+                            <constraint firstItem="R57-91-ayM" firstAttribute="top" secondItem="2qi-s3-tIZ" secondAttribute="bottom" constant="19" id="qZM-pF-RuJ"/>
+                            <constraint firstItem="2qi-s3-tIZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="35" id="wfJ-ZM-5Ez"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SWW-8d-fMy" secondAttribute="trailing" constant="38" id="x46-N1-mHq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -127,6 +155,7 @@
                         <outlet property="playButton" destination="9KW-4G-TWg" id="v2E-kb-xOh"/>
                         <outlet property="secondChordLabel" destination="KYR-wU-2yk" id="MDs-od-G6X"/>
                         <outlet property="thirdChordLabel" destination="DYL-m8-3XQ" id="0OL-N7-pYf"/>
+                        <outlet property="tvStatus" destination="ZRc-z9-QW1" id="np3-kz-4tz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
