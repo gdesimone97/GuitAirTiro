@@ -99,12 +99,6 @@ class ViewController: UIViewController{
         }
     }
     
-     override func viewDidDisappear(_ animated: Bool) {
-        if let device = sessionTv.showConncetedDevices() {
-            sessionTv.sendSignal(device[0], message: SignalCode.closeGame)
-        }
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         if let testUserDefault = userDefault.array(forKey: USER_DEFAULT_KEY_STRING) {
             var userData = testUserDefault as! Array<String>

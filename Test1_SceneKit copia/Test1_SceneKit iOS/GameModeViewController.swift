@@ -173,6 +173,11 @@ class GameModeViewController: UIViewController {
         if sessionDelegate != nil{
             sessionDelegate.session.sendMessage(["payload": "stop"], replyHandler: nil, errorHandler: nil)
         }
+        
+        if let device = sessionTv.showConncetedDevices() {
+            sessionTv.sendSignal(device[0], message: SignalCode.closeGame)
+        }
+        
     }
     
     
