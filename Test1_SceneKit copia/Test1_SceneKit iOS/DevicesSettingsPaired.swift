@@ -10,16 +10,12 @@ import UIKit
 
 class DevicesSettingsPaired: UITableViewController {
     
-    var onlyWatchCell: UITableViewCell?
-    var tvCell: UITableViewCell?
+    @IBOutlet var onlyWatchCell: UITableViewCell!
+    @IBOutlet var noWatch: UITableViewCell!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
         
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     // MARK: - Table view data source
@@ -34,7 +30,7 @@ class DevicesSettingsPaired: UITableViewController {
         return 2
     }
     
-    
+/*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell?
         switch indexPath.row {
@@ -43,7 +39,7 @@ class DevicesSettingsPaired: UITableViewController {
             onlyWatchCell = cell
         case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: "without_watch_cell", for: indexPath)
-            tvCell = cell
+            noWatch = cell
         default:
             cell = nil
         }
@@ -52,14 +48,16 @@ class DevicesSettingsPaired: UITableViewController {
         cell?.accessoryType = .none
         return cell!
     }
-    
+*/
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let index = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
         switch index {
         case 0:
             onlyWatchCell?.accessoryType = .checkmark
+            noWatch.accessoryType = .none
         case 1:
-            tvCell?.accessoryType = .checkmark
+            noWatch?.accessoryType = .checkmark
+            onlyWatchCell.accessoryType = .none
         default:
             break
         }
@@ -70,11 +68,11 @@ class DevicesSettingsPaired: UITableViewController {
         switch indexPath.row {
         case 0:
             onlyWatchCell!.accessoryType = .checkmark
-            tvCell!.accessoryType = .none
+            noWatch!.accessoryType = .none
             userDefault.set(0, forKey: GAME_DEVICE_SETTINGS)
         case 1:
             onlyWatchCell!.accessoryType = .none
-            tvCell!.accessoryType = .checkmark
+            noWatch!.accessoryType = .checkmark
             userDefault.set(1, forKey: GAME_DEVICE_SETTINGS)
         default:
             break

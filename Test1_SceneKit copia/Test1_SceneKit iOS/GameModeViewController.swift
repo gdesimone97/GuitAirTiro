@@ -74,6 +74,8 @@ class GameModeViewController: UIViewController {
         greenButtonChord?.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
         pinkButtonChord?.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
         
+        sessionTv.delegateGame = self
+        
         if sessionDelegate != nil {
             if let device = sessionTv.showConncetedDevices() {
                 let user = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
@@ -331,3 +333,28 @@ class GameModeViewController: UIViewController {
         }
     }
 }
+
+extension GameModeViewController: SessionManagerDelegate {
+    func peerFound(_ manger: SessionManager, peer: MCPeerID) {
+        return
+    }
+    
+    func nearPeerHasChangedState(_ manager: SessionManager, peer change: MCPeerID, connected: Int) {
+        if connected == 0 {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func mexReceived(_ manager: SessionManager, didMessageReceived: SignalCode) {
+        return
+    }
+    
+    func mexReceived(_ manager: SessionManager, didMessageReceived: Array<String>) {
+        return
+    }
+    
+    func peerLost(_ manager: SessionManager, peer lost: MCPeerID) {
+        return
+    }
+}
+
