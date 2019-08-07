@@ -18,6 +18,10 @@ let AUDIO_FILE_NAME = "audio_file_name"
 
 let userDefault = UserDefaults.standard
 
+enum TvSettings: Int {
+    case withWatch = 0
+    case withOutWatch = 1
+}
 
 enum TypeOfGuitar: Int {
     case electric = 1

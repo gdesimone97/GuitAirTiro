@@ -27,4 +27,9 @@ enum SignalCode: UInt8 {
     case key2Released = 16
     case key3Released = 17
     case key4Released = 18
+    
+    // Tv settings
+    case withWatch = 6
+    case withOutWatch = 7
+    
 }

@@ -36,6 +36,7 @@ class ViewController: UIViewController{
     @IBOutlet weak var thirdChordLabel: UILabel!
     @IBOutlet weak var fourthChordLabel: UILabel!
     
+    private var sessionTvConnected: Bool { get { return sessionTv.showConncetedDevices() != nil }}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,8 +46,6 @@ class ViewController: UIViewController{
         tvStatus?.layer.cornerRadius = 8.34
         
         sessionTv.delegate = self
-        // Updating of chords label
-        //fourthChordLabel?.text = "Gm"
         
         if UserDefaults.getGuitar(forKey: GUITAR) == nil {
             UserDefaults.setGuitar(guitar: TypeOfGuitar.classic, forKey: GUITAR)
@@ -56,6 +55,9 @@ class ViewController: UIViewController{
             let audioStandard = Array<String>(repeating: "A.wav", count: 4)
             userDefault.set(audioStandard, forKey: AUDIO_FILE_NAME)
         }
+        
+        self.tvStatus.backgroundColor = .red
+        
     }
     
     
@@ -78,6 +80,13 @@ class ViewController: UIViewController{
         }
         if let device = sessionTv.showConncetedDevices() {
             sessionTv.sendSignal(device[0], message: SignalCode.openGame)
+            let tvSettings = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
+            if tvSettings == TvSettings.withWatch.rawValue {
+                sessionTv.sendSignal(device[0], message: SignalCode.withWatch)
+            }
+            else if tvSettings == TvSettings.withOutWatch.rawValue {
+                sessionTv.sendSignal(device[0], message: SignalCode.withOutWatch)
+            }
         }
     }
     
@@ -88,14 +97,14 @@ class ViewController: UIViewController{
         }
         
         let user = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
-        if user == 0 {
+        if user == TvSettings.withWatch.rawValue {
             if WCSession.isSupported() && session == nil {
                 session = WCSession.default
                 session!.delegate = self
                 session.activate()
             }
         }
-        else if user == 1 {
+        else if user == TvSettings.withOutWatch.rawValue {
             session = nil
         }
     }
@@ -118,17 +127,21 @@ class ViewController: UIViewController{
             fourthChordLabel.text = ""
         }
         
-        
+        let tv = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
         DispatchQueue.main.async {
-            if self.session != nil && self.session.isReachable{
+            if !self.sessionTvConnected || self.sessionTvConnected && tv == TvSettings.withWatch.rawValue {
+                if self.session != nil && self.session.isReachable{
+                    self.playButton.isEnabled = true
+                    self.deviceStatus?.backgroundColor = .green
+                }
+                else{
+                    self.deviceStatus?.backgroundColor = .red
+                    self.playButton.isEnabled = false
+                }
+            }
+            else if self.sessionTvConnected && tv == TvSettings.withOutWatch.rawValue {
                 self.playButton.isEnabled = true
-                self.deviceStatus?.backgroundColor = .green
             }
-            else{
-                self.deviceStatus?.backgroundColor = .red
-                self.playButton.isEnabled = false
-            }
-            self.tvStatus.backgroundColor = .red
         }
         
         
@@ -237,6 +250,7 @@ extension ViewController: SessionManagerDelegate {
     
     func nearPeerHasChangedState(_ manager: SessionManager, peer change: MCPeerID, connected: Int) {
         let guitar = UserDefaults.getGuitar(forKey: GUITAR)
+        let tv = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
         if connected == 2 {
             if let device = sessionTv.showConncetedDevices() {
                 if guitar == TypeOfGuitar.classic {
@@ -249,12 +263,19 @@ extension ViewController: SessionManagerDelegate {
                 sessionTv.sendSignal(device[0], message: audio)
                 DispatchQueue.main.async {
                     self.tvStatus.backgroundColor = .green
+                    if tv == TvSettings.withOutWatch.rawValue {
+                        self.playButton.isEnabled = true
+                    }
                 }
+                
             }
         }
         if connected == 0 {
             DispatchQueue.main.async {
                 self.tvStatus.backgroundColor = .red
+                if tv == TvSettings.withOutWatch.rawValue {
+                    self.playButton.isEnabled = false
+                }
             }
         }
     }
