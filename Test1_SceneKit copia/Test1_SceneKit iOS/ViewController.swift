@@ -16,7 +16,7 @@ class ViewController: UIViewController{
     
     var userDataChords: Array<String>?
     
-    let strClassic = "Classic Guitar Selected"
+    let strClassic = "Acoustic Guitar Selected"
     let strElettric = "Electric Guitar Selected"
     
     //Session for comunicating with watch
@@ -51,12 +51,13 @@ class ViewController: UIViewController{
             UserDefaults.setGuitar(guitar: TypeOfGuitar.classic, forKey: GUITAR)
         }
         
-        if  userDefault.stringArray(forKey: AUDIO_FILE_NAME) == nil {
+        if userDefault.stringArray(forKey: AUDIO_FILE_NAME) == nil {
             let audioStandard = Array<String>(repeating: "A.wav", count: 4)
             userDefault.set(audioStandard, forKey: AUDIO_FILE_NAME)
         }
         
     }
+    
     
     
     

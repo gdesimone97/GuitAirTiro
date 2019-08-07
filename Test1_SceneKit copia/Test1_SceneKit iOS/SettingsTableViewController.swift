@@ -8,14 +8,18 @@
 
 import UIKit
 
+
 class SettingsTableViewController: UITableViewController {
-
+    
     let actLang = "Italiano";
-
+    var tvSettingsCell: UITableViewCell?
+    
+    let sessionTv = SessionManager.share
     override func viewDidLoad() {
         super.viewDidLoad()
  
     }
+    
 
     // MARK: - Table view data source
 
@@ -29,16 +33,30 @@ class SettingsTableViewController: UITableViewController {
         return 2
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell: UITableViewCell?
+        switch indexPath.row {
+        case 0:
+            cell = tableView.dequeueReusableCell(withIdentifier: "tv_settings",for: indexPath)
+            tvSettingsCell = cell
+        case 1:
+            cell = tableView.dequeueReusableCell(withIdentifier: "notation_settings",for: indexPath)
+        default:
+            cell = nil
+        }
 
         // Configure the cell...
 
-        return cell
+        return cell!
     }
-    */
 
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if sessionTv.showConncetedDevices() == nil {
+            tvSettingsCell?.userInteractionEnabledWhileDragging = false
+        }
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

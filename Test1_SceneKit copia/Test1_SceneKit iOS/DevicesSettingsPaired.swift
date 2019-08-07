@@ -35,10 +35,6 @@ class DevicesSettingsPaired: UITableViewController {
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
-       
-    }
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell?
         switch indexPath.row {
@@ -57,8 +53,8 @@ class DevicesSettingsPaired: UITableViewController {
         return cell!
     }
     
-     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-         let index = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let index = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
         switch index {
         case 0:
             onlyWatchCell?.accessoryType = .checkmark

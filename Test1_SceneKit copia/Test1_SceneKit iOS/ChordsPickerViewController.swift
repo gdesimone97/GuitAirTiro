@@ -146,20 +146,16 @@ UIPickerViewDataSource, UIPickerViewDelegate {
         
         var valuesToStore = Array <Int>(repeating: 0, count: 4)
         var str = Array<String>(repeating: "", count: 4)
-        var audioFile = Array<String>(repeating: "", count: 4)
         var j = 0
         for pick in chordPickers {
             let row = pick.selectedRow(inComponent: 0)
             str[j] = chords[row % chords.count]
-            audioFile[j] = engChords[row % chords.count] + ".wav"
             valuesToStore[j] = row
             j += 1
         }
         
         userDefault.set(valuesToStore, forKey: USER_DEFAULT_KEY_ROW)
         userDefault.set(str, forKey: USER_DEFAULT_KEY_STRING)
-        
-        userDefault.set(audioFile, forKey: AUDIO_FILE_NAME)
         
         var choice = "< ";
         for i in 0..<4{
