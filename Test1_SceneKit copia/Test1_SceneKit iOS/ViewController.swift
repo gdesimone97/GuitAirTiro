@@ -231,7 +231,7 @@ extension ViewController: WCSessionDelegate {
 
 extension ViewController: SessionManagerDelegate {
     
-    func mexReceived(_ manager: SessionManager, didMessageReceived: Dictionary<Int, String>) {
+    func mexReceived(_ manager: SessionManager, didMessageReceived: Array<String>) {
         return
     }
     
@@ -250,11 +250,7 @@ extension ViewController: SessionManagerDelegate {
                     sessionTv.sendSignal(device[0], message: SignalCode.showElectricGuitar)
                 }
                 let audio = userDefault.stringArray(forKey: AUDIO_FILE_NAME)!
-                var i = 0
-                for chord in audio {
-                    sessionTv.sendSignal(device[0], message: [i: chord])
-                    i += 1
-                }
+                sessionTv.sendSignal(device[0], message: audio)
             }
         }
     }

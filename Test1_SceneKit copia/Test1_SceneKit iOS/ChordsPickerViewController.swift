@@ -156,12 +156,7 @@ UIPickerViewDataSource, UIPickerViewDelegate {
             j += 1
         }
         if let device = sessionTv.showConncetedDevices() {
-            let audio = audioFile
-            var i = 0
-            for chord in audio {
-                sessionTv.sendSignal(device[0], message: [i: chord])
-                i += 1
-            }
+            sessionTv.sendSignal(device[0], message: audioFile)
         }
         
         userDefault.set(valuesToStore, forKey: USER_DEFAULT_KEY_ROW)

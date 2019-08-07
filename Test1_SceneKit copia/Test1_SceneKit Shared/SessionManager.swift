@@ -16,7 +16,7 @@ protocol SessionManagerDelegate: class {
     func nearPeerHasChangedState(_ manager: SessionManager,peer change: MCPeerID, connected: Int)
     /** Segnala la ricezione di un messaggio */
     func mexReceived(_ manager: SessionManager,didMessageReceived: SignalCode)
-    func mexReceived(_ manager: SessionManager,didMessageReceived: Dictionary<Int,String>)
+    func mexReceived(_ manager: SessionManager,didMessageReceived: Array<String>)
     /** Connessione con peer persa */
     func peerLost(_ manager: SessionManager,peer lost: MCPeerID)
 }
@@ -95,7 +95,7 @@ class SessionManager: NSObject {
         }
     }
     
-    func sendSignal (_ peer: MCPeerID, message: Dictionary<Int,String>) {
+    func sendSignal (_ peer: MCPeerID, message: Array<String>) {
         do {
             var mex = try NSKeyedArchiver.archivedData(withRootObject: message, requiringSecureCoding: false)
             if self.session.connectedPeers.count > 0 {
@@ -162,7 +162,7 @@ extension SessionManager: MCSessionDelegate {
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         print("Messaggio ricevuto da: \(peerID), messaggio: \(data)")
         i+=1
-        var nsData = NSData(data: data)
+        let nsData = NSData(data: data)
         if nsData.length == 1 {
             let intData = data.first
             let code = SignalCode.init(rawValue: intData!)
@@ -170,8 +170,8 @@ extension SessionManager: MCSessionDelegate {
             self.delegate?.mexReceived(self, didMessageReceived: code!)
         }
         else {
-            var dic = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! Dictionary<Int,String>
-            self.delegate?.mexReceived(self, didMessageReceived: dic)
+            let array = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! Array<String>
+            self.delegate?.mexReceived(self, didMessageReceived: array)
         }
     }
     
