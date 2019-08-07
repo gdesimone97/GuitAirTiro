@@ -55,17 +55,17 @@ class GameViewController: UIViewController {
     var points100: Bool = false
     
     var playing: Bool = false
-    var points: Int!
+    var points = 0
     // I take the selected chords from the user defaults
     var chords: [String]!
     // I take the watch settings : true -> watch is present, false -> watch not present
-    var watch: Bool = ( userDefault.integer(forKey: GAME_DEVICE_SETTINGS) == 0 ? true : false )
+    var watch: Bool = false
     
     var pointText: SCNNode?
     var multiplierNode: SCNNode?
     var multiplier = 1
     
-    var song: String! = "1:2:1000000;2:3:4:1000000;1:4:1000000;1:3:1000000" // Da settare dal telefono
+    var song: String! = Songs.PeppeGay.rawValue // Da settare dal telefono
     
     // This is the thread that shows nodes on the guitar
     let noteQueue = DispatchQueue(label: "noteQueue", qos: .userInteractive)
@@ -76,7 +76,6 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         self.gameController = GameController(sceneRenderer: gameView)
         
@@ -116,7 +115,7 @@ class GameViewController: UIViewController {
             sleep(1)
             self.playing = true
             
-            // Devo per forza farne tre perchè sblocca solo 1 dei 3 thread in wait su questo semaforo
+            // Called 3 times to unlock all the 3 threads waiting
             self.semaphorePlay.signal()
             self.semaphorePlay.signal()
             self.semaphorePlay.signal()
@@ -178,7 +177,7 @@ class GameViewController: UIViewController {
                     points += multiplier
                 }
                 else {
-                    points -= multiplier
+                    points -= 1
                 }
                 flag = true
             }
@@ -188,7 +187,7 @@ class GameViewController: UIViewController {
                     points += multiplier
                 }
                 else {
-                    points -= multiplier
+                    points -= 1
                 }
                 flag = true
             }
@@ -198,7 +197,7 @@ class GameViewController: UIViewController {
                     points += multiplier
                 }
                 else {
-                    points -= multiplier
+                    points -= 1
                 }
                 flag = true
             }
@@ -208,13 +207,13 @@ class GameViewController: UIViewController {
                     points += multiplier
                 }
                 else {
-                    points -= multiplier
+                    points -= 1
                 }
                 flag = true
             }
             
             if !flag {
-                points -= multiplier
+                points -= 1
             }
         }
         
@@ -274,7 +273,7 @@ class GameViewController: UIViewController {
             if let node = self.multiplierNode {
                 node.removeFromParentNode()
             }
-            self.pointText = self.textManager.addTextAtPosition(str: "Points: \(self.points!)", x: 1.5, y: 3.3, z: -0.5)
+            self.pointText = self.textManager.addTextAtPosition(str: "Points: \(self.points )", x: 1.5, y: 3.3, z: -0.5)
             self.pointText?.eulerAngles = SCNVector3(x: 0, y: -0.15, z: 0)
             
             self.multiplierNode = self.textManager.addTextAtPosition(str: "Multiplier: x\(self.multiplier)", x: 1.5, y: 3, z: -0.5)
@@ -399,8 +398,6 @@ extension GameViewController: SessionManagerDelegate {
             default:
                 break
             }
-            
-            print(self.points!)
         }
     }
 }

@@ -62,6 +62,7 @@
 		08D465BC22F1A78100B8D43B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08D465B922F1A78100B8D43B /* Assets.xcassets */; };
 		259FCF7A4466898030E2854A /* Pods_Test1_SceneKit_watchOS_App_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E921CE1C6D8E8B53642FAF /* Pods_Test1_SceneKit_watchOS_App_Extension.framework */; };
 		4DCC5A52BA1C80F0803B3382 /* Pods_Test1_SceneKit_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F1AB350036D84B5016AEC19 /* Pods_Test1_SceneKit_tvOS.framework */; };
+		7703F79122FAE2A30075BF92 /* Songs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7703F79022FAE2A30075BF92 /* Songs.swift */; };
 		774CDDAB22F3137300760FC9 /* Guitar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898EC2422F05146007C32DD /* Guitar.swift */; };
 		774CDDAD22F3150200760FC9 /* Chords in Resources */ = {isa = PBXBuildFile; fileRef = 774CDDAC22F3150200760FC9 /* Chords */; };
 		774CDDAE22F3150200760FC9 /* Chords in Resources */ = {isa = PBXBuildFile; fileRef = 774CDDAC22F3150200760FC9 /* Chords */; };
@@ -195,6 +196,7 @@
 		5F9512767E613292E5B6A54E /* Pods-Test1_SceneKit iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test1_SceneKit iOS.debug.xcconfig"; path = "Target Support Files/Pods-Test1_SceneKit iOS/Pods-Test1_SceneKit iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		74E921CE1C6D8E8B53642FAF /* Pods_Test1_SceneKit_watchOS_App_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Test1_SceneKit_watchOS_App_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75C085316D097790450E475D /* Pods-Test1_SceneKit tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test1_SceneKit tvOS.release.xcconfig"; path = "Target Support Files/Pods-Test1_SceneKit tvOS/Pods-Test1_SceneKit tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		7703F79022FAE2A30075BF92 /* Songs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Songs.swift; sourceTree = "<group>"; };
 		774CDDAC22F3150200760FC9 /* Chords */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Chords; path = "Test1_SceneKit iOS/Chords"; sourceTree = SOURCE_ROOT; };
 		776713D922EF852B0020E22C /* Guitars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guitars.swift; sourceTree = "<group>"; };
 		779E564F22EB090300ACC1BF /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 				77F9DD1B22F0851800B0C37F /* TextManager.swift */,
 				77F9DD1D22F08F0B00B0C37F /* GameGuitarManager.swift */,
 				77D0C60C22F9881B009AEB95 /* SoundEffects.swift */,
+				7703F79022FAE2A30075BF92 /* Songs.swift */,
 			);
 			path = "Test1_SceneKit tvOS";
 			sourceTree = "<group>";
@@ -761,6 +764,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7703F79122FAE2A30075BF92 /* Songs.swift in Sources */,
 				77FE01C722F048E300861C78 /* GameViewController.swift in Sources */,
 				77DFAD4E22E84C56006DCBEE /* MainViewController.swift in Sources */,
 				77DFAD5522E84C56006DCBEE /* MainController.swift in Sources */,

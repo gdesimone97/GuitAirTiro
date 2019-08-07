@@ -29,7 +29,10 @@ class GameGuitarManager {
     private let column4: ColumnType
     
     
-    let bokehEffect = SCNParticleSystem(named: "Art.scnassets/Bokeh Effect/SceneKit Particle System.scnp", inDirectory: nil)
+    let bokehEffectRed = SCNParticleSystem(named: "Art.scnassets/Bokeh Effect/SceneKit Particle System.scnp", inDirectory: nil)
+    let bokehEffectBlue = SCNParticleSystem(named: "Art.scnassets/Bokeh Effect/SceneKit Particle System.scnp", inDirectory: nil)
+    let bokehEffectGreen = SCNParticleSystem(named: "Art.scnassets/Bokeh Effect/SceneKit Particle System.scnp", inDirectory: nil)
+    let bokehEffectPurple = SCNParticleSystem(named: "Art.scnassets/Bokeh Effect/SceneKit Particle System.scnp", inDirectory: nil)
     let fireEffect = SCNParticleSystem(named: "Art.scnassets/Fire Effect/SceneKit Particle System.scnp", inDirectory: nil)
     
     
@@ -47,6 +50,12 @@ class GameGuitarManager {
         changePoints = function
         
         
+        bokehEffectRed!.particleColor = column1.color
+        bokehEffectBlue!.particleColor = column2.color
+        bokehEffectGreen!.particleColor = column3.color
+        bokehEffectPurple!.particleColor = column4.color
+        
+        
         DispatchQueue(label: "NotesNotPressed", qos: .userInteractive).async {
             while true {
                 let node = scene.rootNode.childNodes
@@ -61,7 +70,6 @@ class GameGuitarManager {
                 }
                 usleep(100000)
             }
-            
         }
     }
 
@@ -122,9 +130,21 @@ class GameGuitarManager {
     func bokeh(column: Int) {
         let particleNode = SCNNode()
         
-        bokehEffect!.particleColor = findColumn(column: column)!.color
+        let effect: SCNParticleSystem!
+        switch column {
+        case 1:
+            effect = bokehEffectRed
+        case 2:
+            effect = bokehEffectBlue
+        case 3:
+            effect = bokehEffectGreen
+        case 4:
+            effect = bokehEffectPurple
+        default:
+            return
+        }
         
-        particleNode.addParticleSystem(bokehEffect!)
+        particleNode.addParticleSystem(effect)
         particleNode.position = SCNVector3(findPos(column: column)!, 0.1, -1)
         self.scene.rootNode.addChildNode(particleNode)
 

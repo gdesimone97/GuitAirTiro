@@ -96,7 +96,7 @@ class MainViewController: UIViewController {
                 if index == row {
                     if let peerID = dictionary.keyForValue(value: String(index)) {
                         session.invitePeer(invite: peerID)
-                        textManager.addNotification(str: "Request sent to the device", color: UIColor.green)
+                        textManager.addNotification(str: "Request sent to " + peerID.displayName, color: UIColor.green, y: 1)
                     }
                     hidePlane()
                     showKey(pos: 0)
@@ -281,9 +281,8 @@ class MainViewController: UIViewController {
             if let chords2 = self.chords {
                 GameViewController.chords = chords2
             } else {
-                GameViewController.dismiss(animated: false, completion: nil)
-                textManager.addNotification(str: "Errore nel caricamento degli accordi", color: UIColor.red)
-                print("AOO")
+                // In qualche modo va dismessa la segue
+                textManager.addNotification(str: "Errore nel caricamento degli accordi", color: UIColor.red, y: 1)
             }
             
             
@@ -298,7 +297,7 @@ class MainViewController: UIViewController {
             self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5, z: 1)
             self.phone.runAction(SCNAction.move(to: SCNVector3(0, 0, 0), duration: 0.7))
             guitarsManager.removeActual()
-            textManager.addNotification(str: "Device disconnected!", color: UIColor.yellow)
+            textManager.addNotification(str: (self.peerConnected?.displayName)! + " disconnected!", color: UIColor.green, y: 2)
             
             self.peerConnected = nil
         }
@@ -374,7 +373,7 @@ extension MainViewController: SessionManagerDelegate {
     }
     
     func mexReceived(_ manager: SessionManager, didMessageReceived: Array<String>) {
-        
+        self.chords = didMessageReceived
     }
     
     func mexReceived(_ manager: SessionManager, didMessageReceived: SignalCode) {
