@@ -79,13 +79,12 @@ class ViewController: UIViewController{
             session.sendMessage(["payload": "start"], replyHandler: nil, errorHandler: nil)
         }
         if let device = sessionTv.showConncetedDevices() {
-            sessionTv.sendSignal(device[0], message: SignalCode.openGame)
             let tvSettings = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
             if tvSettings == TvSettings.withWatch.rawValue {
-                sessionTv.sendSignal(device[0], message: SignalCode.withWatch)
+                sessionTv.sendSignal(device[0], message: SignalCode.OpenGameWithWatch)
             }
             else if tvSettings == TvSettings.withOutWatch.rawValue {
-                sessionTv.sendSignal(device[0], message: SignalCode.withOutWatch)
+                sessionTv.sendSignal(device[0], message: SignalCode.OpenGameWithOutWatch)
             }
         }
     }
