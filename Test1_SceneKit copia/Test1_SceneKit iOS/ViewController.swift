@@ -46,8 +46,7 @@ class ViewController: UIViewController{
         // Updating of chords label
         //fourthChordLabel?.text = "Gm"
         
-        if let guitar = UserDefaults.getGuitar(forKey: GUITAR) { }
-        else {
+        if UserDefaults.getGuitar(forKey: GUITAR) == nil {
             UserDefaults.setGuitar(guitar: TypeOfGuitar.classic, forKey: GUITAR)
         }
         
@@ -80,7 +79,7 @@ class ViewController: UIViewController{
         }
     }
     
-     override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         let guitar = UserDefaults.getGuitar(forKey: GUITAR)
         DispatchQueue.main.async {
             self.inizializeGuitarLabel(guitar!)
