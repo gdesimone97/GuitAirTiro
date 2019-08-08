@@ -76,7 +76,7 @@ class GameModeViewController: UIViewController {
         sessionTv.delegateGame = self
         
         if sessionDelegate != nil {
-            if let device = sessionTv.showConncetedDevices() {
+            if let device = sessionTv.showConnectedDevices() {
                 let user = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
                 if user == 0 {
                     sessionDelegate.toCall = {
@@ -132,7 +132,7 @@ class GameModeViewController: UIViewController {
         
         //        Create guitars to play chords
         //        Il numero zero è associato al rosso e così via
-        if let device = sessionTv.showConncetedDevices() {}
+        if let device = sessionTv.showConnectedDevices() {}
         else {
             do{
                 guitar11 = try Guitar(file: toPlay[0])
@@ -175,7 +175,7 @@ class GameModeViewController: UIViewController {
             sessionDelegate.session.sendMessage(["payload": "stop"], replyHandler: nil, errorHandler: nil)
         }
         
-        if let device = sessionTv.showConncetedDevices() {
+        if let device = sessionTv.showConnectedDevices() {
             sessionTv.sendSignal(device[0], message: SignalCode.closeGame)
         }
         
@@ -252,13 +252,13 @@ class GameModeViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         let sessionTv = SessionManager.share
-        if let device = sessionTv.showConncetedDevices() {
+        if let device = sessionTv.showConnectedDevices() {
             sessionTv.sendSignal(device[0], message: SignalCode.closeGame)
         }
     }
     
     @IBAction func touchUpInsideRed(_ sender: Any) {
-        if let device = sessionTv.showConncetedDevices() {
+        if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
                 self.sessionTv.sendSignal(device[0], message: SignalCode.key1Released)
             }
@@ -266,7 +266,7 @@ class GameModeViewController: UIViewController {
     }
     
     @IBAction func touchExitRed(_ sender: Any) {
-        if let device = sessionTv.showConncetedDevices() {
+        if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
                 self.sessionTv.sendSignal(device[0], message: SignalCode.key1Released)
             }
@@ -274,7 +274,7 @@ class GameModeViewController: UIViewController {
         
     }
     @IBAction func touchDownRed(_ sender: Any) {
-        if let device = sessionTv.showConncetedDevices() {
+        if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
                 self.sessionTv.sendSignal(device[0], message: SignalCode.key1Pressed)
             }
@@ -283,7 +283,7 @@ class GameModeViewController: UIViewController {
     
     
     @IBAction func touchUpInsideBlue(_ sender: Any) {
-        if let device = sessionTv.showConncetedDevices() {
+        if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
             self.sessionTv.sendSignal(device[0], message: SignalCode.key2Released)
             }
@@ -291,7 +291,7 @@ class GameModeViewController: UIViewController {
     }
     
     @IBAction func touchExitBlue(_ sender: Any) {
-        if let device = sessionTv.showConncetedDevices() {
+        if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
             self.sessionTv.sendSignal(device[0], message: SignalCode.key2Released)
             }
@@ -299,7 +299,7 @@ class GameModeViewController: UIViewController {
         
     }
     @IBAction func touchDownBlue(_ sender: Any) {
-        if let device = sessionTv.showConncetedDevices() {
+        if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
             self.sessionTv.sendSignal(device[0], message: SignalCode.key2Pressed)
             }
@@ -308,7 +308,7 @@ class GameModeViewController: UIViewController {
     
     
     @IBAction func touchUpInsideGreen(_ sender: Any) {
-        if let device = sessionTv.showConncetedDevices() {
+        if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
             self.sessionTv.sendSignal(device[0], message: SignalCode.key3Released)
             }
@@ -316,7 +316,7 @@ class GameModeViewController: UIViewController {
     }
     
     @IBAction func touchExitGreen(_ sender: Any) {
-        if let device = sessionTv.showConncetedDevices() {
+        if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
             self.sessionTv.sendSignal(device[0], message: SignalCode.key3Released)
             }
@@ -324,7 +324,7 @@ class GameModeViewController: UIViewController {
         
     }
     @IBAction func touchDownGreen(_ sender: Any) {
-        if let device = sessionTv.showConncetedDevices() {
+        if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
             self.sessionTv.sendSignal(device[0], message: SignalCode.key3Pressed)
             }
@@ -333,7 +333,7 @@ class GameModeViewController: UIViewController {
     
     
     @IBAction func touchUpInsidePink(_ sender: Any) {
-        if let device = sessionTv.showConncetedDevices() {
+        if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
             self.sessionTv.sendSignal(device[0], message: SignalCode.key4Released)
             }
@@ -341,7 +341,7 @@ class GameModeViewController: UIViewController {
     }
     
     @IBAction func touchExitPink(_ sender: Any) {
-        if let device = sessionTv.showConncetedDevices() {
+        if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
             self.sessionTv.sendSignal(device[0], message: SignalCode.key4Released)
             }
@@ -349,7 +349,7 @@ class GameModeViewController: UIViewController {
         
     }
     @IBAction func touchDownPink(_ sender: Any) {
-        if let device = sessionTv.showConncetedDevices() {
+        if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
             self.sessionTv.sendSignal(device[0], message: SignalCode.key4Pressed)
             }

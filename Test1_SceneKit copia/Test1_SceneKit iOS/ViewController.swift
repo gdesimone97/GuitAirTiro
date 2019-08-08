@@ -36,7 +36,7 @@ class ViewController: UIViewController{
     @IBOutlet weak var thirdChordLabel: UILabel!
     @IBOutlet weak var fourthChordLabel: UILabel!
     
-    private var sessionTvConnected: Bool { get { return sessionTv.showConncetedDevices() != nil }}
+    private var sessionTvConnected: Bool { get { return sessionTv.showConnectedDevices() != nil }}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,7 +78,7 @@ class ViewController: UIViewController{
         if session != nil {
             session.sendMessage(["payload": "start"], replyHandler: nil, errorHandler: nil)
         }
-        if let device = sessionTv.showConncetedDevices() {
+        if let device = sessionTv.showConnectedDevices() {
             let tvSettings = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
             if tvSettings == TvSettings.withWatch.rawValue {
                 sessionTv.sendSignal(device[0], message: SignalCode.OpenGameWithWatch)
@@ -251,7 +251,7 @@ extension ViewController: SessionManagerDelegate {
         let guitar = UserDefaults.getGuitar(forKey: GUITAR)
         let tv = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
         if connected == 2 {
-            if let device = sessionTv.showConncetedDevices() {
+            if let device = sessionTv.showConnectedDevices() {
                 if guitar == TypeOfGuitar.classic {
                     sessionTv.sendSignal(device[0], message: SignalCode.showAcousticGuitar)
                 }

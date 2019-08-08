@@ -130,7 +130,7 @@ class SessionManager: NSObject {
      Funzione che ritorna la lista dei dispositivi connessi
      Restituisce nil se non ci sono dispositivi connessi
      */
-    func showConncetedDevices() -> Array<MCPeerID>? {
+    func showConnectedDevices() -> Array<MCPeerID>? {
         let deviceList: Array<MCPeerID> = session.connectedPeers
         guard deviceList.count != 0 else { return nil }
         return deviceList

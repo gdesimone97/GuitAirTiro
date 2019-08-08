@@ -82,7 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         let sessionTv = SessionManager.share
-        if let device = sessionTv.showConncetedDevices() {
+        if let device = sessionTv.showConnectedDevices() {
             sessionTv.sendSignal(device[0], message: SignalCode.closeGame)
             sessionTv.disconnectedPeer()
         }

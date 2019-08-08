@@ -23,13 +23,13 @@ class GuitarSelectedViewController: UIViewController {
     @IBAction func dxButton(_ sender: Any) {
         let guitar = UserDefaults.getGuitar(forKey: GUITAR)
             if guitar == TypeOfGuitar.classic {
-                if let device = session.showConncetedDevices() {
+                if let device = session.showConnectedDevices() {
                     session.sendSignal(device[0], message: SignalCode.showElectricGuitar)
                 }
                 UserDefaults.setGuitar(guitar: TypeOfGuitar.electric, forKey: GUITAR)
             }
             else if guitar == TypeOfGuitar.electric {
-                if let device = session.showConncetedDevices() {
+                if let device = session.showConnectedDevices() {
                     session.sendSignal(device[0], message: SignalCode.showAcousticGuitar)
                 }
                 UserDefaults.setGuitar(guitar: TypeOfGuitar.classic, forKey: GUITAR)
@@ -38,13 +38,13 @@ class GuitarSelectedViewController: UIViewController {
     @IBAction func sxButton(_ sender: Any) {
         let guitar = UserDefaults.getGuitar(forKey: GUITAR)
         if guitar == TypeOfGuitar.classic {
-            if let device = session.showConncetedDevices() {
+            if let device = session.showConnectedDevices() {
                 session.sendSignal(device[0], message: SignalCode.showElectricGuitar)
             }
             UserDefaults.setGuitar(guitar: TypeOfGuitar.electric, forKey: GUITAR)
         }
         else if guitar == TypeOfGuitar.electric {
-            if let device = session.showConncetedDevices() {
+            if let device = session.showConnectedDevices() {
                 session.sendSignal(device[0], message: SignalCode.showAcousticGuitar)
             }
             UserDefaults.setGuitar(guitar: TypeOfGuitar.classic, forKey: GUITAR)

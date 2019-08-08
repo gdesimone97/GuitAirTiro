@@ -155,7 +155,7 @@ UIPickerViewDataSource, UIPickerViewDelegate {
             valuesToStore[j] = row
             j += 1
         }
-        if let device = sessionTv.showConncetedDevices() {
+        if let device = sessionTv.showConnectedDevices() {
             sessionTv.sendSignal(device[0], message: audioFile)
         }
         

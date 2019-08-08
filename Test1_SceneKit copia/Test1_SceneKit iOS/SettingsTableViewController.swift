@@ -57,7 +57,7 @@ class SettingsTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if self.sessionTv.showConncetedDevices() == nil {
+        if self.sessionTv.showConnectedDevices() == nil {
             self.tvSettingsCell?.isUserInteractionEnabled = false
             self.tvSettingsLabel.textColor = UIColor.gray
         }
