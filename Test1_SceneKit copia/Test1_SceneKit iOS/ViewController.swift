@@ -55,9 +55,7 @@ class ViewController: UIViewController{
             let audioStandard = Array<String>(repeating: "A.wav", count: 4)
             userDefault.set(audioStandard, forKey: AUDIO_FILE_NAME)
         }
-        
         self.tvStatus.backgroundColor = .red
-        
     }
     
     
@@ -90,10 +88,6 @@ class ViewController: UIViewController{
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let guitar = UserDefaults.getGuitar(forKey: GUITAR)
-        DispatchQueue.main.async {
-            self.inizializeGuitarLabel(guitar!)
-        }
         
         let user = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
         if user == TvSettings.withWatch.rawValue {
@@ -109,6 +103,10 @@ class ViewController: UIViewController{
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        let guitar = UserDefaults.getGuitar(forKey: GUITAR)
+        DispatchQueue.main.async {
+            self.inizializeGuitarLabel(guitar!)
+        }
         if let testUserDefault = userDefault.array(forKey: USER_DEFAULT_KEY_STRING) {
             var userData = testUserDefault as! Array<String>
             userDataChords = userData
