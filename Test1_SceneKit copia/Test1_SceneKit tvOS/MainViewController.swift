@@ -65,7 +65,6 @@ class MainViewController: UIViewController {
         
         self.textManager = TextManager(scene: gameView.scene!)
         soundEffect = SoundEffect()
-        soundEffect.startSongs()
         
         self.addGestures()
         
@@ -281,6 +280,7 @@ class MainViewController: UIViewController {
             GameViewController.callbackClosure = {
                 self.session.delegate = self
                 self.checkConnection()
+                self.soundEffect = SoundEffect()
             }
             GameViewController.dictionary = self.dictionary
             GameViewController.watch = self.watch

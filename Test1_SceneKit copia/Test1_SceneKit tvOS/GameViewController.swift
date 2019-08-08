@@ -34,7 +34,7 @@ class GameViewController: UIViewController {
     var callbackClosure: ( () -> Void )?
     
     override func viewWillDisappear(_ animated: Bool) {
-        try! AudioKit.stop()
+        soundEffect.stopGuitars()
         playing = false
         callbackClosure?()
     }

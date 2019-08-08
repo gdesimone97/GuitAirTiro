@@ -29,6 +29,7 @@ class SoundEffect {
     private var song6: AKPlayer?
     private var song7: AKPlayer?
     private var song8: AKPlayer?
+    private var songs: [AKPlayer]?
     
     
     // Guitars
@@ -47,6 +48,14 @@ class SoundEffect {
     private var flag4 = false
     
     
+    var songThread = DispatchQueue(label: "songs", qos: .userInteractive)
+    var songsThreadUnlocker = DispatchQueue(label: "songsUnlocker", qos: .userInitiated)
+    var songsSemaphore = DispatchSemaphore(value: 0)
+    private var songChoosen: AKPlayer!
+    private var isCancelled: Bool = false
+    private var isResumed: Bool = true
+    
+    
     // This is for MainViewController
     init() {
         do {
@@ -58,17 +67,45 @@ class SoundEffect {
             song6 = AKPlayer(audioFile: try findFile(str: "Songs/Then_A_Left_Turn.mp3"))
             song7 = AKPlayer(audioFile: try findFile(str: "Songs/Well_Worth_the_Wait.mp3"))
             song8 = AKPlayer(audioFile: try findFile(str: "Songs/You_Can_t_Fail.mp3"))
+            
+            songs = [song1!, song2!, song3!, song4!, song5!, song6!, song7!]
         }catch{
             print("AUDIOKIT ERROR! Could not find sound files")
         }
         
         AudioKit.output = AKMixer(song1!, song2!, song3!, song4!, song5!, song6!, song7!, song8!)
-        do{
-            try AudioKit.start()
-        }catch{
-            print("AUDIOKIT ERROR! Motor couldn't start!")
+        
+        
+        songsThreadUnlocker.async {
+            while true {
+                if self.songs != nil {
+                    let i = Int.random(in: 0..<self.songs!.count)
+                    self.songChoosen = self.songs![i]
+                    self.songsSemaphore.signal()
+                    sleep(UInt32(self.songs![i].duration))
+                }
+                if self.isCancelled {
+                    break
+                }
+            }
         }
         
+        
+        songThread.async {
+            try! AudioKit.start()
+            while true {
+                if !self.isCancelled {
+                    if let song = self.songChoosen {
+                        song.play()
+                        self.songsSemaphore.wait()
+                        song.stop()
+                    }
+                }
+                if self.isCancelled {
+                    break
+                }
+            }
+        }
     }
     
     
@@ -158,16 +195,14 @@ class SoundEffect {
         }
     }
     
-    func startSongs() {
-        DispatchQueue(label: "songs", qos: .userInitiated).async {
-            let time: Double
-            self.song1!.play()
-            print(self.song1!.duration)
-        }
+    func stopSongs() {
+        isCancelled = true
+        self.songsSemaphore.signal()
         
+        try! AudioKit.stop()
     }
     
-    func stopSongs() {
+    func stopGuitars() {
         try! AudioKit.stop()
     }
     
