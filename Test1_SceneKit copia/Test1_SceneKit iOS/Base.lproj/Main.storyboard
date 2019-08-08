@@ -1002,59 +1002,65 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wfW-a1-QVI">
-                                <rect key="frame" x="87" y="143" width="240" height="240"/>
+                                <rect key="frame" x="70" y="183" width="274" height="388.5"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="jSm-9J-B3q" appends="YES" id="yMH-aw-h8o"/>
+                                    <outletCollection property="gestureRecognizers" destination="JXa-m2-BjK" appends="YES" id="GzR-Ot-yZm"/>
+                                </connections>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="58" translatesAutoresizingMaskIntoConstraints="NO" id="pSv-Fg-K8G">
-                                <rect key="frame" x="55" y="449" width="305.5" height="64"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yuE-n9-EIU">
+                                <rect key="frame" x="50" y="682.5" width="314" height="31.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9YJ-bz-INE">
-                                        <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="64" id="1pr-dQ-Z3B"/>
-                                            <constraint firstAttribute="width" constant="64" id="HgK-sN-MpL"/>
-                                        </constraints>
-                                        <state key="normal" image="frecciasx.png"/>
-                                        <connections>
-                                            <action selector="sxButton:" destination="wBl-Oy-WHv" eventType="touchUpInside" id="lch-Lc-hAr"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xr8-Xe-Bkr">
-                                        <rect key="frame" x="122" y="0.0" width="61.5" height="64"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                        <color key="textColor" red="0.20539060240000001" green="0.469960928" blue="0.96475261450000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lej-Ge-emK">
-                                        <rect key="frame" x="241.5" y="0.0" width="64" height="64"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="64" id="Sjr-l9-hzK"/>
-                                            <constraint firstAttribute="width" constant="64" id="kNI-81-Y9S"/>
-                                        </constraints>
-                                        <state key="normal" image="frecciadx.png"/>
-                                        <connections>
-                                            <action selector="dxButton:" destination="wBl-Oy-WHv" eventType="touchUpInside" id="ece-ut-sRg"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zga-xr-7nB">
+                                        <rect key="frame" x="0.0" y="0.0" width="314" height="31.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xr8-Xe-Bkr">
+                                                <rect key="frame" x="0.0" y="0.0" width="314" height="31.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="314" id="XmK-BP-6LR"/>
+                                                    <constraint firstAttribute="height" constant="31.5" id="gPc-Ts-VAL"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                <color key="textColor" red="0.20539060240000001" green="0.469960928" blue="0.96475261450000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.10618691891431808" green="0.12509804964065552" blue="0.14902287721633911" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="28H-T5-W8l" firstAttribute="bottom" secondItem="pSv-Fg-K8G" secondAttribute="bottom" constant="300" id="NvY-xF-A8u"/>
-                            <constraint firstItem="28H-T5-W8l" firstAttribute="trailing" secondItem="wfW-a1-QVI" secondAttribute="trailing" constant="87" id="PVB-Xv-jvf"/>
-                            <constraint firstItem="pSv-Fg-K8G" firstAttribute="top" secondItem="wfW-a1-QVI" secondAttribute="bottom" constant="66" id="T7q-2P-yDx"/>
-                            <constraint firstItem="pSv-Fg-K8G" firstAttribute="leading" secondItem="28H-T5-W8l" secondAttribute="leading" constant="55" id="Y7k-0p-s08"/>
-                            <constraint firstItem="wfW-a1-QVI" firstAttribute="leading" secondItem="28H-T5-W8l" secondAttribute="leading" constant="87" id="n9s-vi-m1Y"/>
-                            <constraint firstItem="wfW-a1-QVI" firstAttribute="top" secondItem="28H-T5-W8l" secondAttribute="top" constant="55" id="o91-Uy-79c"/>
+                            <constraint firstItem="28H-T5-W8l" firstAttribute="bottom" secondItem="yuE-n9-EIU" secondAttribute="bottom" constant="99" id="Ps5-Hh-SYx"/>
+                            <constraint firstItem="yuE-n9-EIU" firstAttribute="top" secondItem="wfW-a1-QVI" secondAttribute="bottom" constant="111" id="RzR-XS-EmE"/>
+                            <constraint firstItem="28H-T5-W8l" firstAttribute="trailing" secondItem="yuE-n9-EIU" secondAttribute="trailing" constant="50" id="V3T-fn-pn6"/>
+                            <constraint firstItem="wfW-a1-QVI" firstAttribute="top" secondItem="28H-T5-W8l" secondAttribute="top" constant="95" id="Vqt-KH-0XT"/>
+                            <constraint firstItem="yuE-n9-EIU" firstAttribute="leading" secondItem="28H-T5-W8l" secondAttribute="leading" constant="50" id="dEY-nG-nZN"/>
+                            <constraint firstItem="28H-T5-W8l" firstAttribute="trailing" secondItem="wfW-a1-QVI" secondAttribute="trailing" constant="70" id="dbS-yg-IRh"/>
+                            <constraint firstItem="wfW-a1-QVI" firstAttribute="leading" secondItem="28H-T5-W8l" secondAttribute="leading" constant="70" id="hMi-3B-ebb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="28H-T5-W8l"/>
                     </view>
                     <connections>
                         <outlet property="guitarLabel" destination="xr8-Xe-Bkr" id="Abw-Cp-sDC"/>
                         <outlet property="imageView" destination="wfW-a1-QVI" id="eLX-bG-aN1"/>
+                        <outlet property="leftSwipe" destination="jSm-9J-B3q" id="Pph-C9-lg4"/>
+                        <outlet property="rightSwipe" destination="JXa-m2-BjK" id="Gul-g8-kN6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CCZ-R5-Ufe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="jSm-9J-B3q">
+                    <connections>
+                        <action selector="leftSwipePerformed:" destination="wBl-Oy-WHv" id="nEf-D7-Bus"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="JXa-m2-BjK">
+                    <connections>
+                        <action selector="rightSwipePerformed:" destination="wBl-Oy-WHv" id="Csb-W9-PTq"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4200" y="883.92857142857144"/>
         </scene>
@@ -1266,8 +1272,6 @@
         <image name="RedButton.png" width="302" height="169"/>
         <image name="account.png" width="24" height="24"/>
         <image name="coppa-image.png" width="96" height="96"/>
-        <image name="frecciadx.png" width="32" height="32"/>
-        <image name="frecciasx.png" width="32" height="32"/>
         <image name="guitar-player.png" width="512" height="512"/>
         <image name="lose-image.png" width="96" height="96"/>
         <image name="metal.png" width="25" height="25"/>
