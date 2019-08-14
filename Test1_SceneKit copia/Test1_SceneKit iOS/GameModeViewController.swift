@@ -11,23 +11,23 @@ import WatchConnectivity
 import AudioKit
 
 class GameModeViewController: UIViewController {
-    
+
     var sessionDelegate: ViewController!
-    
-    
+
+
 
     // Labels shown in game mode, each label is associated with a button
     @IBOutlet weak var redButtonChord: UILabel!
     @IBOutlet weak var blueButtonChord: UILabel!
     @IBOutlet weak var greenButtonChord: UILabel!
     @IBOutlet weak var pinkButtonChord: UILabel!
-    
+
 //    Buttons
     @IBOutlet weak var redButton: UIButton!
     @IBOutlet weak var blueButton: UIButton!
     @IBOutlet weak var greenButton: UIButton!
     @IBOutlet weak var roseButton: UIButton!
-    
+
 /**********GUITAR-RELATED VARIABLES*****************/
     var guitar11: Guitar?
     var guitar21: Guitar?
@@ -37,12 +37,12 @@ class GameModeViewController: UIViewController {
     var guitar22: Guitar?
     var guitar32: Guitar?
     var guitar42: Guitar?
-    
+
     var flag1 = false
     var flag2 = false
     var flag3 = false
     var flag4 = false
-    
+
     let itaEnMap = [
         "Do": "C",
         "Dom": "Cm",
@@ -59,11 +59,11 @@ class GameModeViewController: UIViewController {
         "Si": "B",
         "Sim": "Bm",
     ]
-    
+
     var toPlay: [String]!
-    
+
 /**************************************************/
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -72,11 +72,11 @@ class GameModeViewController: UIViewController {
         blueButtonChord?.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
         greenButtonChord?.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
         pinkButtonChord?.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
-        
+
         if sessionDelegate != nil {
             sessionDelegate.toCall = play
         }
-        
+
         //        Construct appropriate namefiles for selected chords
         var selectedChords = Array<String>()
         if let testChords = userDefault.array(forKey: "chords_string") {
@@ -87,33 +87,33 @@ class GameModeViewController: UIViewController {
             selectedChords = userDefault.string(forKey: "PreferredNotation") == "IT" ? ["La","La","La","La"] : ["A","A","A","A"];
         }
         toPlay = [String]()
-        
+
         if userDefault.string(forKey: "PreferredNotation")! == "IT" {
-            
+
             print(userDefault.string(forKey: "PreferredNotation")!);
 
             print("NOTAZIONE ITALIANA");
-            
+
             toPlay.append(itaEnMap[selectedChords[0]]! + ".wav")
             toPlay.append(itaEnMap[selectedChords[1]]! + ".wav")
             toPlay.append(itaEnMap[selectedChords[2]]! + ".wav")
             toPlay.append(itaEnMap[selectedChords[3]]! + ".wav")
-            
+
             print("ARRAY CHE CARICO = \(toPlay)")
-            
+
         }
         else{
-            
+
             print("NOTAZIONE INGLESE");
-            
+
             toPlay.append(selectedChords[0] + ".wav")
             toPlay.append(selectedChords[1] + ".wav")
             toPlay.append(selectedChords[2] + ".wav")
             toPlay.append(selectedChords[3] + ".wav")
-            
+
             print("ARRAY CHE CARICO = \(toPlay)");
         }
-        
+
         //        Create guitars to play chords
 //        Il numero zero è associato al rosso e così via
         do{
@@ -128,7 +128,7 @@ class GameModeViewController: UIViewController {
         }catch{
             print("Could not find guitar files")
         }
-        
+
         //        create mixer, to allow repeated chords/multiple chords
         let mixer = AKMixer(guitar11?.chord, guitar21?.chord, guitar31?.chord, guitar41?.chord, guitar12?.chord, guitar22?.chord, guitar32?.chord, guitar42?.chord)
         AudioKit.output = mixer
@@ -137,9 +137,9 @@ class GameModeViewController: UIViewController {
         }catch{
             print("Audiokit motor couldn't start!")
         }
-        
+
     }
-    
+
     @IBAction func swipeLeft(_ sender: UISwipeGestureRecognizer) {
         try! AudioKit.stop()
         guitar11?.resetGuitar()
@@ -150,17 +150,17 @@ class GameModeViewController: UIViewController {
         guitar32?.resetGuitar()
         guitar41?.resetGuitar()
         guitar42?.resetGuitar()
-        
+
         self.dismiss(animated: false, completion: nil)
-        
+
         if sessionDelegate != nil{
             sessionDelegate.session.sendMessage(["payload": "stop"], replyHandler: nil, errorHandler: nil)
         }
     }
-    
-    
+
+
    var x = 0
-    
+
     func play(){
         x += 1
         if self.redButton.isTouchInside {
@@ -173,7 +173,7 @@ class GameModeViewController: UIViewController {
                 self.flag1 = false
             }
         }
-        
+
         if self.blueButton.isTouchInside {
             if !self.flag2{
                 self.guitar21!.playGuitar()
@@ -184,7 +184,7 @@ class GameModeViewController: UIViewController {
                 self.flag2 = false
             }
         }
-        
+
         if self.greenButton.isTouchInside {
             if !self.flag3{
                 self.guitar31!.playGuitar()
@@ -195,7 +195,7 @@ class GameModeViewController: UIViewController {
                 self.flag3 = false
             }
         }
-        
+
         if self.roseButton.isTouchInside {
             if !self.flag4{
                 self.guitar41!.playGuitar()
@@ -207,7 +207,7 @@ class GameModeViewController: UIViewController {
             }
         }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         if let testUserDefault = userDefault.array(forKey: USER_DEFAULT_KEY_STRING) {
             var userData = testUserDefault as! Array<String>
@@ -216,7 +216,7 @@ class GameModeViewController: UIViewController {
             greenButtonChord.text = userData[2]
             pinkButtonChord.text = userData[3]
         }
-        
+
         else {
             let value = ["A","A","A","A"]
             userDefault.set(value, forKey: USER_DEFAULT_KEY_STRING)
@@ -226,12 +226,137 @@ class GameModeViewController: UIViewController {
             pinkButtonChord.text = "A"
         }
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         let sessionTv = SessionManager.share
         if let device = sessionTv.showConncetedDevices() {
             sessionTv.sendSignal(device[0], message: SignalCode.closeGame)
         }
     }
-    
+
+    @IBAction func touchUpInsideRed(_ sender: Any) {
+        if let device = sessionTv.showConnectedDevices() {
+            DispatchQueue.main.async {
+                //self.sessionTv.sendSignal(device[0], message: SignalCode.key1Released)
+                self.sessionTv.sendSignalGame(self.sessionTv.showConnectedDevices()![0], signal: SignalCode.key1Released)
+            }
+        }
+    }
+
+    @IBAction func touchExitRed(_ sender: Any) {
+        if let device = sessionTv.showConnectedDevices() {
+            DispatchQueue.main.async {
+                //self.sessionTv.sendSignal(device[0], message: SignalCode.key1Released)
+                self.sessionTv.sendSignalGame(self.sessionTv.showConnectedDevices()![0], signal: SignalCode.key1Released)
+            }
+        }
+
+    }
+    @IBAction func touchDownRed(_ sender: Any) {
+        if let device = sessionTv.showConnectedDevices() {
+            DispatchQueue.main.async {
+                //self.sessionTv.sendSignal(device[0], message: SignalCode.key1Pressed)
+                self.sessionTv.sendSignalGame(self.sessionTv.showConnectedDevices()![0], signal: SignalCode.key1Pressed)
+            }
+        }
+    }
+
+
+    @IBAction func touchUpInsideBlue(_ sender: Any) {
+        if let device = sessionTv.showConnectedDevices() {
+            DispatchQueue.main.async {
+                self.sessionTv.sendSignal(device[0], message: SignalCode.key2Released)
+            }
+        }
+    }
+
+    @IBAction func touchExitBlue(_ sender: Any) {
+        if let device = sessionTv.showConnectedDevices() {
+            DispatchQueue.main.async {
+                self.sessionTv.sendSignal(device[0], message: SignalCode.key2Released)
+            }
+        }
+
+    }
+    @IBAction func touchDownBlue(_ sender: Any) {
+        if let device = sessionTv.showConnectedDevices() {
+            DispatchQueue.main.async {
+                self.sessionTv.sendSignal(device[0], message: SignalCode.key2Pressed)
+            }
+        }
+    }
+
+
+    @IBAction func touchUpInsideGreen(_ sender: Any) {
+        if let device = sessionTv.showConnectedDevices() {
+            DispatchQueue.main.async {
+                self.sessionTv.sendSignal(device[0], message: SignalCode.key3Released)
+            }
+        }
+    }
+
+    @IBAction func touchExitGreen(_ sender: Any) {
+        if let device = sessionTv.showConnectedDevices() {
+            DispatchQueue.main.async {
+                self.sessionTv.sendSignal(device[0], message: SignalCode.key3Released)
+            }
+        }
+
+    }
+    @IBAction func touchDownGreen(_ sender: Any) {
+        if let device = sessionTv.showConnectedDevices() {
+            DispatchQueue.main.async {
+                self.sessionTv.sendSignal(device[0], message: SignalCode.key3Pressed)
+            }
+        }
+    }
+
+
+    @IBAction func touchUpInsidePink(_ sender: Any) {
+        if let device = sessionTv.showConnectedDevices() {
+            DispatchQueue.main.async {
+                self.sessionTv.sendSignal(device[0], message: SignalCode.key4Released)
+            }
+        }
+    }
+
+    @IBAction func touchExitPink(_ sender: Any) {
+        if let device = sessionTv.showConnectedDevices() {
+            DispatchQueue.main.async {
+                self.sessionTv.sendSignal(device[0], message: SignalCode.key4Released)
+            }
+        }
+
+    }
+    @IBAction func touchDownPink(_ sender: Any) {
+        if let device = sessionTv.showConnectedDevices() {
+            DispatchQueue.main.async {
+                self.sessionTv.sendSignal(device[0], message: SignalCode.key4Pressed)
+            }
+        }
+    }
+}
+
+extension GameModeViewController: SessionManagerDelegate {
+    func peerFound(_ manger: SessionManager, peer: MCPeerID) {
+        return
+    }
+
+    func nearPeerHasChangedState(_ manager: SessionManager, peer change: MCPeerID, connected: Int) {
+        if connected == 0 {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+
+    func mexReceived(_ manager: SessionManager, didMessageReceived: SignalCode) {
+        return
+    }
+
+    func mexReceived(_ manager: SessionManager, didMessageReceived: Array<String>) {
+        return
+    }
+
+    func peerLost(_ manager: SessionManager, peer lost: MCPeerID) {
+        return
+    }
 }

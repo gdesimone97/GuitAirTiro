@@ -10,11 +10,11 @@ import UIKit
 import WatchConnectivity
 
 class ViewController: UIViewController{
-    
+
     @IBOutlet var guitarLabel: UILabel!
-    
+
     var userDataChords: Array<String>?
-    
+
     //Session for comunicating with watch
     var session: WCSession!
     var sessionTv = SessionManager.share
@@ -25,7 +25,7 @@ class ViewController: UIViewController{
     @IBOutlet weak var deviceStatus: UIView!
 
     @IBOutlet weak var playButton: UIButton!
-    
+
     // Chords name displayed in home
     @IBOutlet weak var firstChordLabel: UILabel!
     @IBOutlet weak var secondChordLabel: UILabel!
@@ -38,7 +38,7 @@ class ViewController: UIViewController{
         // Do any additional setup after loading the view.
 
         deviceStatus?.layer.cornerRadius = 8.34
-        
+
         // Updating of chords label
         //fourthChordLabel?.text = "Gm"
 
@@ -51,7 +51,7 @@ class ViewController: UIViewController{
             print("Could not activate session")
         }
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "showGame":
@@ -67,8 +67,34 @@ class ViewController: UIViewController{
         if session != nil {
             session.sendMessage(["payload": "start"], replyHandler: nil, errorHandler: nil)
         }
-        if let device = sessionTv.showConncetedDevices() {
-            sessionTv.sendSignal(device[0], message: SignalCode.openGame)
+        if let device = sessionTv.showConnectedDevices() {
+
+            sessionTv.openStream(peer: device[0])
+
+
+
+            let tvSettings = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
+            if tvSettings == TvSettings.withWatch.rawValue {
+                sessionTv.sendSignal(device[0], message: SignalCode.OpenGameWithWatch)
+            }
+            else if tvSettings == TvSettings.withOutWatch.rawValue {
+                sessionTv.sendSignal(device[0], message: SignalCode.OpenGameWithOutWatch)
+            }
+        }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+
+        let user = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
+        if user == TvSettings.withWatch.rawValue {
+            if WCSession.isSupported() && session == nil {
+                session = WCSession.default
+                session!.delegate = self
+                session.activate()
+            }
+        }
+        else if user == TvSettings.withOutWatch.rawValue {
+            session = nil
         }
     }
 
@@ -89,9 +115,9 @@ class ViewController: UIViewController{
             thirdChordLabel.text = ""
             fourthChordLabel.text = ""
         }
-        
-        
-        
+
+
+
         if session.isReachable{
             playButton.isEnabled = true
             deviceStatus?.backgroundColor = .green
@@ -100,7 +126,7 @@ class ViewController: UIViewController{
             deviceStatus?.backgroundColor = .red
             playButton.isEnabled = false
         }
-        
+
         if let testGuitar = UserDefaults.getGuitar(forKey: GUITAR) {
             inizializeGuitarLabel(testGuitar)
         }
@@ -110,7 +136,7 @@ class ViewController: UIViewController{
         }
         setLabelBoard()
     }
-    
+
     func inizializeGuitarLabel (_ guitar: GuitarType) {
         let strClassic = "Classic Guitar Selected"
         let strElettric = "Electric Guitar Selected"
@@ -125,7 +151,7 @@ class ViewController: UIViewController{
             break;
         }
     }
-    
+
     func setLabelBoard() {
         guitarLabel.layer.frame = CGRect(x: 30.51, y: 583.67, width: 153.02, height: 47);
         guitarLabel.layer.backgroundColor = UIColor(red: 0.28, green: 0.32, blue: 0.37, alpha: 1).cgColor;
@@ -150,7 +176,7 @@ extension ViewController: WCSessionDelegate {
         }
  */
     }
-    
+
     func sessionDidBecomeInactive(_ session: WCSession) {
         /*
         if !session.isPaired{
@@ -160,7 +186,7 @@ extension ViewController: WCSessionDelegate {
         deviceStatus?.backgroundColor = .yellow
  */
     }
-    
+
     func sessionDidDeactivate(_ session: WCSession) {
         /*
         if !session.isPaired{
@@ -170,7 +196,7 @@ extension ViewController: WCSessionDelegate {
         deviceStatus?.backgroundColor = .yellow
  */
     }
-    
+
 
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]){
         guard message["payload"] as! String == "1" else{
@@ -179,7 +205,7 @@ extension ViewController: WCSessionDelegate {
         }
         toCall()
     }
-    
+
     func sessionReachabilityDidChange(_ session: WCSession) {
         if !session.isReachable{
             DispatchQueue.main.async {

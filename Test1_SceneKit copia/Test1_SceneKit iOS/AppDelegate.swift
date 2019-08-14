@@ -19,31 +19,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let NOTATION_KEY = "PreferredNotation";
     let notificationCenter = UNUserNotificationCenter.current()
     let CATEGORY: String = "INVITATION"
-    
+    let sessionTv = SessionManager.share
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+
         // Override point for customization after application launch.
-        
+
         //Se non è inizializzata la notazione preferita
-        
-        
-        
+
+
+
         if udef.string(forKey: NOTATION_KEY ) != nil{
-            
+
             print("Default esistono già");
-        
+
         }else{
-            
+
             print("Default non presenti");
-            
+
             if(udef.array(forKey: "chords_string") == nil ){
                 udef.setValue(["La","La","La","La"],forKey: "chords_string");
             }
-            
+
             udef.set("IT", forKey: NOTATION_KEY);
         }
-        
+
         // *** Notifiche ***
         // Autorizzazioni
         notificationCenter.requestAuthorization(options: [.alert , .sound, .providesAppNotificationSettings]) { (granted, error) in /* funzionalità in base all'autorizzazione */ }
@@ -59,11 +59,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             else { /* Fai altro */ }
         }
-        
+
         // Fine autorizzazioni
         notificationCenter.delegate = self
-        
-        
+
+
         return true
     }
 
@@ -83,12 +83,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
+
+        if let device = sessionTv.showConnectedDevices() {
+            sessionTv.sendSignal(device[0], message: SignalCode.closeGame)
+            sessionTv.disconnectedPeer()
+        }
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
         var session: WCSession?
-        
+
         if let viewControllers = self.window?.rootViewController?.children{
             for controller in viewControllers{
                 if controller.title == "MainWindowController"{
@@ -97,7 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
-        
+
         if let currController = application.keyWindow?.rootViewController?.presentedViewController{
             if currController.title == "GameModeViewController"{
                 if session != nil{
@@ -114,7 +119,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
-        
+
         if let viewControllers = self.window?.rootViewController?.children{
             for controller in viewControllers{
                 if controller.title == "MainWindowController"{
@@ -122,8 +127,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     viewController.session.sendMessage(["payload": "stop"], replyHandler: nil, errorHandler: nil)
                 }
             }
-        }   
+        }
         self.saveContext()
+        sessionTv.closeStream()
     }
 
     // MARK: - Core Data stack
@@ -140,7 +146,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                 
+
                 /*
                  Typical reasons for an error here include:
                  * The parent directory does not exist, cannot be created, or disallows writing.
@@ -170,28 +176,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-    
+
     func notificationCategory() {
-        
+
         let acceptAction = UNNotificationAction(identifier: "ACCEPT_ACTION", title: "Accept Invite", options: UNNotificationActionOptions.init(rawValue: 0))
         let declineAction = UNNotificationAction(identifier: "DECLINE_ACTION", title: "Decline Invite", options: UNNotificationActionOptions(rawValue: 0))
         let inviteCategory = UNNotificationCategory(identifier: CATEGORY, actions: [acceptAction,declineAction], intentIdentifiers: [], hiddenPreviewsBodyPlaceholder: "", options: .customDismissAction)
         notificationCenter.setNotificationCategories([inviteCategory])
-        
+
     }
-    
+
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        
+
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let token = tokenParts.joined()
         print("Device Token: \(token)")
-        
+
     }
-    
+
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Push notification non attive")
     }
-    
+
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
@@ -210,7 +216,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         }
         completionHandler()
     }
-    
+
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         if notification.request.content.categoryIdentifier == CATEGORY {
             completionHandler([.alert,.sound])
@@ -219,5 +225,3 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         completionHandler(.alert)
     }
 }
-
-

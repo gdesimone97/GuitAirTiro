@@ -24,33 +24,33 @@ class GameViewControllerPhone: UIViewController {
     }
     
     @IBAction func button1(_ sender: Any) {
-        if let deviceList = session.showConncetedDevices() {
+        if let deviceList = session.showConnectedDevices() {
             session.sendSignal(deviceList[0], message: UInt8(5))
         }
     }
     
     @IBAction func button2(_ sender: Any) {
-        if let deviceList = session.showConncetedDevices() {
+        if let deviceList = session.showConnectedDevices() {
             session.sendSignal(deviceList[0], message: UInt8(6))
         }
     }
     
     @IBAction func button3(_ sender: Any) {
-        if let deviceList = session.showConncetedDevices() {
+        if let deviceList = session.showConnectedDevices() {
             session.sendSignal(deviceList[0], message: UInt8(7))
         }
     }
     
     @IBAction func button4(_ sender: Any) {
-        if let deviceList = session.showConncetedDevices() {
+        if let deviceList = session.showConnectedDevices() {
             session.sendSignal(deviceList[0], message: UInt8(8))
         }
     }
     
     @IBAction func buttonSend(_ sender: Any) {
-        if let deviceList = session.showConncetedDevices() {
+        if let deviceList = session.showConnectedDevices() {
             let messaggio = text.text as! String
-            session.sendSignal(deviceList[0], message: UInt8(messaggio)!)
+            session.sendSignalGame(deviceList[0], signal: SignalCode.key1Pressed)
            // session.sendSignal(deviceList[0], message: UInt8(messaggio)!)
         }
     }
@@ -58,49 +58,49 @@ class GameViewControllerPhone: UIViewController {
     
     
     @IBAction func button1Pressed(_ sender: Any) {
-        if let deviceList = session.showConncetedDevices() {
+        if let deviceList = session.showConnectedDevices() {
             session.sendSignal(deviceList[0], message: UInt8(11))
         }
     }
     
     @IBAction func button1ReleasedIn(_ sender: Any) {
-        if let deviceList = session.showConncetedDevices() {
+        if let deviceList = session.showConnectedDevices() {
             session.sendSignal(deviceList[0], message: UInt8(15))
         }
     }
     
     @IBAction func button2Pressed(_ sender: Any) {
-        if let deviceList = session.showConncetedDevices() {
+        if let deviceList = session.showConnectedDevices() {
             session.sendSignal(deviceList[0], message: UInt8(12))
         }
     }
     
     @IBAction func button2Released(_ sender: Any) {
-        if let deviceList = session.showConncetedDevices() {
+        if let deviceList = session.showConnectedDevices() {
             session.sendSignal(deviceList[0], message: UInt8(16))
         }
     }
     
     @IBAction func button3Pressed(_ sender: Any) {
-        if let deviceList = session.showConncetedDevices() {
+        if let deviceList = session.showConnectedDevices() {
             session.sendSignal(deviceList[0], message: UInt8(13))
         }
     }
     
     @IBAction func button3ReleasedIn(_ sender: Any) {
-        if let deviceList = session.showConncetedDevices() {
+        if let deviceList = session.showConnectedDevices() {
             session.sendSignal(deviceList[0], message: UInt8(17))
         }
     }
     
     @IBAction func button4Pressed(_ sender: Any) {
-        if let deviceList = session.showConncetedDevices() {
+        if let deviceList = session.showConnectedDevices() {
             session.sendSignal(deviceList[0], message: UInt8(14))
         }
     }
     
     @IBAction func button4ReleasedIn(_ sender: Any) {
-        if let deviceList = session.showConncetedDevices() {
+        if let deviceList = session.showConnectedDevices() {
             session.sendSignal(deviceList[0], message: UInt8(18))
         }
     }
