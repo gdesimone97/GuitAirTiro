@@ -14,6 +14,8 @@ class AccountViewController: UIViewController {
     @IBOutlet var imageProfile: UIImageView!
     @IBOutlet var gamerTag: UILabel!
     
+    let imagePickerController = UIImagePickerController()
+    
     let userDefaults = UserDefaults.standard
     
     override func viewDidLoad() {
@@ -26,7 +28,9 @@ class AccountViewController: UIViewController {
         self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2;
         self.imageProfile.clipsToBounds = true;
         innerView.layer.cornerRadius = 14
-        // Do any additional setup after loading the view.
+        
+        imagePickerController.delegate = self
+        
     }
 
     @IBAction func logOutButton(_ sender: Any) {
@@ -34,18 +38,43 @@ class AccountViewController: UIViewController {
     }
     
     @IBAction func takePhoto(_ sender: Any) {
-        //print("Bottone premuto")
+        showAllert()
+        
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func showAllert() {
+        let allert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: {action in
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                self.imagePickerController.sourceType = .camera
+                self.open()
+            }
+        })
+        let albumAction = UIAlertAction(title: "Album", style: .default, handler: {action in
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                self.imagePickerController.sourceType = .photoLibrary
+                self.open()
+            }
+        })
+        
+        let cancellAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        allert.addAction(cameraAction)
+        allert.addAction(albumAction)
+        allert.addAction(cancellAction)
+        
+        self.present(allert,animated: true,completion: nil)
     }
-    */
+    
+    private func open() {
+        self.present(imagePickerController,animated: true,completion: nil)
+    }
+    
+}
 
+
+extension AccountViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+    
+    
+    
 }
