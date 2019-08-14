@@ -21,35 +21,23 @@ class GameViewController: UIViewController {
     var gameController: GameController!
     var gameGuitarManager: GameGuitarManager!
     var textManager: TextManager!
+    var soundEffect: SoundEffect!
     
     var session = SessionManager.share
     var dictionary: DeviceDictionary!
     
+    let semaphoreStart = DispatchSemaphore(value: 0)
+    let semaphorePlay = DispatchSemaphore(value: 0)
     
     // This closure is used for setting the Session Delegate when the this View is dismissed
     // It is setted by the View that opens this view
     var callbackClosure: ( () -> Void )?
     
     override func viewWillDisappear(_ animated: Bool) {
-        try! AudioKit.stop()
+        soundEffect.stopGuitars()
         playing = false
         callbackClosure?()
     }
-    
-    
-    var guitar11: Guitar?
-    var guitar21: Guitar?
-    var guitar31: Guitar?
-    var guitar41: Guitar?
-    var guitar12: Guitar?
-    var guitar22: Guitar?
-    var guitar32: Guitar?
-    var guitar42: Guitar?
-    
-    var flag1 = false
-    var flag2 = false
-    var flag3 = false
-    var flag4 = false
     
     var button1: SCNNode!
     var button2: SCNNode!
@@ -61,18 +49,29 @@ class GameViewController: UIViewController {
     var button3Pressed: Bool = false
     var button4Pressed: Bool = false
     
+    var consecutivePoints: Int = 0
+    var consecutiveFlag: Bool = false
+    var points50: Bool = false
+    var points100: Bool = false
+    
     var playing: Bool = false
-    var points: Int!
-    // I take the selected chords from the user
-    var chords: [String] = ["A.wav", "B.wav", "C.wav", "D.wav"]  //= userDefault.stringArray(forKey: USER_DEFAULT_KEY_STRING)!
+    var points = 0
+    // I take the selected chords from the user defaults
+    var chords: [String]!
     // I take the watch settings : true -> watch is present, false -> watch not present
-    var watch: Bool! = false // userDefault bla bla
+    var watch: Bool!
     
     var pointText: SCNNode?
+    var multiplierNode: SCNNode?
+    var multiplier = 1
+    
+    var song: String! = Songs.PeppeGay.rawValue // Da settare dal telefono
     
     // This is the thread that shows nodes on the guitar
     let noteQueue = DispatchQueue(label: "noteQueue", qos: .userInteractive)
     let pointsQueue = DispatchQueue(label: "pointsQueue", qos: .userInteractive)
+    let startQueue = DispatchQueue(label: "startQueue", qos: .userInteractive)
+    let stateQueue = DispatchQueue(label: "stateQueue", qos: .userInteractive)
     
 
     override func viewDidLoad() {
@@ -82,40 +81,84 @@ class GameViewController: UIViewController {
         
         session.delegate = self
         
-        gameGuitarManager = GameGuitarManager(scene: gameView.scene!, width: 2.5, length: 20, z: -17)
+        gameGuitarManager = GameGuitarManager(scene: gameView.scene!, width: 2.5, length: 20, z: -17, function: changePoints(p:consecutive:))
         textManager = TextManager(scene: gameView.scene!)
+        soundEffect = SoundEffect(file1: chords[0], file2: chords[1], file3: chords[2], file4: chords[3])
         
         
-        // Allow the tapGesture on the remote only if watch is not present
-        if !watch {
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-            var gestureRecognizers = gameView.gestureRecognizers ?? []
-            gestureRecognizers.insert(tapGesture, at: 0)
-            self.gameView.gestureRecognizers = gestureRecognizers
-        }
+        // Allow the tapGesture on the remote
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        var gestureRecognizers = gameView.gestureRecognizers ?? []
+        gestureRecognizers.insert(tapGesture, at: 0)
+        self.gameView.gestureRecognizers = gestureRecognizers
         
         addElements()
-        initAudioKit(file1: chords[0], file2: chords[1], file3: chords[2], file4: chords[3])
         
-        
-        noteQueue.async {
-            // This thread shows the buttons to play while gaming.
-            while self.playing == true {
-                let rand = Int(random(in: 1...5))
-                self.gameGuitarManager.showNode(column: rand)
-                usleep(500000)
+        startQueue.async {
+            sleep(1)
+            self.points = 0
+            var startNode: SCNNode!
+            DispatchQueue.main.async {
+                startNode = self.textManager.addTextAtPosition(str: "Press the button on the remote to start!", x: -2, y: 3, z: 0)
+                startNode.eulerAngles = SCNVector3(0.1, 0, 0)
             }
+            self.semaphoreStart.wait()
+            startNode.removeFromParentNode()
+            self.soundEffect.countdown()
+            self.textManager.addGameNotification(str: "3", color: UIColor.white, duration: 0.5)
+            sleep(1)
+            self.textManager.addGameNotification(str: "2", color: UIColor.white, duration: 0.5)
+            sleep(1)
+            self.textManager.addGameNotification(str: "1", color: UIColor.white, duration: 0.5)
+            sleep(1)
+            self.textManager.addGameNotification(str: "GO!", color: UIColor.white, duration: 0.5)
+            sleep(1)
+            self.playing = true
+            
+            // Called 3 times to unlock all the 3 threads waiting
+            self.semaphorePlay.signal()
+            self.semaphorePlay.signal()
+            self.semaphorePlay.signal()
         }
-        
-        // Da sistemare
-        playing = true
-        points = 0
         
         
         pointsQueue.async {
+            self.semaphorePlay.wait()
             while self.playing == true {
                 self.updatePoints()
-                usleep(50000)
+                usleep(100000)
+            }
+        }
+        
+        noteQueue.async {
+            // This thread shows the buttons to play while gaming.
+            self.semaphorePlay.wait()
+            while self.playing == true {
+                for pair in self.song.split(separator: ";") {
+                    let x = pair.split(separator: ":")
+                    for i in 0..<x.count-1 {
+                        self.gameGuitarManager.showNode(column: Int(x[i])!)
+                    }
+                    
+                    usleep(UInt32(x[x.count-1])!)
+                }
+                
+            }
+        }
+        
+        stateQueue.async {
+            self.semaphorePlay.wait()
+            while self.playing == true {
+                if !self.points50 && self.points > 50 {
+                    self.textManager.addGameNotification(str: "Wow! 50 points!", color: UIColor.white, duration: 2)
+                    self.gameGuitarManager.fire()
+                    self.points50 = true
+                }
+                if !self.points100 && self.points > 100 {
+                    self.textManager.addGameNotification(str: "You are a legend!", color: UIColor.white, duration: 2)
+                    self.gameGuitarManager.fire()
+                    self.points100 = true
+                }
             }
         }
         
@@ -131,7 +174,7 @@ class GameViewController: UIViewController {
             if button1Pressed {
                 play(col: 1)
                 if self.gameGuitarManager.checkPoint(column: 1) {
-                    points += 1
+                    points += multiplier
                 }
                 else {
                     points -= 1
@@ -141,7 +184,7 @@ class GameViewController: UIViewController {
             if button2Pressed {
                 play(col: 2)
                 if self.gameGuitarManager.checkPoint(column: 2) {
-                    points += 1
+                    points += multiplier
                 }
                 else {
                     points -= 1
@@ -151,7 +194,7 @@ class GameViewController: UIViewController {
             if button3Pressed {
                 play(col: 3)
                 if self.gameGuitarManager.checkPoint(column: 3) {
-                    points += 1
+                    points += multiplier
                 }
                 else {
                     points -= 1
@@ -161,7 +204,7 @@ class GameViewController: UIViewController {
             if button4Pressed {
                 play(col: 4)
                 if self.gameGuitarManager.checkPoint(column: 4) {
-                    points += 1
+                    points += multiplier
                 }
                 else {
                     points -= 1
@@ -172,6 +215,10 @@ class GameViewController: UIViewController {
             if !flag {
                 points -= 1
             }
+        }
+        
+        if !playing {
+            semaphoreStart.signal()
         }
     }
     
@@ -195,75 +242,22 @@ class GameViewController: UIViewController {
     }
     
     
-    func initAudioKit(file1: String, file2: String, file3: String, file4: String) {
-        do{
-            guitar11 = try Guitar(file: file1)
-            guitar21 = try Guitar(file: file2)
-            guitar31 = try Guitar(file: file3)
-            guitar41 = try Guitar(file: file4)
-            guitar12 = try Guitar(file: file1)
-            guitar22 = try Guitar(file: file2)
-            guitar32 = try Guitar(file: file3)
-            guitar42 = try Guitar(file: file4)
-        }catch{
-            print("Could not find guitar files")
-        }
-        
-        // create mixer, to allow repeated chords/multiple chords
-        let mixer = AKMixer(guitar11?.chord, guitar21?.chord, guitar31?.chord, guitar41?.chord, guitar12?.chord, guitar22?.chord, guitar32?.chord, guitar42?.chord)
-        AudioKit.output = mixer
-        do{
-            try AudioKit.start()
-        }catch{
-            print("Audiokit motor couldn't start!")
-        }
-        
-    }
-    
     
     func play(col: Int){
         
         DispatchQueue.main.async {
             switch col {
             case 1:
-                if !self.flag1{
-                    self.guitar11!.playGuitar()
-                    self.flag1 = true
-                }
-                else{
-                    self.guitar12!.playGuitar()
-                    self.flag1 = false
-                }
+                self.soundEffect.guitar1()
                 
             case 2:
-                if !self.flag2{
-                    self.guitar21!.playGuitar()
-                    self.flag2 = true
-                }
-                else{
-                    self.guitar22!.playGuitar()
-                    self.flag2 = false
-                }
+                self.soundEffect.guitar2()
                 
             case 3:
-                if !self.flag3{
-                    self.guitar31!.playGuitar()
-                    self.flag3 = true
-                }
-                else{
-                    self.guitar32!.playGuitar()
-                    self.flag3 = false
-                }
+                self.soundEffect.guitar3()
                 
             case 4:
-                if !self.flag4{
-                    self.guitar41!.playGuitar()
-                    self.flag4 = true
-                }
-                else{
-                    self.guitar42!.playGuitar()
-                    self.flag4 = false
-                }
+               self.soundEffect.guitar4()
                 
             default:
                 break
@@ -276,14 +270,32 @@ class GameViewController: UIViewController {
             if let node = self.pointText {
                 node.removeFromParentNode()
             }
-            self.pointText = self.textManager.addTextAtPosition(str: "Points: \(self.points!)", x: 2, y: 3, z: -0.5)
+            if let node = self.multiplierNode {
+                node.removeFromParentNode()
+            }
+            self.pointText = self.textManager.addTextAtPosition(str: "Points: \(self.points )", x: 1.5, y: 3.3, z: -0.5)
+            self.pointText?.eulerAngles = SCNVector3(x: 0, y: -0.15, z: 0)
+            
+            self.multiplierNode = self.textManager.addTextAtPosition(str: "Multiplier: x\(self.multiplier)", x: 1.5, y: 3, z: -0.5)
+            self.multiplierNode?.eulerAngles = SCNVector3(x: 0, y: -0.15, z: 0)
         }
     }
     
+    func changePoints(p: Int, consecutive: Bool) {
+        points += p
+        consecutiveFlag = consecutive
+        if consecutive {
+            consecutivePoints += 1
+        }
+        else {
+            consecutivePoints = 0
+        }
+    }
     
 }
 
 extension GameViewController: SessionManagerDelegate {
+    
     func peerFound(_ manger: SessionManager, peer: MCPeerID) {
         dictionary.addSample(peer: peer)
     }
@@ -303,6 +315,10 @@ extension GameViewController: SessionManagerDelegate {
         }
     }
     
+    func mexReceived(_ manager: SessionManager, didMessageReceived: Array<String>) {
+        
+    }
+    
     func mexReceived(_ manager: SessionManager, didMessageReceived: SignalCode) {
         DispatchQueue.main.async {
             
@@ -311,40 +327,42 @@ extension GameViewController: SessionManagerDelegate {
             case .closeGame: // Stop the game session
                 self.dismiss(animated: false, completion: nil)
             
-            case .signal1:
-                self.play(col: 1)
-                if self.gameGuitarManager.checkPoint(column: 1) {
-                    self.points += 1
+            case .signal:
+                if self.button1Pressed {
+                    self.play(col: 1)
+                    if self.gameGuitarManager.checkPoint(column: 1) {
+                        self.points += self.multiplier
+                    }
+                    else {
+                        self.points -= self.multiplier
+                    }
                 }
-                else {
-                    self.points -= 1
+                if self.button2Pressed {
+                    self.play(col: 2)
+                    if self.gameGuitarManager.checkPoint(column: 2) {
+                        self.points += self.multiplier
+                    }
+                    else {
+                        self.points -= self.multiplier
+                    }
                 }
-                
-            case .signal2:
-                self.play(col: 2)
-                if self.gameGuitarManager.checkPoint(column: 2) {
-                    self.points += 1
+                if self.button3Pressed {
+                    self.play(col: 3)
+                    if self.gameGuitarManager.checkPoint(column: 3) {
+                        self.points += self.multiplier
+                    }
+                    else {
+                        self.points -= self.multiplier
+                    }
                 }
-                else {
-                    self.points -= 1
-                }
-                
-            case .signal3:
-                self.play(col: 3)
-                if self.gameGuitarManager.checkPoint(column: 3) {
-                    self.points += 1
-                }
-                else {
-                    self.points -= 1
-                }
-                
-            case .signal4:
-                self.play(col: 4)
-                if self.gameGuitarManager.checkPoint(column: 4) {
-                    self.points += 1
-                }
-                else {
-                    self.points -= 1
+                if self.button4Pressed {
+                    self.play(col: 4)
+                    if self.gameGuitarManager.checkPoint(column: 4) {
+                        self.points += self.multiplier
+                    }
+                    else {
+                        self.points -= self.multiplier
+                    }
                 }
                 
 
@@ -380,8 +398,6 @@ extension GameViewController: SessionManagerDelegate {
             default:
                 break
             }
-            
-            print(self.points!)
         }
     }
 }

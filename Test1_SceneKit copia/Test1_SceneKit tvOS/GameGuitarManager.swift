@@ -21,16 +21,22 @@ class GameGuitarManager {
     private var width: Float
     private var length: Float
     private var z: Float
+    private var changePoints: (Int, Bool) -> Void // This func is needed when this class have to directly modify the points of GameViewController
 
     private let column1: ColumnType
     private let column2: ColumnType
     private let column3: ColumnType
     private let column4: ColumnType
 
-    let bokehEffect = SCNParticleSystem(named: "Art.scnassets/Bokeh Effect/SceneKit Particle System.scnp", inDirectory: nil)
+
+    let bokehEffectRed = SCNParticleSystem(named: "Art.scnassets/Bokeh Effect/SceneKit Particle System.scnp", inDirectory: nil)
+    let bokehEffectBlue = SCNParticleSystem(named: "Art.scnassets/Bokeh Effect/SceneKit Particle System.scnp", inDirectory: nil)
+    let bokehEffectGreen = SCNParticleSystem(named: "Art.scnassets/Bokeh Effect/SceneKit Particle System.scnp", inDirectory: nil)
+    let bokehEffectPurple = SCNParticleSystem(named: "Art.scnassets/Bokeh Effect/SceneKit Particle System.scnp", inDirectory: nil)
     let fireEffect = SCNParticleSystem(named: "Art.scnassets/Fire Effect/SceneKit Particle System.scnp", inDirectory: nil)
 
-    init(scene: SCNScene, width: Float, length: Float, z: Float) {
+
+    init(scene: SCNScene, width: Float, length: Float, z: Float, function: @escaping (Int, Bool) -> Void) {
         self.scene = scene
         self.width = width
         self.length = length
@@ -53,7 +59,6 @@ class GameGuitarManager {
         DispatchQueue(label: "NotesNotPressed", qos: .userInteractive).async {
             while true {
                 let node = scene.rootNode.childNodes
-
                 scene.rootNode.enumerateChildNodes { (node, _) in
                     if node.name == "note" {
                         // If a node exceeds the limit clickable, it's a -1 point
@@ -125,9 +130,21 @@ class GameGuitarManager {
     func bokeh(column: Int) {
         let particleNode = SCNNode()
 
-        bokehEffect!.particleColor = findColumn(column: column)!.color
+        let effect: SCNParticleSystem!
+        switch column {
+        case 1:
+            effect = bokehEffectRed
+        case 2:
+            effect = bokehEffectBlue
+        case 3:
+            effect = bokehEffectGreen
+        case 4:
+            effect = bokehEffectPurple
+        default:
+            return
+        }
 
-        particleNode.addParticleSystem(bokehEffect!)
+        particleNode.addParticleSystem(effect)
         particleNode.position = SCNVector3(findPos(column: column)!, 0.1, -1)
         self.scene.rootNode.addChildNode(particleNode)
 
@@ -192,7 +209,5 @@ class GameGuitarManager {
             return nil
         }
     }
-
-
 
 }

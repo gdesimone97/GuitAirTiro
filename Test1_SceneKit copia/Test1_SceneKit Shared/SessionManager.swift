@@ -16,6 +16,7 @@ protocol SessionManagerDelegate: class {
     func nearPeerHasChangedState(_ manager: SessionManager,peer change: MCPeerID, connected: Int)
     /** Segnala la ricezione di un messaggio */
     func mexReceived(_ manager: SessionManager,didMessageReceived: SignalCode)
+    func mexReceived(_ manager: SessionManager,didMessageReceived: Array<String>)
     /** Connessione con peer persa */
     func peerLost(_ manager: SessionManager,peer lost: MCPeerID)
 }
@@ -179,7 +180,7 @@ class SessionManager: NSObject {
      Funzione che ritorna la lista dei dispositivi connessi
      Restituisce nil se non ci sono dispositivi connessi
      */
-    func showConncetedDevices() -> Array<MCPeerID>? {
+    func showConnectedDevices() -> Array<MCPeerID>? {
         let deviceList: Array<MCPeerID> = session.connectedPeers
         guard deviceList.count != 0 else { return nil }
         return deviceList
@@ -221,7 +222,6 @@ extension SessionManager: MCSessionDelegate {
             let intData = data.first
             let code = SignalCode.init(rawValue: intData!)
             guard code != nil else { return }
-
             self.delegate?.mexReceived(self, didMessageReceived: code!)
         }
         else {

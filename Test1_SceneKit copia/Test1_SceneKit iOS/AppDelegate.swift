@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let notificationCenter = UNUserNotificationCenter.current()
     let CATEGORY: String = "INVITATION"
     let sessionTv = SessionManager.share
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         // Override point for customization after application launch.
@@ -31,14 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if udef.string(forKey: NOTATION_KEY ) != nil{
 
-            print("Default esistono già");
-
         }else{
 
-            print("Default non presenti");
-
-            if(udef.array(forKey: "chords_string") == nil ){
-                udef.setValue(["La","La","La","La"],forKey: "chords_string");
+            if(udef.array(forKey: USER_DEFAULT_KEY_STRING) == nil ){
+                udef.setValue(["La","La","La","La"],forKey: USER_DEFAULT_KEY_STRING);
             }
 
             udef.set("IT", forKey: NOTATION_KEY);
@@ -79,11 +75,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             for controller in viewControllers{
                 if controller.title == "MainWindowController"{
                     let viewController = controller as! ViewController
-                    viewController.session.sendMessage(["payload": "stop"], replyHandler: nil, errorHandler: nil)
+                    if viewController.session != nil {
+                        viewController.session.sendMessage(["payload": "stop"], replyHandler: nil, errorHandler: nil)
+                    }
                 }
             }
         }
-
+        let sessionTv = SessionManager.share
         if let device = sessionTv.showConnectedDevices() {
             sessionTv.sendSignal(device[0], message: SignalCode.closeGame)
             sessionTv.disconnectedPeer()
@@ -140,7 +138,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          creates and returns a container, having loaded the store for the
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
-        */
+         */
         let container = NSPersistentContainer(name: "LetsPlayStoryboards")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {

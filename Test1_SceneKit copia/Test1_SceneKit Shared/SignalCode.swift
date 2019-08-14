@@ -15,13 +15,9 @@ enum SignalCode: UInt8 {
     case showElectricGuitar = 2
     
     // Game
-    case openGame = 3
     case closeGame = 4
     
-    case signal1 = 5
-    case signal2 = 6
-    case signal3 = 7
-    case signal4 = 8
+    case signal = 5
     case key1Pressed = 11
     case key2Pressed = 12
     case key3Pressed = 13
@@ -30,4 +26,9 @@ enum SignalCode: UInt8 {
     case key2Released = 16
     case key3Released = 17
     case key4Released = 18
+    
+    // Tv settings
+    case OpenGameWithWatch = 6
+    case OpenGameWithOutWatch = 7
+    
 }

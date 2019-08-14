@@ -20,6 +20,7 @@ class MainViewController: UIViewController {
     var mainController: MainController!
     var textManager: TextManager!
     var guitarsManager: Guitars!
+    var soundEffect: SoundEffect!
     
     var keyNode: SCNNode!
     var plane: SCNNode!
@@ -31,7 +32,7 @@ class MainViewController: UIViewController {
     
     
     var session = SessionManager.share
-    let semaphore = DispatchSemaphore(value: 1)
+    let semaphore = DispatchSemaphore(value: 0)
     let peerListQueue = DispatchQueue(label: "peerListQueue", qos: .userInteractive)
     var peerConnected: MCPeerID?
     var connected: Int = 0 // -> 0: Disconnected, 1: Connecting, 2: Connected
@@ -43,6 +44,8 @@ class MainViewController: UIViewController {
     var planeNode: SCNNode!
     var flagPanelConnection = false
     var row = 0
+    var chords: [String]?
+    var watch: Bool!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +64,7 @@ class MainViewController: UIViewController {
         gameView.scene?.rootNode.runAction(SCNAction.sequence([initAction, waitAction, initAction2]))
         
         self.textManager = TextManager(scene: gameView.scene!)
+        soundEffect = SoundEffect()
         
         self.addGestures()
         
@@ -70,6 +74,7 @@ class MainViewController: UIViewController {
                 self.semaphore.wait()
             }
         }
+        
     }
     
     
@@ -95,7 +100,7 @@ class MainViewController: UIViewController {
                 if index == row {
                     if let peerID = dictionary.keyForValue(value: String(index)) {
                         session.invitePeer(invite: peerID)
-                        textManager.addNotification(str: "Request sent to the device", color: UIColor.green)
+                        textManager.addNotification(str: "Request sent to " + peerID.displayName, color: UIColor.green, y: 1)
                     }
                     hidePlane()
                     showKey(pos: 0)
@@ -275,8 +280,13 @@ class MainViewController: UIViewController {
             GameViewController.callbackClosure = {
                 self.session.delegate = self
                 self.checkConnection()
+                self.soundEffect = SoundEffect()
             }
             GameViewController.dictionary = self.dictionary
+            GameViewController.watch = self.watch
+            if let chords2 = self.chords {
+                GameViewController.chords = chords2
+            }
             
             
         default:
@@ -290,7 +300,7 @@ class MainViewController: UIViewController {
             self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5, z: 1)
             self.phone.runAction(SCNAction.move(to: SCNVector3(0, 0, 0), duration: 0.7))
             guitarsManager.removeActual()
-            textManager.addNotification(str: "Device disconnected!", color: UIColor.yellow)
+            textManager.addNotification(str: (self.peerConnected?.displayName)! + " disconnected!", color: UIColor.green, y: 2)
             
             self.peerConnected = nil
         }
@@ -358,13 +368,15 @@ extension MainViewController: SessionManagerDelegate {
                 self.deviceNode?.runAction(SCNAction.sequence([wait, change, remove]))
             }
             else if self.peerConnected == change && self.connected == 2 && connected == 0 {
-                self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5, z: 1)
-                self.phone.runAction(SCNAction.move(to: SCNVector3(0, 0, 0), duration: 0.7))
-                self.peerConnected = nil
+                self.checkConnection()
             }
             
             self.connected = connected
         }
+    }
+    
+    func mexReceived(_ manager: SessionManager, didMessageReceived: Array<String>) {
+        self.chords = didMessageReceived
     }
     
     func mexReceived(_ manager: SessionManager, didMessageReceived: SignalCode) {
@@ -376,12 +388,18 @@ extension MainViewController: SessionManagerDelegate {
             self.guitarsManager.changeGuitar(newGuitar: .electric)
             
             
-        case .openGame:
+        case .OpenGameWithWatch:
             DispatchQueue.main.async {
+                self.soundEffect.stopSongs()
+                self.watch = true
                 self.performSegue(withIdentifier: "GameSegue", sender: nil)
             }
-            
-            // MI DEVI PASSARE GLI ACCORDI DAL TELEFONO!!!
+        case .OpenGameWithOutWatch:
+            DispatchQueue.main.async {
+                self.soundEffect.stopSongs()
+                self.watch = false
+                self.performSegue(withIdentifier: "GameSegue", sender: nil)
+            }
             
             
         // Add more cases here

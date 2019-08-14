@@ -9,12 +9,12 @@
 import UIKit
 import WatchConnectivity
 import AudioKit
+import MultipeerConnectivity
 
 class GameModeViewController: UIViewController {
 
     var sessionDelegate: ViewController!
-
-
+    let sessionTv = SessionManager.share
 
     // Labels shown in game mode, each label is associated with a button
     @IBOutlet weak var redButtonChord: UILabel!
@@ -22,13 +22,13 @@ class GameModeViewController: UIViewController {
     @IBOutlet weak var greenButtonChord: UILabel!
     @IBOutlet weak var pinkButtonChord: UILabel!
 
-//    Buttons
+    //    Buttons
     @IBOutlet weak var redButton: UIButton!
     @IBOutlet weak var blueButton: UIButton!
     @IBOutlet weak var greenButton: UIButton!
     @IBOutlet weak var roseButton: UIButton!
 
-/**********GUITAR-RELATED VARIABLES*****************/
+    /**********GUITAR-RELATED VARIABLES*****************/
     var guitar11: Guitar?
     var guitar21: Guitar?
     var guitar31: Guitar?
@@ -62,24 +62,40 @@ class GameModeViewController: UIViewController {
 
     var toPlay: [String]!
 
-/**************************************************/
+    /**************************************************/
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-//        Label rotation in game mode
+        //        Label rotation in game mode
         redButtonChord?.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
         blueButtonChord?.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
         greenButtonChord?.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
         pinkButtonChord?.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
 
+        sessionTv.delegateGame = self
+
         if sessionDelegate != nil {
-            sessionDelegate.toCall = play
+            if let device = sessionTv.showConnectedDevices() {
+                let user = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
+                if user == 0 {
+                    sessionDelegate.toCall = {
+                        self.sessionTv.sendSignal(device[0], message: SignalCode.signal)
+                    }
+                }
+                else if user == 1 {
+                    sessionDelegate.toCall = {}
+                }
+            }
+
+            else {
+                sessionDelegate.toCall = play
+            }
         }
 
         //        Construct appropriate namefiles for selected chords
         var selectedChords = Array<String>()
-        if let testChords = userDefault.array(forKey: "chords_string") {
+        if let testChords = userDefault.array(forKey: USER_DEFAULT_KEY_STRING) {
             selectedChords = testChords as! Array<String>
         }
         else {
@@ -115,29 +131,31 @@ class GameModeViewController: UIViewController {
         }
 
         //        Create guitars to play chords
-//        Il numero zero è associato al rosso e così via
-        do{
-            guitar11 = try Guitar(file: toPlay[0])
-            guitar21 = try Guitar(file: toPlay[1])
-            guitar31 = try Guitar(file: toPlay[2])
-            guitar41 = try Guitar(file: toPlay[3])
-            guitar12 = try Guitar(file: toPlay[0])
-            guitar22 = try Guitar(file: toPlay[1])
-            guitar32 = try Guitar(file: toPlay[2])
-            guitar42 = try Guitar(file: toPlay[3])
-        }catch{
-            print("Could not find guitar files")
-        }
+        //        Il numero zero è associato al rosso e così via
+        if let device = sessionTv.showConnectedDevices() {}
+        else {
+            do{
+                guitar11 = try Guitar(file: toPlay[0])
+                guitar21 = try Guitar(file: toPlay[1])
+                guitar31 = try Guitar(file: toPlay[2])
+                guitar41 = try Guitar(file: toPlay[3])
+                guitar12 = try Guitar(file: toPlay[0])
+                guitar22 = try Guitar(file: toPlay[1])
+                guitar32 = try Guitar(file: toPlay[2])
+                guitar42 = try Guitar(file: toPlay[3])
+            }catch{
+                print("Could not find guitar files")
+            }
 
-        //        create mixer, to allow repeated chords/multiple chords
-        let mixer = AKMixer(guitar11?.chord, guitar21?.chord, guitar31?.chord, guitar41?.chord, guitar12?.chord, guitar22?.chord, guitar32?.chord, guitar42?.chord)
-        AudioKit.output = mixer
-        do{
-            try AudioKit.start()
-        }catch{
-            print("Audiokit motor couldn't start!")
+            //        create mixer, to allow repeated chords/multiple chords
+            let mixer = AKMixer(guitar11?.chord, guitar21?.chord, guitar31?.chord, guitar41?.chord, guitar12?.chord, guitar22?.chord, guitar32?.chord, guitar42?.chord)
+            AudioKit.output = mixer
+            do{
+                try AudioKit.start()
+            }catch{
+                print("Audiokit motor couldn't start!")
+            }
         }
-
     }
 
     @IBAction func swipeLeft(_ sender: UISwipeGestureRecognizer) {
@@ -153,13 +171,18 @@ class GameModeViewController: UIViewController {
 
         self.dismiss(animated: false, completion: nil)
 
-        if sessionDelegate != nil{
+        if sessionDelegate.session != nil {
             sessionDelegate.session.sendMessage(["payload": "stop"], replyHandler: nil, errorHandler: nil)
         }
+
+        if let device = sessionTv.showConnectedDevices() {
+            sessionTv.sendSignal(device[0], message: SignalCode.closeGame)
+        }
+
     }
 
 
-   var x = 0
+    var x = 0
 
     func play(){
         x += 1
@@ -229,7 +252,7 @@ class GameModeViewController: UIViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         let sessionTv = SessionManager.share
-        if let device = sessionTv.showConncetedDevices() {
+        if let device = sessionTv.showConnectedDevices() {
             sessionTv.sendSignal(device[0], message: SignalCode.closeGame)
         }
     }
@@ -237,8 +260,7 @@ class GameModeViewController: UIViewController {
     @IBAction func touchUpInsideRed(_ sender: Any) {
         if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
-                //self.sessionTv.sendSignal(device[0], message: SignalCode.key1Released)
-                self.sessionTv.sendSignalGame(self.sessionTv.showConnectedDevices()![0], signal: SignalCode.key1Released)
+                self.sessionTv.sendSignal(device[0], message: SignalCode.key1Released)
             }
         }
     }
@@ -246,8 +268,7 @@ class GameModeViewController: UIViewController {
     @IBAction func touchExitRed(_ sender: Any) {
         if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
-                //self.sessionTv.sendSignal(device[0], message: SignalCode.key1Released)
-                self.sessionTv.sendSignalGame(self.sessionTv.showConnectedDevices()![0], signal: SignalCode.key1Released)
+                self.sessionTv.sendSignal(device[0], message: SignalCode.key1Released)
             }
         }
 
@@ -255,8 +276,7 @@ class GameModeViewController: UIViewController {
     @IBAction func touchDownRed(_ sender: Any) {
         if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
-                //self.sessionTv.sendSignal(device[0], message: SignalCode.key1Pressed)
-                self.sessionTv.sendSignalGame(self.sessionTv.showConnectedDevices()![0], signal: SignalCode.key1Pressed)
+                self.sessionTv.sendSignal(device[0], message: SignalCode.key1Pressed)
             }
         }
     }
@@ -265,7 +285,7 @@ class GameModeViewController: UIViewController {
     @IBAction func touchUpInsideBlue(_ sender: Any) {
         if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key2Released)
+            self.sessionTv.sendSignal(device[0], message: SignalCode.key2Released)
             }
         }
     }
@@ -273,7 +293,7 @@ class GameModeViewController: UIViewController {
     @IBAction func touchExitBlue(_ sender: Any) {
         if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key2Released)
+            self.sessionTv.sendSignal(device[0], message: SignalCode.key2Released)
             }
         }
 
@@ -281,7 +301,7 @@ class GameModeViewController: UIViewController {
     @IBAction func touchDownBlue(_ sender: Any) {
         if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key2Pressed)
+            self.sessionTv.sendSignal(device[0], message: SignalCode.key2Pressed)
             }
         }
     }
@@ -290,7 +310,7 @@ class GameModeViewController: UIViewController {
     @IBAction func touchUpInsideGreen(_ sender: Any) {
         if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key3Released)
+            self.sessionTv.sendSignal(device[0], message: SignalCode.key3Released)
             }
         }
     }
@@ -298,7 +318,7 @@ class GameModeViewController: UIViewController {
     @IBAction func touchExitGreen(_ sender: Any) {
         if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key3Released)
+            self.sessionTv.sendSignal(device[0], message: SignalCode.key3Released)
             }
         }
 
@@ -306,7 +326,7 @@ class GameModeViewController: UIViewController {
     @IBAction func touchDownGreen(_ sender: Any) {
         if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key3Pressed)
+            self.sessionTv.sendSignal(device[0], message: SignalCode.key3Pressed)
             }
         }
     }
@@ -315,7 +335,7 @@ class GameModeViewController: UIViewController {
     @IBAction func touchUpInsidePink(_ sender: Any) {
         if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key4Released)
+            self.sessionTv.sendSignal(device[0], message: SignalCode.key4Released)
             }
         }
     }
@@ -323,7 +343,7 @@ class GameModeViewController: UIViewController {
     @IBAction func touchExitPink(_ sender: Any) {
         if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key4Released)
+            self.sessionTv.sendSignal(device[0], message: SignalCode.key4Released)
             }
         }
 
@@ -331,7 +351,7 @@ class GameModeViewController: UIViewController {
     @IBAction func touchDownPink(_ sender: Any) {
         if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key4Pressed)
+            self.sessionTv.sendSignal(device[0], message: SignalCode.key4Pressed)
             }
         }
     }

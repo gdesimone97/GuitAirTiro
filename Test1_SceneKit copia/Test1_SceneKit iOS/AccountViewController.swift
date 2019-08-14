@@ -19,7 +19,7 @@ class AccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         pickButton.setTitle("", for: UIControl.State.normal  )
-        if  !userDefaults.bool(forKey: LOGIN) {
+        if !userDefaults.bool(forKey: LOGIN) {
             self.performSegue(withIdentifier: "login_view", sender: nil)
         }
         

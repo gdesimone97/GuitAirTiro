@@ -20,6 +20,7 @@
 		087B1E5522F87A2700BDC2C1 /* elettric_guitar.png in Resources */ = {isa = PBXBuildFile; fileRef = 087B1E5322F87A2700BDC2C1 /* elettric_guitar.png */; };
 		0887361022F444DC00472B14 /* guitar-player.png in Resources */ = {isa = PBXBuildFile; fileRef = 0887360F22F444DC00472B14 /* guitar-player.png */; };
 		0887361422F4498400472B14 /* account@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0887361322F4498400472B14 /* account@2x.png */; };
+		088BAC3622F9720800784692 /* DevicesSettingsPaired.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BAC3522F9720800784692 /* DevicesSettingsPaired.swift */; };
 		088E1CBA22F345F1006A197D /* metal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 088E1CAD22F345F0006A197D /* metal@2x.png */; };
 		088E1CBB22F345F1006A197D /* rock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 088E1CAE22F345F0006A197D /* rock@2x.png */; };
 		088E1CBC22F345F1006A197D /* treble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 088E1CAF22F345F0006A197D /* treble@2x.png */; };
@@ -51,7 +52,6 @@
 		08CF906622F4774C00F8B853 /* pareggio-image.png in Resources */ = {isa = PBXBuildFile; fileRef = 08CF906522F4774C00F8B853 /* pareggio-image.png */; };
 		08CF906822F4817400F8B853 /* profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08CF906722F4817400F8B853 /* profile@2x.png */; };
 		08D464B922F18E4500B8D43B /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FE01C822F04CDA00861C78 /* GameController.swift */; };
-		08D464BE22F1907E00B8D43B /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FE01C822F04CDA00861C78 /* GameController.swift */; };
 		08D465B022F1A77600B8D43B /* WatchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D465A822F1A77500B8D43B /* WatchController.swift */; };
 		08D465B222F1A77600B8D43B /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D465AA22F1A77600B8D43B /* MotionManager.swift */; };
 		08D465B322F1A77600B8D43B /* PlayingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D465AB22F1A77600B8D43B /* PlayingBuffer.swift */; };
@@ -62,14 +62,18 @@
 		08D465BC22F1A78100B8D43B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08D465B922F1A78100B8D43B /* Assets.xcassets */; };
 		259FCF7A4466898030E2854A /* Pods_Test1_SceneKit_watchOS_App_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E921CE1C6D8E8B53642FAF /* Pods_Test1_SceneKit_watchOS_App_Extension.framework */; };
 		4DCC5A52BA1C80F0803B3382 /* Pods_Test1_SceneKit_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F1AB350036D84B5016AEC19 /* Pods_Test1_SceneKit_tvOS.framework */; };
+		7703F79122FAE2A30075BF92 /* Songs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7703F79022FAE2A30075BF92 /* Songs.swift */; };
 		774CDDAB22F3137300760FC9 /* Guitar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898EC2422F05146007C32DD /* Guitar.swift */; };
 		774CDDAD22F3150200760FC9 /* Chords in Resources */ = {isa = PBXBuildFile; fileRef = 774CDDAC22F3150200760FC9 /* Chords */; };
 		774CDDAE22F3150200760FC9 /* Chords in Resources */ = {isa = PBXBuildFile; fileRef = 774CDDAC22F3150200760FC9 /* Chords */; };
 		7762443322F8277000B36008 /* userDefaultKeysString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086325AF22F326B600513E1B /* userDefaultKeysString.swift */; };
 		776713DA22EF852B0020E22C /* Guitars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776713D922EF852B0020E22C /* Guitars.swift */; };
+		77879DBA22FB1B6C00CB29CA /* Songs in Resources */ = {isa = PBXBuildFile; fileRef = 77879DB922FB1B6C00CB29CA /* Songs */; };
 		779E565022EB090400ACC1BF /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779E564F22EB090300ACC1BF /* SessionManager.swift */; };
 		779E565122EB090400ACC1BF /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779E564F22EB090300ACC1BF /* SessionManager.swift */; };
 		779E565322EB0A3200ACC1BF /* DeviceDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779E565222EB0A3200ACC1BF /* DeviceDictionary.swift */; };
+		77D0C60B22F987EF009AEB95 /* Sound Effects in Resources */ = {isa = PBXBuildFile; fileRef = 77D0C60A22F987EF009AEB95 /* Sound Effects */; };
+		77D0C60D22F9881B009AEB95 /* SoundEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D0C60C22F9881B009AEB95 /* SoundEffects.swift */; };
 		77DFAD2222E84C56006DCBEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFAD2122E84C56006DCBEE /* AppDelegate.swift */; };
 		77DFAD2A22E84C56006DCBEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77DFAD2822E84C56006DCBEE /* LaunchScreen.storyboard */; };
 		77DFAD2F22E84C56006DCBEE /* Test1_SceneKit.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 77DFAD2E22E84C56006DCBEE /* Test1_SceneKit.app */; };
@@ -78,7 +82,6 @@
 		77DFAD4E22E84C56006DCBEE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFAD4D22E84C56006DCBEE /* MainViewController.swift */; };
 		77DFAD5122E84C56006DCBEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77DFAD4F22E84C56006DCBEE /* Main.storyboard */; };
 		77DFAD5322E84C56006DCBEE /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFAD1722E84C54006DCBEE /* MainController.swift */; };
-		77DFAD5422E84C56006DCBEE /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFAD1722E84C54006DCBEE /* MainController.swift */; };
 		77DFAD5522E84C56006DCBEE /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFAD1722E84C54006DCBEE /* MainController.swift */; };
 		77DFAD5822E84C56006DCBEE /* Art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 77DFAD1822E84C54006DCBEE /* Art.scnassets */; };
 		77DFAD5922E84C56006DCBEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77DFAD1922E84C56006DCBEE /* Assets.xcassets */; };
@@ -149,6 +152,7 @@
 		0887360C22F43F1B00472B14 /* Test1_SceneKit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Test1_SceneKit.entitlements; sourceTree = "<group>"; };
 		0887360F22F444DC00472B14 /* guitar-player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guitar-player.png"; sourceTree = "<group>"; };
 		0887361322F4498400472B14 /* account@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "account@2x.png"; sourceTree = "<group>"; };
+		088BAC3522F9720800784692 /* DevicesSettingsPaired.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesSettingsPaired.swift; sourceTree = "<group>"; };
 		088E1CAD22F345F0006A197D /* metal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "metal@2x.png"; sourceTree = "<group>"; };
 		088E1CAE22F345F0006A197D /* rock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rock@2x.png"; sourceTree = "<group>"; };
 		088E1CAF22F345F0006A197D /* treble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "treble@2x.png"; sourceTree = "<group>"; };
@@ -193,10 +197,14 @@
 		5F9512767E613292E5B6A54E /* Pods-Test1_SceneKit iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test1_SceneKit iOS.debug.xcconfig"; path = "Target Support Files/Pods-Test1_SceneKit iOS/Pods-Test1_SceneKit iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		74E921CE1C6D8E8B53642FAF /* Pods_Test1_SceneKit_watchOS_App_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Test1_SceneKit_watchOS_App_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75C085316D097790450E475D /* Pods-Test1_SceneKit tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test1_SceneKit tvOS.release.xcconfig"; path = "Target Support Files/Pods-Test1_SceneKit tvOS/Pods-Test1_SceneKit tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		7703F79022FAE2A30075BF92 /* Songs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Songs.swift; sourceTree = "<group>"; };
 		774CDDAC22F3150200760FC9 /* Chords */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Chords; path = "Test1_SceneKit iOS/Chords"; sourceTree = SOURCE_ROOT; };
 		776713D922EF852B0020E22C /* Guitars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guitars.swift; sourceTree = "<group>"; };
+		77879DB922FB1B6C00CB29CA /* Songs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Songs; sourceTree = "<group>"; };
 		779E564F22EB090300ACC1BF /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		779E565222EB0A3200ACC1BF /* DeviceDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDictionary.swift; sourceTree = "<group>"; };
+		77D0C60A22F987EF009AEB95 /* Sound Effects */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Sound Effects"; sourceTree = "<group>"; };
+		77D0C60C22F9881B009AEB95 /* SoundEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundEffects.swift; sourceTree = "<group>"; };
 		77DFAD1722E84C54006DCBEE /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		77DFAD1822E84C54006DCBEE /* Art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Art.scnassets; sourceTree = "<group>"; };
 		77DFAD1922E84C56006DCBEE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -278,6 +286,8 @@
 		77DFAD1622E84C54006DCBEE /* Test1_SceneKit Shared */ = {
 			isa = PBXGroup;
 			children = (
+				77879DB922FB1B6C00CB29CA /* Songs */,
+				77D0C60A22F987EF009AEB95 /* Sound Effects */,
 				774CDDAC22F3150200760FC9 /* Chords */,
 				779E564F22EB090300ACC1BF /* SessionManager.swift */,
 				77DFAD1722E84C54006DCBEE /* MainController.swift */,
@@ -348,6 +358,7 @@
 				086325B522F3328800513E1B /* LoginViewController.swift */,
 				086325B722F33A5100513E1B /* NavigationController.swift */,
 				087B1E5022F878DE00BDC2C1 /* GuitarSelectedViewController.swift */,
+				088BAC3522F9720800784692 /* DevicesSettingsPaired.swift */,
 			);
 			path = "Test1_SceneKit iOS";
 			sourceTree = "<group>";
@@ -389,6 +400,8 @@
 				776713D922EF852B0020E22C /* Guitars.swift */,
 				77F9DD1B22F0851800B0C37F /* TextManager.swift */,
 				77F9DD1D22F08F0B00B0C37F /* GameGuitarManager.swift */,
+				77D0C60C22F9881B009AEB95 /* SoundEffects.swift */,
+				7703F79022FAE2A30075BF92 /* Songs.swift */,
 			);
 			path = "Test1_SceneKit tvOS";
 			sourceTree = "<group>";
@@ -613,7 +626,9 @@
 				774CDDAE22F3150200760FC9 /* Chords in Resources */,
 				77DFAD5122E84C56006DCBEE /* Main.storyboard in Resources */,
 				77DFAD5B22E84C56006DCBEE /* Assets.xcassets in Resources */,
+				77879DBA22FB1B6C00CB29CA /* Songs in Resources */,
 				77DFAD5822E84C56006DCBEE /* Art.scnassets in Resources */,
+				77D0C60B22F987EF009AEB95 /* Sound Effects in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -722,6 +737,7 @@
 				0898EC2922F05146007C32DD /* ChordsPickerViewController.swift in Sources */,
 				086325B822F33A5100513E1B /* NavigationController.swift in Sources */,
 				0898EC2B22F05146007C32DD /* Guitar.swift in Sources */,
+				088BAC3622F9720800784692 /* DevicesSettingsPaired.swift in Sources */,
 				0898EC2722F05146007C32DD /* SettingsTableViewController.swift in Sources */,
 				087B1E5122F878DE00BDC2C1 /* GuitarSelectedViewController.swift in Sources */,
 				77DFAD5322E84C56006DCBEE /* MainController.swift in Sources */,
@@ -740,11 +756,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77DFAD5422E84C56006DCBEE /* MainController.swift in Sources */,
 				08D465B022F1A77600B8D43B /* WatchController.swift in Sources */,
 				08D465B422F1A77600B8D43B /* ExtensionDelegate.swift in Sources */,
 				08D465B522F1A77600B8D43B /* NotificationController.swift in Sources */,
-				08D464BE22F1907E00B8D43B /* GameController.swift in Sources */,
 				08D465B322F1A77600B8D43B /* PlayingBuffer.swift in Sources */,
 				08D465B222F1A77600B8D43B /* MotionManager.swift in Sources */,
 			);
@@ -754,6 +768,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7703F79122FAE2A30075BF92 /* Songs.swift in Sources */,
 				77FE01C722F048E300861C78 /* GameViewController.swift in Sources */,
 				77DFAD4E22E84C56006DCBEE /* MainViewController.swift in Sources */,
 				77DFAD5522E84C56006DCBEE /* MainController.swift in Sources */,
@@ -764,6 +779,7 @@
 				776713DA22EF852B0020E22C /* Guitars.swift in Sources */,
 				77DFAD4C22E84C56006DCBEE /* AppDelegate.swift in Sources */,
 				77F9DD1C22F0851800B0C37F /* TextManager.swift in Sources */,
+				77D0C60D22F9881B009AEB95 /* SoundEffects.swift in Sources */,
 				7762443322F8277000B36008 /* userDefaultKeysString.swift in Sources */,
 				08B5E77F22F1C3C500A6FF05 /* SignalCode.swift in Sources */,
 				77F9DD1E22F08F0B00B0C37F /* GameGuitarManager.swift in Sources */,
@@ -941,7 +957,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.3;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
 			};
 			name = Debug;
 		};
@@ -965,7 +981,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 5.3;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
 			};
 			name = Release;
 		};
@@ -994,7 +1010,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.3;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
 			};
 			name = Debug;
 		};
@@ -1023,7 +1039,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 5.3;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
 			};
 			name = Release;
 		};
