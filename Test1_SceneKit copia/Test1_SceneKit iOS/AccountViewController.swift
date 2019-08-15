@@ -29,8 +29,8 @@ class AccountViewController: UIViewController {
         self.imageProfile.clipsToBounds = true;
         innerView.layer.cornerRadius = 14
         
+        imagePickerController.allowsEditing = false
         imagePickerController.delegate = self
-        
     }
 
     @IBAction func logOutButton(_ sender: Any) {
@@ -75,6 +75,10 @@ class AccountViewController: UIViewController {
 
 extension AccountViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
-    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image =  info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+        self.imageProfile.image = image
+        dismiss(animated: true, completion: nil)
+    }
     
 }
