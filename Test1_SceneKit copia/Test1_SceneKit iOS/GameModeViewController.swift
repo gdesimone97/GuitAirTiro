@@ -371,7 +371,6 @@ extension GameModeViewController: SessionManagerDelegate {
     func mexReceived(_ manager: SessionManager, didMessageReceived: SignalCode) {
         switch didMessageReceived {
         case .closeGamePhone:
-            print("Ciao \(didMessageReceived)")
             try! AudioKit.stop()
             guitar11?.resetGuitar()
             guitar12?.resetGuitar()
@@ -382,7 +381,9 @@ extension GameModeViewController: SessionManagerDelegate {
             guitar41?.resetGuitar()
             guitar42?.resetGuitar()
             
-            self.dismiss(animated: false, completion: nil)
+            DispatchQueue.main.async {
+                self.dismiss(animated: false, completion: nil)
+            }
         default:
             break
         }

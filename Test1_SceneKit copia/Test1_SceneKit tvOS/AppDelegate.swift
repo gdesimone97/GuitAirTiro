@@ -31,18 +31,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // when the app enter background,
         // if the app stays in the MainViewController, it removes all the peers in the dictionary because when it will activate again, the sessionDelegate finds again the available peers
         // else, sends a signal to the phone
-        if self.window?.rootViewController?.presentedViewController == nil {
-            print("Sono una mainviewcontroller")
-            print(self.window?.rootViewController)
-            let controller = self.window?.rootViewController! as! MainViewController
-            controller.removeAllFromDictionary()
+        let controller = self.window?.rootViewController! as! MainViewController
+        controller.removeAllFromDictionary()
+    
+        if self.window?.rootViewController?.presentedViewController!.title == "GameViewController" {
+            let controller = self.window?.rootViewController?.presentedViewController! as! GameViewController
+            controller.sendSignalWhenClosing()
         }
-        else {
-            if self.window?.rootViewController?.presentedViewController!.title == "GameViewController" {
-                let controller = self.window?.rootViewController?.presentedViewController! as! GameViewController
-                controller.sendSignalWhenClosing()
-            }
-        }
+        
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
