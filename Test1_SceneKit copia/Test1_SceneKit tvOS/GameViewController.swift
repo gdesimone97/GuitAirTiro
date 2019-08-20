@@ -34,8 +34,9 @@ class GameViewController: UIViewController {
     var callbackClosure: ( () -> Void )?
     
     override func viewWillDisappear(_ animated: Bool) {
+        sendSignalWhenClosing()
         soundEffect.stopGuitars()
-        playing = false
+        self.playing = false
         callbackClosure?()
     }
     
@@ -61,6 +62,7 @@ class GameViewController: UIViewController {
     // I take the watch settings : true -> watch is present, false -> watch not present
     var watch: Bool!
     
+    var startNode: SCNNode?
     var pointText: SCNNode?
     var multiplierNode: SCNNode?
     var multiplier = 1
@@ -71,7 +73,6 @@ class GameViewController: UIViewController {
     let noteQueue = DispatchQueue(label: "noteQueue", qos: .userInteractive)
     let pointsQueue = DispatchQueue(label: "pointsQueue", qos: .userInteractive)
     let startQueue = DispatchQueue(label: "startQueue", qos: .userInteractive)
-    let stateQueue = DispatchQueue(label: "stateQueue", qos: .userInteractive)
     
 
     override func viewDidLoad() {
@@ -97,13 +98,12 @@ class GameViewController: UIViewController {
         startQueue.async {
             sleep(1)
             self.points = 0
-            var startNode: SCNNode!
             DispatchQueue.main.async {
-                startNode = self.textManager.addTextAtPosition(str: "Press the button on the remote to start!", x: -2, y: 3, z: 0)
-                startNode.eulerAngles = SCNVector3(0.1, 0, 0)
+                self.startNode = self.textManager.addTextAtPosition(str: "Press the button on the remote to start!", x: -2, y: 3, z: 0)
+                self.startNode!.eulerAngles = SCNVector3(0.1, 0, 0)
             }
             self.semaphoreStart.wait()
-            startNode.removeFromParentNode()
+            self.startNode!.removeFromParentNode()
             self.soundEffect.countdown()
             self.textManager.addGameNotification(str: "3", color: UIColor.white, duration: 0.5)
             sleep(1)
@@ -115,8 +115,7 @@ class GameViewController: UIViewController {
             sleep(1)
             self.playing = true
             
-            // Called 3 times to unlock all the 3 threads waiting
-            self.semaphorePlay.signal()
+            // Called 2 times to unlock all the 2 threads waiting
             self.semaphorePlay.signal()
             self.semaphorePlay.signal()
         }
@@ -124,7 +123,7 @@ class GameViewController: UIViewController {
         
         pointsQueue.async {
             self.semaphorePlay.wait()
-            while self.playing == true {
+            while self.playing {
                 self.updatePoints()
                 usleep(100000)
             }
@@ -146,15 +145,24 @@ class GameViewController: UIViewController {
                 usleep(UInt32(x[x.count-1])!)
             }
             
+            sleep(3)
+            
             if self.playing {
                 // when the song stops
-                sleep(5)
+                sleep(2)
                 self.soundEffect.applauseSound()
-                self.textManager.addGameNotification(str: "Great, you did \((self.points > 0 ? self.points : 0)) points!", color: UIColor.white, duration: 3)
+                if self.points > 0 {
+                    self.textManager.addGameNotification(str: "Great, you did \(self.points) points!", color: UIColor.white, duration: 3)
+                }
+                else {
+                    self.textManager.addGameNotification(str: "Oh, you did 0 points...", color: UIColor.white, duration: 3)
+                }
+                
                 self.gameGuitarManager.fire()
                 sleep(4)
-                //Ogni volta che si fa la dismiss, devo mandare un segnale al telefono
-                self.dismiss(animated: false, completion: nil)
+                DispatchQueue.main.async {
+                    self.dismiss(animated: false, completion: nil)
+                }
             }
             
         }
@@ -194,7 +202,7 @@ class GameViewController: UIViewController {
             }
         }
         
-        if !playing {
+        if !playing && startNode != nil {
             semaphoreStart.signal()
         }
     }
@@ -259,15 +267,33 @@ class GameViewController: UIViewController {
     }
     
     func changePoints(point: Bool) {
-        points += (point ? multiplier : -1)
-        consecutiveFlag = point
+        if !self.playing {
+            return
+        }
         
-        if self.points < -9 {
-            playing = false
-            soundEffect.booSound()
-            textManager.addGameNotification(str: "Damn! You're out", color: UIColor.white, duration: 3)
+        if point {
+            if self.points < 0 {
+                self.points = 1
+            }
+            else {
+                self.points += multiplier
+            }
+        }
+        else {
+            points -= 1
+        }
+        
+        consecutiveFlag = point
+//        print("\(point), \(multiplier), \(points)")
+        
+        if self.points < -3 {
+            self.playing = false
+            self.soundEffect.booSound()
+            self.textManager.addGameNotification(str: "You failed!", color: UIColor.red, duration: 3)
             sleep(4)
-            self.dismiss(animated: false, completion: nil)
+            DispatchQueue.main.async {
+                self.dismiss(animated: false, completion: nil)
+            }
         }
         
         
@@ -293,27 +319,33 @@ class GameViewController: UIViewController {
         switch consecutivePoints {
         case 0:
             multiplier = 1
-        case 5:
-            multiplier = 2
-            textManager.addGameNotification(str: "Wow! 5 consecutive notes!", color: UIColor.white, duration: 2)
-            gameGuitarManager.fire()
         case 10:
-            multiplier = 3
-            textManager.addGameNotification(str: "Amazing! 10 consecutive notes!", color: UIColor.white, duration: 2)
-            gameGuitarManager.fire()
-        case 15:
-            multiplier = 4
-            textManager.addGameNotification(str: "Impressive! 15 consecutive notes!", color: UIColor.white, duration: 2)
+            multiplier = 2
+            textManager.addGameNotification(str: "Wow! 10 consecutive notes!", color: UIColor.white, duration: 2)
             gameGuitarManager.fire()
         case 20:
+            multiplier = 3
+            textManager.addGameNotification(str: "Amazing! 20 consecutive notes!", color: UIColor.white, duration: 2)
+            gameGuitarManager.fire()
+        case 30:
+            multiplier = 4
+            textManager.addGameNotification(str: "Impressive! 30 consecutive notes!", color: UIColor.white, duration: 2)
+            gameGuitarManager.fire()
+        case 40:
             multiplier = 5
-            textManager.addGameNotification(str: "Perfect! 20 consecutive notes!", color: UIColor.white, duration: 2)
+            textManager.addGameNotification(str: "Perfect! 40 consecutive notes!", color: UIColor.white, duration: 2)
             gameGuitarManager.fire()
         default:
             break
         }
     }
     
+    
+    func sendSignalWhenClosing() {
+        if let device = session.showConnectedDevices() {
+            session.sendSignal(device[0], message: SignalCode.closeGamePhone)
+        }
+    }
     
     
 }

@@ -369,7 +369,9 @@ extension GameModeViewController: SessionManagerDelegate {
     }
     
     func mexReceived(_ manager: SessionManager, didMessageReceived: SignalCode) {
-        if didMessageReceived == SignalCode.closeGamePhone {
+        switch didMessageReceived {
+        case .closeGamePhone:
+            print("Ciao \(didMessageReceived)")
             try! AudioKit.stop()
             guitar11?.resetGuitar()
             guitar12?.resetGuitar()
@@ -381,6 +383,8 @@ extension GameModeViewController: SessionManagerDelegate {
             guitar42?.resetGuitar()
             
             self.dismiss(animated: false, completion: nil)
+        default:
+            break
         }
     }
     

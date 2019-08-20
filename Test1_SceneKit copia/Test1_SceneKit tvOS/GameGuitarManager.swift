@@ -75,8 +75,11 @@ class GameGuitarManager {
 
     // Parameter indicates the column of the guitar
     func showNode(column: Int) {
-        let box = SCNBox(width: 1, height: 1, length: 1, chamferRadius: 5)
-        let boxNode = SCNNode(geometry: box)
+//        let box = SCNBox(width: 1, height: 1, length: 1, chamferRadius: 5)
+//        let boxNode = SCNNode(geometry: box)
+        let note = SCNScene(named: "Art.scnassets/Note/button.scn")
+        var boxNode = note!.rootNode.childNode(withName: "note", recursively: true)!
+        
         boxNode.name = "note"
         
         if let col = findColumn(column: column) {
@@ -84,10 +87,7 @@ class GameGuitarManager {
             
             let boxMaterial = SCNMaterial()
             boxMaterial.diffuse.contents = col.color
-            boxMaterial.specular.contents = col.color
-            boxMaterial.emission.contents = col.color
-            boxMaterial.shininess = 1.0
-            boxNode.geometry?.firstMaterial = boxMaterial
+            boxNode.geometry?.replaceMaterial(at: 2, with: boxMaterial)
         }
         
         boxNode.opacity = 0
@@ -106,6 +106,7 @@ class GameGuitarManager {
     
     // This func checks if a tap is good or not
     func checkPoint(column: Int) {
+        var pointFlag = false
         
         // Prendo tutti i nodi presenti nella scena, controllo se stanno nella colonna specificata e restituisco true se stanno sul pulsante o no
         // Il pulsante è un cerchio di raggio = 1, posizione z = -1
@@ -117,12 +118,15 @@ class GameGuitarManager {
                         node.removeFromParentNode()
                         self.changePoints(true)
                         bokeh(column: column)
+                        pointFlag = true
                     }
                 }
             }
         }
         
-        self.changePoints(false)
+        if !pointFlag {
+            self.changePoints(false)
+        }
     }
     
     

@@ -28,11 +28,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
-        // when the app enter background, removes all the peers in the dictionary because when it will activate again, the sessionDelegate finds again the available peers
-        if let viewController = self.window?.rootViewController {
-            print("1 \(viewController) \(String(describing: viewController.title))")
-            let controller = viewController as! MainViewController
+        // when the app enter background,
+        // if the app stays in the MainViewController, it removes all the peers in the dictionary because when it will activate again, the sessionDelegate finds again the available peers
+        // else, sends a signal to the phone
+        if self.window?.rootViewController?.presentedViewController == nil {
+            print("Sono una mainviewcontroller")
+            print(self.window?.rootViewController)
+            let controller = self.window?.rootViewController! as! MainViewController
             controller.removeAllFromDictionary()
+        }
+        else {
+            if self.window?.rootViewController?.presentedViewController!.title == "GameViewController" {
+                let controller = self.window?.rootViewController?.presentedViewController! as! GameViewController
+                controller.sendSignalWhenClosing()
+            }
         }
     }
 

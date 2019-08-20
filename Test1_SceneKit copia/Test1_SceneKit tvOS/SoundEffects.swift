@@ -284,6 +284,16 @@ class SoundEffect {
     }
     
     func stopGuitars() {
+        guitar11!.resetGuitar()
+        guitar12!.resetGuitar()
+        guitar21!.resetGuitar()
+        guitar22!.resetGuitar()
+        guitar31!.resetGuitar()
+        guitar32!.resetGuitar()
+        guitar41!.resetGuitar()
+        guitar42!.resetGuitar()
+        
+        
         try! AudioKit.stop()
     }
     

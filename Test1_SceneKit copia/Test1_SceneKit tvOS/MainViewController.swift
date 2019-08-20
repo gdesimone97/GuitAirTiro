@@ -99,7 +99,9 @@ class MainViewController: UIViewController {
             for index in 0...rows {
                 if index == row {
                     if let peerID = dictionary.keyForValue(value: String(index)) {
-                        session.invitePeer(invite: peerID)
+                        DispatchQueue(label: "invite", qos: .background).async {
+                            self.session.invitePeer(invite: peerID)
+                        }
                         textManager.addNotification(str: "Request sent to " + peerID.displayName, color: UIColor.green, y: 1)
                     }
                     hidePlane()
