@@ -34,6 +34,10 @@ class AccountViewController: UIViewController {
         
         imagePickerController.allowsEditing = false
         imagePickerController.delegate = self
+        
+        if let image = userDefault.getImage(forKey: IMAGE_DEFAULT) {
+            imageProfile.image = image
+        }
     }
 
     @IBAction func logOutButton(_ sender: Any) {
@@ -81,6 +85,7 @@ extension AccountViewController: UIImagePickerControllerDelegate,UINavigationCon
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image =  info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         self.imageProfile.image = image
+        userDefault.setImage(image: image, forKey: IMAGE_DEFAULT)
         dismiss(animated: true, completion: nil)
     }
     
