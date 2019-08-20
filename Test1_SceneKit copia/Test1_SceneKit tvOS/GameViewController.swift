@@ -51,7 +51,6 @@ class GameViewController: UIViewController {
     var button4Pressed: Bool = false
     
     var consecutivePoints: Int = 0
-    var consecutiveFlag: Bool = false
     var points50: Bool = false
     var points100: Bool = false
     
@@ -138,10 +137,6 @@ class GameViewController: UIViewController {
                     self.gameGuitarManager.showNode(column: Int(x[i])!)
                 }
                 
-                if !self.playing {
-                    break
-                }
-                
                 usleep(UInt32(x[x.count-1])!)
             }
             
@@ -152,7 +147,7 @@ class GameViewController: UIViewController {
                 sleep(2)
                 self.soundEffect.applauseSound()
                 if self.points > 0 {
-                    self.textManager.addGameNotification(str: "Great, you did \(self.points) points!", color: UIColor.white, duration: 3)
+                    self.textManager.addGameNotification(str: "You did \(self.points) points!", color: UIColor.white, duration: 3)
                 }
                 else {
                     self.textManager.addGameNotification(str: "Oh, you did 0 points...", color: UIColor.white, duration: 3)
@@ -283,19 +278,17 @@ class GameViewController: UIViewController {
             points -= 1
         }
         
-        consecutiveFlag = point
-//        print("\(point), \(multiplier), \(points)")
-        
-        if self.points < -3 {
-            self.playing = false
-            self.soundEffect.booSound()
-            self.textManager.addGameNotification(str: "You failed!", color: UIColor.red, duration: 3)
-            sleep(4)
-            DispatchQueue.main.async {
-                self.dismiss(animated: false, completion: nil)
+        if self.points < -5 {
+            DispatchQueue(label: "failed", qos: .userInteractive).async {
+                self.playing = false
+                self.soundEffect.booSound()
+                self.textManager.addGameNotification(str: "You failed!", color: UIColor.red, duration: 3)
+                sleep(4)
+                DispatchQueue.main.async {
+                    self.dismiss(animated: false, completion: nil)
+                }
             }
         }
-        
         
         
         if point {
