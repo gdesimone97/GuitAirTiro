@@ -285,7 +285,7 @@ class GameModeViewController: UIViewController {
     @IBAction func touchUpInsideBlue(_ sender: Any) {
         if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
-            self.sessionTv.sendSignal(device[0], message: SignalCode.key2Released)
+                self.sessionTv.sendSignal(device[0], message: SignalCode.key2Released)
             }
         }
     }
@@ -293,7 +293,7 @@ class GameModeViewController: UIViewController {
     @IBAction func touchExitBlue(_ sender: Any) {
         if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
-            self.sessionTv.sendSignal(device[0], message: SignalCode.key2Released)
+                self.sessionTv.sendSignal(device[0], message: SignalCode.key2Released)
             }
         }
         
@@ -301,7 +301,7 @@ class GameModeViewController: UIViewController {
     @IBAction func touchDownBlue(_ sender: Any) {
         if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
-            self.sessionTv.sendSignal(device[0], message: SignalCode.key2Pressed)
+                self.sessionTv.sendSignal(device[0], message: SignalCode.key2Pressed)
             }
         }
     }
@@ -310,7 +310,7 @@ class GameModeViewController: UIViewController {
     @IBAction func touchUpInsideGreen(_ sender: Any) {
         if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
-            self.sessionTv.sendSignal(device[0], message: SignalCode.key3Released)
+                self.sessionTv.sendSignal(device[0], message: SignalCode.key3Released)
             }
         }
     }
@@ -318,7 +318,7 @@ class GameModeViewController: UIViewController {
     @IBAction func touchExitGreen(_ sender: Any) {
         if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
-            self.sessionTv.sendSignal(device[0], message: SignalCode.key3Released)
+                self.sessionTv.sendSignal(device[0], message: SignalCode.key3Released)
             }
         }
         
@@ -326,7 +326,7 @@ class GameModeViewController: UIViewController {
     @IBAction func touchDownGreen(_ sender: Any) {
         if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
-            self.sessionTv.sendSignal(device[0], message: SignalCode.key3Pressed)
+                self.sessionTv.sendSignal(device[0], message: SignalCode.key3Pressed)
             }
         }
     }
@@ -335,7 +335,7 @@ class GameModeViewController: UIViewController {
     @IBAction func touchUpInsidePink(_ sender: Any) {
         if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
-            self.sessionTv.sendSignal(device[0], message: SignalCode.key4Released)
+                self.sessionTv.sendSignal(device[0], message: SignalCode.key4Released)
             }
         }
     }
@@ -343,7 +343,7 @@ class GameModeViewController: UIViewController {
     @IBAction func touchExitPink(_ sender: Any) {
         if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
-            self.sessionTv.sendSignal(device[0], message: SignalCode.key4Released)
+                self.sessionTv.sendSignal(device[0], message: SignalCode.key4Released)
             }
         }
         
@@ -351,7 +351,7 @@ class GameModeViewController: UIViewController {
     @IBAction func touchDownPink(_ sender: Any) {
         if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
-            self.sessionTv.sendSignal(device[0], message: SignalCode.key4Pressed)
+                self.sessionTv.sendSignal(device[0], message: SignalCode.key4Pressed)
             }
         }
     }
@@ -369,7 +369,19 @@ extension GameModeViewController: SessionManagerDelegate {
     }
     
     func mexReceived(_ manager: SessionManager, didMessageReceived: SignalCode) {
-        return
+        if didMessageReceived == SignalCode.closeGamePhone {
+            try! AudioKit.stop()
+            guitar11?.resetGuitar()
+            guitar12?.resetGuitar()
+            guitar21?.resetGuitar()
+            guitar22?.resetGuitar()
+            guitar31?.resetGuitar()
+            guitar32?.resetGuitar()
+            guitar41?.resetGuitar()
+            guitar42?.resetGuitar()
+            
+            self.dismiss(animated: false, completion: nil)
+        }
     }
     
     func mexReceived(_ manager: SessionManager, didMessageReceived: Array<String>) {
