@@ -29,6 +29,7 @@ class GuitarSelectedViewController: UIViewController {
         //swipe directions
         leftSwipe.direction = UISwipeGestureRecognizer.Direction.left
         rightSwipe.direction = UISwipeGestureRecognizer.Direction.right
+        
         let guitar = UserDefaults.getGuitar(forKey: GUITAR)
         switch guitar {
         case .classic?:
