@@ -284,6 +284,4 @@ extension ViewController: SessionManagerDelegate {
     func peerLost(_ manager: SessionManager, peer lost: MCPeerID) {
         return
     }
-    
-    
 }
