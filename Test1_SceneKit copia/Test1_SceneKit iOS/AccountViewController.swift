@@ -24,8 +24,9 @@ class AccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         pickButton.setTitle("", for: UIControl.State.normal  )
-        if !userDefaults.bool(forKey: LOGIN) {
-            self.performSegue(withIdentifier: "login_view", sender: nil)
+        
+        if let image = userDefaults.getImage(forKey: IMAGE_DEFAULT) {
+            imageProfile.image = image
         }
         
         self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2;
@@ -34,10 +35,6 @@ class AccountViewController: UIViewController {
         
         imagePickerController.allowsEditing = false
         imagePickerController.delegate = self
-        
-        if let image = userDefault.getImage(forKey: IMAGE_DEFAULT) {
-            imageProfile.image = image
-        }
     }
 
     @IBAction func logOutButton(_ sender: Any) {
@@ -46,7 +43,6 @@ class AccountViewController: UIViewController {
     
     @IBAction func takePhoto(_ sender: Any) {
         showAllert()
-        
     }
     
     private func showAllert() {
