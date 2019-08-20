@@ -521,7 +521,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile.png" translatesAutoresizingMaskIntoConstraints="NO" id="QjZ-SO-isT">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile.png" translatesAutoresizingMaskIntoConstraints="NO" id="QjZ-SO-isT">
                                 <rect key="frame" x="56" y="84" width="130" height="133"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -733,6 +733,10 @@
                         <outlet property="imageProfile" destination="QjZ-SO-isT" id="I10-Sm-T9H"/>
                         <outlet property="innerView" destination="Uql-PX-ocb" id="ojj-BJ-Keo"/>
                         <outlet property="pickButton" destination="4IH-RA-wK1" id="RxO-Q2-mrI"/>
+                        <outletCollection property="statLabel" destination="9dA-OZ-qeg" collectionClass="NSMutableArray" id="MlU-ek-f6h"/>
+                        <outletCollection property="statLabel" destination="YQy-i8-BEe" collectionClass="NSMutableArray" id="frW-Uy-slt"/>
+                        <outletCollection property="statLabel" destination="h7I-zA-Spa" collectionClass="NSMutableArray" id="elx-5L-qwO"/>
+                        <outletCollection property="statLabel" destination="R9x-sx-bqL" collectionClass="NSMutableArray" id="pgj-nc-CzC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I96-3E-yif" userLabel="First Responder" sceneMemberID="firstResponder"/>

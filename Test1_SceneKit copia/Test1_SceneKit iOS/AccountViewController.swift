@@ -12,7 +12,10 @@ class AccountViewController: UIViewController {
     @IBOutlet var pickButton: UIButton!
     @IBOutlet var innerView: UIView!
     @IBOutlet var imageProfile: UIImageView!
+    
     @IBOutlet var gamerTag: UILabel!
+    @IBOutlet var statLabel: [UILabel]!
+    
     
     let imagePickerController = UIImagePickerController()
     
