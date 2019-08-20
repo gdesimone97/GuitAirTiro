@@ -100,7 +100,7 @@ class SessionManager: NSObject {
     
     func sendSignal (_ peer: MCPeerID, message: Array<String>) {
         do {
-            var mex = try NSKeyedArchiver.archivedData(withRootObject: message, requiringSecureCoding: false)
+            let mex = try NSKeyedArchiver.archivedData(withRootObject: message, requiringSecureCoding: false)
             if self.session.connectedPeers.count > 0 {
                 try self.session.send(mex, toPeers: [peer], with: .unreliable)
             }
