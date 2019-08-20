@@ -40,6 +40,7 @@ class GuitarSelectedViewController: UIViewController {
             guitarLabel!.text = "Electric"
         default:
             imageView.image = acousticImage
+            guitarLabel!.text = "Acoustic"
         }
         
         
