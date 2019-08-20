@@ -173,6 +173,7 @@ extension SessionManager: MCSessionDelegate {
             let code = SignalCode.init(rawValue: intData!)
             guard code != nil else { return }
             self.delegate?.mexReceived(self, didMessageReceived: code!)
+            self.delegateGame?.mexReceived(self, didMessageReceived: code!)
         }
         else {
             let array = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! Array<String>
