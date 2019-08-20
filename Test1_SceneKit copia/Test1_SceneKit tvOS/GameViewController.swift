@@ -65,7 +65,7 @@ class GameViewController: UIViewController {
     var multiplierNode: SCNNode?
     var multiplier = 1
     
-    var song: String! = Songs.PeppeGay.rawValue // Da settare dal telefono
+    var song: String! = Songs.LaCanzoneDelSole.rawValue // Da settare dal telefono
     
     // This is the thread that shows nodes on the guitar
     let noteQueue = DispatchQueue(label: "noteQueue", qos: .userInteractive)
@@ -81,7 +81,7 @@ class GameViewController: UIViewController {
         
         session.delegate = self
         
-        gameGuitarManager = GameGuitarManager(scene: gameView.scene!, width: 2.5, length: 20, z: -17, function: changePoints(p:consecutive:))
+        gameGuitarManager = GameGuitarManager(scene: gameView.scene!, width: 2.5, length: 20, z: -17, function: changePoints(point:))
         textManager = TextManager(scene: gameView.scene!)
         soundEffect = SoundEffect(file1: chords[0], file2: chords[1], file3: chords[2], file4: chords[3])
         
@@ -131,89 +131,66 @@ class GameViewController: UIViewController {
         }
         
         noteQueue.async {
-            // This thread shows the buttons to play while gaming.
+            // This thread shows the notes to play taking the song's string
             self.semaphorePlay.wait()
-            while self.playing == true {
-                for pair in self.song.split(separator: ";") {
-                    let x = pair.split(separator: ":")
-                    for i in 0..<x.count-1 {
-                        self.gameGuitarManager.showNode(column: Int(x[i])!)
-                    }
-                    
-                    usleep(UInt32(x[x.count-1])!)
+            for pair in self.song.split(separator: ";") {
+                let x = pair.split(separator: ":")
+                for i in 0..<x.count-1 {
+                    self.gameGuitarManager.showNode(column: Int(x[i])!)
                 }
                 
-            }
-        }
-        
-        stateQueue.async {
-            self.semaphorePlay.wait()
-            while self.playing == true {
-                if !self.points50 && self.points > 50 {
-                    self.textManager.addGameNotification(str: "Wow! 50 points!", color: UIColor.white, duration: 2)
-                    self.gameGuitarManager.fire()
-                    self.points50 = true
+                if !self.playing {
+                    break
                 }
-                if !self.points100 && self.points > 100 {
-                    self.textManager.addGameNotification(str: "You are a legend!", color: UIColor.white, duration: 2)
-                    self.gameGuitarManager.fire()
-                    self.points100 = true
-                }
+                
+                usleep(UInt32(x[x.count-1])!)
             }
+            
+            if self.playing {
+                // when the song stops
+                sleep(5)
+                self.soundEffect.applauseSound()
+                self.textManager.addGameNotification(str: "Great, you did \((self.points > 0 ? self.points : 0)) points!", color: UIColor.white, duration: 3)
+                self.gameGuitarManager.fire()
+                sleep(4)
+                //Ogni volta che si fa la dismiss, devo mandare un segnale al telefono
+                self.dismiss(animated: false, completion: nil)
+            }
+            
         }
         
     }
     
     // Function started only if watch is not present
     @objc func handleTap(_ gestureRecognizer: UIGestureRecognizer) {
-        if watch {
+        if playing && watch {
             gameGuitarManager.fire()
         }
-        else {
+        else if playing && !watch {
             var flag = false
             if button1Pressed {
                 play(col: 1)
-                if self.gameGuitarManager.checkPoint(column: 1) {
-                    points += multiplier
-                }
-                else {
-                    points -= 1
-                }
+                self.gameGuitarManager.checkPoint(column: 1)
                 flag = true
             }
             if button2Pressed {
                 play(col: 2)
-                if self.gameGuitarManager.checkPoint(column: 2) {
-                    points += multiplier
-                }
-                else {
-                    points -= 1
-                }
+                self.gameGuitarManager.checkPoint(column: 2)
                 flag = true
             }
             if button3Pressed {
                 play(col: 3)
-                if self.gameGuitarManager.checkPoint(column: 3) {
-                    points += multiplier
-                }
-                else {
-                    points -= 1
-                }
+                self.gameGuitarManager.checkPoint(column: 3)
                 flag = true
             }
             if button4Pressed {
                 play(col: 4)
-                if self.gameGuitarManager.checkPoint(column: 4) {
-                    points += multiplier
-                }
-                else {
-                    points -= 1
-                }
+                self.gameGuitarManager.checkPoint(column: 4)
                 flag = true
             }
             
             if !flag {
-                points -= 1
+                changePoints(point: false)
             }
         }
         
@@ -273,7 +250,7 @@ class GameViewController: UIViewController {
             if let node = self.multiplierNode {
                 node.removeFromParentNode()
             }
-            self.pointText = self.textManager.addTextAtPosition(str: "Points: \(self.points )", x: 1.5, y: 3.3, z: -0.5)
+            self.pointText = self.textManager.addTextAtPosition(str: "Points: " + (self.points > 0 ? String(self.points) : "0"), x: 1.5, y: 3.3, z: -0.5)
             self.pointText?.eulerAngles = SCNVector3(x: 0, y: -0.15, z: 0)
             
             self.multiplierNode = self.textManager.addTextAtPosition(str: "Multiplier: x\(self.multiplier)", x: 1.5, y: 3, z: -0.5)
@@ -281,16 +258,63 @@ class GameViewController: UIViewController {
         }
     }
     
-    func changePoints(p: Int, consecutive: Bool) {
-        points += p
-        consecutiveFlag = consecutive
-        if consecutive {
+    func changePoints(point: Bool) {
+        points += (point ? multiplier : -1)
+        consecutiveFlag = point
+        
+        if self.points < -9 {
+            playing = false
+            soundEffect.booSound()
+            textManager.addGameNotification(str: "Damn! You're out", color: UIColor.white, duration: 3)
+            sleep(4)
+            self.dismiss(animated: false, completion: nil)
+        }
+        
+        
+        
+        if point {
             consecutivePoints += 1
         }
         else {
             consecutivePoints = 0
         }
+        
+        if !points50 && points > 50 {
+            textManager.addGameNotification(str: "Wow! 50 points!", color: UIColor.white, duration: 2)
+            gameGuitarManager.fire()
+            points50 = true
+        }
+        if !points100 && points > 100 {
+            textManager.addGameNotification(str: "You are a legend!", color: UIColor.white, duration: 2)
+            gameGuitarManager.fire()
+            points100 = true
+        }
+        
+        switch consecutivePoints {
+        case 0:
+            multiplier = 1
+        case 5:
+            multiplier = 2
+            textManager.addGameNotification(str: "Wow! 5 consecutive notes!", color: UIColor.white, duration: 2)
+            gameGuitarManager.fire()
+        case 10:
+            multiplier = 3
+            textManager.addGameNotification(str: "Amazing! 10 consecutive notes!", color: UIColor.white, duration: 2)
+            gameGuitarManager.fire()
+        case 15:
+            multiplier = 4
+            textManager.addGameNotification(str: "Impressive! 15 consecutive notes!", color: UIColor.white, duration: 2)
+            gameGuitarManager.fire()
+        case 20:
+            multiplier = 5
+            textManager.addGameNotification(str: "Perfect! 20 consecutive notes!", color: UIColor.white, duration: 2)
+            gameGuitarManager.fire()
+        default:
+            break
+        }
     }
+    
+    
     
 }
 
@@ -330,39 +354,19 @@ extension GameViewController: SessionManagerDelegate {
             case .signal:
                 if self.button1Pressed {
                     self.play(col: 1)
-                    if self.gameGuitarManager.checkPoint(column: 1) {
-                        self.points += self.multiplier
-                    }
-                    else {
-                        self.points -= self.multiplier
-                    }
+                    self.gameGuitarManager.checkPoint(column: 1)
                 }
                 if self.button2Pressed {
                     self.play(col: 2)
-                    if self.gameGuitarManager.checkPoint(column: 2) {
-                        self.points += self.multiplier
-                    }
-                    else {
-                        self.points -= self.multiplier
-                    }
+                    self.gameGuitarManager.checkPoint(column: 2)
                 }
                 if self.button3Pressed {
                     self.play(col: 3)
-                    if self.gameGuitarManager.checkPoint(column: 3) {
-                        self.points += self.multiplier
-                    }
-                    else {
-                        self.points -= self.multiplier
-                    }
+                    self.gameGuitarManager.checkPoint(column: 3)
                 }
                 if self.button4Pressed {
                     self.play(col: 4)
-                    if self.gameGuitarManager.checkPoint(column: 4) {
-                        self.points += self.multiplier
-                    }
-                    else {
-                        self.points -= self.multiplier
-                    }
+                    self.gameGuitarManager.checkPoint(column: 4)
                 }
                 
 

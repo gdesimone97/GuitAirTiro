@@ -21,7 +21,7 @@ class GameGuitarManager {
     private var width: Float
     private var length: Float
     private var z: Float
-    private var changePoints: (Int, Bool) -> Void // This func is needed when this class have to directly modify the points of GameViewController
+    private var changePoints: (Bool) -> Void // This func is needed when this class have to directly modify the points of GameViewController
     
     private let column1: ColumnType
     private let column2: ColumnType
@@ -36,7 +36,7 @@ class GameGuitarManager {
     let fireEffect = SCNParticleSystem(named: "Art.scnassets/Fire Effect/SceneKit Particle System.scnp", inDirectory: nil)
     
     
-    init(scene: SCNScene, width: Float, length: Float, z: Float, function: @escaping (Int, Bool) -> Void) {
+    init(scene: SCNScene, width: Float, length: Float, z: Float, function: @escaping (Bool) -> Void) {
         self.scene = scene
         self.width = width
         self.length = length
@@ -63,7 +63,7 @@ class GameGuitarManager {
                     if node.name == "note" {
                         // If a node exceeds the limit clickable, it's a -1 point
                         if node.position.z > 0 {
-                            self.changePoints(-1, false)
+                            self.changePoints(false)
                             node.removeFromParentNode()
                         }
                     }
@@ -105,8 +105,7 @@ class GameGuitarManager {
     
     
     // This func checks if a tap is good or not
-    func checkPoint(column: Int) -> Bool {
-        var flag = false
+    func checkPoint(column: Int) {
         
         // Prendo tutti i nodi presenti nella scena, controllo se stanno nella colonna specificata e restituisco true se stanno sul pulsante o no
         // Il pulsante è un cerchio di raggio = 1, posizione z = -1
@@ -115,15 +114,15 @@ class GameGuitarManager {
             if let pos = findPos(column: column) {
                 if node.name == "note" && node.position.x == pos {
                     if node.position.z > -2 && node.position.z < 0 {
-                        flag = true
                         node.removeFromParentNode()
+                        self.changePoints(true)
                         bokeh(column: column)
                     }
                 }
             }
         }
         
-        return flag
+        self.changePoints(false)
     }
     
     
@@ -170,7 +169,7 @@ class GameGuitarManager {
         self.scene.rootNode.addChildNode(particleNode1)
         self.scene.rootNode.addChildNode(particleNode2)
         
-        let wait = SCNAction.wait(duration: 5)
+        let wait = SCNAction.wait(duration: 3)
         let remove = SCNAction.removeFromParentNode()
         
         DispatchQueue.main.async {

@@ -18,6 +18,8 @@ class SoundEffect {
     
     // Sound Effects
     private var countdownPlayer: AKPlayer?
+    private var booEffect: AKPlayer?
+    private var applauseEffect: AKPlayer?
     
     
     // Songs
@@ -46,6 +48,16 @@ class SoundEffect {
     private var flag2 = false
     private var flag3 = false
     private var flag4 = false
+    
+    private var wah11: AKAutoWah!
+    private var wah12: AKAutoWah!
+    private var wah21: AKAutoWah!
+    private var wah22: AKAutoWah!
+    private var wah31: AKAutoWah!
+    private var wah32: AKAutoWah!
+    private var wah41: AKAutoWah!
+    private var wah42: AKAutoWah!
+    private var wah: [AKAutoWah]!
     
     
     var songThread = DispatchQueue(label: "songs", qos: .userInteractive)
@@ -114,6 +126,8 @@ class SoundEffect {
         
         do{
             countdownPlayer = AKPlayer(audioFile: try findFile(str: "Sound Effects/countdown.wav"))
+            booEffect = AKPlayer(audioFile: try findFile(str: "Sound Effects/Crowd Boo sound effect.mp3"))
+            applauseEffect = AKPlayer(audioFile: try findFile(str: "Sound Effects/Crowd Cheers and Applause.mp3"))
             
             guitar11 = try Guitar(file: file1)
             guitar21 = try Guitar(file: file2)
@@ -127,11 +141,21 @@ class SoundEffect {
             print("AUDIOKIT ERROR! Could not find sound files")
         }
         
+        wah11 = AKAutoWah(guitar11?.chord, wah: 0, mix: 1, amplitude: 10)
+        wah12 = AKAutoWah(guitar12?.chord, wah: 0, mix: 1, amplitude: 10)
+        wah21 = AKAutoWah(guitar21?.chord, wah: 0, mix: 1, amplitude: 10)
+        wah22 = AKAutoWah(guitar22?.chord, wah: 0, mix: 1, amplitude: 10)
+        wah31 = AKAutoWah(guitar31?.chord, wah: 0, mix: 1, amplitude: 10)
+        wah32 = AKAutoWah(guitar32?.chord, wah: 0, mix: 1, amplitude: 10)
+        wah41 = AKAutoWah(guitar41?.chord, wah: 0, mix: 1, amplitude: 10)
+        wah42 = AKAutoWah(guitar42?.chord, wah: 0, mix: 1, amplitude: 10)
+        wah = [wah11, wah12, wah21, wah22, wah31, wah32, wah41, wah42]
         
-        AudioKit.output = AKMixer(guitar11?.chord, guitar21?.chord, guitar31?.chord, guitar41?.chord, guitar12?.chord, guitar22?.chord, guitar32?.chord, guitar42?.chord, countdownPlayer)
+        
+        AudioKit.output = AKMixer(guitar11?.chord, guitar21?.chord, guitar31?.chord, guitar41?.chord, guitar12?.chord, guitar22?.chord, guitar32?.chord, guitar42?.chord, wah11, wah12, wah21, wah22, wah31, wah32, wah41, wah42, countdownPlayer, booEffect, applauseEffect)
         do{
             try AudioKit.start()
-        }catch{
+        } catch {
             print("AUDIOKIT ERROR! Motor couldn't start!")
         }
     }
@@ -145,9 +169,23 @@ class SoundEffect {
     }
     
     func countdown() {
-        if countdownPlayer != nil{
+        if countdownPlayer != nil {
             countdownPlayer!.stop()
             countdownPlayer!.play()
+        }
+    }
+    
+    func booSound() {
+        if booEffect != nil {
+            booEffect!.stop()
+            booEffect!.play()
+        }
+    }
+    
+    func applauseSound() {
+        if applauseEffect != nil {
+            applauseEffect!.stop()
+            applauseEffect!.play()
         }
     }
     
@@ -192,6 +230,49 @@ class SoundEffect {
         else{
             self.guitar42!.playGuitar()
             self.flag4 = false
+        }
+    }
+    
+    func wah(column: Int) {
+        switch column {
+        case 1:
+            if !self.flag1 {
+                wahEffect(guitar: 0)
+            }
+            else {
+                wahEffect(guitar: 1)
+            }
+        case 2:
+            if !self.flag2 {
+                wahEffect(guitar: 2)
+            }
+            else {
+                wahEffect(guitar: 3)
+            }
+        case 3:
+            if !self.flag3 {
+                wahEffect(guitar: 4)
+            }
+            else {
+                wahEffect(guitar: 5)
+            }
+        case 4:
+            if !self.flag4 {
+                wahEffect(guitar: 6)
+            }
+            else {
+                wahEffect(guitar: 7)
+            }
+        default:
+            break
+        }
+    }
+    
+    func wahEffect(guitar: Int) {
+        DispatchQueue(label: "wahEffect").async {
+            self.wah[guitar].wah = 100
+            sleep(3)
+            self.wah[guitar].wah = 0
         }
     }
     

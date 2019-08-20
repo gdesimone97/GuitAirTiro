@@ -188,7 +188,7 @@ class GameModeViewController: UIViewController {
         x += 1
         if self.redButton.isTouchInside {
             if !self.flag1{
-                self.guitar11!.playGuitar() //stop and play
+                self.guitar11!.playGuitar()
                 self.flag1 = true
             }
             else{

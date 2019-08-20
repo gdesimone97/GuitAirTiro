@@ -284,8 +284,8 @@ class MainViewController: UIViewController {
             }
             GameViewController.dictionary = self.dictionary
             GameViewController.watch = self.watch
-            if let chords2 = self.chords {
-                GameViewController.chords = chords2
+            if self.chords != nil {
+                GameViewController.chords = self.chords!
             }
             
             
