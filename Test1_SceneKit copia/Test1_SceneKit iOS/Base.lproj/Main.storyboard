@@ -746,7 +746,7 @@
         <!--Friend Account View Controller-->
         <scene sceneID="Sh3-Rt-ara">
             <objects>
-                <viewController storyboardIdentifier="account_view" id="oEL-BD-e8v" customClass="FriendAccountViewController" customModule="Test1_SceneKit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="friend_account_view" id="oEL-BD-e8v" customClass="FriendAccountViewController" customModule="Test1_SceneKit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JmX-Ym-JCk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
