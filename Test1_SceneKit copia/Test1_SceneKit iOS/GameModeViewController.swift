@@ -260,7 +260,7 @@ class GameModeViewController: UIViewController {
     @IBAction func touchUpInsideRed(_ sender: Any) {
         if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key1Released)
+                self.sessionTv.sendSignalGame(device[0], signal: SignalCode.key1Released)
             }
         }
     }
@@ -268,7 +268,7 @@ class GameModeViewController: UIViewController {
     @IBAction func touchExitRed(_ sender: Any) {
         if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key1Released)
+                self.sessionTv.sendSignalGame(device[0], signal: SignalCode.key1Released)
             }
         }
 
@@ -276,7 +276,7 @@ class GameModeViewController: UIViewController {
     @IBAction func touchDownRed(_ sender: Any) {
         if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key1Pressed)
+                self.sessionTv.sendSignalGame(device[0], signal: SignalCode.key1Pressed)
             }
         }
     }
@@ -301,7 +301,7 @@ class GameModeViewController: UIViewController {
     @IBAction func touchDownBlue(_ sender: Any) {
         if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
-            self.sessionTv.sendSignal(device[0], message: SignalCode.key2Pressed)
+            self.sessionTv.sendSignalGame(device[0], message: SignalCode.key2Pressed)
             }
         }
     }
@@ -310,7 +310,7 @@ class GameModeViewController: UIViewController {
     @IBAction func touchUpInsideGreen(_ sender: Any) {
         if let device = sessionTv.showConnectedDevices() {
             DispatchQueue.main.async {
-            self.sessionTv.sendSignal(device[0], message: SignalCode.key3Released)
+            self.sessionTv.sendSignalGame(device[0], message: SignalCode.key3Released)
             }
         }
     }
