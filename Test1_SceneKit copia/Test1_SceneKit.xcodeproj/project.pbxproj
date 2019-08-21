@@ -15,6 +15,7 @@
 		086325B622F3328800513E1B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086325B522F3328800513E1B /* LoginViewController.swift */; };
 		086325B822F33A5100513E1B /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086325B722F33A5100513E1B /* NavigationController.swift */; };
 		086325BA22F33E7300513E1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 086325B922F33E7300513E1B /* Assets.xcassets */; };
+		0875E9F1230D826D009964B1 /* appModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0875E9EF230D826D009964B1 /* appModel.xcdatamodeld */; };
 		087B1E5122F878DE00BDC2C1 /* GuitarSelectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087B1E5022F878DE00BDC2C1 /* GuitarSelectedViewController.swift */; };
 		087B1E5422F87A2700BDC2C1 /* classic_guitar.png in Resources */ = {isa = PBXBuildFile; fileRef = 087B1E5222F87A2700BDC2C1 /* classic_guitar.png */; };
 		087B1E5522F87A2700BDC2C1 /* elettric_guitar.png in Resources */ = {isa = PBXBuildFile; fileRef = 087B1E5322F87A2700BDC2C1 /* elettric_guitar.png */; };
@@ -96,7 +97,6 @@
 		F207C457230D8690002DA2BF /* swiperight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F207C456230D8690002DA2BF /* swiperight@2x.png */; };
 		F207C459230D9083002DA2BF /* FriendList ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F207C458230D9083002DA2BF /* FriendList ViewController.swift */; };
 		F2B4E820230D3ED0009F6C36 /* Leaderboard View Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4E81F230D3ED0009F6C36 /* Leaderboard View Controller.swift */; };
-		F2B4E822230D4D88009F6C36 /* gamertag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B4E821230D4D87009F6C36 /* gamertag@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +150,7 @@
 		086325B522F3328800513E1B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		086325B722F33A5100513E1B /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		086325B922F33E7300513E1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0875E9F0230D826D009964B1 /* appModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = appModel.xcdatamodel; sourceTree = "<group>"; };
 		087B1E5022F878DE00BDC2C1 /* GuitarSelectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuitarSelectedViewController.swift; sourceTree = "<group>"; };
 		087B1E5222F87A2700BDC2C1 /* classic_guitar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = classic_guitar.png; sourceTree = "<group>"; };
 		087B1E5322F87A2700BDC2C1 /* elettric_guitar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = elettric_guitar.png; sourceTree = "<group>"; };
@@ -238,7 +239,6 @@
 		F207C456230D8690002DA2BF /* swiperight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "swiperight@2x.png"; sourceTree = "<group>"; };
 		F207C458230D9083002DA2BF /* FriendList ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FriendList ViewController.swift"; sourceTree = "<group>"; };
 		F2B4E81F230D3ED0009F6C36 /* Leaderboard View Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Leaderboard View Controller.swift"; sourceTree = "<group>"; };
-		F2B4E821230D4D87009F6C36 /* gamertag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gamertag@2x.png"; path = "../../../../gamertag@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,6 +277,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0875E9EE230D8256009964B1 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				0875E9EF230D826D009964B1 /* appModel.xcdatamodeld */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
 		77DFAD1122E84C54006DCBEE = {
 			isa = PBXGroup;
 			children = (
@@ -324,6 +332,7 @@
 		77DFAD2022E84C56006DCBEE /* Test1_SceneKit iOS */ = {
 			isa = PBXGroup;
 			children = (
+				0875E9EE230D8256009964B1 /* Core Data */,
 				087B1E5222F87A2700BDC2C1 /* classic_guitar.png */,
 				087B1E5322F87A2700BDC2C1 /* elettric_guitar.png */,
 				0854422522F838F200C73B03 /* frecciadx@2x.png */,
@@ -332,7 +341,6 @@
 				08CF906722F4817400F8B853 /* profile@2x.png */,
 				08CF906522F4774C00F8B853 /* pareggio-image.png */,
 				08CF906322F475A900F8B853 /* lose-image.png */,
-				F2B4E821230D4D87009F6C36 /* gamertag@2x.png */,
 				08CF906122F4741100F8B853 /* coppa-image.png */,
 				08CF905F22F4707500F8B853 /* nota-musicale@2x.png */,
 				0887361322F4498400472B14 /* account@2x.png */,
@@ -598,7 +606,6 @@
 				0854422622F838F200C73B03 /* frecciadx@2x.png in Resources */,
 				088E1CBA22F345F1006A197D /* metal@2x.png in Resources */,
 				77DFAD2A22E84C56006DCBEE /* LaunchScreen.storyboard in Resources */,
-				F2B4E822230D4D88009F6C36 /* gamertag@2x.png in Resources */,
 				088E1CC622F345F1006A197D /* rock@2x (1).png in Resources */,
 				08CF906822F4817400F8B853 /* profile@2x.png in Resources */,
 				77DFAD5922E84C56006DCBEE /* Assets.xcassets in Resources */,
@@ -752,6 +759,7 @@
 				0898EC2922F05146007C32DD /* ChordsPickerViewController.swift in Sources */,
 				086325B822F33A5100513E1B /* NavigationController.swift in Sources */,
 				0898EC2B22F05146007C32DD /* Guitar.swift in Sources */,
+				0875E9F1230D826D009964B1 /* appModel.xcdatamodeld in Sources */,
 				088BAC3622F9720800784692 /* DevicesSettingsPaired.swift in Sources */,
 				0898EC2722F05146007C32DD /* SettingsTableViewController.swift in Sources */,
 				087B1E5122F878DE00BDC2C1 /* GuitarSelectedViewController.swift in Sources */,
@@ -1204,6 +1212,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0875E9EF230D826D009964B1 /* appModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0875E9F0230D826D009964B1 /* appModel.xcdatamodel */,
+			);
+			currentVersion = 0875E9F0230D826D009964B1 /* appModel.xcdatamodel */;
+			path = appModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 77DFAD1222E84C54006DCBEE /* Project object */;
 }

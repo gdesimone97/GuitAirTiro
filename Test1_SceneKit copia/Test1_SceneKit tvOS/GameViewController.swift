@@ -415,16 +415,16 @@ extension GameViewController: SessionManagerDelegate {
                 self.button4Pressed = true
                 
             case .key1Released:
-                self.button1.position.y = 0.1
+                self.button1.position.y = 0.05
                 self.button1Pressed = false
             case .key2Released:
-                self.button2.position.y = 0.1
+                self.button2.position.y = 0.05
                 self.button2Pressed = false
             case .key3Released:
-                self.button3.position.y = 0.1
+                self.button3.position.y = 0.05
                 self.button3Pressed = false
             case .key4Released:
-                self.button4.position.y = 0.1
+                self.button4.position.y = 0.05
                 self.button4Pressed = false
                 
                 
