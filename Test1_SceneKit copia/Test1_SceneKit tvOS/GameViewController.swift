@@ -10,6 +10,11 @@ import UIKit
 import SceneKit
 import MultipeerConnectivity
 import AudioKit
+import GameController
+
+protocol ReactToMotionEvents {
+    func motionUpdate(motion: GCMotion) -> Void
+}
 
 
 class GameViewController: UIViewController {
@@ -17,6 +22,8 @@ class GameViewController: UIViewController {
     var gameView: SCNView {
         return self.view as! SCNView
     }
+    
+    var motionDelegate: ReactToMotionEvents?
     
     var gameController: GameController!
     var gameGuitarManager: GameGuitarManager!
@@ -50,6 +57,9 @@ class GameViewController: UIViewController {
     var button3Pressed: Bool = false
     var button4Pressed: Bool = false
     
+    var goodNote: Bool = false
+    var movedController: Bool = false
+    
     var consecutivePoints: Int = 0
     var points50: Bool = false
     var points100: Bool = false
@@ -72,6 +82,9 @@ class GameViewController: UIViewController {
     let noteQueue = DispatchQueue(label: "noteQueue", qos: .userInteractive)
     let pointsQueue = DispatchQueue(label: "pointsQueue", qos: .userInteractive)
     let startQueue = DispatchQueue(label: "startQueue", qos: .userInteractive)
+    
+    
+    var soundThreshold = 2.0
     
 
     override func viewDidLoad() {
@@ -145,6 +158,7 @@ class GameViewController: UIViewController {
             if self.playing {
                 // when the song stops
                 sleep(2)
+                self.motionDelegate = nil
                 self.soundEffect.applauseSound()
                 if self.points > 0 {
                     self.textManager.addGameNotification(str: "You did \(self.points) points!", color: UIColor.white, duration: 3)
@@ -159,46 +173,36 @@ class GameViewController: UIViewController {
                     self.dismiss(animated: false, completion: nil)
                 }
             }
-            
         }
+        
+        // Setto il motionDelegate del controller
+        motionDelegate = self
         
     }
     
-    // Function started only if watch is not present
+    
     @objc func handleTap(_ gestureRecognizer: UIGestureRecognizer) {
         if playing && watch {
             gameGuitarManager.fire()
         }
-        else if playing && !watch {
-            var flag = false
-            if button1Pressed {
-                play(col: 1)
-                self.gameGuitarManager.checkPoint(column: 1)
-                flag = true
-            }
-            if button2Pressed {
-                play(col: 2)
-                self.gameGuitarManager.checkPoint(column: 2)
-                flag = true
-            }
-            if button3Pressed {
-                play(col: 3)
-                self.gameGuitarManager.checkPoint(column: 3)
-                flag = true
-            }
-            if button4Pressed {
-                play(col: 4)
-                self.gameGuitarManager.checkPoint(column: 4)
-                flag = true
-            }
-            
-            if !flag {
-                changePoints(point: false)
-            }
+        else if playing && !watch { // PROVVISORIO SI PUò TOGLIERE SE FUNZIONA L'ACCELEROMETRO
         }
         
         if !playing && startNode != nil {
+            //Cerco tra i controller disponibili, il Remote
+            let controllers = GCController.controllers()
+            for controller in controllers {
+                if controller.vendorName! == "Remote" {
+                    // Setto l'handler, ovvero il blocco che verrà eseguito ogni volta che un valore qualsiasi del controller cambia
+                    controller.motion?.valueChangedHandler = { (motion: GCMotion)->() in
+                        if let delegate = self.motionDelegate {
+                            delegate.motionUpdate(motion: motion)
+                        }
+                    }
+                }
+            }
             semaphoreStart.signal()
+            
         }
     }
     
@@ -281,6 +285,7 @@ class GameViewController: UIViewController {
         if self.points < -5 {
             DispatchQueue(label: "failed", qos: .userInteractive).async {
                 self.playing = false
+                self.motionDelegate = nil
                 self.soundEffect.booSound()
                 self.textManager.addGameNotification(str: "You failed!", color: UIColor.red, duration: 3)
                 sleep(4)
@@ -428,5 +433,50 @@ extension GameViewController: SessionManagerDelegate {
                 break
             }
         }
+    }
+}
+
+extension GameViewController: ReactToMotionEvents {
+    
+    func motionUpdate(motion: GCMotion) {
+        
+        let motionAcceleration = motion.userAcceleration.y * motion.gravity.y + motion.userAcceleration.x * motion.gravity.x + motion.userAcceleration.z * motion.gravity.z
+        
+        
+        if !movedController && -motionAcceleration > soundThreshold {
+            
+            movedController = true
+            goodNote = false
+            
+            if button1Pressed {
+                play(col: 1)
+                self.gameGuitarManager.checkPoint(column: 1)
+                goodNote = true
+            }
+            if button2Pressed {
+                play(col: 2)
+                self.gameGuitarManager.checkPoint(column: 2)
+                goodNote = true
+            }
+            if button3Pressed {
+                play(col: 3)
+                self.gameGuitarManager.checkPoint(column: 3)
+                goodNote = true
+            }
+            if button4Pressed {
+                play(col: 4)
+                self.gameGuitarManager.checkPoint(column: 4)
+                goodNote = true
+            }
+            
+            if !goodNote {
+                changePoints(point: false)
+            }
+        }
+        
+        if movedController && motionAcceleration > 1.50  {
+            movedController = false
+        }
+        
     }
 }
