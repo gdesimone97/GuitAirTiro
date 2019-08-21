@@ -34,13 +34,13 @@ class GuitarSelectedViewController: UIViewController {
         switch guitar {
         case .classic?:
             imageView.image = acousticImage
-            guitarLabel!.text = "Acoustic"
+            guitarLabel!.text = "ACOUSTIC"
         case .electric?:
             imageView.image = electricImage
-            guitarLabel!.text = "Electric"
+            guitarLabel!.text = "ELECTRIC"
         default:
             imageView.image = acousticImage
-            guitarLabel!.text = "Acoustic"
+            guitarLabel!.text = "ACOUSTIC"
         }
         
         
@@ -55,7 +55,7 @@ class GuitarSelectedViewController: UIViewController {
                         }
                         UserDefaults.setGuitar(guitar: TypeOfGuitar.electric, forKey: GUITAR)
                         imageView!.image = electricImage
-                        guitarLabel!.text = "Electric"
+                        guitarLabel!.text = "ELECTRIC"
                     }
                     else if guitar == TypeOfGuitar.electric {
                         if let device = session.showConnectedDevices() {
@@ -63,7 +63,7 @@ class GuitarSelectedViewController: UIViewController {
                         }
                         UserDefaults.setGuitar(guitar: TypeOfGuitar.classic, forKey: GUITAR)
                         imageView!.image = acousticImage
-                        guitarLabel!.text = "Acoustic"
+                        guitarLabel!.text = "ACOUSTIC"
                     }
                 }
             }
@@ -79,7 +79,7 @@ class GuitarSelectedViewController: UIViewController {
                             }
                             UserDefaults.setGuitar(guitar: TypeOfGuitar.electric, forKey: GUITAR)
                             imageView!.image = electricImage
-                            guitarLabel!.text = "Electric"
+                            guitarLabel!.text = "ELECTRIC"
                         }
                         else if guitar == TypeOfGuitar.electric {
                             if let device = session.showConnectedDevices() {
@@ -87,7 +87,7 @@ class GuitarSelectedViewController: UIViewController {
                             }
                             UserDefaults.setGuitar(guitar: TypeOfGuitar.classic, forKey: GUITAR)
                             imageView!.image = acousticImage
-                            guitarLabel!.text = "Acoustic"
+                            guitarLabel!.text = "ACOUSTIC"
                         }
             
             
