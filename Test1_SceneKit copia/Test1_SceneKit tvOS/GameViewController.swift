@@ -157,7 +157,6 @@ class GameViewController: UIViewController {
             
             if self.playing {
                 // when the song stops
-                sleep(2)
                 self.motionDelegate = nil
                 self.soundEffect.applauseSound()
                 if self.points > 0 {
@@ -185,24 +184,26 @@ class GameViewController: UIViewController {
         if playing && watch {
             gameGuitarManager.fire()
         }
-        else if playing && !watch { // PROVVISORIO SI PUò TOGLIERE SE FUNZIONA L'ACCELEROMETRO
-        }
         
-        if !playing && startNode != nil {
-            //Cerco tra i controller disponibili, il Remote
-            let controllers = GCController.controllers()
-            for controller in controllers {
-                if controller.vendorName! == "Remote" {
-                    // Setto l'handler, ovvero il blocco che verrà eseguito ogni volta che un valore qualsiasi del controller cambia
-                    controller.motion?.valueChangedHandler = { (motion: GCMotion)->() in
-                        if let delegate = self.motionDelegate {
-                            delegate.motionUpdate(motion: motion)
+        if !playing {
+            if !watch {
+                //Cerco tra i controller disponibili, il Remote
+                let controllers = GCController.controllers()
+                for controller in controllers {
+                    if controller.vendorName! == "Remote" {
+                        // Setto l'handler, ovvero il blocco che verrà eseguito ogni volta che un valore qualsiasi del controller cambia
+                        controller.motion?.valueChangedHandler = { (motion: GCMotion)->() in
+                            if let delegate = self.motionDelegate {
+                                delegate.motionUpdate(motion: motion)
+                            }
                         }
                     }
                 }
             }
-            semaphoreStart.signal()
             
+            if startNode != nil {
+                semaphoreStart.signal()
+            }
         }
     }
     
