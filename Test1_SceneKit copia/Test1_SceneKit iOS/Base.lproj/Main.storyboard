@@ -1246,23 +1246,22 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="swiperight.png" translatesAutoresizingMaskIntoConstraints="NO" id="nNO-s7-MLy">
-                                <rect key="frame" x="352" y="356" width="42" height="48"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="swiperight.png" translatesAutoresizingMaskIntoConstraints="NO" id="nNO-s7-MLy">
+                                <rect key="frame" x="186" y="722" width="42" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.10618691891431808" green="0.12509804964065552" blue="0.14902287721633911" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="28H-T5-W8l" firstAttribute="trailing" secondItem="nNO-s7-MLy" secondAttribute="trailing" constant="20" id="M4k-85-oCL"/>
                             <constraint firstItem="28H-T5-W8l" firstAttribute="bottom" secondItem="yuE-n9-EIU" secondAttribute="bottom" constant="99" id="Ps5-Hh-SYx"/>
                             <constraint firstItem="yuE-n9-EIU" firstAttribute="top" secondItem="wfW-a1-QVI" secondAttribute="bottom" constant="111" id="RzR-XS-EmE"/>
                             <constraint firstItem="28H-T5-W8l" firstAttribute="trailing" secondItem="yuE-n9-EIU" secondAttribute="trailing" constant="50" id="V3T-fn-pn6"/>
                             <constraint firstItem="wfW-a1-QVI" firstAttribute="top" secondItem="28H-T5-W8l" secondAttribute="top" constant="95" id="Vqt-KH-0XT"/>
                             <constraint firstItem="yuE-n9-EIU" firstAttribute="leading" secondItem="28H-T5-W8l" secondAttribute="leading" constant="50" id="dEY-nG-nZN"/>
                             <constraint firstItem="28H-T5-W8l" firstAttribute="trailing" secondItem="wfW-a1-QVI" secondAttribute="trailing" constant="70" id="dbS-yg-IRh"/>
-                            <constraint firstItem="nNO-s7-MLy" firstAttribute="leading" secondItem="wfW-a1-QVI" secondAttribute="trailing" constant="8" id="ghp-gz-mK2"/>
                             <constraint firstItem="wfW-a1-QVI" firstAttribute="leading" secondItem="28H-T5-W8l" secondAttribute="leading" constant="70" id="hMi-3B-ebb"/>
-                            <constraint firstItem="nNO-s7-MLy" firstAttribute="top" secondItem="28H-T5-W8l" secondAttribute="top" constant="268" id="p1z-hE-hIs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="28H-T5-W8l"/>
                     </view>
