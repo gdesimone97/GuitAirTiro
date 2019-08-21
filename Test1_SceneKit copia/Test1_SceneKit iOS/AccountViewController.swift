@@ -25,9 +25,9 @@ class AccountViewController: UIViewController {
         super.viewDidLoad()
         pickButton.setTitle("", for: UIControl.State.normal  )
         
-        if let image = userDefaults.getImage(forKey: IMAGE_DEFAULT) {
-            imageProfile.image = image
-        }
+//        if let image = userDefaults.getImage(forKey: IMAGE_DEFAULT) {
+//            imageProfile.image = image
+//        }
         
         self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2;
         self.imageProfile.clipsToBounds = true;
@@ -35,6 +35,36 @@ class AccountViewController: UIViewController {
         
         imagePickerController.allowsEditing = false
         imagePickerController.delegate = self
+        
+        reloadStat()
+       
+    }
+    
+    private func reloadStat() {
+        if let resultImage = getImage(){
+            imageProfile.image = resultImage
+        }
+        
+        let arrayStat = PersistanceManager.retriveStat()
+        var i = 0
+        for label in statLabel {
+            label.text = String(arrayStat[i])
+            i += 1
+        }
+    }
+    
+    private func getImage() -> UIImage? {
+        let imageTemp = PersistanceManager.retriveImage()
+        guard imageTemp != nil else { return nil }
+        let dataImage = imageTemp! as Data
+        let imageNotRotate = UIImage(data: dataImage)
+        let imageWillRotate = imageNotRotate?.cgImage
+        return UIImage(cgImage: imageWillRotate!, scale: CGFloat(1.0), orientation: .right)
+    }
+    
+    private func convertImageToData(image: UIImage) -> NSData? {
+        let dataImage = image.pngData()
+        return NSData(data: dataImage!)
     }
 
     @IBAction func logOutButton(_ sender: Any) {
@@ -81,7 +111,9 @@ extension AccountViewController: UIImagePickerControllerDelegate,UINavigationCon
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image =  info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         self.imageProfile.image = image
-        userDefault.setImage(image: image, forKey: IMAGE_DEFAULT)
+        //userDefault.setImage(image: image, forKey: IMAGE_DEFAULT)
+        let imageToSave = convertImageToData(image: image)
+        PersistanceManager.UploadStat(wins: nil, loose: nil, draws: nil, score: nil, image: imageToSave as Data?, gamerTag: nil)
         dismiss(animated: true, completion: nil)
     }
     
