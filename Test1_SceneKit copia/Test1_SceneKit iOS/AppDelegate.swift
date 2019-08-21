@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Se non è inizializzata la notazione preferita
         
-        
+        PersistanceManager.createEmptyItem()
         
         if udef.string(forKey: NOTATION_KEY ) != nil{
             
