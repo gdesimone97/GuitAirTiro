@@ -30,9 +30,20 @@ class GuitarSelectedViewController: UIViewController {
         leftSwipe.direction = UISwipeGestureRecognizer.Direction.left
         rightSwipe.direction = UISwipeGestureRecognizer.Direction.right
         
+        let guitar = UserDefaults.getGuitar(forKey: GUITAR)
+        switch guitar {
+        case .classic?:
+            imageView.image = acousticImage
+            guitarLabel!.text = "Acoustic"
+        case .electric?:
+            imageView.image = electricImage
+            guitarLabel!.text = "Electric"
+        default:
+            imageView.image = acousticImage
+            guitarLabel!.text = "Acoustic"
+        }
         
-        imageView!.image = acousticImage
-        guitarLabel!.text = "Acoustic"
+        
     }
     
     @IBAction func leftSwipePerformed(_ sender: UISwipeGestureRecognizer) {

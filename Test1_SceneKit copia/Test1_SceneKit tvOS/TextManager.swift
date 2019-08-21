@@ -59,7 +59,7 @@ class TextManager {
         textNode.scale = SCNVector3(x: 0.5, y: 0.5, z: 0.1)
         let xLenght = (textNode.boundingBox.max.x - textNode.boundingBox.min.x)
         let yLenght = (textNode.boundingBox.max.y - textNode.boundingBox.min.y)
-        textNode.position = SCNVector3(x: -xLenght/4, y: 2 + yLenght/2, z: -1)
+        textNode.position = SCNVector3(x: -xLenght/4, y: 1.5 + yLenght/2, z: -2.5)
         
         DispatchQueue.main.async {
             self.scene.rootNode.addChildNode(textNode)

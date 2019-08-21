@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 import WatchConnectivity
-import  UserNotifications
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

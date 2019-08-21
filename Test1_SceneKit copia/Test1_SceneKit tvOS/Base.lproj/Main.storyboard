@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--MainViewController-->
         <scene sceneID="dEh-eV-dlg">
             <objects>
-                <viewController id="499-42-d0g" customClass="MainViewController" customModule="Test1_SceneKit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="MainViewController" id="499-42-d0g" customClass="MainViewController" customModule="Test1_SceneKit" customModuleProvider="target" sceneMemberID="viewController">
                     <sceneKitView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="qaY-9a-1p8">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -26,10 +26,10 @@
             </objects>
             <point key="canvasLocation" x="81" y="1161"/>
         </scene>
-        <!--Game View Controller-->
+        <!--GameViewController-->
         <scene sceneID="U4f-7y-ft8">
             <objects>
-                <viewController id="KHS-Ap-v0k" customClass="GameViewController" customModule="Test1_SceneKit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="GameViewController" id="KHS-Ap-v0k" customClass="GameViewController" customModule="Test1_SceneKit" customModuleProvider="target" sceneMemberID="viewController">
                     <sceneKitView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="SF8-bu-Y0m">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

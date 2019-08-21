@@ -151,7 +151,7 @@ class ViewController: UIViewController{
         }
         setLabelBoard()
     }
-    
+
     func inizializeGuitarLabel (_ guitar: TypeOfGuitar) {
         switch guitar {
         case .electric:
@@ -166,7 +166,7 @@ class ViewController: UIViewController{
     }
 
     func setLabelBoard() {
-        guitarLabel.layer.frame = CGRect(x: 30.51, y: 583.67, width: 153.02, height: 47);
+//        guitarLabel.layer.frame = CGRect(x: 30.51, y: 583.67, width: 153.02, height: 47);
         guitarLabel.layer.backgroundColor = UIColor(red: 0.28, green: 0.32, blue: 0.37, alpha: 1).cgColor;
         guitarLabel.layer.cornerRadius = 8;
     }
@@ -284,6 +284,4 @@ extension ViewController: SessionManagerDelegate {
     func peerLost(_ manager: SessionManager, peer lost: MCPeerID) {
         return
     }
-
-
 }

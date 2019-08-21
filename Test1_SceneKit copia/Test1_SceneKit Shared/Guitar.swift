@@ -28,7 +28,7 @@ class Guitar {
         chord = AKPlayer(audioFile: file!)
     }
     
-    //this function plays a guitar assigned to a specific button ( button is Int: 1, 2, 3, 4 )
+    
     func playGuitar() {
         if chord != nil{
             chord!.stop()
@@ -41,5 +41,6 @@ class Guitar {
             chord!.stop()
         }
     }
+    
     
 }
