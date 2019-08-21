@@ -133,7 +133,7 @@ class SessionManager: NSObject {
 
     func sendSignal (_ peer: MCPeerID, message: Array<String>) {
         do {
-            let mex = try NSKeyedArchiver.archivedData(withRootObject: message, requiringSecureCoding: false)
+            var mex = try NSKeyedArchiver.archivedData(withRootObject: message, requiringSecureCoding: false)
             if self.session.connectedPeers.count > 0 {
                 try self.session.send(mex, toPeers: [peer], with: .unreliable)
             }
@@ -223,7 +223,6 @@ extension SessionManager: MCSessionDelegate {
             let code = SignalCode.init(rawValue: intData!)
             guard code != nil else { return }
             self.delegate?.mexReceived(self, didMessageReceived: code!)
-            self.delegateGame?.mexReceived(self, didMessageReceived: code!)
         }
         else {
             let array = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! Array<String>

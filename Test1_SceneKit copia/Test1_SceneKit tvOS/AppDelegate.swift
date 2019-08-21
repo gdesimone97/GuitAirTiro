@@ -12,13 +12,11 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-
         return true
     }
-
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -28,18 +26,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-
-        // when the app enter background,
-        // if the app stays in the MainViewController, it removes all the peers in the dictionary because when it will activate again, the sessionDelegate finds again the available peers
-        // else, sends a signal to the phone
-        let controller = self.window?.rootViewController! as! MainViewController
-        controller.removeAllFromDictionary()
-
-        if self.window?.rootViewController?.presentedViewController!.title == "GameViewController" {
-            let controller = self.window?.rootViewController?.presentedViewController! as! GameViewController
-            controller.sendSignalWhenClosing()
+        
+        // when the app enter background, removes all the peers in the dictionary because when it will activate again, the sessionDelegate finds again the available peers
+        if let viewController = self.window?.rootViewController {
+            print("1 \(viewController) \(String(describing: viewController.title))")
+            let controller = viewController as! MainViewController
+            controller.removeAllFromDictionary()
         }
-
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -56,3 +49,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+

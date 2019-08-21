@@ -15,7 +15,6 @@ enum SignalCode: UInt8 {
     case showElectricGuitar = 2
     
     // Game
-    case closeGamePhone = 3
     case closeGame = 4
     
     case signal = 5
