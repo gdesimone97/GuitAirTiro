@@ -60,6 +60,9 @@
 		08D465BA22F1A78100B8D43B /* LogoWatch.png in Resources */ = {isa = PBXBuildFile; fileRef = 08D465B722F1A78000B8D43B /* LogoWatch.png */; };
 		08D465BB22F1A78100B8D43B /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08D465B822F1A78100B8D43B /* Interface.storyboard */; };
 		08D465BC22F1A78100B8D43B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08D465B922F1A78100B8D43B /* Assets.xcassets */; };
+		08D83636230D5CA6001BE0F6 /* appModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 08D83634230D5CA6001BE0F6 /* appModel.xcdatamodeld */; };
+		08D8363C230D60EA001BE0F6 /* persistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D8363B230D60EA001BE0F6 /* persistenceManager.swift */; };
+		08D8363E230D618E001BE0F6 /* UserStat+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D8363D230D618E001BE0F6 /* UserStat+CoreDataProperties.swift */; };
 		259FCF7A4466898030E2854A /* Pods_Test1_SceneKit_watchOS_App_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E921CE1C6D8E8B53642FAF /* Pods_Test1_SceneKit_watchOS_App_Extension.framework */; };
 		4DCC5A52BA1C80F0803B3382 /* Pods_Test1_SceneKit_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F1AB350036D84B5016AEC19 /* Pods_Test1_SceneKit_tvOS.framework */; };
 		7703F79122FAE2A30075BF92 /* Songs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7703F79022FAE2A30075BF92 /* Songs.swift */; };
@@ -191,6 +194,9 @@
 		08D465B722F1A78000B8D43B /* LogoWatch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoWatch.png; sourceTree = "<group>"; };
 		08D465B822F1A78100B8D43B /* Interface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Interface.storyboard; sourceTree = "<group>"; };
 		08D465B922F1A78100B8D43B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		08D83635230D5CA6001BE0F6 /* appModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = appModel.xcdatamodel; sourceTree = "<group>"; };
+		08D8363B230D60EA001BE0F6 /* persistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = persistenceManager.swift; sourceTree = "<group>"; };
+		08D8363D230D618E001BE0F6 /* UserStat+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserStat+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2A15CD72FB1605F801D79853 /* Pods-Test1_SceneKit watchOS App Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test1_SceneKit watchOS App Extension.release.xcconfig"; path = "Target Support Files/Pods-Test1_SceneKit watchOS App Extension/Pods-Test1_SceneKit watchOS App Extension.release.xcconfig"; sourceTree = "<group>"; };
 		37A58CE124B71E8151DB7139 /* Pods_Test1_SceneKit_watchOS_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Test1_SceneKit_watchOS_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4217021D0952E689A6BEE811 /* Pods-Test1_SceneKit iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test1_SceneKit iOS.release.xcconfig"; path = "Target Support Files/Pods-Test1_SceneKit iOS/Pods-Test1_SceneKit iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -269,6 +275,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08D83633230D5C69001BE0F6 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				08D8363D230D618E001BE0F6 /* UserStat+CoreDataProperties.swift */,
+				08D83634230D5CA6001BE0F6 /* appModel.xcdatamodeld */,
+				08D8363B230D60EA001BE0F6 /* persistenceManager.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		77DFAD1122E84C54006DCBEE = {
 			isa = PBXGroup;
 			children = (
@@ -316,6 +332,7 @@
 		77DFAD2022E84C56006DCBEE /* Test1_SceneKit iOS */ = {
 			isa = PBXGroup;
 			children = (
+				08D83633230D5C69001BE0F6 /* CoreData */,
 				087B1E5222F87A2700BDC2C1 /* classic_guitar.png */,
 				087B1E5322F87A2700BDC2C1 /* elettric_guitar.png */,
 				0854422522F838F200C73B03 /* frecciadx@2x.png */,
@@ -738,11 +755,14 @@
 				086325B822F33A5100513E1B /* NavigationController.swift in Sources */,
 				0898EC2B22F05146007C32DD /* Guitar.swift in Sources */,
 				088BAC3622F9720800784692 /* DevicesSettingsPaired.swift in Sources */,
+				08D8363E230D618E001BE0F6 /* UserStat+CoreDataProperties.swift in Sources */,
 				0898EC2722F05146007C32DD /* SettingsTableViewController.swift in Sources */,
+				08D8363C230D60EA001BE0F6 /* persistenceManager.swift in Sources */,
 				087B1E5122F878DE00BDC2C1 /* GuitarSelectedViewController.swift in Sources */,
 				77DFAD5322E84C56006DCBEE /* MainController.swift in Sources */,
 				0898EC2A22F05146007C32DD /* NotationTableViewCell.swift in Sources */,
 				779E565022EB090400ACC1BF /* SessionManager.swift in Sources */,
+				08D83636230D5CA6001BE0F6 /* appModel.xcdatamodeld in Sources */,
 				0898EC2D22F05146007C32DD /* NotationTableViewController.swift in Sources */,
 				08B5E77E22F1C3C500A6FF05 /* SignalCode.swift in Sources */,
 				086325B622F3328800513E1B /* LoginViewController.swift in Sources */,
@@ -1188,6 +1208,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		08D83634230D5CA6001BE0F6 /* appModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				08D83635230D5CA6001BE0F6 /* appModel.xcdatamodel */,
+			);
+			currentVersion = 08D83635230D5CA6001BE0F6 /* appModel.xcdatamodel */;
+			path = appModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 77DFAD1222E84C54006DCBEE /* Project object */;
 }
