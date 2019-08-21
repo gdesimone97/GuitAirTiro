@@ -88,6 +88,7 @@ class SessionManager: NSObject {
                 streamOutput = try self.session.startStream(withName: name, toPeer: peer)
                 streamOutput?.schedule(in: .main, forMode: .common)
                 streamOutput?.open()
+                print("stream aperto")
             }
 
             catch _ {

@@ -56,6 +56,7 @@ class ViewController: UIViewController{
             userDefault.set(audioStandard, forKey: AUDIO_FILE_NAME)
         }
         self.tvStatus.backgroundColor = .red
+        
     }
 
 
@@ -250,6 +251,7 @@ extension ViewController: SessionManagerDelegate {
         let tv = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
         if connected == 2 {
             if let device = sessionTv.showConnectedDevices() {
+                sessionTv.openStream(peer: device[0])
                 if guitar == TypeOfGuitar.classic {
                     sessionTv.sendSignal(device[0], message: SignalCode.showAcousticGuitar)
                 }
