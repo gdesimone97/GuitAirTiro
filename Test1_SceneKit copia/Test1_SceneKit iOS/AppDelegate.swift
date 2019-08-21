@@ -57,9 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // Fine autorizzazioni
-        notificationCenter.delegate = self
-        
-        
+        notificationCenter.delegate = self   
         return true
     }
     
