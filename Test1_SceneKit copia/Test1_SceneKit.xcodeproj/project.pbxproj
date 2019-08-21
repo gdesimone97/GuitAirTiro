@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		084F165A230C028200C6C6AF /* FriendAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084F1659230C028200C6C6AF /* FriendAccountViewController.swift */; };
 		0854421D22F8226E00C73B03 /* registrazione.png in Resources */ = {isa = PBXBuildFile; fileRef = 0854421C22F8226D00C73B03 /* registrazione.png */; };
 		0854422422F8369800C73B03 /* frecciasx@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0854422322F8369700C73B03 /* frecciasx@2x.png */; };
 		0854422622F838F200C73B03 /* frecciadx@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0854422522F838F200C73B03 /* frecciadx@2x.png */; };
@@ -98,7 +97,8 @@
 		77FE01C922F04CDA00861C78 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FE01C822F04CDA00861C78 /* GameController.swift */; };
 		D970C44CB9F736BFEABF3E9F /* Pods_Test1_SceneKit_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9772C0921C77065CD2C9CB00 /* Pods_Test1_SceneKit_iOS.framework */; };
 		E4199ED4270DAA1FB779FA67 /* Pods_Test1_SceneKit_watchOS_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A58CE124B71E8151DB7139 /* Pods_Test1_SceneKit_watchOS_App.framework */; };
-		F207C457230D8690002DA2BF /* swiperight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F207C456230D8690002DA2BF /* swiperight@2x.png */; };
+		F207C459230D9083002DA2BF /* FriendList ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F207C458230D9083002DA2BF /* FriendList ViewController.swift */; };
+		F207C45B230D99DF002DA2BF /* swiperight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F207C45A230D99DF002DA2BF /* swiperight@2x.png */; };
 		F2B4E820230D3ED0009F6C36 /* Leaderboard View Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4E81F230D3ED0009F6C36 /* Leaderboard View Controller.swift */; };
 /* End PBXBuildFile section */
 
@@ -145,7 +145,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		084F1659230C028200C6C6AF /* FriendAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendAccountViewController.swift; sourceTree = "<group>"; };
 		0854421C22F8226D00C73B03 /* registrazione.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = registrazione.png; sourceTree = "<group>"; };
 		0854422322F8369700C73B03 /* frecciasx@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "frecciasx@2x.png"; sourceTree = "<group>"; };
 		0854422522F838F200C73B03 /* frecciadx@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "frecciadx@2x.png"; sourceTree = "<group>"; };
@@ -243,7 +242,8 @@
 		B62030EA068D9B1FEA35EA65 /* Pods-Test1_SceneKit watchOS App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test1_SceneKit watchOS App.release.xcconfig"; path = "Target Support Files/Pods-Test1_SceneKit watchOS App/Pods-Test1_SceneKit watchOS App.release.xcconfig"; sourceTree = "<group>"; };
 		D5AD132005CE4BC2B1075000 /* Pods-Test1_SceneKit watchOS App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test1_SceneKit watchOS App.debug.xcconfig"; path = "Target Support Files/Pods-Test1_SceneKit watchOS App/Pods-Test1_SceneKit watchOS App.debug.xcconfig"; sourceTree = "<group>"; };
 		DB96BC2531D53A4C6A7A5973 /* Pods-Test1_SceneKit watchOS App Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test1_SceneKit watchOS App Extension.debug.xcconfig"; path = "Target Support Files/Pods-Test1_SceneKit watchOS App Extension/Pods-Test1_SceneKit watchOS App Extension.debug.xcconfig"; sourceTree = "<group>"; };
-		F207C456230D8690002DA2BF /* swiperight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "swiperight@2x.png"; sourceTree = "<group>"; };
+		F207C458230D9083002DA2BF /* FriendList ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FriendList ViewController.swift"; sourceTree = "<group>"; };
+		F207C45A230D99DF002DA2BF /* swiperight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "swiperight@2x.png"; sourceTree = "<group>"; };
 		F2B4E81F230D3ED0009F6C36 /* Leaderboard View Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Leaderboard View Controller.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -363,9 +363,9 @@
 				088E1CB122F345F0006A197D /* metal@2x-4.png */,
 				088E1CAD22F345F0006A197D /* metal@2x.png */,
 				088E1CB822F345F0006A197D /* pick.png */,
-				F207C456230D8690002DA2BF /* swiperight@2x.png */,
 				088E1CB422F345F0006A197D /* PinkButton.png */,
 				088E1CB222F345F0006A197D /* RedButton.png */,
+				F207C45A230D99DF002DA2BF /* swiperight@2x.png */,
 				088E1CB922F345F1006A197D /* rock@2x (1).png */,
 				088E1CAE22F345F0006A197D /* rock@2x.png */,
 				088E1CB322F345F0006A197D /* sett@2x.png */,
@@ -382,9 +382,9 @@
 				77DFAD2822E84C56006DCBEE /* LaunchScreen.storyboard */,
 				77DFAD2B22E84C56006DCBEE /* Info.plist */,
 				086325AD22F320D600513E1B /* AccountViewController.swift */,
-				084F1659230C028200C6C6AF /* FriendAccountViewController.swift */,
 				086325B522F3328800513E1B /* LoginViewController.swift */,
 				086325B722F33A5100513E1B /* NavigationController.swift */,
+				F207C458230D9083002DA2BF /* FriendList ViewController.swift */,
 				087B1E5022F878DE00BDC2C1 /* GuitarSelectedViewController.swift */,
 				088BAC3522F9720800784692 /* DevicesSettingsPaired.swift */,
 				F2B4E81F230D3ED0009F6C36 /* Leaderboard View Controller.swift */,
@@ -615,6 +615,7 @@
 				0854422622F838F200C73B03 /* frecciadx@2x.png in Resources */,
 				088E1CBA22F345F1006A197D /* metal@2x.png in Resources */,
 				77DFAD2A22E84C56006DCBEE /* LaunchScreen.storyboard in Resources */,
+				F207C45B230D99DF002DA2BF /* swiperight@2x.png in Resources */,
 				088E1CC622F345F1006A197D /* rock@2x (1).png in Resources */,
 				08CF906822F4817400F8B853 /* profile@2x.png in Resources */,
 				77DFAD5922E84C56006DCBEE /* Assets.xcassets in Resources */,
@@ -625,7 +626,6 @@
 				088E1CBF22F345F1006A197D /* RedButton.png in Resources */,
 				088E1CBE22F345F1006A197D /* metal@2x-4.png in Resources */,
 				088E1CC322F345F1006A197D /* clef@2x.png in Resources */,
-				F207C457230D8690002DA2BF /* swiperight@2x.png in Resources */,
 				08CF906622F4774C00F8B853 /* pareggio-image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -762,6 +762,7 @@
 			files = (
 				0898EC2C22F05146007C32DD /* ViewController.swift in Sources */,
 				77DFAD5322E84C56006DCBEE /* MainController.swift in Sources */,
+				F207C459230D9083002DA2BF /* FriendList ViewController.swift in Sources */,
 				086325AE22F320D600513E1B /* AccountViewController.swift in Sources */,
 				0898EC2822F05146007C32DD /* GameModeViewController.swift in Sources */,
 				0898EC2922F05146007C32DD /* ChordsPickerViewController.swift in Sources */,
