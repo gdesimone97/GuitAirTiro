@@ -10,6 +10,11 @@ import UIKit
 import SceneKit
 import MultipeerConnectivity
 import AudioKit
+import GameController
+
+protocol ReactToMotionEvents {
+    func motionUpdate(motion: GCMotion) -> Void
+}
 
 
 class GameViewController: UIViewController {
@@ -17,6 +22,8 @@ class GameViewController: UIViewController {
     var gameView: SCNView {
         return self.view as! SCNView
     }
+    
+    var motionDelegate: ReactToMotionEvents?
     
     var gameController: GameController!
     var gameGuitarManager: GameGuitarManager!
@@ -159,12 +166,28 @@ class GameViewController: UIViewController {
                     self.dismiss(animated: false, completion: nil)
                 }
             }
-            
+        }
+        
+        // Setto il motionDelegate del controller
+        motionDelegate = self
+        
+        //Cerco tra i controller disponibili, il Remote
+        let controllers = GCController.controllers()
+        for controller in controllers {
+            if controller.vendorName! == "Remote" {
+                // Setto l'handler, ovvero il blocco che verrà eseguito ogni volta che un valore qualsiasi del controller cambia
+                controller.motion?.valueChangedHandler = { (motion: GCMotion)->() in
+                    if let delegate = self.motionDelegate {
+                        delegate.motionUpdate(motion: motion)
+                        usleep(500000)
+                    }
+                }
+            }
         }
         
     }
     
-    // Function started only if watch is not present
+    
     @objc func handleTap(_ gestureRecognizer: UIGestureRecognizer) {
         if playing && watch {
             gameGuitarManager.fire()
@@ -428,5 +451,13 @@ extension GameViewController: SessionManagerDelegate {
                 break
             }
         }
+    }
+}
+
+extension GameViewController: ReactToMotionEvents {
+    func motionUpdate(motion: GCMotion) {
+        
+        
+        print("y: \(String(format: "%.3f", motion.gravity.y)), x: \(String(format: "%.3f", motion.gravity.x)), z: \(String(format: "%.3f", motion.gravity.z))")
     }
 }
