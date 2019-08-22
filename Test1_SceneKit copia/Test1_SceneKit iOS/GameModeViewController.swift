@@ -132,18 +132,14 @@ class GameModeViewController: UIViewController {
         if sessionDelegate != nil {
             if let device = sessionTv.showConnectedDevices() {
                 let user = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
-                if user == 0 {
+                if user == TvSettings.withWatch.rawValue {
                     sessionDelegate.toCall = {
-                        self.sessionTv.sendSignal(device[0], message: SignalCode.signal)
+                        self.sessionDelegate.toCall = self.play
                     }
                 }
-                else if user == 1 {
+                else if user == TvSettings.withOutWatch.rawValue {
                     sessionDelegate.toCall = {}
                 }
-            }
-                
-            else {
-                sessionDelegate.toCall = play
             }
         }
         
