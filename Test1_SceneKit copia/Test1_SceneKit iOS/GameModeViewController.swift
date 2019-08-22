@@ -21,6 +21,10 @@ class GameModeViewController: UIViewController {
     var oldAttitude: Double! = 0.00
     var newAttitude: Double! = 0.00
     
+    var buttonActionRedInside: (() -> Void)?
+    var buttonActionRedExit: (() -> Void)?
+    var buttonActionRedDown: (() -> Void)?
+    
     // Labels shown in game mode, each label is associated with a button
     @IBOutlet weak var redButtonChord: UILabel!
     @IBOutlet weak var blueButtonChord: UILabel!
@@ -77,9 +81,13 @@ class GameModeViewController: UIViewController {
         let tv = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
         switch tv {
         case TvSettings.withWatch.rawValue:
-            enable = false
+            buttonActionRedInside = playNothing
+            buttonActionRedDown = playNothing
+            buttonActionRedExit = playNothing
         case TvSettings.withOutWatch.rawValue:
-            enable = true
+            buttonActionRedInside = playRedInside
+            buttonActionRedDown = playRedDown
+            buttonActionRedExit = playRedExit
             device = sessionTv.showConnectedDevices()![0]
         default:
             break
@@ -302,21 +310,15 @@ class GameModeViewController: UIViewController {
     var enable = false
     
     @IBAction func touchUpInsideRed(_ sender: Any) {
-            DispatchQueue.main.async {
-                self.sessionTv.sendSignal(self.device!, message: SignalCode.key1Released)
-        }
+        buttonActionRedInside
     }
     
     @IBAction func touchExitRed(_ sender: Any) {
-            DispatchQueue.main.async {
-                self.sessionTv.sendSignal(self.device!, message: SignalCode.key1Released)
-        }
+        buttonActionRedExit
         
     }
     @IBAction func touchDownRed(_ sender: Any) {
-            DispatchQueue.main.async {
-                self.sessionTv.sendSignal(self.device!, message: SignalCode.key1Pressed)
-        }
+        buttonActionRedDown
     }
     
     
@@ -436,3 +438,27 @@ extension GameModeViewController: SessionManagerDelegate {
     }
 }
 
+extension GameModeViewController {
+    func playRedInside() {
+        DispatchQueue.main.async {
+            self.sessionTv.sendSignal(self.device!, message: SignalCode.key1Released)
+        }
+    }
+    
+    func playRedExit() {
+        DispatchQueue.main.async {
+            self.sessionTv.sendSignal(self.device!, message: SignalCode.key1Released)
+        }
+    }
+    
+    func playRedDown() {
+        DispatchQueue.main.async {
+            self.sessionTv.sendSignal(self.device!, message: SignalCode.key1Pressed)
+        }
+    }
+    
+    func playNothing() {
+        return
+    }
+    
+}
