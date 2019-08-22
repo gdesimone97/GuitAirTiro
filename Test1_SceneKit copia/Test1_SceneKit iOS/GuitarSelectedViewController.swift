@@ -15,12 +15,39 @@ class GuitarSelectedViewController: UIViewController {
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var guitarLabel: UILabel!
     
+    @IBOutlet weak var swipeImage: UIImageView!
+    
     // swipe variables
     @IBOutlet var leftSwipe: UISwipeGestureRecognizer!
     @IBOutlet var rightSwipe: UISwipeGestureRecognizer!
     
     let electricImage : UIImage = (UIImage(named: "electric"))!
     let acousticImage : UIImage = (UIImage(named: "acoustic"))!
+    
+    
+    
+    // swipeImage movement
+    func moveSwipeImageLeft(){
+        UIView.animate(withDuration: 1.5, animations: {
+            self.swipeImage.center.x -= 60.0
+        }, completion: {finished in self.moveSwipeImageRight()} )
+    }
+    
+    func moveSwipeImageRight(){
+        UIView.animate(withDuration: 1.5, animations: {
+            self.swipeImage.center.x += 60.0
+        }, completion: {finished in self.moveSwipeImageLeft()} )
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+       self.swipeImage.center.x -= 30
+       self.moveSwipeImageRight()
+    }
+    
+    
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +70,7 @@ class GuitarSelectedViewController: UIViewController {
             guitarLabel!.text = "ACOUSTIC"
         }
         
-        
+
     }
     
     @IBAction func leftSwipePerformed(_ sender: UISwipeGestureRecognizer) {
