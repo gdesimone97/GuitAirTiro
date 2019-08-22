@@ -285,27 +285,26 @@ class GameModeViewController: UIViewController {
         }
     }
     
+    let device = SessionManager.share.showConnectedDevices()![0]
+    
     @IBAction func touchUpInsideRed(_ sender: Any) {
-        if let device = sessionTv.showConnectedDevices() {
+        
             DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key1Released)
-            }
+                self.sessionTv.sendSignal(self.device, message: SignalCode.key1Released)
         }
     }
     
     @IBAction func touchExitRed(_ sender: Any) {
-        if let device = sessionTv.showConnectedDevices() {
+        
             DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key1Released)
-            }
+                self.sessionTv.sendSignal(self.device, message: SignalCode.key1Released)
         }
         
     }
     @IBAction func touchDownRed(_ sender: Any) {
-        if let device = sessionTv.showConnectedDevices() {
+        
             DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key1Pressed)
-            }
+                self.sessionTv.sendSignal(self.device, message: SignalCode.key1Pressed)
         }
     }
     
