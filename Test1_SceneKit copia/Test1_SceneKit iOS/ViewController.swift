@@ -78,10 +78,10 @@ class ViewController: UIViewController{
         }
         if let device = sessionTv.showConnectedDevices() {
             let tvSettings = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
-            if tvSettings == TvSettings.withWatch.rawValue {
-                sessionTv.sendSignal(device[0], message: SignalCode.OpenGameWithWatch)
-            }
-            else if tvSettings == TvSettings.withOutWatch.rawValue {
+//            if tvSettings == TvSettings.withWatch.rawValue {
+//                sessionTv.sendSignal(device[0], message: SignalCode.OpenGameWithWatch)
+//            }
+             if tvSettings == TvSettings.withOutWatch.rawValue {
                 sessionTv.sendSignal(device[0], message: SignalCode.OpenGameWithOutWatch)
             }
         }
