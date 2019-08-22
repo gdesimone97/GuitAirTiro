@@ -10,11 +10,16 @@ import UIKit
 import WatchConnectivity
 import AudioKit
 import MultipeerConnectivity
+import CoreMotion
 
 class GameModeViewController: UIViewController {
     
     var sessionDelegate: ViewController!
     let sessionTv = SessionManager.share
+    var motionManager: CMMotionManager!
+    
+    var oldAttitude: Double! = 0.00
+    var newAttitude: Double! = 0.00
     
     // Labels shown in game mode, each label is associated with a button
     @IBOutlet weak var redButtonChord: UILabel!
@@ -74,6 +79,7 @@ class GameModeViewController: UIViewController {
         pinkButtonChord?.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
         
         sessionTv.delegateGame = self
+        motionManager = CMMotionManager()
         
         if sessionDelegate != nil {
             if let device = sessionTv.showConnectedDevices() {
@@ -156,6 +162,28 @@ class GameModeViewController: UIViewController {
                 print("Audiokit motor couldn't start!")
             }
         }
+        
+        
+        let guitarSelected = UserDefaults.getGuitar(forKey: GUITAR)
+        if guitarSelected == TypeOfGuitar.electric {
+            motionManager.deviceMotionUpdateInterval = 0.3
+            motionManager.startDeviceMotionUpdates(to: OperationQueue.current!, withHandler: { data, error -> Void in
+                if let data = data {
+                    self.newAttitude = abs(data.attitude.roll)
+                    
+                    //0.50 radianti corrisponde a circa 30° -> Se il movimento avuto in 0.3 secondi è stato una rotazione di 30° rispetto alla vecchia posizione, rilevo un movimento buono
+                    if self.newAttitude! > (self.oldAttitude + 0.50) || self.newAttitude! < (self.oldAttitude - 0.50) {
+                        DispatchQueue.main.async {
+                            if let device = self.sessionTv.showConnectedDevices() {
+                                self.sessionTv.sendSignal(device[0], message: SignalCode.wah)
+                            }
+                        }
+                    }
+                    self.oldAttitude = self.newAttitude
+                }
+            })
+        }
+        
     }
     
     @IBAction func swipeLeft(_ sender: UISwipeGestureRecognizer) {
