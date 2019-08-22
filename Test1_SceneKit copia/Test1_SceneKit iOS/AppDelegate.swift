@@ -219,7 +219,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             completionHandler([.alert,.sound])
             return
         }
-        completionHandler(.alert)
+        completionHandler([.alert,.sound])
     }
 }
 
