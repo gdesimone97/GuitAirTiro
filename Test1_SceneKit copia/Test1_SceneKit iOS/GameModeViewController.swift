@@ -137,7 +137,7 @@ class GameModeViewController: UIViewController {
                     sessionDelegate.toCall = {
                         self.sessionDelegate.toCall = self.play
                         DispatchQueue.main.async {
-                        self.motionManager = CMMotionManager()
+                            self.motionManager = CMMotionManager()
                         }
                     }
                 }
