@@ -73,6 +73,18 @@ class GameModeViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //        Label rotation in game mode
+        
+        let tv = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
+        switch tv {
+        case TvSettings.withWatch.rawValue:
+            enable = false
+        case TvSettings.withOutWatch.rawValue:
+            enable = true
+            device = sessionTv.showConnectedDevices()![0]
+        default:
+            break
+        }
+        
         redButtonChord?.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
         blueButtonChord?.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
         greenButtonChord?.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
@@ -186,6 +198,7 @@ class GameModeViewController: UIViewController {
         
     }
     
+    
     @IBAction func swipeLeft(_ sender: UISwipeGestureRecognizer) {
         try! AudioKit.stop()
         guitar11?.resetGuitar()
@@ -285,26 +298,24 @@ class GameModeViewController: UIViewController {
         }
     }
     
-    let device = SessionManager.share.showConnectedDevices()![0]
+    var device: MCPeerID?
+    var enable = false
     
     @IBAction func touchUpInsideRed(_ sender: Any) {
-        
             DispatchQueue.main.async {
-                self.sessionTv.sendSignal(self.device, message: SignalCode.key1Released)
+                self.sessionTv.sendSignal(self.device!, message: SignalCode.key1Released)
         }
     }
     
     @IBAction func touchExitRed(_ sender: Any) {
-        
             DispatchQueue.main.async {
-                self.sessionTv.sendSignal(self.device, message: SignalCode.key1Released)
+                self.sessionTv.sendSignal(self.device!, message: SignalCode.key1Released)
         }
         
     }
     @IBAction func touchDownRed(_ sender: Any) {
-        
             DispatchQueue.main.async {
-                self.sessionTv.sendSignal(self.device, message: SignalCode.key1Pressed)
+                self.sessionTv.sendSignal(self.device!, message: SignalCode.key1Pressed)
         }
     }
     
