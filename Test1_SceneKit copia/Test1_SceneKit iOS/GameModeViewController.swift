@@ -87,7 +87,10 @@ class GameModeViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //        Label rotation in game mode
-        
+        let guitar = UserDefaults.getGuitar(forKey: GUITAR)
+        if guitar == TypeOfGuitar.electric {
+            self.motionManager = CMMotionManager()
+        }
         let tv = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
         
         switch tv {
@@ -132,9 +135,6 @@ class GameModeViewController: UIViewController {
         if tv == TvSettings.withWatch.rawValue {
             sessionDelegate.toCall = {
                 self.sessionDelegate.toCall = self.play
-                DispatchQueue.main.async {
-                    self.motionManager = CMMotionManager()
-                }
             }
         }
         else if tv == TvSettings.withOutWatch.rawValue {
