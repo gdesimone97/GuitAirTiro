@@ -43,7 +43,7 @@ class TextManager {
         }
     }
     
-    func addGameNotification(str: String, color: UIColor, duration: TimeInterval) {
+    func addGameNotification(str: String, color: UIColor, duration: TimeInterval, animation: Bool) {
         let text = SCNText(string: str, extrusionDepth: 0.2)
         text.font = UIFont.italicSystemFont(ofSize: 1)
         let textNode = SCNNode(geometry: text)
@@ -68,7 +68,13 @@ class TextManager {
             let disappear = SCNAction.fadeOut(duration: 0.5)
             let group = SCNAction.group([move, disappear])
             let remove = SCNAction.removeFromParentNode()
-            textNode.runAction(SCNAction.sequence([wait, group, remove]))
+            if animation {
+                textNode.runAction(SCNAction.sequence([wait, group, remove]))
+            }
+            else {
+                textNode.runAction(SCNAction.sequence([wait, disappear, remove]))
+            }
+            
         }
     }
     

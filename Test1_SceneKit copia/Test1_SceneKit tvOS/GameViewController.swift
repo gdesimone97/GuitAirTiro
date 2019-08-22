@@ -67,6 +67,7 @@ class GameViewController: UIViewController {
     
     var playing: Bool = false
     var points = 0
+    var multiplier = 1
     // I take the selected chords from the user defaults
     var chords: [String]!
     // I take the watch settings : true -> watch is present, false -> watch not present
@@ -76,9 +77,11 @@ class GameViewController: UIViewController {
     var boxStartNode: SCNNode?
     var pointText: SCNNode?
     var multiplierNode: SCNNode?
-    var multiplier = 1
+    var consecutivePointsNode: SCNNode?
+    var pointsPlaneNode: SCNNode?
     
-    var song: Songs = Songs.PeppeGay // Da settare dal telefono
+    
+    var song: Songs = Songs.LaCanzoneDelSole // Da settare dal telefono
     
     // This is the thread that shows nodes on the guitar
     let noteQueue = DispatchQueue(label: "noteQueue", qos: .userInteractive)
@@ -114,19 +117,21 @@ class GameViewController: UIViewController {
             sleep(1)
             self.points = 0
             DispatchQueue.main.async {
+                self.boxStartNode?.opacity = 0.7
                 self.startNode = self.textManager.addTextAtPosition(str: "Press the button on the remote to start!", x: -2, y: 3, z: 0)
             }
             self.semaphoreStart.wait()
             self.startNode!.removeFromParentNode()
             self.boxStartNode!.removeFromParentNode()
             self.soundEffect.countdown()
-            self.textManager.addGameNotification(str: "3", color: UIColor.white, duration: 0.5)
+            self.textManager.addGameNotification(str: "3", color: UIColor.white, duration: 0.5, animation: true)
             sleep(1)
-            self.textManager.addGameNotification(str: "2", color: UIColor.white, duration: 0.5)
+            self.textManager.addGameNotification(str: "2", color: UIColor.white, duration: 0.5, animation: true)
             sleep(1)
-            self.textManager.addGameNotification(str: "1", color: UIColor.white, duration: 0.5)
+            self.textManager.addGameNotification(str: "1", color: UIColor.white, duration: 0.5, animation: true)
             sleep(1)
-            self.textManager.addGameNotification(str: "GO!", color: UIColor.white, duration: 0.5)
+            self.textManager.addGameNotification(str: "GO!", color: UIColor.white, duration: 0.5, animation: true)
+            self.pointsPlaneNode?.runAction(SCNAction.move(to: SCNVector3(x: -4, y: 0.5, z: -2), duration: 0.3))
             sleep(1)
             self.playing = true
             
@@ -163,10 +168,10 @@ class GameViewController: UIViewController {
                 self.motionDelegate = nil
                 self.soundEffect.applauseSound()
                 if self.points > 0 {
-                    self.textManager.addGameNotification(str: "You did \(self.points) points!", color: UIColor.white, duration: 3)
+                    self.textManager.addGameNotification(str: "You did \(self.points) points!", color: UIColor.white, duration: 3, animation: false)
                 }
                 else {
-                    self.textManager.addGameNotification(str: "Oh, you did 0 points...", color: UIColor.white, duration: 3)
+                    self.textManager.addGameNotification(str: "Oh, you did 0 points...", color: UIColor.white, duration: 3, animation: false)
                 }
                 
                 self.gameGuitarManager.fire()
@@ -232,6 +237,9 @@ class GameViewController: UIViewController {
             if node.name == "capsule" {
                 boxStartNode = node
             }
+            if node.name == "pointsPlane" {
+                pointsPlaneNode = node
+            }
         }
     }
     
@@ -275,11 +283,19 @@ class GameViewController: UIViewController {
             if let node = self.multiplierNode {
                 node.removeFromParentNode()
             }
-            self.pointText = self.textManager.addTextAtPosition(str: "Points: " + (self.points > 0 ? String(self.points) : "0"), x: 1.5, y: 3.3, z: -0.5)
-            self.pointText?.eulerAngles = SCNVector3(x: 0, y: -0.15, z: 0)
+            if let node = self.consecutivePointsNode {
+                node.removeFromParentNode()
+            }
             
-            self.multiplierNode = self.textManager.addTextAtPosition(str: "Multiplier: x\(self.multiplier)", x: 1.5, y: 3, z: -0.5)
-            self.multiplierNode?.eulerAngles = SCNVector3(x: 0, y: -0.15, z: 0)
+            
+            self.pointText = self.textManager.addTextAtPosition(str: "Points: " + (self.points > 0 ? String(self.points) : "0"), x: -4.7, y: 0.6, z: -1.7)
+            self.pointText?.eulerAngles = SCNVector3(x: -0.26, y: 0.2, z: 0)
+            
+            self.multiplierNode = self.textManager.addTextAtPosition(str: "Multiplier: x\(self.multiplier)", x: -4.75, y: 0.3, z: -1.7)
+            self.multiplierNode?.eulerAngles = SCNVector3(x: -0.26, y: 0.2, z: 0)
+            
+            self.consecutivePointsNode = self.textManager.addTextAtPosition(str: "Consecutives: \(self.consecutivePoints)", x: -4.8, y: 0.0, z: -1.7)
+            self.consecutivePointsNode?.eulerAngles = SCNVector3(x: -0.26, y: 0.2, z: 0)
         }
     }
     
@@ -305,7 +321,7 @@ class GameViewController: UIViewController {
                 self.playing = false
                 self.motionDelegate = nil
                 self.soundEffect.booSound()
-                self.textManager.addGameNotification(str: "You failed!", color: UIColor.red, duration: 3)
+                self.textManager.addGameNotification(str: "You failed!", color: UIColor.red, duration: 3, animation: false)
                 sleep(4)
                 DispatchQueue.main.async {
                     self.dismiss(animated: false, completion: nil)
@@ -322,12 +338,12 @@ class GameViewController: UIViewController {
         }
         
         if !points50 && points > 50 {
-            textManager.addGameNotification(str: "Wow! 50 points!", color: UIColor.white, duration: 2)
+            textManager.addGameNotification(str: "Wow! 50 points!", color: UIColor.white, duration: 2, animation: false)
             gameGuitarManager.fire()
             points50 = true
         }
         if !points100 && points > 100 {
-            textManager.addGameNotification(str: "You are a legend!", color: UIColor.white, duration: 2)
+            textManager.addGameNotification(str: "You are a legend!", color: UIColor.white, duration: 2, animation: false)
             gameGuitarManager.fire()
             points100 = true
         }
@@ -337,19 +353,19 @@ class GameViewController: UIViewController {
             multiplier = 1
         case 10:
             multiplier = 2
-            textManager.addGameNotification(str: "Wow! 10 consecutive notes!", color: UIColor.white, duration: 2)
+            textManager.addGameNotification(str: "Wow! 10 consecutive notes!", color: UIColor.white, duration: 2, animation: false)
             gameGuitarManager.fire()
         case 20:
             multiplier = 3
-            textManager.addGameNotification(str: "Amazing! 20 consecutive notes!", color: UIColor.white, duration: 2)
+            textManager.addGameNotification(str: "Amazing! 20 consecutive notes!", color: UIColor.white, duration: 2, animation: false)
             gameGuitarManager.fire()
         case 30:
             multiplier = 4
-            textManager.addGameNotification(str: "Impressive! 30 consecutive notes!", color: UIColor.white, duration: 2)
+            textManager.addGameNotification(str: "Impressive! 30 consecutive notes!", color: UIColor.white, duration: 2, animation: false)
             gameGuitarManager.fire()
         case 40:
             multiplier = 5
-            textManager.addGameNotification(str: "Perfect! 40 consecutive notes!", color: UIColor.white, duration: 2)
+            textManager.addGameNotification(str: "Perfect! 40 consecutive notes!", color: UIColor.white, duration: 2, animation: false)
             gameGuitarManager.fire()
         default:
             break
