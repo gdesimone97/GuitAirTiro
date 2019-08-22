@@ -128,17 +128,18 @@ class GameModeViewController: UIViewController {
         pinkButtonChord?.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
         
         sessionTv.delegateGame = self
-        motionManager = CMMotionManager()
+        
         
         if sessionDelegate != nil {
             if let device = sessionTv.showConnectedDevices() {
-                let user = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
-                if user == TvSettings.withWatch.rawValue {
+                let tv = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
+                if tv == TvSettings.withWatch.rawValue {
                     sessionDelegate.toCall = {
                         self.sessionDelegate.toCall = self.play
+                        self.motionManager = CMMotionManager()
                     }
                 }
-                else if user == TvSettings.withOutWatch.rawValue {
+                else if tv == TvSettings.withOutWatch.rawValue {
                     sessionDelegate.toCall = {}
                 }
             }
