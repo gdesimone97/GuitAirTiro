@@ -64,9 +64,11 @@ class TextManager {
         DispatchQueue.main.async {
             self.scene.rootNode.addChildNode(textNode)
             let wait = SCNAction.wait(duration: duration)
+            let move = SCNAction.move(by: SCNVector3(x: 0, y: 0, z: 5), duration: 0.5)
             let disappear = SCNAction.fadeOut(duration: 0.5)
+            let group = SCNAction.group([move, disappear])
             let remove = SCNAction.removeFromParentNode()
-            textNode.runAction(SCNAction.sequence([wait, disappear, remove]))
+            textNode.runAction(SCNAction.sequence([wait, group, remove]))
         }
     }
     
@@ -98,36 +100,6 @@ class TextManager {
         textNode.position = SCNVector3(x: x, y: y, z: z)
         
         return textNode
-    }
-    
-    func addTextAtPositionInGame(str: String, x: Float, y: Float, z: Float) -> [SCNNode] {
-        let box = SCNCapsule(capRadius: 0.25, height: 1)
-        var boxNode = SCNNode(geometry: box)
-        
-        boxNode.position = SCNVector3(x: 0, y: y, z: z - 0.1)
-        boxNode.scale = SCNVector3(x: abs(x)/2, y: 0.8, z: 0.01)
-        boxNode.eulerAngles = SCNVector3(0, 0, 90)
-        boxNode.opacity = 0.8
-        
-        let boxMaterial = SCNMaterial()
-        boxMaterial.diffuse.contents = UIColor.black
-        boxNode.geometry?.firstMaterial = boxMaterial
-        
-        
-        
-        let text = SCNText(string: str, extrusionDepth: 0.2)
-        text.font = UIFont.systemFont(ofSize: 1)
-        let textNode = SCNNode(geometry: text)
-        
-        textNode.scale = SCNVector3(x: 0.2, y: 0.2, z: 0.2)
-        textNode.position = SCNVector3(x: x, y: y, z: z)
-        textNode.eulerAngles = SCNVector3(0.1, 0, 0)
-        
-        
-        self.scene.rootNode.addChildNode(textNode)
-        self.scene.rootNode.addChildNode(boxNode)
-        
-        return [textNode, boxNode]
     }
     
     

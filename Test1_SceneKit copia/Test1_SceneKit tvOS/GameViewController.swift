@@ -114,10 +114,7 @@ class GameViewController: UIViewController {
             sleep(1)
             self.points = 0
             DispatchQueue.main.async {
-                let arr = self.textManager.addTextAtPositionInGame(str: "Press the button on the remote to start!", x: -2, y: 3, z: 0)
-                self.startNode = arr[0]
-                self.boxStartNode = arr[1]
-                
+                self.startNode = self.textManager.addTextAtPosition(str: "Press the button on the remote to start!", x: -2, y: 3, z: 0)
             }
             self.semaphoreStart.wait()
             self.startNode!.removeFromParentNode()
@@ -232,13 +229,16 @@ class GameViewController: UIViewController {
             if node.name == "background" {
                 background = node
             }
+            if node.name == "capsule" {
+                boxStartNode = node
+            }
         }
     }
     
     func replaceBackgroundImage() {
         var material = (background.geometry?.material(named: "Material"))!
         if let image = UIImage(named: "Art.scnassets/Images/" + song.author) {
-            material.diffuse.contents =
+            material.diffuse.contents = image
             background.geometry?.replaceMaterial(at: 0, with: material)
         }
     }
