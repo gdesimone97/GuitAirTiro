@@ -87,10 +87,6 @@ class GameModeViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //        Label rotation in game mode
-        let guitar = UserDefaults.getGuitar(forKey: GUITAR)
-        if guitar == TypeOfGuitar.electric {
-            self.motionManager = CMMotionManager()
-        }
         let tv = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
         
         switch tv {
@@ -209,6 +205,7 @@ class GameModeViewController: UIViewController {
         let guitarSelected = UserDefaults.getGuitar(forKey: GUITAR)
         if guitarSelected == TypeOfGuitar.electric {
             motionManager.deviceMotionUpdateInterval = 0.3
+            self.motionManager = CMMotionManager()
             motionManager.startDeviceMotionUpdates(to: OperationQueue.current!, withHandler: { data, error -> Void in
                 if let data = data {
                     self.newAttitude = abs(data.attitude.roll)
