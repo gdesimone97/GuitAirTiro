@@ -218,15 +218,20 @@ extension ViewController: WCSessionDelegate {
     }
     
     func sessionReachabilityDidChange(_ session: WCSession) {
+        let tv = userDefault.integer(forKey: GUITAR)
         if !session.isReachable{
             DispatchQueue.main.async {
                 self.deviceStatus.backgroundColor = .red
-                self.playButton.isEnabled = false
+                if tv == TvSettings.withWatch.rawValue {
+                    self.playButton.isEnabled = false
+                }
             }
         }
         else if session.isReachable{
             DispatchQueue.main.async {
-                self.playButton.isEnabled = true
+                if tv == TvSettings.withWatch.rawValue {
+                    self.playButton.isEnabled = true
+                }
                 self.deviceStatus.backgroundColor = .green
             }
         }
