@@ -89,34 +89,35 @@ class GameModeViewController: UIViewController {
         //        Label rotation in game mode
         
         let tv = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
+        
         switch tv {
         case TvSettings.withWatch.rawValue:
-            buttonActionRedInside = playNothing
-            buttonActionRedDown = playNothing
-            buttonActionRedExit = playNothing
-            buttonActionBlueInside = playNothing
-            buttonActionBlueDown = playNothing
-            buttonActionBlueExit = playNothing
-            buttonActionGreenInside = playNothing
-            buttonActionGreenDown = playNothing
-            buttonActionGreenExit = playNothing
-            buttonActionPinkInside = playNothing
-            buttonActionPinkDown = playNothing
-            buttonActionPinkExit = playNothing
+            self.buttonActionRedInside = self.playNothing
+            self.buttonActionRedDown = self.playNothing
+            self.buttonActionRedExit = self.playNothing
+            self.buttonActionBlueInside = self.playNothing
+            self.buttonActionBlueDown = self.playNothing
+            self.buttonActionBlueExit = self.playNothing
+            self.buttonActionGreenInside = self.playNothing
+            self.buttonActionGreenDown = self.playNothing
+            self.buttonActionGreenExit = self.playNothing
+            self.buttonActionPinkInside = self.playNothing
+            self.buttonActionPinkDown = self.playNothing
+            self.buttonActionPinkExit = self.playNothing
         case TvSettings.withOutWatch.rawValue:
-            buttonActionRedInside = playRedInside
-            buttonActionRedDown = playRedDown
-            buttonActionRedExit = playRedExit
-            buttonActionBlueInside = playBlueInside
-            buttonActionBlueDown = playBlueDown
-            buttonActionBlueExit = playBlueExit
-            buttonActionGreenInside = playGreenInside
-            buttonActionGreenDown = playGreenDown
-            buttonActionGreenExit = playGreenExit
-            buttonActionPinkInside = playPinkInside
-            buttonActionPinkDown = playPinkDown
-            buttonActionPinkExit = playPinkExit
-            device = sessionTv.showConnectedDevices()![0]
+            self.buttonActionRedInside = self.playRedInside
+            self.buttonActionRedDown = self.playRedDown
+            self.buttonActionRedExit = self.playRedExit
+            self.buttonActionBlueInside = self.playBlueInside
+            self.buttonActionBlueDown = self.playBlueDown
+            self.buttonActionBlueExit = self.playBlueExit
+            self.buttonActionGreenInside = self.playGreenInside
+            self.buttonActionGreenDown = self.playGreenDown
+            self.buttonActionGreenExit = self.playGreenExit
+            self.buttonActionPinkInside = self.playPinkInside
+            self.buttonActionPinkDown = self.playPinkDown
+            self.buttonActionPinkExit = self.playPinkExit
+            self.device = self.sessionTv.showConnectedDevices()![0]
         default:
             break
         }
