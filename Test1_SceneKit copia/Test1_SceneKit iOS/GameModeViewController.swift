@@ -176,8 +176,7 @@ class GameModeViewController: UIViewController {
         
         //        Create guitars to play chords
         //        Il numero zero è associato al rosso e così via
-        if let device = sessionTv.showConnectedDevices() {}
-        else {
+        if tv == TvSettings.withWatch.rawValue {
             do{
                 guitar11 = try Guitar(file: toPlay[0])
                 guitar21 = try Guitar(file: toPlay[1])
