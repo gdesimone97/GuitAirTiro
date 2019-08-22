@@ -64,6 +64,8 @@
 		08D465BA22F1A78100B8D43B /* LogoWatch.png in Resources */ = {isa = PBXBuildFile; fileRef = 08D465B722F1A78000B8D43B /* LogoWatch.png */; };
 		08D465BB22F1A78100B8D43B /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08D465B822F1A78100B8D43B /* Interface.storyboard */; };
 		08D465BC22F1A78100B8D43B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08D465B922F1A78100B8D43B /* Assets.xcassets */; };
+		08F9EF01230EEB61001B5656 /* GuitAirAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F9EEFF230EEB61001B5656 /* GuitAirAPI.swift */; };
+		08F9EF02230EEB61001B5656 /* GuitAirGameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F9EF00230EEB61001B5656 /* GuitAirGameCenter.swift */; };
 		259FCF7A4466898030E2854A /* Pods_Test1_SceneKit_watchOS_App_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E921CE1C6D8E8B53642FAF /* Pods_Test1_SceneKit_watchOS_App_Extension.framework */; };
 		4DCC5A52BA1C80F0803B3382 /* Pods_Test1_SceneKit_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F1AB350036D84B5016AEC19 /* Pods_Test1_SceneKit_tvOS.framework */; };
 		7703F79122FAE2A30075BF92 /* Songs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7703F79022FAE2A30075BF92 /* Songs.swift */; };
@@ -204,6 +206,8 @@
 		08D465B722F1A78000B8D43B /* LogoWatch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoWatch.png; sourceTree = "<group>"; };
 		08D465B822F1A78100B8D43B /* Interface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Interface.storyboard; sourceTree = "<group>"; };
 		08D465B922F1A78100B8D43B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		08F9EEFF230EEB61001B5656 /* GuitAirAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuitAirAPI.swift; sourceTree = "<group>"; };
+		08F9EF00230EEB61001B5656 /* GuitAirGameCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuitAirGameCenter.swift; sourceTree = "<group>"; };
 		2A15CD72FB1605F801D79853 /* Pods-Test1_SceneKit watchOS App Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test1_SceneKit watchOS App Extension.release.xcconfig"; path = "Target Support Files/Pods-Test1_SceneKit watchOS App Extension/Pods-Test1_SceneKit watchOS App Extension.release.xcconfig"; sourceTree = "<group>"; };
 		37A58CE124B71E8151DB7139 /* Pods_Test1_SceneKit_watchOS_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Test1_SceneKit_watchOS_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4217021D0952E689A6BEE811 /* Pods-Test1_SceneKit iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test1_SceneKit iOS.release.xcconfig"; path = "Target Support Files/Pods-Test1_SceneKit iOS/Pods-Test1_SceneKit iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -298,6 +302,15 @@
 			path = "Core Data";
 			sourceTree = "<group>";
 		};
+		08F9EEFE230EEB40001B5656 /* Game Center */ = {
+			isa = PBXGroup;
+			children = (
+				08F9EEFF230EEB61001B5656 /* GuitAirAPI.swift */,
+				08F9EF00230EEB61001B5656 /* GuitAirGameCenter.swift */,
+			);
+			path = "Game Center";
+			sourceTree = "<group>";
+		};
 		77DFAD1122E84C54006DCBEE = {
 			isa = PBXGroup;
 			children = (
@@ -345,6 +358,7 @@
 		77DFAD2022E84C56006DCBEE /* Test1_SceneKit iOS */ = {
 			isa = PBXGroup;
 			children = (
+				08F9EEFE230EEB40001B5656 /* Game Center */,
 				0875E9EE230D8256009964B1 /* Core Data */,
 				087B1E5222F87A2700BDC2C1 /* classic_guitar.png */,
 				087B1E5322F87A2700BDC2C1 /* elettric_guitar.png */,
@@ -775,6 +789,7 @@
 				0898EC2922F05146007C32DD /* ChordsPickerViewController.swift in Sources */,
 				086325B822F33A5100513E1B /* NavigationController.swift in Sources */,
 				F207C469230EB2D8002DA2BF /* Multiplayer TableViewController.swift in Sources */,
+				08F9EF01230EEB61001B5656 /* GuitAirAPI.swift in Sources */,
 				0898EC2B22F05146007C32DD /* Guitar.swift in Sources */,
 				0875E9F1230D826D009964B1 /* appModel.xcdatamodeld in Sources */,
 				0875E9F4230D8792009964B1 /* Stat+CoreDataClass.swift in Sources */,
@@ -784,6 +799,7 @@
 				77DFAD5322E84C56006DCBEE /* MainController.swift in Sources */,
 				0898EC2A22F05146007C32DD /* NotationTableViewCell.swift in Sources */,
 				0875E9F5230D8792009964B1 /* Stat+CoreDataProperties.swift in Sources */,
+				08F9EF02230EEB61001B5656 /* GuitAirGameCenter.swift in Sources */,
 				F2B4E820230D3ED0009F6C36 /* Leaderboard View Controller.swift in Sources */,
 				779E565022EB090400ACC1BF /* SessionManager.swift in Sources */,
 				0898EC2D22F05146007C32DD /* NotationTableViewController.swift in Sources */,
