@@ -57,6 +57,13 @@ class ViewController: UIViewController{
         }
         self.tvStatus.backgroundColor = .red
         self.deviceStatus.backgroundColor = .red
+        
+        if WCSession.isSupported() {
+            session = WCSession.default
+            session!.delegate = self
+            session.activate()
+        }
+        
     }
     
     
@@ -85,17 +92,6 @@ class ViewController: UIViewController{
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-        let user = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
-        if user == TvSettings.withWatch.rawValue {
-            if WCSession.isSupported() && session == nil {
-                session = WCSession.default
-                session!.delegate = self
-                session.activate()
-            }
-        }
-    }
     
     override func viewDidAppear(_ animated: Bool) {
         let guitar = UserDefaults.getGuitar(forKey: GUITAR)
@@ -134,6 +130,9 @@ class ViewController: UIViewController{
             else if tv == TvSettings.withOutWatch.rawValue {
                 if self.sessionTvConnected {
                     self.playButton.isEnabled = true
+                }
+                else {
+                    self.playButton.isEnabled = false
                 }
                 
             }

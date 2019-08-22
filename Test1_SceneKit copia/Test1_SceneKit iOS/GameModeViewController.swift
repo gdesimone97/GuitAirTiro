@@ -129,22 +129,16 @@ class GameModeViewController: UIViewController {
         
         sessionTv.delegateGame = self
         
-        
-        if sessionDelegate != nil {
-            if let device = sessionTv.showConnectedDevices() {
-                let tv = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
-                if tv == TvSettings.withWatch.rawValue {
-                    sessionDelegate.toCall = {
-                        self.sessionDelegate.toCall = self.play
-                        DispatchQueue.main.async {
-                            self.motionManager = CMMotionManager()
-                        }
-                    }
-                }
-                else if tv == TvSettings.withOutWatch.rawValue {
-                    sessionDelegate.toCall = {}
+        if tv == TvSettings.withWatch.rawValue {
+            sessionDelegate.toCall = {
+                self.sessionDelegate.toCall = self.play
+                DispatchQueue.main.async {
+                    self.motionManager = CMMotionManager()
                 }
             }
+        }
+        else if tv == TvSettings.withOutWatch.rawValue {
+            sessionDelegate.toCall = {}
         }
         
         //        Construct appropriate namefiles for selected chords
@@ -247,15 +241,15 @@ class GameModeViewController: UIViewController {
         guitar42?.resetGuitar()
         
         self.dismiss(animated: false, completion: nil)
-        
-        if sessionDelegate.session != nil {
+            let tv = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
+        if tv == TvSettings.withWatch.rawValue {
             sessionDelegate.session.sendMessage(["payload": "stop"], replyHandler: nil, errorHandler: nil)
         }
-        
+        else {
         if let device = sessionTv.showConnectedDevices() {
             sessionTv.sendSignal(device[0], message: SignalCode.closeGame)
+            }
         }
-        
     }
     
     
