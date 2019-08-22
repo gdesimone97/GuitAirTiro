@@ -261,23 +261,23 @@ class GameModeViewController: UIViewController {
     
     @IBAction func touchUpInsideRed(_ sender: Any) {
         
-            DispatchQueue.main.async {
+            
                 self.sessionTv.sendSignal(self.device, message: SignalCode.key1Released)
-        }
+        
     }
     
     @IBAction func touchExitRed(_ sender: Any) {
         
-            DispatchQueue.main.async {
+        
                 self.sessionTv.sendSignal(self.device, message: SignalCode.key1Released)
-        }
+        
         
     }
     @IBAction func touchDownRed(_ sender: Any) {
         
-            DispatchQueue.main.async {
+        
                 self.sessionTv.sendSignal(self.device, message: SignalCode.key1Pressed)
-        }
+        
     }
     
     
