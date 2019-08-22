@@ -245,8 +245,8 @@
 		D5AD132005CE4BC2B1075000 /* Pods-Test1_SceneKit watchOS App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test1_SceneKit watchOS App.debug.xcconfig"; path = "Target Support Files/Pods-Test1_SceneKit watchOS App/Pods-Test1_SceneKit watchOS App.debug.xcconfig"; sourceTree = "<group>"; };
 		DB96BC2531D53A4C6A7A5973 /* Pods-Test1_SceneKit watchOS App Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test1_SceneKit watchOS App Extension.debug.xcconfig"; path = "Target Support Files/Pods-Test1_SceneKit watchOS App Extension/Pods-Test1_SceneKit watchOS App Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		F207C458230D9083002DA2BF /* FriendList ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FriendList ViewController.swift"; sourceTree = "<group>"; };
-		F207C45E230E99E2002DA2BF /* multiplayer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "multiplayer@2x.png"; path = "../../../../multiplayer@2x.png"; sourceTree = "<group>"; };
-		F207C466230EA43F002DA2BF /* swiperight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "swiperight@2x.png"; path = "../../../../swiperight@2x.png"; sourceTree = "<group>"; };
+		F207C45E230E99E2002DA2BF /* multiplayer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "multiplayer@2x.png"; sourceTree = "<group>"; };
+		F207C466230EA43F002DA2BF /* swiperight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "swiperight@2x.png"; sourceTree = "<group>"; };
 		F207C468230EB2D8002DA2BF /* Multiplayer TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Multiplayer TableViewController.swift"; sourceTree = "<group>"; };
 		F2B4E81F230D3ED0009F6C36 /* Leaderboard View Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Leaderboard View Controller.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
