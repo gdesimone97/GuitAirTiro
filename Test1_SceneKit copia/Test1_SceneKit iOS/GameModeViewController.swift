@@ -136,7 +136,9 @@ class GameModeViewController: UIViewController {
                 if tv == TvSettings.withWatch.rawValue {
                     sessionDelegate.toCall = {
                         self.sessionDelegate.toCall = self.play
+                        DispatchQueue.main.async {
                         self.motionManager = CMMotionManager()
+                        }
                     }
                 }
                 else if tv == TvSettings.withOutWatch.rawValue {
