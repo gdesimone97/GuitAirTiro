@@ -51,6 +51,7 @@ class GameViewController: UIViewController {
     var button2: SCNNode!
     var button3: SCNNode!
     var button4: SCNNode!
+    var background: SCNNode!
     
     var button1Pressed: Bool = false
     var button2Pressed: Bool = false
@@ -72,11 +73,12 @@ class GameViewController: UIViewController {
     var watch: Bool!
     
     var startNode: SCNNode?
+    var boxStartNode: SCNNode?
     var pointText: SCNNode?
     var multiplierNode: SCNNode?
     var multiplier = 1
     
-    var song: String! = Songs.LaCanzoneDelSole.rawValue // Da settare dal telefono
+    var song: Songs = Songs.PeppeGay // Da settare dal telefono
     
     // This is the thread that shows nodes on the guitar
     let noteQueue = DispatchQueue(label: "noteQueue", qos: .userInteractive)
@@ -106,16 +108,20 @@ class GameViewController: UIViewController {
         self.gameView.gestureRecognizers = gestureRecognizers
         
         addElements()
+        replaceBackgroundImage()
         
         startQueue.async {
             sleep(1)
             self.points = 0
             DispatchQueue.main.async {
-                self.startNode = self.textManager.addTextAtPosition(str: "Press the button on the remote to start!", x: -2, y: 3, z: 0)
-                self.startNode!.eulerAngles = SCNVector3(0.1, 0, 0)
+                let arr = self.textManager.addTextAtPositionInGame(str: "Press the button on the remote to start!", x: -2, y: 3, z: 0)
+                self.startNode = arr[0]
+                self.boxStartNode = arr[1]
+                
             }
             self.semaphoreStart.wait()
             self.startNode!.removeFromParentNode()
+            self.boxStartNode!.removeFromParentNode()
             self.soundEffect.countdown()
             self.textManager.addGameNotification(str: "3", color: UIColor.white, duration: 0.5)
             sleep(1)
@@ -144,7 +150,7 @@ class GameViewController: UIViewController {
         noteQueue.async {
             // This thread shows the notes to play taking the song's string
             self.semaphorePlay.wait()
-            for pair in self.song.split(separator: ";") {
+            for pair in self.song.notes.split(separator: ";") {
                 let x = pair.split(separator: ":")
                 for i in 0..<x.count-1 {
                     self.gameGuitarManager.showNode(column: Int(x[i])!)
@@ -223,6 +229,17 @@ class GameViewController: UIViewController {
             if node.name == "button4" {
                 button4 = node
             }
+            if node.name == "background" {
+                background = node
+            }
+        }
+    }
+    
+    func replaceBackgroundImage() {
+        var material = (background.geometry?.material(named: "Material"))!
+        if let image = UIImage(named: "Art.scnassets/Images/" + song.author) {
+            material.diffuse.contents =
+            background.geometry?.replaceMaterial(at: 0, with: material)
         }
     }
     

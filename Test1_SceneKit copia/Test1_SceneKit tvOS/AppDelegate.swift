@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let controller = self.window?.rootViewController! as! MainViewController
         controller.removeAllFromDictionary()
     
-        if self.window?.rootViewController?.presentedViewController!.title == "GameViewController" {
+        if self.window?.rootViewController?.presentedViewController?.title == "GameViewController" {
             let controller = self.window?.rootViewController?.presentedViewController! as! GameViewController
             controller.sendSignalWhenClosing()
         }
