@@ -72,14 +72,14 @@ class PersistanceManager {
     static func retriveStat() -> [Int64] {
         let item = getItem()
         var stat = Array<Int64>(repeating: 0, count: 4)
-        stat[0] = item?.score ?? 0
-        stat[1] = item?.wins ?? 0
-        stat[2] = item?.draws ?? 0
-        stat[3] = item?.losses ?? 0
+        stat[0] = item?.score ?? -1
+        stat[1] = item?.wins ?? -1
+        stat[2] = item?.draws ?? -1
+        stat[3] = item?.losses ?? -1
         return stat
     }
     
-    static func UploadStat(wins: Int?,loose: Int?,draws: Int?,score: Int?,image: Data?,gamerTag: String?) {
+    static func UploadStat(score: Int?,wins: Int?,draws: Int?,losses: Int?,image: Data?,gamerTag: String?) {
         let context = getContext()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         fetchRequest.fetchLimit = 1
@@ -92,8 +92,8 @@ class PersistanceManager {
             if draws != nil {
                 item.draws = Int64(draws!)
             }
-            if loose != nil {
-                item.losses = Int64(loose!)
+            if losses != nil {
+                item.losses = Int64(losses!)
             }
             if score != nil {
                 item.score = Int64(score!)
