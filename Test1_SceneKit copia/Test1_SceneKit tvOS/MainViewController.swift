@@ -207,6 +207,8 @@ class MainViewController: UIViewController {
             self.gameView.scene?.rootNode.addChildNode(planeNode)
         }
         
+        soundEffect.beepSound()
+        
         if let spot = spot  {
             spot.light!.intensity = 500
         }
