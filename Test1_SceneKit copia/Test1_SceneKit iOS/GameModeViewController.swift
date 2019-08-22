@@ -87,7 +87,6 @@ class GameModeViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //        Label rotation in game mode
-        
         let tv = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
         
         switch tv {
@@ -132,9 +131,6 @@ class GameModeViewController: UIViewController {
         if tv == TvSettings.withWatch.rawValue {
             sessionDelegate.toCall = {
                 self.sessionDelegate.toCall = self.play
-                DispatchQueue.main.async {
-                    self.motionManager = CMMotionManager()
-                }
             }
         }
         else if tv == TvSettings.withOutWatch.rawValue {
@@ -180,8 +176,7 @@ class GameModeViewController: UIViewController {
         
         //        Create guitars to play chords
         //        Il numero zero è associato al rosso e così via
-        if let device = sessionTv.showConnectedDevices() {}
-        else {
+        if tv == TvSettings.withWatch.rawValue {
             do{
                 guitar11 = try Guitar(file: toPlay[0])
                 guitar21 = try Guitar(file: toPlay[1])
@@ -209,6 +204,7 @@ class GameModeViewController: UIViewController {
         let guitarSelected = UserDefaults.getGuitar(forKey: GUITAR)
         if guitarSelected == TypeOfGuitar.electric {
             motionManager.deviceMotionUpdateInterval = 0.3
+            self.motionManager = CMMotionManager()
             motionManager.startDeviceMotionUpdates(to: OperationQueue.current!, withHandler: { data, error -> Void in
                 if let data = data {
                     self.newAttitude = abs(data.attitude.roll)

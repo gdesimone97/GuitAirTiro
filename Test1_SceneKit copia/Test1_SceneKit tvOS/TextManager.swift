@@ -64,9 +64,11 @@ class TextManager {
         DispatchQueue.main.async {
             self.scene.rootNode.addChildNode(textNode)
             let wait = SCNAction.wait(duration: duration)
+            let move = SCNAction.move(by: SCNVector3(x: 0, y: 0, z: 5), duration: 0.5)
             let disappear = SCNAction.fadeOut(duration: 0.5)
+            let group = SCNAction.group([move, disappear])
             let remove = SCNAction.removeFromParentNode()
-            textNode.runAction(SCNAction.sequence([wait, disappear, remove]))
+            textNode.runAction(SCNAction.sequence([wait, group, remove]))
         }
     }
     
