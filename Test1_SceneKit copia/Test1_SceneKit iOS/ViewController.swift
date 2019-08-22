@@ -56,6 +56,7 @@ class ViewController: UIViewController{
             userDefault.set(audioStandard, forKey: AUDIO_FILE_NAME)
         }
         self.tvStatus.backgroundColor = .red
+        self.deviceStatus.backgroundColor = .red
     }
     
     
@@ -97,9 +98,6 @@ class ViewController: UIViewController{
                 session.activate()
             }
         }
-        else if user == TvSettings.withOutWatch.rawValue {
-            session = nil
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -126,8 +124,8 @@ class ViewController: UIViewController{
         
         let tv = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
         DispatchQueue.main.async {
-            if !self.sessionTvConnected || self.sessionTvConnected && tv == TvSettings.withWatch.rawValue {
-                if self.session != nil && self.session.isReachable{
+            if tv == TvSettings.withWatch.rawValue {
+                if  self.session.isReachable{
                     self.playButton.isEnabled = true
                     self.deviceStatus?.backgroundColor = .green
                 }
@@ -136,8 +134,11 @@ class ViewController: UIViewController{
                     self.playButton.isEnabled = false
                 }
             }
-            else if self.sessionTvConnected && tv == TvSettings.withOutWatch.rawValue {
-                self.playButton.isEnabled = true
+            else if tv == TvSettings.withOutWatch.rawValue {
+                if self.sessionTvConnected {
+                    self.playButton.isEnabled = true
+                }
+                
             }
         }
         

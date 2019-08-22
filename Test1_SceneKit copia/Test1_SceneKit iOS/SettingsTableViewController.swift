@@ -56,16 +56,6 @@ class SettingsTableViewController: UITableViewController {
      */
     
     
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if self.sessionTv.showConnectedDevices() == nil {
-            self.tvSettingsCell?.isUserInteractionEnabled = false
-            self.tvSettingsLabel.textColor = UIColor.gray
-        }
-        else {
-            self.tvSettingsCell?.isUserInteractionEnabled = true
-            self.tvSettingsLabel.textColor = UIColor.white
-        }
-    }
     
     /*
      // Override to support conditional editing of the table view.
@@ -117,18 +107,6 @@ extension SettingsTableViewController: SessionManagerDelegate {
     }
     
     func nearPeerHasChangedState(_ manager: SessionManager, peer change: MCPeerID, connected: Int) {
-        if connected == 2 {
-            DispatchQueue.main.async {
-                self.tvSettingsCell.isUserInteractionEnabled = true
-                self.tvSettingsLabel.textColor = UIColor.white
-            }
-        }
-        if connected == 0 {
-            DispatchQueue.main.async {
-                self.tvSettingsCell.isUserInteractionEnabled = false
-                self.tvSettingsLabel.textColor = UIColor.gray
-            }
-        }
         
     }
     
