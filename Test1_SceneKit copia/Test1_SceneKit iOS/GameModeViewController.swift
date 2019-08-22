@@ -310,15 +310,15 @@ class GameModeViewController: UIViewController {
     var enable = false
     
     @IBAction func touchUpInsideRed(_ sender: Any) {
-        buttonActionRedInside
+        buttonActionRedInside!()
     }
     
     @IBAction func touchExitRed(_ sender: Any) {
-        buttonActionRedExit
+        buttonActionRedExit!()
         
     }
     @IBAction func touchDownRed(_ sender: Any) {
-        buttonActionRedDown
+        buttonActionRedDown!()
     }
     
     
