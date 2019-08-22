@@ -55,8 +55,6 @@ class ViewController: UIViewController{
             let audioStandard = Array<String>(repeating: "A.wav", count: 4)
             userDefault.set(audioStandard, forKey: AUDIO_FILE_NAME)
         }
-        self.tvStatus.backgroundColor = .red
-        self.deviceStatus.backgroundColor = .red
         
         if WCSession.isSupported() {
             session = WCSession.default
@@ -117,24 +115,27 @@ class ViewController: UIViewController{
         
         let tv = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
         DispatchQueue.main.async {
-            if tv == TvSettings.withWatch.rawValue {
-                if  self.session.isReachable{
-                    self.playButton.isEnabled = true
-                    self.deviceStatus?.backgroundColor = .green
-                }
-                else{
-                    self.deviceStatus?.backgroundColor = .red
-                    self.playButton.isEnabled = false
-                }
+            if self.session.isReachable {
+                 self.deviceStatus?.backgroundColor = .green
             }
-            else if tv == TvSettings.withOutWatch.rawValue {
-                if self.sessionTvConnected {
-                    self.playButton.isEnabled = true
-                }
-                else {
-                    self.playButton.isEnabled = false
-                }
-                
+            else {
+                self.deviceStatus.backgroundColor = .red
+            }
+            
+            if self.sessionTvConnected {
+                self.tvStatus.backgroundColor = .green
+            }
+            else {
+                self.tvStatus.backgroundColor = .red
+            }
+            if tv == TvSettings.withWatch.rawValue && self.session.isReachable {
+                self.playButton.isEnabled = true
+            }
+            else if tv == TvSettings.withOutWatch.rawValue && self.sessionTvConnected {
+                self.playButton.isEnabled = true
+            }
+            else {
+                self.playButton.isEnabled = false
             }
         }
         
