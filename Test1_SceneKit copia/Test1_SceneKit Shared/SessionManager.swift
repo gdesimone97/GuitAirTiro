@@ -86,7 +86,7 @@ class SessionManager: NSObject {
     
     func sendSignal (_ peer: MCPeerID, message: SignalCode) {
         var mex = message.rawValue
-        if self.session.connectedPeers.count > 0 {
+        
             print("Messaggio inviato")
             let data = withUnsafeBytes(of: &mex) { Data($0) }
             do {
@@ -95,7 +95,7 @@ class SessionManager: NSObject {
             catch _ {
                 print("Errore invio messaggio")
             }
-        }
+
     }
     
     func sendSignal (_ peer: MCPeerID, message: Array<String>) {

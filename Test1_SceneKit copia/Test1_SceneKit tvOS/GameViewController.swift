@@ -427,6 +427,20 @@ extension GameViewController: SessionManagerDelegate {
                 self.button4.position.y = 0.05
                 self.button4Pressed = false
                 
+            case .wah:
+                if self.button1Pressed {
+                    self.soundEffect.wah(column: 1)
+                }
+                if self.button2Pressed {
+                    self.soundEffect.wah(column: 2)
+                }
+                if self.button3Pressed {
+                    self.soundEffect.wah(column: 3)
+                }
+                if self.button4Pressed {
+                    self.soundEffect.wah(column: 4)
+                }
+                
                 
                 
             // Add more cases here

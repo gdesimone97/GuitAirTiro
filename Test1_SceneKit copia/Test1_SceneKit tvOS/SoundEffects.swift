@@ -20,6 +20,8 @@ class SoundEffect {
     private var countdownPlayer: AKPlayer?
     private var booEffect: AKPlayer?
     private var applauseEffect: AKPlayer?
+    private var beepEffect: AKPlayer?
+    private var swooshEffect: AKPlayer?
     
     
     // Songs
@@ -71,6 +73,10 @@ class SoundEffect {
     // This is for MainViewController
     init() {
         do {
+            beepEffect = AKPlayer(audioFile: try findFile(str: "Sound Effects/Beep_Short.mp3"))
+            swooshEffect = AKPlayer(audioFile: try findFile(str: "Sound Effects/Rake_Swing_Whoosh_Close.mp3"))
+            
+            
             song1 = AKPlayer(audioFile: try findFile(str: "Songs/Give.mp3"))
             song2 = AKPlayer(audioFile: try findFile(str: "Songs/Grassy_Hill.mp3"))
             song3 = AKPlayer(audioFile: try findFile(str: "Songs/Jeremiah_s_Song.mp3"))
@@ -85,7 +91,7 @@ class SoundEffect {
             print("AUDIOKIT ERROR! Could not find sound files")
         }
         
-        AudioKit.output = AKMixer(song1!, song2!, song3!, song4!, song5!, song6!, song7!, song8!)
+        AudioKit.output = AKMixer(song1!, song2!, song3!, song4!, song5!, song6!, song7!, song8!, beepEffect!, swooshEffect!)
         
         
         songsThreadUnlocker.async {
@@ -172,6 +178,20 @@ class SoundEffect {
         if countdownPlayer != nil {
             countdownPlayer!.stop()
             countdownPlayer!.play()
+        }
+    }
+    
+    func beepSound() {
+        if beepEffect != nil {
+            beepEffect!.stop()
+            beepEffect!.play()
+        }
+    }
+    
+    func swooshSound() {
+        if swooshEffect != nil {
+            swooshEffect!.stop()
+            swooshEffect!.play()
         }
     }
     
@@ -271,7 +291,7 @@ class SoundEffect {
     func wahEffect(guitar: Int) {
         DispatchQueue(label: "wahEffect").async {
             self.wah[guitar].wah = 100
-            sleep(3)
+            sleep(2)
             self.wah[guitar].wah = 0
         }
     }

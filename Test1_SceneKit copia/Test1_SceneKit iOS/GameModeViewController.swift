@@ -10,11 +10,30 @@ import UIKit
 import WatchConnectivity
 import AudioKit
 import MultipeerConnectivity
+import CoreMotion
 
 class GameModeViewController: UIViewController {
     
     var sessionDelegate: ViewController!
     let sessionTv = SessionManager.share
+    var motionManager: CMMotionManager!
+    
+    var oldAttitude: Double! = 0.00
+    var newAttitude: Double! = 0.00
+    
+    var device: MCPeerID?
+    var buttonActionRedInside: (() -> Void)?
+    var buttonActionRedExit: (() -> Void)?
+    var buttonActionRedDown: (() -> Void)?
+    var buttonActionBlueInside: (() -> Void)?
+    var buttonActionBlueExit: (() -> Void)?
+    var buttonActionBlueDown: (() -> Void)?
+    var buttonActionGreenInside: (() -> Void)?
+    var buttonActionGreenExit: (() -> Void)?
+    var buttonActionGreenDown: (() -> Void)?
+    var buttonActionPinkInside: (() -> Void)?
+    var buttonActionPinkExit: (() -> Void)?
+    var buttonActionPinkDown: (() -> Void)?
     
     // Labels shown in game mode, each label is associated with a button
     @IBOutlet weak var redButtonChord: UILabel!
@@ -68,6 +87,41 @@ class GameModeViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //        Label rotation in game mode
+        
+        let tv = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
+        
+        switch tv {
+        case TvSettings.withWatch.rawValue:
+            self.buttonActionRedInside = self.playNothing
+            self.buttonActionRedDown = self.playNothing
+            self.buttonActionRedExit = self.playNothing
+            self.buttonActionBlueInside = self.playNothing
+            self.buttonActionBlueDown = self.playNothing
+            self.buttonActionBlueExit = self.playNothing
+            self.buttonActionGreenInside = self.playNothing
+            self.buttonActionGreenDown = self.playNothing
+            self.buttonActionGreenExit = self.playNothing
+            self.buttonActionPinkInside = self.playNothing
+            self.buttonActionPinkDown = self.playNothing
+            self.buttonActionPinkExit = self.playNothing
+        case TvSettings.withOutWatch.rawValue:
+            self.buttonActionRedInside = self.playRedInside
+            self.buttonActionRedDown = self.playRedDown
+            self.buttonActionRedExit = self.playRedExit
+            self.buttonActionBlueInside = self.playBlueInside
+            self.buttonActionBlueDown = self.playBlueDown
+            self.buttonActionBlueExit = self.playBlueExit
+            self.buttonActionGreenInside = self.playGreenInside
+            self.buttonActionGreenDown = self.playGreenDown
+            self.buttonActionGreenExit = self.playGreenExit
+            self.buttonActionPinkInside = self.playPinkInside
+            self.buttonActionPinkDown = self.playPinkDown
+            self.buttonActionPinkExit = self.playPinkExit
+            self.device = self.sessionTv.showConnectedDevices()![0]
+        default:
+            break
+        }
+        
         redButtonChord?.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
         blueButtonChord?.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
         greenButtonChord?.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
@@ -75,21 +129,21 @@ class GameModeViewController: UIViewController {
         
         sessionTv.delegateGame = self
         
+        
         if sessionDelegate != nil {
             if let device = sessionTv.showConnectedDevices() {
-                let user = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
-                if user == 0 {
+                let tv = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
+                if tv == TvSettings.withWatch.rawValue {
                     sessionDelegate.toCall = {
-                        self.sessionTv.sendSignal(device[0], message: SignalCode.signal)
+                        self.sessionDelegate.toCall = self.play
+                        DispatchQueue.main.async {
+                            self.motionManager = CMMotionManager()
+                        }
                     }
                 }
-                else if user == 1 {
+                else if tv == TvSettings.withOutWatch.rawValue {
                     sessionDelegate.toCall = {}
                 }
-            }
-                
-            else {
-                sessionDelegate.toCall = play
             }
         }
         
@@ -156,7 +210,30 @@ class GameModeViewController: UIViewController {
                 print("Audiokit motor couldn't start!")
             }
         }
+        
+        
+        let guitarSelected = UserDefaults.getGuitar(forKey: GUITAR)
+        if guitarSelected == TypeOfGuitar.electric {
+            motionManager.deviceMotionUpdateInterval = 0.3
+            motionManager.startDeviceMotionUpdates(to: OperationQueue.current!, withHandler: { data, error -> Void in
+                if let data = data {
+                    self.newAttitude = abs(data.attitude.roll)
+                    
+                    //0.50 radianti corrisponde a circa 30° -> Se il movimento avuto in 0.3 secondi è stato una rotazione di 30° rispetto alla vecchia posizione, rilevo un movimento buono
+                    if self.newAttitude! > (self.oldAttitude + 0.50) || self.newAttitude! < (self.oldAttitude - 0.50) {
+                        DispatchQueue.main.async {
+                            if let device = self.sessionTv.showConnectedDevices() {
+                                self.sessionTv.sendSignal(device[0], message: SignalCode.wah)
+                            }
+                        }
+                    }
+                    self.oldAttitude = self.newAttitude
+                }
+            })
+        }
+        
     }
+    
     
     @IBAction func swipeLeft(_ sender: UISwipeGestureRecognizer) {
         try! AudioKit.stop()
@@ -257,103 +334,54 @@ class GameModeViewController: UIViewController {
         }
     }
     
+    
     @IBAction func touchUpInsideRed(_ sender: Any) {
-        if let device = sessionTv.showConnectedDevices() {
-            DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key1Released)
-            }
-        }
+        buttonActionRedInside!()
     }
     
     @IBAction func touchExitRed(_ sender: Any) {
-        if let device = sessionTv.showConnectedDevices() {
-            DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key1Released)
-            }
-        }
+        buttonActionRedExit!()
         
     }
     @IBAction func touchDownRed(_ sender: Any) {
-        if let device = sessionTv.showConnectedDevices() {
-            DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key1Pressed)
-            }
-        }
+        buttonActionRedDown!()
     }
     
     
     @IBAction func touchUpInsideBlue(_ sender: Any) {
-        if let device = sessionTv.showConnectedDevices() {
-            DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key2Released)
-            }
-        }
+        buttonActionBlueInside!()
     }
     
     @IBAction func touchExitBlue(_ sender: Any) {
-        if let device = sessionTv.showConnectedDevices() {
-            DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key2Released)
-            }
-        }
-        
+        buttonActionBlueExit!()
     }
     @IBAction func touchDownBlue(_ sender: Any) {
-        if let device = sessionTv.showConnectedDevices() {
-            DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key2Pressed)
-            }
-        }
+        buttonActionBlueDown!()
     }
     
     
     @IBAction func touchUpInsideGreen(_ sender: Any) {
-        if let device = sessionTv.showConnectedDevices() {
-            DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key3Released)
-            }
-        }
+        buttonActionGreenInside!()
     }
     
     @IBAction func touchExitGreen(_ sender: Any) {
-        if let device = sessionTv.showConnectedDevices() {
-            DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key3Released)
-            }
-        }
-        
+        buttonActionGreenExit!()
     }
     @IBAction func touchDownGreen(_ sender: Any) {
-        if let device = sessionTv.showConnectedDevices() {
-            DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key3Pressed)
-            }
-        }
+        buttonActionGreenDown!()
     }
     
     
     @IBAction func touchUpInsidePink(_ sender: Any) {
-        if let device = sessionTv.showConnectedDevices() {
-            DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key4Released)
-            }
-        }
+        buttonActionPinkInside!()
     }
     
     @IBAction func touchExitPink(_ sender: Any) {
-        if let device = sessionTv.showConnectedDevices() {
-            DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key4Released)
-            }
-        }
+        buttonActionPinkExit!()
         
     }
     @IBAction func touchDownPink(_ sender: Any) {
-        if let device = sessionTv.showConnectedDevices() {
-            DispatchQueue.main.async {
-                self.sessionTv.sendSignal(device[0], message: SignalCode.key4Pressed)
-            }
-        }
+        buttonActionPinkDown!()
     }
 }
 
@@ -398,3 +426,81 @@ extension GameModeViewController: SessionManagerDelegate {
     }
 }
 
+extension GameModeViewController {
+    func playRedInside() {
+        DispatchQueue.main.async {
+            self.sessionTv.sendSignal(self.device!, message: SignalCode.key1Released)
+        }
+    }
+    
+    func playRedExit() {
+        DispatchQueue.main.async {
+            self.sessionTv.sendSignal(self.device!, message: SignalCode.key1Released)
+        }
+    }
+    
+    func playRedDown() {
+        DispatchQueue.main.async {
+            self.sessionTv.sendSignal(self.device!, message: SignalCode.key1Pressed)
+        }
+    }
+    
+    func playBlueInside() {
+        DispatchQueue.main.async {
+            self.sessionTv.sendSignal(self.device!, message: SignalCode.key2Released)
+        }
+    }
+    
+    func playBlueExit() {
+        DispatchQueue.main.async {
+            self.sessionTv.sendSignal(self.device!, message: SignalCode.key2Released)
+        }
+    }
+    
+    func playBlueDown() {
+        DispatchQueue.main.async {
+            self.sessionTv.sendSignal(self.device!, message: SignalCode.key2Pressed)
+        }
+    }
+    
+    func playGreenInside() {
+        DispatchQueue.main.async {
+            self.sessionTv.sendSignal(self.device!, message: SignalCode.key3Released)
+        }
+    }
+    
+    func playGreenExit() {
+        DispatchQueue.main.async {
+            self.sessionTv.sendSignal(self.device!, message: SignalCode.key3Released)
+        }
+    }
+    
+    func playGreenDown() {
+        DispatchQueue.main.async {
+            self.sessionTv.sendSignal(self.device!, message: SignalCode.key3Pressed)
+        }
+    }
+    
+    func playPinkInside() {
+        DispatchQueue.main.async {
+            self.sessionTv.sendSignal(self.device!, message: SignalCode.key4Released)
+        }
+    }
+    
+    func playPinkExit() {
+        DispatchQueue.main.async {
+            self.sessionTv.sendSignal(self.device!, message: SignalCode.key4Released)
+        }
+    }
+    
+    func playPinkDown() {
+        DispatchQueue.main.async {
+            self.sessionTv.sendSignal(self.device!, message: SignalCode.key4Pressed)
+        }
+    }
+    
+    func playNothing() {
+        return
+    }
+    
+}

@@ -36,18 +36,22 @@ class AccountViewController: UIViewController {
         imagePickerController.allowsEditing = false
         imagePickerController.delegate = self
         
-        reloadStat()
+//        PersistanceManager.UploadStat(score: 1, wins: 2, draws: 3, losses: 4, image: nil, gamerTag: nil)
        
     }
     
+     override func viewWillAppear(_ animated: Bool) {
+        reloadStat()
+    }
+    
     private func reloadStat() {
-        if let resultImage = getImage(){
-            imageProfile.image = resultImage
+        if let resultImage = self.getImage(){
+            self.imageProfile.image = resultImage
         }
         
         let arrayStat = PersistanceManager.retriveStat()
         var i = 0
-        for label in statLabel {
+        for label in self.statLabel {
             label.text = String(arrayStat[i])
             i += 1
         }
@@ -113,7 +117,7 @@ extension AccountViewController: UIImagePickerControllerDelegate,UINavigationCon
         self.imageProfile.image = image
         //userDefault.setImage(image: image, forKey: IMAGE_DEFAULT)
         let imageToSave = convertImageToData(image: image)
-        PersistanceManager.UploadStat(wins: nil, loose: nil, draws: nil, score: nil, image: imageToSave as Data?, gamerTag: nil)
+        PersistanceManager.UploadStat(score: nil, wins: nil, draws: nil, losses: nil, image: imageToSave as Data?, gamerTag: nil)
         dismiss(animated: true, completion: nil)
     }
     

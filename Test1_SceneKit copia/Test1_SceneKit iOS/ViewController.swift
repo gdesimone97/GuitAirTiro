@@ -56,6 +56,7 @@ class ViewController: UIViewController{
             userDefault.set(audioStandard, forKey: AUDIO_FILE_NAME)
         }
         self.tvStatus.backgroundColor = .red
+        self.deviceStatus.backgroundColor = .red
     }
     
     
@@ -73,15 +74,12 @@ class ViewController: UIViewController{
     
     //    Send start message to Watch when "play" button is pressed
     @IBAction func playButtonPressed(_ sender: UIButton) {
-        if session != nil {
+        let tvSettings = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
+        if tvSettings == TvSettings.withWatch.rawValue {
             session.sendMessage(["payload": "start"], replyHandler: nil, errorHandler: nil)
         }
-        if let device = sessionTv.showConnectedDevices() {
-            let tvSettings = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
-            if tvSettings == TvSettings.withWatch.rawValue {
-                sessionTv.sendSignal(device[0], message: SignalCode.OpenGameWithWatch)
-            }
-            else if tvSettings == TvSettings.withOutWatch.rawValue {
+        if tvSettings == TvSettings.withOutWatch.rawValue {
+            if let device = sessionTv.showConnectedDevices() {
                 sessionTv.sendSignal(device[0], message: SignalCode.OpenGameWithOutWatch)
             }
         }
@@ -96,9 +94,6 @@ class ViewController: UIViewController{
                 session!.delegate = self
                 session.activate()
             }
-        }
-        else if user == TvSettings.withOutWatch.rawValue {
-            session = nil
         }
     }
     
@@ -126,8 +121,8 @@ class ViewController: UIViewController{
         
         let tv = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
         DispatchQueue.main.async {
-            if !self.sessionTvConnected || self.sessionTvConnected && tv == TvSettings.withWatch.rawValue {
-                if self.session != nil && self.session.isReachable{
+            if tv == TvSettings.withWatch.rawValue {
+                if  self.session.isReachable{
                     self.playButton.isEnabled = true
                     self.deviceStatus?.backgroundColor = .green
                 }
@@ -136,8 +131,11 @@ class ViewController: UIViewController{
                     self.playButton.isEnabled = false
                 }
             }
-            else if self.sessionTvConnected && tv == TvSettings.withOutWatch.rawValue {
-                self.playButton.isEnabled = true
+            else if tv == TvSettings.withOutWatch.rawValue {
+                if self.sessionTvConnected {
+                    self.playButton.isEnabled = true
+                }
+                
             }
         }
         
@@ -166,7 +164,7 @@ class ViewController: UIViewController{
     }
     
     func setLabelBoard() {
-//        guitarLabel.layer.frame = CGRect(x: 30.51, y: 583.67, width: 153.02, height: 47);
+        //        guitarLabel.layer.frame = CGRect(x: 30.51, y: 583.67, width: 153.02, height: 47);
         guitarLabel.layer.backgroundColor = UIColor(red: 0.28, green: 0.32, blue: 0.37, alpha: 1).cgColor;
         guitarLabel.layer.cornerRadius = 8;
     }
