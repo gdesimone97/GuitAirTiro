@@ -74,15 +74,12 @@ class ViewController: UIViewController{
     
     //    Send start message to Watch when "play" button is pressed
     @IBAction func playButtonPressed(_ sender: UIButton) {
-        if session != nil {
+        let tvSettings = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
+        if tvSettings == TvSettings.withWatch.rawValue {
             session.sendMessage(["payload": "start"], replyHandler: nil, errorHandler: nil)
         }
-        if let device = sessionTv.showConnectedDevices() {
-            let tvSettings = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
-//            if tvSettings == TvSettings.withWatch.rawValue {
-//                sessionTv.sendSignal(device[0], message: SignalCode.OpenGameWithWatch)
-//            }
-             if tvSettings == TvSettings.withOutWatch.rawValue {
+        if tvSettings == TvSettings.withOutWatch.rawValue {
+            if let device = sessionTv.showConnectedDevices() {
                 sessionTv.sendSignal(device[0], message: SignalCode.OpenGameWithOutWatch)
             }
         }
@@ -167,7 +164,7 @@ class ViewController: UIViewController{
     }
     
     func setLabelBoard() {
-//        guitarLabel.layer.frame = CGRect(x: 30.51, y: 583.67, width: 153.02, height: 47);
+        //        guitarLabel.layer.frame = CGRect(x: 30.51, y: 583.67, width: 153.02, height: 47);
         guitarLabel.layer.backgroundColor = UIColor(red: 0.28, green: 0.32, blue: 0.37, alpha: 1).cgColor;
         guitarLabel.layer.cornerRadius = 8;
     }
