@@ -12,6 +12,8 @@ class SignUpViewController: UIViewController {
 
     @IBOutlet var userText: UITextField!
     @IBOutlet var passwordText: UITextField!
+    @IBOutlet var invalidPasswordLabel: UILabel!
+    @IBOutlet var invalidLogIn: UILabel!
     
     let SEGUE = "return_to_login"
     
@@ -19,10 +21,44 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         userText.delegate = self
         passwordText.delegate = self
+        invalidPasswordLabel.text = ""
+        invalidLogIn.text = ""
         // Do any additional setup after loading the view.
     }
     
     @IBAction func signUpButton(_ sender: Any) {
+        let game = GuitAirGameCenter.share
+        var flag = true
+        if userText.text == "" {
+            userText.layer.borderWidth = 2.5
+            userText.layer.borderColor = UIColor.red.cgColor
+            flag = false
+        }
+        else {
+            userText.layer.borderWidth = 0.0
+        }
+        if passwordText.text == "" || passwordText.text!.count < 8 {
+            passwordText.layer.borderWidth = 2.5
+            passwordText.layer.borderColor = UIColor.red.cgColor
+            flag = false
+            if passwordText.text!.count < 8 {
+                invalidPasswordLabel.text = "Min 8 characters"
+                invalidPasswordLabel.text = ""
+            }
+        }
+        else {
+            passwordText.layer.borderWidth = 0.0
+        }
+        if flag {
+            let res = game.register(gamertag: userText.text!, password: passwordText.text!)
+            if res.0 == 200 {
+                //performSegue(withIdentifier: SEGUE, sender: nil)
+                self.dismiss(animated: true, completion: nil)
+            }
+            else {
+                invalidLogIn.text = "Username or password wrong"
+            }
+        }
         
     }
 }
