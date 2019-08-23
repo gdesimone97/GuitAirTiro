@@ -42,7 +42,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // *** Notifiche ***
         // Autorizzazioni
-        notificationCenter.requestAuthorization(options: [.alert , .sound, .providesAppNotificationSettings]) { (granted, error) in /* funzionalità in base all'autorizzazione */ }
+        notificationCenter.requestAuthorization(options: [.alert , .sound, .providesAppNotificationSettings]) { (granted, error) in /* funzionalità in base all'autorizzazione */
+            if granted {
+                    DispatchQueue.main.async {
+                        if !application.isRegisteredForRemoteNotifications {
+                        // Registrazione per le push notification
+                        application.registerForRemoteNotifications()
+                    }
+                }
+            }
+            
+        }
         notificationCenter.getNotificationSettings { (settings) in
             guard settings.authorizationStatus == .authorized else { return }
             DispatchQueue.main.async {
