@@ -102,6 +102,10 @@ class SettingsTableViewController: UITableViewController {
 }
 
 extension SettingsTableViewController: SessionManagerDelegate {
+    func mexReceived(_ manager: SessionManager, didMessageReceived: Int) {
+        return
+    }
+    
     func peerFound(_ manger: SessionManager, peer: MCPeerID) {
         return
     }
