@@ -22,6 +22,7 @@ class SoundEffect {
     private var applauseEffect: AKPlayer?
     private var beepEffect: AKPlayer?
     private var swooshEffect: AKPlayer?
+    private var explosionEffect: AKPlayer?
     
     
     // Songs
@@ -134,6 +135,7 @@ class SoundEffect {
             countdownPlayer = AKPlayer(audioFile: try findFile(str: "Sound Effects/countdown.wav"))
             booEffect = AKPlayer(audioFile: try findFile(str: "Sound Effects/Crowd Boo sound effect.mp3"))
             applauseEffect = AKPlayer(audioFile: try findFile(str: "Sound Effects/Crowd Cheers and Applause.mp3"))
+            explosionEffect = AKPlayer(audioFile: try findFile(str: "Sound Effects/Explosion.mp3"))
             
             guitar11 = try Guitar(file: file1)
             guitar21 = try Guitar(file: file2)
@@ -158,7 +160,7 @@ class SoundEffect {
         wah = [wah11, wah12, wah21, wah22, wah31, wah32, wah41, wah42]
         
         
-        AudioKit.output = AKMixer(guitar11?.chord, guitar21?.chord, guitar31?.chord, guitar41?.chord, guitar12?.chord, guitar22?.chord, guitar32?.chord, guitar42?.chord, wah11, wah12, wah21, wah22, wah31, wah32, wah41, wah42, countdownPlayer, booEffect, applauseEffect)
+        AudioKit.output = AKMixer(guitar11?.chord, guitar21?.chord, guitar31?.chord, guitar41?.chord, guitar12?.chord, guitar22?.chord, guitar32?.chord, guitar42?.chord, wah11, wah12, wah21, wah22, wah31, wah32, wah41, wah42, countdownPlayer, booEffect, applauseEffect, explosionEffect)
         do{
             try AudioKit.start()
         } catch {
@@ -206,6 +208,13 @@ class SoundEffect {
         if applauseEffect != nil {
             applauseEffect!.stop()
             applauseEffect!.play()
+        }
+    }
+    
+    func explosionSound() {
+        if explosionEffect != nil {
+            explosionEffect!.stop()
+            explosionEffect!.play()
         }
     }
     
