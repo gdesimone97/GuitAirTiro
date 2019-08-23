@@ -20,7 +20,7 @@ class AccountViewController: UIViewController {
     let imagePickerController = UIImagePickerController()
     
     let userDefaults = UserDefaults.standard
-    
+    let gameCenter = GuitAirGameCenter.share
     override func viewDidLoad() {
         super.viewDidLoad()
         pickButton.setTitle("", for: UIControl.State.normal  )
@@ -41,14 +41,23 @@ class AccountViewController: UIViewController {
     }
     
      override func viewWillAppear(_ animated: Bool) {
-        reloadStat()
+        reloadStatOnline()
     }
     
-    private func reloadStat() {
+    private func reloadStatOnline() {
+        let res = gameCenter.getMyProfile()
+        print(res)
+        let profile = res.1["profile"]!
+        print(profile)
+    }
+    
+    private func loadImage() {
         if let resultImage = self.getImage(){
             self.imageProfile.image = resultImage
         }
-        
+    }
+    
+    private func reloadStatOffline() {
         let arrayStat = PersistanceManager.retriveStat()
         var i = 0
         for label in self.statLabel {
