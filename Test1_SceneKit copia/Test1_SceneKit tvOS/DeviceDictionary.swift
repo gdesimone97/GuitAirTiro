@@ -21,7 +21,9 @@ class DeviceDictionary {
     }
     
     func addSample(peer: MCPeerID) {
-        dictionary[peer] = "\(dim+1)"
+        if !isPresent(peer: peer) {
+            dictionary[peer] = "\(dim+1)"
+        }
     }
     
     func removeSample(peer: MCPeerID) {

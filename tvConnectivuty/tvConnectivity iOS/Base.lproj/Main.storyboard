@@ -19,35 +19,66 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qH-Ta-DRo">
-                                <rect key="frame" x="242" y="152" width="121" height="98"/>
+                                <rect key="frame" x="146" y="374" width="121" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <state key="normal" title="Button2"/>
                                 <connections>
-                                    <action selector="button2:" destination="BV1-FR-VrT" eventType="touchUpInside" id="gsu-Cc-7bX"/>
+                                    <action selector="buttonSend:" destination="BV1-FR-VrT" eventType="touchUpInside" id="I8Z-3w-6aq"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yS8-VQ-kN0">
-                                <rect key="frame" x="147" y="391" width="97" height="30"/>
+                                <rect key="frame" x="159" y="336" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="03v-o1-MPW">
-                                <rect key="frame" x="148" y="258" width="119" height="93"/>
+                                <rect key="frame" x="148" y="235" width="119" height="93"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zLz-AR-w4i">
-                                <rect key="frame" x="32" y="144" width="168" height="106"/>
+                                <rect key="frame" x="31" y="128" width="82" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <state key="normal" title="Button1"/>
+                                <state key="normal" title="1"/>
                                 <connections>
-                                    <action selector="button:" destination="BV1-FR-VrT" eventType="touchUpInside" id="WPf-ck-12F"/>
+                                    <action selector="button1Pressed:" destination="BV1-FR-VrT" eventType="touchDown" id="9VQ-cD-Lm5"/>
+                                    <action selector="button1ReleasedIn:" destination="BV1-FR-VrT" eventType="touchUpInside" id="nAv-ae-Lgc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZtU-ia-DjP">
+                                <rect key="frame" x="121" y="128" width="82" height="82"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <state key="normal" title="2"/>
+                                <connections>
+                                    <action selector="button2Pressed:" destination="BV1-FR-VrT" eventType="touchDown" id="5fo-at-V69"/>
+                                    <action selector="button2Released:" destination="BV1-FR-VrT" eventType="touchUpInside" id="IGb-Fw-JMv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ybB-T4-wsL">
+                                <rect key="frame" x="211" y="128" width="82" height="82"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <state key="normal" title="3"/>
+                                <connections>
+                                    <action selector="button3Pressed:" destination="BV1-FR-VrT" eventType="touchDown" id="voL-zV-Ttp"/>
+                                    <action selector="button3ReleasedIn:" destination="BV1-FR-VrT" eventType="touchUpInside" id="riK-Lq-4WJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HzY-cl-qbj">
+                                <rect key="frame" x="301" y="128" width="82" height="82"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <state key="normal" title="4"/>
+                                <connections>
+                                    <action selector="button4Pressed:" destination="BV1-FR-VrT" eventType="touchDown" id="Je8-jQ-8Ar"/>
+                                    <action selector="button4ReleasedIn:" destination="BV1-FR-VrT" eventType="touchUpInside" id="0Ld-5v-HP5"/>
                                 </connections>
                             </button>
                         </subviews>

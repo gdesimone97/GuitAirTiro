@@ -73,7 +73,7 @@ class MotionManager {
                     self.flag1 = false
                 }
                 
-                if !self.flag1 && !self.flag && x > self.startThreshold && z < -self.startThreshold {
+                if !self.flag1 && !self.flag && (x > self.startThreshold && z < -self.startThreshold) {
                     self.flag = true
                     self.flag1 = true
                 }

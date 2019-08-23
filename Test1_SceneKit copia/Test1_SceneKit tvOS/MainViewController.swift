@@ -20,24 +20,23 @@ class MainViewController: UIViewController {
     var mainController: MainController!
     var textManager: TextManager!
     var guitarsManager: Guitars!
+    var soundEffect: SoundEffect!
     
     var keyNode: SCNNode!
     var plane: SCNNode!
     var spot: SCNNode!
     var phone: SCNNode!
     
-    
     var numGuitar: Int = 2 // 2 for electric guitar, 1 for acoustic guitar
     // Assegnamento da fare in base alle UsersDefaults e NON QUI
     
     
     var session = SessionManager.share
-    let semaphore = DispatchSemaphore(value: 1)
+    let semaphore = DispatchSemaphore(value: 0)
     let peerListQueue = DispatchQueue(label: "peerListQueue", qos: .userInteractive)
     var peerConnected: MCPeerID?
     var connected: Int = 0 // -> 0: Disconnected, 1: Connecting, 2: Connected
     var deviceNode: SCNNode?
-    
     
     
     // Connection Properties
@@ -45,18 +44,14 @@ class MainViewController: UIViewController {
     var planeNode: SCNNode!
     var flagPanelConnection = false
     var row = 0
+    var chords: [String]?
+    var watch: Bool!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         session.delegate = self
         
         self.mainController = MainController(sceneRenderer: gameView)
-        
-        // Allow the user to manipulate the camera
-        self.gameView.allowsCameraControl = false
-            
-        // Show statistics such as fps and timing information
-//        self.gameView.showsStatistics = true
         
         let waitAction = SCNAction.wait(duration: 5)
         let initAction = SCNAction.run{ _ in
@@ -69,6 +64,7 @@ class MainViewController: UIViewController {
         gameView.scene?.rootNode.runAction(SCNAction.sequence([initAction, waitAction, initAction2]))
         
         self.textManager = TextManager(scene: gameView.scene!)
+        soundEffect = SoundEffect()
         
         self.addGestures()
         
@@ -78,6 +74,9 @@ class MainViewController: UIViewController {
                 self.semaphore.wait()
             }
         }
+        
+        
+        
     }
     
     
@@ -102,13 +101,10 @@ class MainViewController: UIViewController {
             for index in 0...rows {
                 if index == row {
                     if let peerID = dictionary.keyForValue(value: String(index)) {
-                        print("Selezionato \(peerID)")
-                        do {
-                            try session.invitePeer(invite: peerID)
-                            textManager.addNotification(str: "Request sent to the device", color: UIColor.green)
-                        } catch {
-                            textManager.addNotification(str: "Can't send the request!", color: UIColor.red)
+                        DispatchQueue(label: "invite", qos: .background).async {
+                            self.session.invitePeer(invite: peerID)
                         }
+                        textManager.addNotification(str: "Request sent to " + peerID.displayName, color: UIColor.green, y: 1)
                     }
                     hidePlane()
                     showKey(pos: 0)
@@ -175,7 +171,7 @@ class MainViewController: UIViewController {
         
         DispatchQueue.main.async {
             self.textManager.addCenteredText(str: "GuitAir")
-            self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected! Press the central button on the remote to see the available devices", x: -5.5, y: 0.5)
+            self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected! Press the central button on the remote to see the available devices", x: -5.5, y: 0.5, z: 1)
         }
     }
     
@@ -210,6 +206,8 @@ class MainViewController: UIViewController {
             
             self.gameView.scene?.rootNode.addChildNode(planeNode)
         }
+        
+        soundEffect.beepSound()
         
         if let spot = spot  {
             spot.light!.intensity = 500
@@ -251,7 +249,7 @@ class MainViewController: UIViewController {
             textManager.addTextAtPosition(str1: pair.key.displayName, str2: pair.value, x: -2, y: Float(5.95 - Double(Int(pair.value)!)/2.2), z: 1)
         }
         
-        // Then add the "CLOSE" label
+        // Then add the "EXIT" label
         textManager.addTextAtPosition(str1: "EXIT", str2: String(dictionary.dim + 1), x: -2, y: Float(5.95 - Double((dictionary.dim + 1))/2.2), z: 1)
     }
     
@@ -283,24 +281,39 @@ class MainViewController: UIViewController {
         switch segue.identifier {
         case "GameSegue":
             let GameViewController = segue.destination as! GameViewController
+            
+            // Prima della segue che mi manda al gioco, preparo la funzione che verrà chiamata quando GameViewController verrà dismessa
             GameViewController.callbackClosure = {
                 self.session.delegate = self
                 self.checkConnection()
+                self.soundEffect = SoundEffect()
             }
+            GameViewController.dictionary = self.dictionary
+            if self.chords != nil {
+                GameViewController.chords = self.chords!
+            }
+            
+            
         default:
             print(#function)
         }
     }
     
     func checkConnection() {
-        if !session.isConnected(peerConnected) {
-            self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5)
+        if !session.isConnected(peerConnected!) {
+            self.deviceNode!.removeFromParentNode()
+            self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5, z: 1)
             self.phone.runAction(SCNAction.move(to: SCNVector3(0, 0, 0), duration: 0.7))
+            guitarsManager.removeActual()
+            textManager.addNotification(str: (self.peerConnected?.displayName)! + " disconnected!", color: UIColor.green, y: 2)
+            
             self.peerConnected = nil
-            textManager.addNotification(str: "Device disconnected!", color: UIColor.red)
         }
     }
     
+    func removeAllFromDictionary() {
+        dictionary.dictionary.removeAll()
+    }
     
 //    func addEmitter() {
 //        fog(x: 7, y: 0.2, z: -3, roll: 0)
@@ -342,31 +355,33 @@ extension MainViewController: SessionManagerDelegate {
             self.deviceNode!.removeFromParentNode()
             
             if self.connected == 0 && connected == 1 {
-                self.deviceNode = self.textManager.addTextAtPosition(str: "Connecting to \(change.displayName) ...", x: -5.5, y: 0.5)
+                self.deviceNode = self.textManager.addTextAtPosition(str: "Connecting to \(change.displayName) ...", x: -5.5, y: 0.5, z: 1)
             }
             else if self.connected == 1 && connected == 2 {
-                self.deviceNode = self.textManager.addTextAtPosition(str: "Device Connected: \(change.displayName)", x: -5.5, y: 0.5)
+                self.deviceNode = self.textManager.addTextAtPosition(str: "Device Connected: \(change.displayName)", x: -5.5, y: 0.5, z: 1)
                 self.peerConnected = change
                 self.phone.runAction(SCNAction.move(to: SCNVector3(15, 0, 0), duration: 0.7))
             }
             else if self.connected == 0 && connected == 0 {
-                self.deviceNode = self.textManager.addTextAtPosition(str: "Device denied the request!", x: -5.5, y: 0.5)
+                self.deviceNode = self.textManager.addTextAtPosition(str: "Device denied the request!", x: -5.5, y: 0.5, z: 1)
                 let wait = SCNAction.wait(duration: 5)
                 let change = SCNAction.run{_ in
-                    self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5)
+                    self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5, z: 1)
                     self.phone.runAction(SCNAction.move(to: SCNVector3(0, 0, 0), duration: 0.7))
                 }
                 let remove = SCNAction.removeFromParentNode()
                 self.deviceNode?.runAction(SCNAction.sequence([wait, change, remove]))
             }
             else if self.peerConnected == change && self.connected == 2 && connected == 0 {
-                self.deviceNode = self.textManager.addTextAtPosition(str: "No device connected!", x: -5.5, y: 0.5)
-                self.phone.runAction(SCNAction.move(to: SCNVector3(0, 0, 0), duration: 0.7))
-                self.peerConnected = nil
+                self.checkConnection()
             }
             
             self.connected = connected
         }
+    }
+    
+    func mexReceived(_ manager: SessionManager, didMessageReceived: Array<String>) {
+        self.chords = didMessageReceived
     }
     
     func mexReceived(_ manager: SessionManager, didMessageReceived: SignalCode) {
@@ -376,8 +391,18 @@ extension MainViewController: SessionManagerDelegate {
             self.guitarsManager.changeGuitar(newGuitar: .acoustic)
         case .showElectricGuitar:
             self.guitarsManager.changeGuitar(newGuitar: .electric)
-        case .openGame:
+            
+            
+        case .OpenGameWithWatch:
             DispatchQueue.main.async {
+                self.soundEffect.stopSongs()
+                self.watch = true
+                self.performSegue(withIdentifier: "GameSegue", sender: nil)
+            }
+        case .OpenGameWithOutWatch:
+            DispatchQueue.main.async {
+                self.soundEffect.stopSongs()
+                self.watch = false
                 self.performSegue(withIdentifier: "GameSegue", sender: nil)
             }
             

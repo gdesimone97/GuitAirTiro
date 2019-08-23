@@ -16,6 +16,7 @@ protocol SessionManagerDelegate: class {
     func nearPeerHasChangedState(_ manager: SessionManager,peer change: MCPeerID, connected: Int)
     /** Segnala la ricezione di un messaggio */
     func mexReceived(_ manager: SessionManager,didMessageReceived: SignalCode)
+    func mexReceived(_ manager: SessionManager,didMessageReceived: Array<String>)
     /** Connessione con peer persa */
     func peerLost(_ manager: SessionManager,peer lost: MCPeerID)
 }
@@ -34,6 +35,9 @@ class SessionManager: NSObject {
     
     private let typeOfService = "guit-air"
     weak var delegate: SessionManagerDelegate?
+    weak var delegateSettings: SessionManagerDelegate?
+    weak var delegateGame: SessionManagerDelegate?
+    
     private let serviceBrowser: MCNearbyServiceBrowser
     private let serviceAdverticer: MCNearbyServiceAdvertiser
     //private let serviceAdverticerAssistant: MC
@@ -82,7 +86,7 @@ class SessionManager: NSObject {
     
     func sendSignal (_ peer: MCPeerID, message: SignalCode) {
         var mex = message.rawValue
-        if self.session.connectedPeers.count > 0 {
+        
             print("Messaggio inviato")
             let data = withUnsafeBytes(of: &mex) { Data($0) }
             do {
@@ -91,12 +95,24 @@ class SessionManager: NSObject {
             catch _ {
                 print("Errore invio messaggio")
             }
+
+    }
+    
+    func sendSignal (_ peer: MCPeerID, message: Array<String>) {
+        do {
+            let mex = try NSKeyedArchiver.archivedData(withRootObject: message, requiringSecureCoding: false)
+            if self.session.connectedPeers.count > 0 {
+                try self.session.send(mex, toPeers: [peer], with: .unreliable)
+            }
+        }
+        catch _ {
+            print("errore")
         }
     }
     
     func sendSignal (_ peer: MCPeerID, message: UInt8) {
         var mex = message
-        guard mex != 0 else {print("Non puoi mandare 0, questo metodo verà cancellatto successivamente"); return}
+        guard mex != 0 else {print("Non puoi mandare 0, questo metodo verà cancellato successivamente"); return}
         if self.session.connectedPeers.count > 0 {
             print("Messaggio inviato")
             let data = withUnsafeBytes(of: &mex) { Data($0) }
@@ -114,7 +130,7 @@ class SessionManager: NSObject {
      Funzione che ritorna la lista dei dispositivi connessi
      Restituisce nil se non ci sono dispositivi connessi
      */
-    func showConncetedDevices() -> Array<MCPeerID>? {
+    func showConnectedDevices() -> Array<MCPeerID>? {
         let deviceList: Array<MCPeerID> = session.connectedPeers
         guard deviceList.count != 0 else { return nil }
         return deviceList
@@ -143,16 +159,26 @@ extension SessionManager: MCSessionDelegate {
     // Lo stato di un peer vicino è cambiato
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         self.delegate?.nearPeerHasChangedState(self, peer: peerID, connected: state.rawValue)
+        self.delegateSettings?.nearPeerHasChangedState(self, peer: peerID, connected: state.rawValue)
+         self.delegateGame?.nearPeerHasChangedState(self, peer: peerID, connected: state.rawValue)
+        
         print("Stato della connessione: \(state.rawValue) di \(peerID)")
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        print("Messaggio \(i) ricevuto da: \(peerID), messaggio: \(data)")
-        i+=1
-        let intData = data.first
-        let code = SignalCode.init(rawValue: intData!)
-        guard code != nil else { return }
-        self.delegate?.mexReceived(self, didMessageReceived: code!)
+        print("Messaggio ricevuto da: \(peerID), messaggio: \(data)")
+        let nsData = NSData(data: data)
+        if nsData.length == 1 {
+            let intData = data.first
+            let code = SignalCode.init(rawValue: intData!)
+            guard code != nil else { return }
+            self.delegate?.mexReceived(self, didMessageReceived: code!)
+            self.delegateGame?.mexReceived(self, didMessageReceived: code!)
+        }
+        else {
+            let array = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! Array<String>
+            self.delegate?.mexReceived(self, didMessageReceived: array)
+        }
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {

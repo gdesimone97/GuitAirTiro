@@ -8,16 +8,6 @@
 
 import SceneKit
 
-#if os(watchOS)
-import WatchKit
-#endif
-
-#if os(macOS)
-typealias SCNColor2 = NSColor
-#else
-typealias SCNColor2 = UIColor
-#endif
-
 class GameController: NSObject, SCNSceneRendererDelegate {
     
     let scene: SCNScene

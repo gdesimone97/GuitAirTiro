@@ -8,7 +8,6 @@
 
 import UIKit
 import UserNotifications
-import CloudKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Autorizzazioni
-        notificationCenter.requestAuthorization(options: [.alert , .sound]) { (granted, error) in /* funzionalità in base all'autorizzazione */ }
+        notificationCenter.requestAuthorization(options: [.alert , .sound, .providesAppNotificationSettings]) { (granted, error) in /* funzionalità in base all'autorizzazione */ }
         notificationCenter.getNotificationSettings { (settings) in
             guard settings.authorizationStatus == .authorized else { return }
             DispatchQueue.main.async {
@@ -104,8 +103,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         if notification.request.content.categoryIdentifier == CATEGORY {
-            let gamerTag = notification.request.content.userInfo["GAMERTAG"]
-            completionHandler(.sound)
+            completionHandler([.alert,.sound])
             return
         }
         completionHandler(.alert)

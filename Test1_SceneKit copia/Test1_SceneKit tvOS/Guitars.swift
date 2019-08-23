@@ -75,6 +75,14 @@ class Guitars {
         }
     }
     
+    func removeActual() {
+        DispatchQueue.main.async {
+            if let guitar = self.actualGuitar {
+                guitar.guitarNode.runAction(SCNAction.sequence( [SCNAction.move(by: SCNVector3(x: -15, y: 0, z: 0), duration: 0.7), SCNAction.move(to: SCNVector3(x: 15, y: self.actualGuitar!.y!, z: 0), duration: 0) ] ) )
+            }
+        }
+    }
+    
     private func assign(guitar: GuitarsEnum) {
         switch guitar {
         case .acoustic:
