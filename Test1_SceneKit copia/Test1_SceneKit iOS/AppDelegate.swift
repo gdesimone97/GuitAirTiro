@@ -187,6 +187,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let token = tokenParts.joined()
+        userDefault.set(token, forKey: TOKEN)
         print("Device Token: \(token)")
         
     }
@@ -200,7 +201,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate: UNUserNotificationCenterDelegate {
      func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
-        let gamerTag = userInfo["GAMERTAG"]
+        let id = userInfo["match"]
         switch response.actionIdentifier {
         case "ACCEPT_ACTION":
             print("invito accettato")
