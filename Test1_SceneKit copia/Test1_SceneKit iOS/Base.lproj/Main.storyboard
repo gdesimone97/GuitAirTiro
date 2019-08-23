@@ -929,6 +929,9 @@
                                         <state key="normal" title="LOG IN">
                                             <color key="titleColor" red="1" green="0.56470588239999997" blue="0.32156862749999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
+                                        <connections>
+                                            <action selector="signIn:" destination="b7w-Ta-xYM" eventType="touchUpInside" id="aLj-rn-Aoe"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -972,6 +975,7 @@
                     <connections>
                         <outlet property="passwordText" destination="F9i-be-S32" id="44S-3Y-gSQ"/>
                         <outlet property="usernameText" destination="cRI-m8-hd2" id="3Py-XA-agl"/>
+                        <segue destination="h2b-uc-Vxe" kind="show" identifier="login" id="uYw-yt-O8A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tul-tk-3mR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1816,5 +1820,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="92Y-ET-srw"/>
         <segue reference="Syo-nr-nPe"/>
+        <segue reference="uYw-yt-O8A"/>
     </inferredMetricsTieBreakers>
 </document>
