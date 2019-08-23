@@ -10,6 +10,24 @@ import Foundation
 
 class GuitAirGameCenter{
     
+ 
+    //Singleton -> costruttore con JWT, altrimenti automaticamente impostato quando si fa il login
+    
+    private var JWT:String="";
+    static let share = GuitAirGameCenter()
+    
+    private init() {
+        let t = userDefault.string(forKey: JWT_STRING)
+        
+        if let jwt = userDefault.string(forKey: JWT_STRING) {
+            self.JWT = jwt
+        }
+    }
+    
+    public func setJWT( JWT:String){
+        self.JWT = JWT;
+    }
+    
     private let session : URLSession = {
         
         let config = URLSessionConfiguration.default;
@@ -17,226 +35,28 @@ class GuitAirGameCenter{
         
     }();
     
-    func registerScore(params:[String:String], jwt:String)->(Int,[String:String]){
-        let url = GuitAirAPI.GuitAirURL(method: .turns);
-        
-        var req = URLRequest.init(url: url);
-        
-        //Metodo
-        req.httpMethod = "PATCH";
-        
+    //Costruisco la richiesta
+    private func buildAPIRequest( httpMethod : String, method : Method, queryItems : [String:String] = [:], params : [String:String] = [:])->URLRequest{
 
         
+        //Creazione URL
+        let url = GuitAirAPI.GuitAirURL(method: method, queryIts: queryItems);
         
-        //Header
-        req.addValue("Bearer "+jwt, forHTTPHeaderField: "Authorization")
-        req.addValue("application/json", forHTTPHeaderField: "Content-Type");
-        
-        //print(req.allHTTPHeaderFields)
-        //Corpo
-        
-        print(params);
-        
-        req.httpBody = try? JSONSerialization.data(withJSONObject: params, options: []);
-        //print(req);
-        //Faccio la richiesta
-        //let task = session.dataTask(with:req);
-        
-        let semaphore = DispatchSemaphore.init(value: 0);
-        
-        
-        var result : (Int,[String:String]) = (0,[:]);
-        
-        let task = session.dataTask(with: req, completionHandler: { data, response, error -> Void in
-            
-            
-            
-            do {
-                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, String>
-                
-                var respCode : Int = 0;
-                
-                if let httpResp = response as? HTTPURLResponse{
-                    respCode = httpResp.statusCode;
-                }
-                
-                result = (respCode, json);
-                semaphore.signal();
-                //print(json);
-            } catch {
-                print("error")
-            }
-        })
-        
-        
-        task.resume();
-        semaphore.wait();
-        return result;
-    }
-    
-    func registerTurn(params:[String:String],jwt:String)->(Int,[String:String]){
-        
-        let url = GuitAirAPI.GuitAirURL(method: .turns);
-        
+        //Creazione richiesta
         var req = URLRequest.init(url: url);
-        
-        //Metodo
-        req.httpMethod = "POST";
-        
-        //Header
-        req.addValue("Bearer "+jwt, forHTTPHeaderField: "Authorization")
+        req.httpMethod = httpMethod;
+        req.addValue("Bearer " + self.JWT, forHTTPHeaderField: "Authorization")
         req.addValue("application/json", forHTTPHeaderField: "Content-Type");
-        
-        //print(req.allHTTPHeaderFields)
-        //Corpo
-        
-        print(params);
-        
+        //Aggiungo body alla richiesta JSONificato
         req.httpBody = try? JSONSerialization.data(withJSONObject: params, options: []);
-        //print(req);
-        //Faccio la richiesta
-        //let task = session.dataTask(with:req);
         
-        let semaphore = DispatchSemaphore.init(value: 0);
+        return req;
         
-        
-        var result : (Int,[String:String]) = (0,[:]);
-        
-        let task = session.dataTask(with: req, completionHandler: { data, response, error -> Void in
-            
-            
-            
-            do {
-                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, String>
-                
-                var respCode : Int = 0;
-                
-                if let httpResp = response as? HTTPURLResponse{
-                    respCode = httpResp.statusCode;
-                }
-                
-                result = (respCode, json);
-                semaphore.signal();
-                //print(json);
-            } catch {
-                print("error")
-            }
-        })
-        
-        
-        task.resume();
-        semaphore.wait();
-        return result;
         
     }
     
-    func test(){
-        let url = GuitAirAPI.GuitAirURL(method: .test);
-        
-        print(url);
-        
-        var req = URLRequest.init(url: url);
-        
-        req.httpMethod = "PATCH";
-        
-        let task = session.dataTask(with: req, completionHandler: { data, response, error -> Void in
-            
-            print("vediamo")
-            
-            do {
-                
-                print("gooo")
-                
-                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, String>
-                
-                print(json);
-            } catch {
-                print("error")
-            }
-        })
-        
-        
-        task.resume();
-    }
-    
-    func sendInvitation(params : [String:String], jwt : String )->(Int, [String:String]){
-        
-        let url = GuitAirAPI.GuitAirURL(method: .invitation);
-        print(url);
-        var req = URLRequest.init(url: url);
-        
-        //Metodo
-        req.httpMethod = "POST";
-        //Header
-        //req.addValue("Bearer "+jwt, forHTTPHeaderField: "Authorization")
-        req.addValue("application/json", forHTTPHeaderField: "Content-Type");
-        req.addValue("Bearer " + jwt,forHTTPHeaderField: "Authorization")
-        print(req.allHTTPHeaderFields);
-        //print(req.allHTTPHeaderFields)
-        //Corpo
-        req.httpBody = try? JSONSerialization.data(withJSONObject: params, options: []);
-        //print(req.httpBody);
-        //print(req.httpMethod);
-        //Faccio la richiesta
-        //let task = session.dataTask(with:req);
-        
-        var respCode : Int = 0;
-        //var json : [String:String];
-        var json : [String:String] = [:] ;
-        
-        let task = session.dataTask(with: req, completionHandler: { data, response, error -> Void in
-            
-            var respCode : Int;
-            
-            if let httpResponse = response as? HTTPURLResponse{
-                print("Prendo codice di risposta");
-                print(httpResponse.statusCode);
-                respCode = httpResponse.statusCode;
-            }
-            
-            
-            
-            do {
-                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, String>
-                
-                
-            } catch {
-                print("error");
-            }
-            
-        })
-        
-        
-        
-        task.resume();
-        
-        return (respCode,json);
-        
-    }
-    
-    
-    func getAllSentInvitation(params: [String:String], jwt:String)->(Int,[String:Any]){
-        
-        let url = GuitAirAPI.GuitAirURL(method: .readSentInv);
-        
-        var req = URLRequest.init(url: url);
-        
-        //Metodo
-        req.httpMethod = "GET";
-        
-        //Header
-        req.addValue("Bearer "+jwt, forHTTPHeaderField: "Authorization")
-        req.addValue("application/json", forHTTPHeaderField: "Content-Type");
-        
-        //print(req.allHTTPHeaderFields)
-        //Corpo
-        
-        print(params);
-        
-        req.httpBody = try? JSONSerialization.data(withJSONObject: params, options: []);
-        //print(req);
-        //Faccio la richiesta
-        //let task = session.dataTask(with:req);
+    //Faccio la richiesta al server e ritorno il risultato
+    private func makeAPIRequest( req : URLRequest )->(Int,[String:Any]){
         
         let semaphore = DispatchSemaphore.init(value: 0);
         
@@ -256,9 +76,9 @@ class GuitAirGameCenter{
                 
                 result = (respCode, json);
                 semaphore.signal();
-                //print(json);
             } catch {
-                print("error")
+                print("Error")
+                return;
             }
         })
         
@@ -269,435 +89,173 @@ class GuitAirGameCenter{
         
     }
     
-    func getAllRecInvitation(params: [String:String], jwt:String)->(Int,[String:Any]){
-        
-        let url = GuitAirAPI.GuitAirURL(method: .readRecInv);
-        
-        var req = URLRequest.init(url: url);
-        
-        //Metodo
-        req.httpMethod = "GET";
-        
-        //Header
-        req.addValue("Bearer "+jwt, forHTTPHeaderField: "Authorization")
-        req.addValue("application/json", forHTTPHeaderField: "Content-Type");
-        
-        //print(req.allHTTPHeaderFields)
-        //Corpo
-        
-        print(params);
-        
-        req.httpBody = try? JSONSerialization.data(withJSONObject: params, options: []);
-        //print(req);
-        //Faccio la richiesta
-        //let task = session.dataTask(with:req);
-        
-        let semaphore = DispatchSemaphore.init(value: 0);
-        
-        
-        var result : (Int,[String:Any]) = (0,[:]);
-        
-        let task = session.dataTask(with: req, completionHandler: { data, response, error -> Void in
-            
-            do {
-                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, Any>
-                
-                var respCode : Int = 0;
-                
-                if let httpResp = response as? HTTPURLResponse{
-                    respCode = httpResp.statusCode;
-                }
-                
-                result = (respCode, json);
-                semaphore.signal();
-                //print(json);
-            } catch {
-                print("error")
-            }
-        })
-        
-        
-        task.resume();
-        semaphore.wait();
-        return result;
-        
+
+    public func register(gamertag:String, password:String)->(Int,[String:String]){
+        let params = ["gamertag":gamertag,"password":password];
+        let urlReq = buildAPIRequest(httpMethod: "PUT", method: .account, params: params);
+        return makeAPIRequest(req: urlReq) as! (Int,[String:String]);
     }
     
-    func deleteInvitation(params: [String:String], jwt : String )-> (Int,[String:String]){
+    public func login(gamertag:String, password:String, devicetoken : String = "")->(Int,[String:String]){
+        
+        let params = ["gamertag":gamertag,"password":password, "devicetoken":devicetoken];
+        
+        let urlReq = buildAPIRequest(httpMethod: "POST", method: .account, params: params);
+        let res = makeAPIRequest(req: urlReq) as! (Int,[String:String]);
         
         
+        if(res.0 == 200 ){
+            self.JWT = res.1["JWT"] ?? "";
             
-            let url = GuitAirAPI.GuitAirURL(method: .invitation);
-            
-            var req = URLRequest.init(url: url);
-            
-            //Metodo
-            req.httpMethod = "DELETE";
-            
-            //Header
-            req.addValue("Bearer "+jwt, forHTTPHeaderField: "Authorization")
-            req.addValue("application/json", forHTTPHeaderField: "Content-Type");
-            
-            //print(req.allHTTPHeaderFields)
-            //Corpo
-            
-            print(params);
-            
-            req.httpBody = try? JSONSerialization.data(withJSONObject: params, options: []);
-            //print(req);
-            //Faccio la richiesta
-            //let task = session.dataTask(with:req);
-            
-            let semaphore = DispatchSemaphore.init(value: 0);
-            
-            
-            var result : (Int,[String:String]) = (0,[:]);
-            
-            let task = session.dataTask(with: req, completionHandler: { data, response, error -> Void in
-                
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, String>
-                    
-                    var respCode : Int = 0;
-                    
-                    if let httpResp = response as? HTTPURLResponse{
-                        respCode = httpResp.statusCode;
-                    }
-                    
-                    result = (respCode, json);
-                    semaphore.signal();
-                    //print(json);
-                } catch {
-                    print("error")
-                }
-            })
-            
-            
-            task.resume();
-            semaphore.wait();
-            return result;
-        
-    }
-    
-    func login( params : [ String : String ]) -> ( Int, [String:String]) {
-        let url = GuitAirAPI.GuitAirURL(method: .login);
-        print(url);
-        var req = URLRequest.init(url: url);
-        
-        //Metodo
-        req.httpMethod = "POST";
-        //Header
-        //req.addValue("Bearer "+jwt, forHTTPHeaderField: "Authorization")
-        req.addValue("application/json", forHTTPHeaderField: "Content-Type");
-        
-        //print(req.allHTTPHeaderFields)
-        //Corpo
-        req.httpBody = try? JSONSerialization.data(withJSONObject: params, options: []);
-        //print(req.httpBody);
-        //print(req.httpMethod);
-        //Faccio la richiesta
-        //let task = session.dataTask(with:req);
-        
-        var respCode : Int = 0;
-        //var json : [String:String];
-        var json : [String:String] = [:] ;
-        
-        
-        
-        
-        
-        let task = session.dataTask(with: req, completionHandler: { data, response, error -> Void in
-            
-
-            
-            
-            
-            if let httpResponse = response as? HTTPURLResponse{
-                //print("Prendo codice di risposta");
-                //print(httpResponse.statusCode);
-                respCode = httpResponse.statusCode;
-            }
-            
-            do {
-                 json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, String>
-                     print(json);
-            } catch {
-                print("error")
-            }
-        });
-
-
-        task.resume();
-
-        
-        
-        while(task.state != .completed){
-            print("no");
+            userDefault.set(self.JWT, forKey: JWT_STRING)
         }
         
-        if(task.state == .completed){
-            print("task completata")
-            print(json);
-            print(respCode);
-        }
         
-        return (respCode,json);
+        return res;
+        //Esternamente, se 200 -> imposta JWT a questa classe
+        
+    }
+    
+    public func sendInvitation( gamertag : String, turns : Int, message : String = "" )->(Int,[String:Any]){
+        
+        let params = ["gamertag":gamertag,"turns":String(turns), message:"message"];
+        
+        let urlReq = buildAPIRequest(httpMethod: "POST", method: .invitation, params: params);
+        
+        
+        
+        //let urlReq = buildAPIRequest(httpMethod: "POST", method: .invitation,params: params)
+        
+        print(urlReq);
+        
+        return makeAPIRequest(req: urlReq);
+        
+    }
+    
+    public func acceptInvitation( id : Int )->(Int,[String:Any]){
+        let urlReq = buildAPIRequest(httpMethod: "PATCH", method: .invitation, params: ["status":"accepted","id":String(id)]);
+        //print("Metodo che chiamo per accettare =");
+        //print(urlReq);
+        return makeAPIRequest(req: urlReq);
+    }
+    
+    public func rejectInvitation( id : Int )->(Int,[String:String]){
+        let urlReq = buildAPIRequest(httpMethod: "PATCH", method: .invitation, params: ["status":"rejected","id":String(id)]);
+        return makeAPIRequest(req: urlReq) as! (Int,[String:String]);
+    }
+    
+    public func showAllInvitations( type : String )->(Int,[String:Any]){
+        
+        let urlReq = buildAPIRequest(httpMethod: "GET", method: .invitation, queryItems: ["type":type]);
+        return makeAPIRequest(req: urlReq);
+        
+    }
+    
+    public func deleteInvitation( id : Int )->(Int,[String:String]){
+        let urlReq = buildAPIRequest(httpMethod: "DELETE", method: .invitation, queryItems: ["id":String(id)]);
+        return makeAPIRequest(req: urlReq) as! (Int,[String:String]);
+    }
+    
+    public func readSentInvitation()->(Int,[String:Any]){
+        let urlReq = buildAPIRequest(httpMethod: "GET", method: .invitation, queryItems: ["type":"sent"]);
+        return makeAPIRequest(req: urlReq);
+    }
+    
+    public func readReceivedInvitation()->(Int,[String:Any]){
+        let urlReq = buildAPIRequest(httpMethod: "GET", method: .invitation, queryItems: ["type":"received"]);
+        return makeAPIRequest(req: urlReq);
+    }
 
-    }
-    
-    func register( params : [String : String ]){
+    public func registerTurn( match : Int, turn : Int, song : String )->(Int,[String:String]){
         
-        let url = GuitAirAPI.GuitAirURL(method: .register);
-        print(url);
-        var req = URLRequest.init(url: url);
+        let params = ["match":String(match),"turn":String(turn),"song":song];
         
-        //Metodo
-        req.httpMethod = "PUT";
-        //Header
-        //req.addValue("Bearer "+jwt, forHTTPHeaderField: "Authorization")
-        req.addValue("application/json", forHTTPHeaderField: "Content-Type");
+        let urlReq = buildAPIRequest(httpMethod: "POST", method: .turn, params: params);
         
-        print(req.allHTTPHeaderFields)
-        //Corpo
-        req.httpBody = try? JSONSerialization.data(withJSONObject: params, options: []);
-        print(req);
-        //Faccio la richiesta
-        //let task = session.dataTask(with:req);
-        
-        let task = session.dataTask(with: req, completionHandler: { data, response, error -> Void in
-            
-            if let httpResponse = response as? HTTPURLResponse{
-                
-                print(httpResponse.statusCode);
-                
-            }
-            
-            do {
-                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, String>
-                
-                print(json);
-            } catch {
-                print("error")
-            }
-        })
-        
-        
-        task.resume();
+        return makeAPIRequest(req: urlReq) as! (Int,[String:String]);
         
     }
     
-    func myProfile( jwt : String ){
+    public func registerScore( match: Int, turn: Int, score : Int )->(Int,[String:String]){
         
-        let url = GuitAirAPI.GuitAirURL(method: .myProfile);
-        var req = URLRequest.init(url: url);
+        let params = ["match":String(match),"turn":String(turn),"score":String(score)];
         
-        //Metodo
-        req.httpMethod = "GET";
-        //Header
-        req.addValue("Bearer "+jwt, forHTTPHeaderField: "Authorization")
-        req.addValue("application/json", forHTTPHeaderField: "Content-Type");
+        let urlReq = buildAPIRequest(httpMethod: "PATCH", method: .turn, params: params);
         
-        print(req.allHTTPHeaderFields)
-        //Corpo
-        //req.httpBody = try? JSONSerialization.data(withJSONObject: params, options: []);
-        //print(req);
-        //Faccio la richiesta
-        //let task = session.dataTask(with:req);
-        
-        let task = session.dataTask(with: req, completionHandler: { data, response, error -> Void in
-            
-            do {
-                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, String>
-                
-                print(json);
-            } catch {
-                print("error")
-            }
-        })
-        
-        
-        task.resume();
+        return makeAPIRequest(req: urlReq) as! (Int,[String:String]);
     }
     
-    func abandonMatch(params: [String:String],jwt:String)->(Int,[String:String]){
-        
-        let url = GuitAirAPI.GuitAirURL(method: .match
-        );
-        
-        var req = URLRequest.init(url: url);
-        
-        //print(req);
-        
-        //Metodo
-        req.httpMethod = "DELETE";
-        
-        //Header
-        req.addValue("Bearer "+jwt, forHTTPHeaderField: "Authorization")
-        req.addValue("application/json", forHTTPHeaderField: "Content-Type");
-        
-        
-        //print(req.allHTTPHeaderFields)
-        //Corpo
-        
-        //print(params);
-        
-        req.httpBody = try? JSONSerialization.data(withJSONObject: params, options: []);
-        
-        
-        
-        //print(req);
-        //Faccio la richiesta
-        //let task = session.dataTask(with:req);
-        
-        let semaphore = DispatchSemaphore.init(value: 0);
-        
-        
-        var result : (Int,[String:String]) = (0,[:]);
-        
-        let task = session.dataTask(with: req, completionHandler: { data, response, error -> Void in
-            
-            
-            
-            do {
-                /*
-            let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, String>
-                 */
-                
-                if let printData = String(data: data!, encoding: .utf8) {
-                    print(printData);
-                }
- 
-                
-                var respCode : Int = 0;
-                
-                if let httpResp = response as? HTTPURLResponse{
-                    respCode = httpResp.statusCode;
-                }
-                
-                result = (respCode, ["res": "aja"]);
-                semaphore.signal();
-                
-            } catch {
-                print("error")
-            }
-        })
-        
-        
-        task.resume();
-        semaphore.wait();
-        return result;
-        
+    public func abandonMatch( match: Int )->(Int,[String:String]){
+        let urlReq = buildAPIRequest(httpMethod: "DELETE", method: .match, queryItems: ["match":String(match)]);
+        return makeAPIRequest(req: urlReq) as! (Int,[String:String]);
     }
     
-    func acceptInvitation( params : [String:String], jwt : String) -> (Int,[String:String]){
-        
-        let url = GuitAirAPI.GuitAirURL(method: .invitation);
-        
-        var req = URLRequest.init(url: url);
-        
-        //Metodo
-        req.httpMethod = "PATCH";
-        
-        //Header
-        req.addValue("Bearer "+jwt, forHTTPHeaderField: "Authorization")
-        req.addValue("application/json", forHTTPHeaderField: "Content-Type");
-        
-        //print(req.allHTTPHeaderFields)
-        //Corpo
-        
-        print(params);
-        
-        req.httpBody = try? JSONSerialization.data(withJSONObject: params, options: []);
-        //print(req);
-        //Faccio la richiesta
-        //let task = session.dataTask(with:req);
-        
-        let semaphore = DispatchSemaphore.init(value: 0);
-        
-        
-        var result : (Int,[String:String]) = (0,[:]);
-        
-        let task = session.dataTask(with: req, completionHandler: { data, response, error -> Void in
-            
-            do {
-                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, String>
-                
-                var respCode : Int = 0;
-                
-                if let httpResp = response as? HTTPURLResponse{
-                    respCode = httpResp.statusCode;
-                }
-                
-                result = (respCode, json);
-                semaphore.signal();
-                //print(json);
-            } catch {
-                print("error")
-            }
-        })
-        
-        
-        task.resume();
-        semaphore.wait();
-        return result;
-        
+    //Cosa manca? Fetch delle partite z, fetch degli amici, richieste di amicizia
+    
+    //1. fetch delle partite
+    
+    public func getMyMatches()->(Int,[String:Any]){
+        return getMatches();
     }
     
-    func fetchProfile( params : [String:String] , jwt : String ) -> (Int, [String:Any]){
-        
-        let url = GuitAirAPI.GuitAirURL(method: .fetchProfile);
-        
-        var req = URLRequest.init(url: url);
-        
-        //Metodo
-        req.httpMethod = "GET";
-        
-        //Header
-        req.addValue("Bearer "+jwt, forHTTPHeaderField: "Authorization")
-        req.addValue("application/json", forHTTPHeaderField: "Content-Type");
-        
-        //print(req.allHTTPHeaderFields)
-        //Corpo
-        
-        print(params);
-        
-        req.httpBody = try? JSONSerialization.data(withJSONObject: params, options: []);
-        //print(req);
-        //Faccio la richiesta
-        //let task = session.dataTask(with:req);
-        
-        let semaphore = DispatchSemaphore.init(value: 0);
-        
-        
-        var result : (Int,[String:Any]) = (0,[:]);
-        
-        let task = session.dataTask(with: req, completionHandler: { data, response, error -> Void in
-            
-            do {
-                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, Any>
-                
-                var respCode : Int = 0;
-                
-                if let httpResp = response as? HTTPURLResponse{
-                    respCode = httpResp.statusCode;
-                }
-                
-                result = (respCode, json);
-                semaphore.signal();
-                //print(json);
-            } catch {
-                print("error")
-            }
-        })
-        
-        
-        task.resume();
-        semaphore.wait();
-        return result;
+    public func getMatches(gamertag:String="")->(Int,[String:Any]){
+        let urlReq = buildAPIRequest(httpMethod: "GET", method: .match, queryItems: gamertag.count==0 ? [:] : ["gamertag":gamertag])
+        return makeAPIRequest(req: urlReq);
     }
     
     
     
+    //2. parte delle amicizie
     
+    public func sendFriendRequest( gamertag: String )->(Int,[String:String]){
+        
+        let urlReq = buildAPIRequest(httpMethod: "POST", method: .friend, params: ["gamertag":gamertag]);
+        return makeAPIRequest(req: urlReq) as! (Int,[String:String]);
+        
+    }
+    
+    public func acceptFriendRequest(sender : String )->(Int,[String:String]){
+        let urlReq = buildAPIRequest(httpMethod: "PATCH", method: .friend, params: ["sender":sender,"status":"accepted"])
+        return makeAPIRequest(req: urlReq) as! (Int,[String:String]);
+    }
+    
+    public func rejectFriendRequest(sender:String)->(Int,[String:String]){
+        let urlReq = buildAPIRequest(httpMethod: "PATCH", method: .friend, params: ["sender":sender,"status":"rejected"])
+        return makeAPIRequest(req: urlReq) as! (Int,[String:String]);
+    }
+    
+    public func deleteFriendRequest(gamertag:String)->
+        (Int,[String:String]){
+            let urlReq = buildAPIRequest(httpMethod: "DELETE", method: .friend, queryItems: ["gamertag":gamertag]);
+            return makeAPIRequest(req: urlReq) as! (Int,[String:String]);
+    }
+    
+    private func getFriendRequest(type:String)->(Int,[String:Any]){
+        let urlReq = buildAPIRequest(httpMethod: "GET", method: .friend, queryItems: ["type":type]);
+        return makeAPIRequest(req: urlReq);
+    }
+    
+    public func getSentFriendRequest()->(Int,[String:Any]){
+        return getFriendRequest(type: "sent");
+    }
+    
+    public func getReceivedFriendRequest()->(Int,[String:Any]){
+        return getFriendRequest(type: "received");
+    }
+    
+    public func getFriendList()->(Int,[String:Any]){
+        return getFriendRequest(type: "list");
+    }
+    
+    public func getMyProfile()->(Int,[String:Any]){
+        let urlReq = buildAPIRequest(httpMethod: "GET", method: .player);
+//        print(urlReq.allHTTPHeaderFields)
+        return makeAPIRequest(req: urlReq);
+    }
+    
+    public func getProfile(gamertag:String)->(Int,[String:Any]){
+        let urlReq = buildAPIRequest(httpMethod: "GET", method: .player, queryItems: ["gamertag":gamertag]);
+        return makeAPIRequest(req: urlReq);
+    }
     
 }

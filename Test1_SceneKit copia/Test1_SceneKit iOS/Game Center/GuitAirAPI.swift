@@ -8,22 +8,21 @@
 
 import Foundation
 
+
 enum Method : String {
     
-    case register = "accounts.phpX"
-    case login = "accounts.php"
-    case fetchProfile = "players.php"
-    case myProfile = "players.php ";
+    case account = "accounts.php"
+    case player = "players.php"
     case invitation = "invitations.php";
-    case readSentInv = "invitations.php?type=sent";
-    case readRecInv = "invitations.php?type=received";
-    case turns = "turns.php";
-    case sendFriendRequest, getFriendRequest, acceptFriendRequest, declineFriendRequest, deleteFriendRequest = "friends.php";
+    case turn = "turns.php";
+    case friend = "friends.php";
     case match = "matches.php"
     case test = "test.php"
 }
 
 struct GuitAirAPI{
+    
+    //Singleton
     
     //Da cambiare con indirizzo del server
     
@@ -32,14 +31,26 @@ struct GuitAirAPI{
     //Costruisco URL per comunicare con la mia API
     
     
-    static func GuitAirURL(method : Method) -> URL {
+    static func GuitAirURL(method : Method, queryIts : [String:String] = [:] ) -> URL {
         
         let fullURLString = baseURLString + method.rawValue;
-        //print(fullURLString);
-        //print(Method.fetchProfile.rawValue);
-        //print(method);
-        print(fullURLString);
+        
         var components = URLComponents(string: fullURLString)!;
+        
+        if(queryIts.count > 0){
+        var queryItems : [URLQueryItem] = [];
+        
+        
+            for(key,value) in queryIts{
+                
+                let qi = URLQueryItem(name: key, value: value);
+                queryItems.append(qi);
+                
+            }
+        
+        components.queryItems = queryItems;
+        }
+        
         return components.url!;
         
     }
