@@ -289,7 +289,6 @@ class MainViewController: UIViewController {
                 self.soundEffect = SoundEffect()
             }
             GameViewController.dictionary = self.dictionary
-            GameViewController.watch = self.watch
             if self.chords != nil {
                 GameViewController.chords = self.chords!
             }
