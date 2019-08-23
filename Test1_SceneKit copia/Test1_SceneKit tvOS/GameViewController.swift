@@ -29,6 +29,7 @@ class GameViewController: UIViewController {
     var gameGuitarManager: GameGuitarManager!
     var textManager: TextManager!
     var soundEffect: SoundEffect!
+    var pointerManager: PointerManager!
     
     var session = SessionManager.share
     var dictionary: DeviceDictionary!
@@ -44,6 +45,7 @@ class GameViewController: UIViewController {
         sendSignalWhenClosing()
         soundEffect.stopGuitars()
         self.playing = false
+        
         callbackClosure?()
     }
     
@@ -61,17 +63,13 @@ class GameViewController: UIViewController {
     var goodNote: Bool = false
     var movedController: Bool = false
     
-    var consecutivePoints: Int = 0
-    var points50: Bool = false
-    var points100: Bool = false
     
     var playing: Bool = false
     var points = 0
     var multiplier = 1
-    // I take the selected chords from the user defaults
-    var chords: [String]!
-    // I take the watch settings : true -> watch is present, false -> watch not present
-    var watch: Bool!
+    var consecutivePoints: Int = 0
+    
+    var chords: [String]! // Those 2 vars are initialized by the mainViewController
     
     var startNode: SCNNode?
     var boxStartNode: SCNNode?
@@ -79,18 +77,23 @@ class GameViewController: UIViewController {
     var multiplierNode: SCNNode?
     var consecutivePointsNode: SCNNode?
     var pointsPlaneNode: SCNNode?
+    var pointerNode: SCNNode?
+    var greenBoxNode: SCNNode?
+    var yellowBoxNode: SCNNode?
+    var redBoxNode: SCNNode?
+    var recordBarNode: SCNNode?
+    var progressBarNode: SCNNode?
     
     
     var song: Songs = Songs.LaCanzoneDelSole // Da settare dal telefono
+    var songRecord: Int = 140 // DA SETTARE DAL TELEFONOOOOO
     
     // This is the thread that shows nodes on the guitar
     let noteQueue = DispatchQueue(label: "noteQueue", qos: .userInteractive)
     let pointsQueue = DispatchQueue(label: "pointsQueue", qos: .userInteractive)
     let startQueue = DispatchQueue(label: "startQueue", qos: .userInteractive)
     
-    
     var soundThreshold = 2.0
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -170,9 +173,6 @@ class GameViewController: UIViewController {
                 if self.points > 0 {
                     self.textManager.addGameNotification(str: "You did \(self.points) points!", color: UIColor.white, duration: 3, animation: false)
                 }
-                else {
-                    self.textManager.addGameNotification(str: "Oh, you did 0 points...", color: UIColor.white, duration: 3, animation: false)
-                }
                 
                 self.gameGuitarManager.fire()
                 sleep(4)
@@ -185,33 +185,33 @@ class GameViewController: UIViewController {
         // Setto il motionDelegate del controller
         motionDelegate = self
         
+        pointerManager = PointerManager(progressBar: progressBarNode!, recordBar: recordBarNode!, record: (songRecord != 0 ? songRecord : nil), pointer: pointerNode!, green: greenBoxNode!, yellow: yellowBoxNode!, red: redBoxNode!, function: failed)
+        
     }
     
     
     @objc func handleTap(_ gestureRecognizer: UIGestureRecognizer) {
-        if playing && watch {
+        if playing {
             gameGuitarManager.fire()
         }
         
         if !playing {
-            if !watch {
-                //Cerco tra i controller disponibili, il Remote
-                let controllers = GCController.controllers()
-                for controller in controllers {
-                    if controller.vendorName! == "Remote" {
-                        // Setto l'handler, ovvero il blocco che verrà eseguito ogni volta che un valore qualsiasi del controller cambia
-                        controller.motion?.valueChangedHandler = { (motion: GCMotion)->() in
-                            if let delegate = self.motionDelegate {
-                                delegate.motionUpdate(motion: motion)
-                            }
+            //Cerco tra i controller disponibili, il Remote
+            let controllers = GCController.controllers()
+            for controller in controllers {
+                if controller.vendorName! == "Remote" {
+                    // Setto l'handler, ovvero il blocco che verrà eseguito ogni volta che un valore qualsiasi del controller cambia
+                    controller.motion?.valueChangedHandler = { (motion: GCMotion)->() in
+                        if let delegate = self.motionDelegate {
+                            delegate.motionUpdate(motion: motion)
                         }
                     }
                 }
             }
-            
-            if startNode != nil {
-                semaphoreStart.signal()
-            }
+        }
+        
+        if startNode != nil {
+            semaphoreStart.signal()
         }
     }
     
@@ -219,26 +219,34 @@ class GameViewController: UIViewController {
     func addElements() {
         let node = self.gameView.scene!.rootNode.childNode(withName: "nodes", recursively: false)
         self.gameView.scene!.rootNode.enumerateChildNodes { (node, _) in
-            if node.name == "button1" {
+            switch node.name {
+            case "button1":
                 button1 = node
-            }
-            if node.name == "button2" {
+            case "button2":
                 button2 = node
-            }
-            if node.name == "button3" {
+            case "button3":
                 button3 = node
-            }
-            if node.name == "button4" {
+            case "button4":
                 button4 = node
-            }
-            if node.name == "background" {
+            case "background":
                 background = node
-            }
-            if node.name == "capsule" {
+            case "capsule":
                 boxStartNode = node
-            }
-            if node.name == "pointsPlane" {
+            case "pointsPlane":
                 pointsPlaneNode = node
+            case "pointer":
+                pointerNode = node
+            case "greenBox":
+                greenBoxNode = node
+            case "yellowBox":
+                yellowBoxNode = node
+            case "redBox":
+                redBoxNode = node
+            case "progressBar":
+                progressBarNode = node
+            case "recordBar":
+                recordBarNode = node
+            default: break
             }
         }
     }
@@ -288,7 +296,7 @@ class GameViewController: UIViewController {
             }
             
             
-            self.pointText = self.textManager.addTextAtPosition(str: "Points: " + (self.points > 0 ? String(self.points) : "0"), x: -4.7, y: 0.6, z: -1.7)
+            self.pointText = self.textManager.addTextAtPosition(str: "Points: \(self.points)", x: -4.7, y: 0.6, z: -1.7)
             self.pointText?.eulerAngles = SCNVector3(x: -0.26, y: 0.2, z: 0)
             
             self.multiplierNode = self.textManager.addTextAtPosition(str: "Multiplier: x\(self.multiplier)", x: -4.75, y: 0.3, z: -1.7)
@@ -305,30 +313,10 @@ class GameViewController: UIViewController {
         }
         
         if point {
-            if self.points < 0 {
-                self.points = 1
-            }
-            else {
-                self.points += multiplier
-            }
-        }
-        else {
-            points -= 1
+            self.points += multiplier
         }
         
-        if self.points < -5 {
-            DispatchQueue(label: "failed", qos: .userInteractive).async {
-                self.playing = false
-                self.motionDelegate = nil
-                self.soundEffect.booSound()
-                self.textManager.addGameNotification(str: "You failed!", color: UIColor.red, duration: 3, animation: false)
-                sleep(4)
-                DispatchQueue.main.async {
-                    self.dismiss(animated: false, completion: nil)
-                }
-            }
-        }
-        
+        pointerManager.modify(Up: point, actualPoints: self.points)
         
         if point {
             consecutivePoints += 1
@@ -337,16 +325,6 @@ class GameViewController: UIViewController {
             consecutivePoints = 0
         }
         
-        if !points50 && points > 50 {
-            textManager.addGameNotification(str: "Wow! 50 points!", color: UIColor.white, duration: 2, animation: false)
-            gameGuitarManager.fire()
-            points50 = true
-        }
-        if !points100 && points > 100 {
-            textManager.addGameNotification(str: "You are a legend!", color: UIColor.white, duration: 2, animation: false)
-            gameGuitarManager.fire()
-            points100 = true
-        }
         
         switch consecutivePoints {
         case 0:
@@ -369,6 +347,20 @@ class GameViewController: UIViewController {
             gameGuitarManager.fire()
         default:
             break
+        }
+    }
+    
+    
+    func failed() {
+        DispatchQueue(label: "failed", qos: .userInteractive).async {
+            self.playing = false
+            self.motionDelegate = nil
+            self.soundEffect.booSound()
+            self.textManager.addGameNotification(str: "You failed!", color: UIColor.red, duration: 3, animation: false)
+            sleep(4)
+            DispatchQueue.main.async {
+                self.dismiss(animated: false, completion: nil)
+            }
         }
     }
     
