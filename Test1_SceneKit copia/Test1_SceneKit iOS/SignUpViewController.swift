@@ -1,53 +1,35 @@
 //
-//  loginViewController.swift
+//  SignUpViewController.swift
 //  Test1_SceneKit iOS
 //
-//  Created by Giuseppe De Simone on 01/08/2019.
+//  Created by Giuseppe De Simone on 23/08/2019.
 //  Copyright © 2019 Gennaro Giaquinto. All rights reserved.
 //
 
 import UIKit
 
-class LoginViewController: UIViewController {
-    
-    let userDefaults = UserDefaults.standard
-    @IBOutlet var usernameText: UITextField!
+class SignUpViewController: UIViewController {
+
+    @IBOutlet var userText: UITextField!
     @IBOutlet var passwordText: UITextField!
+    
+    let SEGUE = "return_to_login"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        usernameText.delegate = self
+        userText.delegate = self
         passwordText.delegate = self
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func signIn(_ sender: Any) {
-        let user = usernameText.text
-        let pass = passwordText.text
-        let game = GuitAirGameCenter.share
-        if user != nil && pass != nil {
-            let res = game.login(gamertag: user!, password: pass!)
-            print(res)
-            if res.0 == 200 {
-                print("Sono entrato")
-                userDefault.set(1, forKey: LOGIN)
-                performSegue(withIdentifier: "login", sender: nil)
-            }
-            else {
-                print("Non sei entrato")
-            }
-        }
+    @IBAction func signUpButton(_ sender: Any) {
         
     }
-    
-    
-    @IBAction func SignUpButton(_ sender: Any) {
-        
-    }
-    
 }
 
-extension LoginViewController : UITextFieldDelegate {
+
+
+extension SignUpViewController : UITextFieldDelegate {
       override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }

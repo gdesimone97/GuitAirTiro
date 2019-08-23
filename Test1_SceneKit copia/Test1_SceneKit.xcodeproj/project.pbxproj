@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0828F0DE2310706C0062ADCF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0828F0DD2310706C0062ADCF /* SignUpViewController.swift */; };
 		0854421D22F8226E00C73B03 /* registrazione.png in Resources */ = {isa = PBXBuildFile; fileRef = 0854421C22F8226D00C73B03 /* registrazione.png */; };
 		0854422422F8369800C73B03 /* frecciasx@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0854422322F8369700C73B03 /* frecciasx@2x.png */; };
 		0854422622F838F200C73B03 /* frecciadx@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0854422522F838F200C73B03 /* frecciadx@2x.png */; };
@@ -157,6 +158,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0828F0DD2310706C0062ADCF /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		0854421C22F8226D00C73B03 /* registrazione.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = registrazione.png; sourceTree = "<group>"; };
 		0854422322F8369700C73B03 /* frecciasx@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "frecciasx@2x.png"; sourceTree = "<group>"; };
 		0854422522F838F200C73B03 /* frecciadx@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "frecciadx@2x.png"; sourceTree = "<group>"; };
@@ -423,6 +425,7 @@
 				77DFAD2B22E84C56006DCBEE /* Info.plist */,
 				086325AD22F320D600513E1B /* AccountViewController.swift */,
 				086325B522F3328800513E1B /* LoginViewController.swift */,
+				0828F0DD2310706C0062ADCF /* SignUpViewController.swift */,
 				086325B722F33A5100513E1B /* NavigationController.swift */,
 				F2AB38AC230FF5B000833589 /* Match ViewController.swift */,
 				F2AB38AA230FF52700833589 /* Matches ViewController.swift */,
@@ -808,6 +811,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0828F0DE2310706C0062ADCF /* SignUpViewController.swift in Sources */,
 				F2AB38A9230FE29400833589 /* Invitations ViewController.swift in Sources */,
 				0898EC2C22F05146007C32DD /* ViewController.swift in Sources */,
 				77DFAD5322E84C56006DCBEE /* MainController.swift in Sources */,
