@@ -10,9 +10,11 @@ import UIKit
 
 class Match_ViewController: UIViewController {
 
-   
+    @IBOutlet weak var innerView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        innerView.layer.cornerRadius = 14
         // Do any additional setup after loading the view.
     }
     

@@ -104,6 +104,7 @@
 		F207C45F230E99E3002DA2BF /* multiplayer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F207C45E230E99E2002DA2BF /* multiplayer@2x.png */; };
 		F207C467230EA440002DA2BF /* swiperight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F207C466230EA43F002DA2BF /* swiperight@2x.png */; };
 		F207C469230EB2D8002DA2BF /* Multiplayer TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F207C468230EB2D8002DA2BF /* Multiplayer TableViewController.swift */; };
+		F229440C2310359D000C14C5 /* MatchButton.png in Resources */ = {isa = PBXBuildFile; fileRef = F229440B2310359D000C14C5 /* MatchButton.png */; };
 		F2AB389F230FD9FF00833589 /* Pending Request ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AB389E230FD9FF00833589 /* Pending Request ViewController.swift */; };
 		F2AB38A6230FDDA700833589 /* accept.png in Resources */ = {isa = PBXBuildFile; fileRef = F2AB38A4230FDDA600833589 /* accept.png */; };
 		F2AB38A7230FDDA700833589 /* refuse.png in Resources */ = {isa = PBXBuildFile; fileRef = F2AB38A5230FDDA700833589 /* refuse.png */; };
@@ -260,6 +261,7 @@
 		F207C45E230E99E2002DA2BF /* multiplayer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "multiplayer@2x.png"; sourceTree = "<group>"; };
 		F207C466230EA43F002DA2BF /* swiperight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "swiperight@2x.png"; sourceTree = "<group>"; };
 		F207C468230EB2D8002DA2BF /* Multiplayer TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Multiplayer TableViewController.swift"; sourceTree = "<group>"; };
+		F229440B2310359D000C14C5 /* MatchButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MatchButton.png; sourceTree = "<group>"; };
 		F2AB389E230FD9FF00833589 /* Pending Request ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pending Request ViewController.swift"; sourceTree = "<group>"; };
 		F2AB38A4230FDDA600833589 /* accept.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accept.png; sourceTree = "<group>"; };
 		F2AB38A5230FDDA700833589 /* refuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refuse.png; sourceTree = "<group>"; };
@@ -411,6 +413,7 @@
 				0898EC2322F05146007C32DD /* NotationTableViewCell.swift */,
 				0898EC2622F05146007C32DD /* NotationTableViewController.swift */,
 				0898EC2022F05146007C32DD /* SettingsTableViewController.swift */,
+				F229440B2310359D000C14C5 /* MatchButton.png */,
 				F2AB38A4230FDDA600833589 /* accept.png */,
 				F2AB38A5230FDDA700833589 /* refuse.png */,
 				F207C468230EB2D8002DA2BF /* Multiplayer TableViewController.swift */,
@@ -651,6 +654,7 @@
 				087B1E5522F87A2700BDC2C1 /* elettric_guitar.png in Resources */,
 				088E1CC422F345F1006A197D /* BlueButton.png in Resources */,
 				087B1E5422F87A2700BDC2C1 /* classic_guitar.png in Resources */,
+				F229440C2310359D000C14C5 /* MatchButton.png in Resources */,
 				08CF906422F475A900F8B853 /* lose-image.png in Resources */,
 				0887361022F444DC00472B14 /* guitar-player.png in Resources */,
 				0887361422F4498400472B14 /* account@2x.png in Resources */,
