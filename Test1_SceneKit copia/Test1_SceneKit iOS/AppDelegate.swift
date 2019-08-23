@@ -42,7 +42,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // *** Notifiche ***
         // Autorizzazioni
-        notificationCenter.requestAuthorization(options: [.alert , .sound, .providesAppNotificationSettings]) { (granted, error) in /* funzionalità in base all'autorizzazione */ }
+        notificationCenter.requestAuthorization(options: [.alert , .sound, .providesAppNotificationSettings]) { (granted, error) in /* funzionalità in base all'autorizzazione */
+            if granted {
+                    DispatchQueue.main.async {
+                        if !application.isRegisteredForRemoteNotifications {
+                        // Registrazione per le push notification
+                        application.registerForRemoteNotifications()
+                    }
+                }
+            }
+            
+        }
         notificationCenter.getNotificationSettings { (settings) in
             guard settings.authorizationStatus == .authorized else { return }
             DispatchQueue.main.async {
@@ -187,6 +197,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let token = tokenParts.joined()
+        userDefault.set(token, forKey: TOKEN)
         print("Device Token: \(token)")
         
     }
@@ -200,7 +211,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate: UNUserNotificationCenterDelegate {
      func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
-        let gamerTag = userInfo["GAMERTAG"]
+        let id = userInfo["match"]
         switch response.actionIdentifier {
         case "ACCEPT_ACTION":
             print("invito accettato")

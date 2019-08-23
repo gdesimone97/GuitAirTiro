@@ -19,28 +19,27 @@ class PointerManager {
     
     private var movement: Float { return abs(MIN_PLANE - MAX_PLANE)/steps_plane }
     
-    var progressBar: SCNNode?
-    var recordBar: SCNNode?
+    var progressBar: SCNNode!
+    var recordBar: SCNNode!
     var pointer: SCNNode!
     var green: SCNNode!
     var yellow: SCNNode!
     var red: SCNNode!
     
-    var record: Int?
+    var record: Int
     
     var toCall: (() -> Void)!
     
-    init(progressBar: SCNNode, recordBar: SCNNode, record: Int?, pointer: SCNNode, green: SCNNode, yellow: SCNNode, red: SCNNode, function: @escaping (() -> Void)) {
+    init(progressBar: SCNNode, recordBar: SCNNode, record: Int, recordBox: SCNNode, pointer: SCNNode, green: SCNNode, yellow: SCNNode, red: SCNNode, function: @escaping (() -> Void)) {
         self.progressBar = progressBar
         self.recordBar = recordBar
-        if record == nil {
-            self.progressBar!.removeFromParentNode()
-            self.recordBar!.removeFromParentNode()
+        self.record = record
+        if record == 0 {
+            recordBar.removeFromParentNode()
+            progressBar.removeFromParentNode()
+            recordBox.removeFromParentNode()
             self.progressBar = nil
             self.recordBar = nil
-        }
-        else {
-            self.record = record
         }
         self.pointer = pointer
         self.green = green
@@ -89,7 +88,7 @@ class PointerManager {
     }
     
     private func modifyBar(actualPoints: Int) {
-        let x = Double(actualPoints) * ( MAX_BAR - MIN_BAR ) / Double(record!)
+        let x = Double(actualPoints) * ( MAX_BAR - MIN_BAR ) / Double(record)
         progressBar!.scale = SCNVector3(0.06, MIN_BAR + x, 0.06)
     }
 }

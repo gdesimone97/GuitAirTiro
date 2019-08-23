@@ -17,6 +17,7 @@ let GAME_DEVICE_SETTINGS = "game_device_settings"
 let AUDIO_FILE_NAME = "audio_file_name"
 let IMAGE_DEFAULT = "image_default"
 let JWT_STRING = "jwt"
+let TOKEN = "token"
 
 let userDefault = UserDefaults.standard
 
