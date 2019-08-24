@@ -82,26 +82,13 @@ class SessionManager: NSObject {
     func disconnectedPeer() {
         self.session.disconnect()
     }
-    #if os(tvOS)
-    func sendSignal(_ peer: MCPeerID, points: Int) {
-        if self.session.connectedPeers.count > 0 {
-            let pointsInt = points
-            let intData = try! NSKeyedArchiver.archivedData(withRootObject: pointsInt, requiringSecureCoding: false)
-            do {
-                try self.session.send(intData, toPeers: [peer], with: .unreliable)
-            }
-            catch _ {
-                print("Errore invio messaggio")
-            }
-        }
-    }
-    #elseif os(iOS)
+
     func sendSignal(_ peer: MCPeerID, points: Int) {
         var array = Array<String>()
         array[0] = String(points)
         sendSignal(peer, message: array)
     }
-    #endif
+
     
     func sendSignal (_ peer: MCPeerID, message: SignalCode) {
         var mex = message.rawValue
@@ -185,7 +172,6 @@ extension SessionManager: MCSessionDelegate {
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        #if os(tvOS)
         print("Messaggio ricevuto da: \(peerID), messaggio: \(data)")
         let nsData = NSData(data: data)
         if nsData.length == 1 {
@@ -205,11 +191,6 @@ extension SessionManager: MCSessionDelegate {
                 self.delegate?.mexReceived(self, didMessageReceived: array)
             }
         }
-        #elseif os(iOS)
-        print("Messaggio ricevuto da: \(peerID), messaggio: \(data)")
-        let points = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! Int
-        self.delegate?.mexReceived(self, didMessageReceived: points)
-        #endif
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
