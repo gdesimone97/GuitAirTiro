@@ -126,7 +126,8 @@ class GameModeViewController: UIViewController {
         greenButtonChord?.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
         pinkButtonChord?.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
         
-
+        sessionTv.delegateGame = self
+        
         if tv == TvSettings.withWatch.rawValue {
             sessionDelegate.toCall = {
                 self.sessionDelegate.toCall = self.play
@@ -298,7 +299,6 @@ class GameModeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        sessionTv.delegate = self
         if let testUserDefault = userDefault.array(forKey: USER_DEFAULT_KEY_STRING) {
             var userData = testUserDefault as! Array<String>
             redButtonChord.text = userData[0]

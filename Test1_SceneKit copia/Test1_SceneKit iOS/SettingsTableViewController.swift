@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import MultipeerConnectivity
 
 class SettingsTableViewController: UITableViewController {
     
@@ -17,8 +17,11 @@ class SettingsTableViewController: UITableViewController {
     
     let actLang = "Italiano";
     
+    
+    let sessionTv = SessionManager.share
     override func viewDidLoad() {
         super.viewDidLoad()
+        sessionTv.delegateSettings = self
     }
     
     
@@ -98,3 +101,31 @@ class SettingsTableViewController: UITableViewController {
     
 }
 
+extension SettingsTableViewController: SessionManagerDelegate {
+    func mexReceived(_ manager: SessionManager, didMessageReceived: Int) {
+        return
+    }
+    
+    func peerFound(_ manger: SessionManager, peer: MCPeerID) {
+        return
+    }
+    
+    func nearPeerHasChangedState(_ manager: SessionManager, peer change: MCPeerID, connected: Int) {
+        
+    }
+    
+    func mexReceived(_ manager: SessionManager, didMessageReceived: SignalCode) {
+        return
+    }
+    
+    func mexReceived(_ manager: SessionManager, didMessageReceived: Array<String>) {
+        return
+    }
+    
+    func peerLost(_ manager: SessionManager, peer lost: MCPeerID) {
+        return
+    }
+    
+    
+    
+}
