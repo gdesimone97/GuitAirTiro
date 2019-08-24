@@ -202,8 +202,8 @@ class GameModeViewController: UIViewController {
         
         let guitarSelected = UserDefaults.getGuitar(forKey: GUITAR)
         if guitarSelected == TypeOfGuitar.electric {
-            motionManager.deviceMotionUpdateInterval = 0.3
             self.motionManager = CMMotionManager()
+            motionManager.deviceMotionUpdateInterval = 0.3
             motionManager.startDeviceMotionUpdates(to: OperationQueue.current!, withHandler: { data, error -> Void in
                 if let data = data {
                     self.newAttitude = abs(data.attitude.roll)
