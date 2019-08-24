@@ -36,7 +36,6 @@ class SessionManager: NSObject {
     
     private let typeOfService = "guit-air"
     weak var delegate: SessionManagerDelegate?
-    weak var delegateSettings: SessionManagerDelegate?
     weak var delegateGame: SessionManagerDelegate?
     
     private let serviceBrowser: MCNearbyServiceBrowser
