@@ -12,7 +12,7 @@ import MultipeerConnectivity
 protocol SessionManagerDelegate: class {
     /** Rilevazione di un peer */
     func peerFound(_ manger: SessionManager, peer: MCPeerID)
-    /** Uno dei peer della sessione ha cambiato stato: connesso o disconnesso dalla sessione */
+    /** Uno dei peer della sessione ha cambiato stato: connesso, disconnesso, in fase di connessione alla sessione */
     func nearPeerHasChangedState(_ manager: SessionManager,peer change: MCPeerID, connected: Int)
     /** Segnala la ricezione di un messaggio */
     func mexReceived(_ manager: SessionManager,didMessageReceived: SignalCode)
@@ -53,14 +53,13 @@ class SessionManager: NSObject {
     }
     
     //    Singleton
-    static var share = SessionManager()
+    static let share = SessionManager()
     
     
     private override init() {
         self.serviceBrowser = MCNearbyServiceBrowser(peer: self.peerID, serviceType: typeOfService) // Cerca altri peer usando l'infrastrutture di rete disponibili
         self.serviceAdverticer = MCNearbyServiceAdvertiser(peer: self.peerID, discoveryInfo: nil, serviceType: typeOfService) // Gestisce gli invita da parte degli altri peer
         super.init()
-        
         self.serviceBrowser.delegate = self
         self.serviceBrowser.startBrowsingForPeers()
         
