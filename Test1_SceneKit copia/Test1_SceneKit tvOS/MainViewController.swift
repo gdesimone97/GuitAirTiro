@@ -339,6 +339,10 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: SessionManagerDelegate {
+    func mexReceived(_ manager: SessionManager, didMessageReceived: Int) {
+        return
+    }
+    
     
     func peerFound(_ manger: SessionManager, peer: MCPeerID) {
         dictionary.addSample(peer: peer)

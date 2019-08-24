@@ -45,8 +45,6 @@ class ViewController: UIViewController{
         deviceStatus?.layer.cornerRadius = 8.34
         tvStatus?.layer.cornerRadius = 8.34
         
-        sessionTv.delegate = self
-        
         if UserDefaults.getGuitar(forKey: GUITAR) == nil {
             UserDefaults.setGuitar(guitar: TypeOfGuitar.classic, forKey: GUITAR)
         }
@@ -90,6 +88,9 @@ class ViewController: UIViewController{
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        sessionTv.delegate = self
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         let guitar = UserDefaults.getGuitar(forKey: GUITAR)

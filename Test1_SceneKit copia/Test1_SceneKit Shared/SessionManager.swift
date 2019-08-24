@@ -36,8 +36,6 @@ class SessionManager: NSObject {
     
     private let typeOfService = "guit-air"
     weak var delegate: SessionManagerDelegate?
-    weak var delegateSettings: SessionManagerDelegate?
-    weak var delegateGame: SessionManagerDelegate?
     
     private let serviceBrowser: MCNearbyServiceBrowser
     private let serviceAdverticer: MCNearbyServiceAdvertiser
@@ -179,14 +177,11 @@ extension SessionManager: MCSessionDelegate {
     // Lo stato di un peer vicino è cambiato
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         self.delegate?.nearPeerHasChangedState(self, peer: peerID, connected: state.rawValue)
-        self.delegateSettings?.nearPeerHasChangedState(self, peer: peerID, connected: state.rawValue)
-         self.delegateGame?.nearPeerHasChangedState(self, peer: peerID, connected: state.rawValue)
         
         print("Stato della connessione: \(state.rawValue) di \(peerID)")
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        #if os(tvOS)
         print("Messaggio ricevuto da: \(peerID), messaggio: \(data)")
         let nsData = NSData(data: data)
         if nsData.length == 1 {
@@ -194,7 +189,6 @@ extension SessionManager: MCSessionDelegate {
             let code = SignalCode.init(rawValue: intData!)
             guard code != nil else { return }
             self.delegate?.mexReceived(self, didMessageReceived: code!)
-            self.delegateGame?.mexReceived(self, didMessageReceived: code!)
         }
         else {
             let array = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! Array<String>
@@ -206,11 +200,6 @@ extension SessionManager: MCSessionDelegate {
                 self.delegate?.mexReceived(self, didMessageReceived: array)
             }
         }
-        #elseif os(iOS)
-        print("Messaggio ricevuto da: \(peerID), messaggio: \(data)")
-        let points = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! Int
-        self.delegate?.mexReceived(self, didMessageReceived: points)
-        #endif
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
