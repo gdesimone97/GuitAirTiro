@@ -16,18 +16,15 @@ class AccountViewController: UIViewController {
     @IBOutlet var gamerTag: UILabel!
     @IBOutlet var statLabel: [UILabel]!
     
+    let game = GuitAirGameCenter.share
     
     let imagePickerController = UIImagePickerController()
-    
+    var flag = true
     let userDefaults = UserDefaults.standard
     let gameCenter = GuitAirGameCenter.share
     override func viewDidLoad() {
         super.viewDidLoad()
         pickButton.setTitle("", for: UIControl.State.normal  )
-        
-//        if let image = userDefaults.getImage(forKey: IMAGE_DEFAULT) {
-//            imageProfile.image = image
-//        }
         
         self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2;
         self.imageProfile.clipsToBounds = true;
@@ -36,22 +33,49 @@ class AccountViewController: UIViewController {
         imagePickerController.allowsEditing = false
         imagePickerController.delegate = self
         
-//        PersistanceManager.UploadStat(score: 1, wins: 2, draws: 3, losses: 4, image: nil, gamerTag: nil)
-       
     }
     
+    var thread = DispatchQueue.init(label: "photo")
+    
      override func viewWillAppear(_ animated: Bool) {
-        reloadStatOnline()
+        if flag {
+            reloadStatOnline()
+            flag = true
+        }
     }
     
     private func reloadStatOnline() {
         let res = gameCenter.getMyProfile()
-        print(res)
-        let profile = res.1["profile"]!
-        print(profile)
+        if res.0 == 200 || res.0 == 201 {
+            let profile = res.1
+            let score = profile["total_score"]
+            let wins = profile["wins"]
+            let draws = profile["draws"]
+            let losses = profile["losses"]
+            let gamertagString = profile["gamertag"]
+            let image = profile["image"]
+            let array = [score,wins,draws,losses]
+            var i = 0
+            gamerTag.text = gamertagString
+            if image != "empty" {
+                imageProfile.image = convertStringToImage(string: image!)
+            }
+            for label in self.statLabel {
+                label.text = String(array[i]!)
+                i += 1
+            }
+            DispatchQueue.main.async {
+                if image == "empty" {                PersistanceManager.UploadStat(score: Int(score!), wins: Int(wins!), draws: Int(draws!), losses: Int(losses!), image: nil, gamerTag: gamertagString)
+                }
+                else {
+                    
+                    PersistanceManager.UploadStat(score: Int(score!), wins: Int(wins!), draws: Int(draws!), losses: Int(losses!), image: nil , gamerTag: gamertagString)
+                }
+            }
+        }
     }
     
-    private func loadImage() {
+    private func loadImageOffline() {
         if let resultImage = self.getImage(){
             self.imageProfile.image = resultImage
         }
@@ -79,9 +103,20 @@ class AccountViewController: UIViewController {
         let dataImage = image.pngData()
         return NSData(data: dataImage!)
     }
-
+    
+    private func convertImageToString(image: UIImage) -> String {
+        let data = (image.jpegData(compressionQuality: 0.0)?.base64EncodedString())!
+        return data
+    }
+    
+    private func convertStringToImage(string: String) -> UIImage {
+        let data = Data(base64Encoded: string)
+        return UIImage(data: data!)!
+    }
+    
     @IBAction func logOutButton(_ sender: Any) {
         userDefaults.set(0,forKey: LOGIN)
+        userDefaults.set(nil, forKey: JWT_STRING)
     }
     
     @IBAction func takePhoto(_ sender: Any) {
@@ -122,35 +157,21 @@ class AccountViewController: UIViewController {
 extension AccountViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let image =  info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         self.imageProfile.image = image
-        //userDefault.setImage(image: image, forKey: IMAGE_DEFAULT)
-        let imageToSave = convertImageToData(image: image)
-        PersistanceManager.UploadStat(score: nil, wins: nil, draws: nil, losses: nil, image: imageToSave as Data?, gamerTag: nil)
+        flag = false
+        //print(self.convertImageToString(image: image))
         dismiss(animated: true, completion: nil)
-    }
-    
-}
-
-extension UserDefaults {
-    func setImage(image: UIImage,forKey: String) {
-        let dataImage = image.pngData()
-        if dataImage == nil {
-            print("Errore conversione")
-            return
-        }
-        UserDefaults.standard.set(dataImage, forKey: forKey)
-    }
-    
-    func getImage(forKey: String) -> UIImage? {
-        let dataImage = UserDefaults.standard.object(forKey: forKey) as? Data
-        if dataImage == nil {
-            return nil
-        }
-        else {
-            let imageNotRotate = UIImage(data: dataImage!)
-            let imageWillRotate = imageNotRotate?.cgImage
-            return UIImage(cgImage: imageWillRotate!, scale: CGFloat(1.0), orientation: .right)
+        thread.async {
+            let res = self.game.updateImage(image: self.convertImageToString(image: image))
+            if res.0 == 200 || res.0 == 201 {
+                print("Salvato")
+            }
+            else {
+                print(res.0)
+                print(res.1)
+                print("Non salvato")
+            }
         }
     }
 }

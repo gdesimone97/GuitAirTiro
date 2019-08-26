@@ -17,8 +17,6 @@ class GuitAirGameCenter{
     static let share = GuitAirGameCenter()
     
     private init() {
-        let t = userDefault.string(forKey: JWT_STRING)
-        
         if let jwt = userDefault.string(forKey: JWT_STRING) {
             self.JWT = jwt
         }
@@ -56,7 +54,7 @@ class GuitAirGameCenter{
     }
     
     //Faccio la richiesta al server e ritorno il risultato
-    private func makeAPIRequest( req : URLRequest )->(Int,[String:Any]){
+    private func makeAPIRequest( req : URLRequest )->(Int,[String:Any]) {
         
         let semaphore = DispatchSemaphore.init(value: 0);
         
@@ -66,15 +64,19 @@ class GuitAirGameCenter{
         let task = session.dataTask(with: req, completionHandler: { data, response, error -> Void in
             
             do {
-                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, Any>
-                
+                let json: Dictionary<String,Any> = ["":""]
                 var respCode : Int = 0;
-                
-                if let httpResp = response as? HTTPURLResponse{
+                if data == nil {
+                    respCode = 500
+                }
+                else{
+                    let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, Any>
+                    if let httpResp = response as? HTTPURLResponse{
                     respCode = httpResp.statusCode;
+                    }
                 }
                 
-                result = (respCode, json);
+                result = (respCode, json) as! (Int, [String : Any]);
                 semaphore.signal();
             } catch {
                 print("Error")
@@ -98,7 +100,7 @@ class GuitAirGameCenter{
     
     public func login(gamertag:String, password:String, devicetoken : String = "")->(Int,[String:String]){
         
-        let params = ["gamertag":gamertag,"password":password, "devicetoken":devicetoken];
+        let params = ["gamertag":gamertag,"password":password, "device_token":devicetoken];
         
         let urlReq = buildAPIRequest(httpMethod: "POST", method: .account, params: params);
         let res = makeAPIRequest(req: urlReq) as! (Int,[String:String]);
@@ -247,15 +249,32 @@ class GuitAirGameCenter{
         return getFriendRequest(type: "list");
     }
     
-    public func getMyProfile()->(Int,[String:Any]){
+    public func getMyProfile()->(Int,[String:String]){
         let urlReq = buildAPIRequest(httpMethod: "GET", method: .player);
 //        print(urlReq.allHTTPHeaderFields)
-        return makeAPIRequest(req: urlReq);
+        var fetchedProfile =  makeAPIRequest(req: urlReq);
+        if(fetchedProfile.0 == 200){
+            
+            let profile = fetchedProfile.1["profile"]! as! String;
+            let data = profile.data(using: .unicode)!;
+            let profDict = try? JSONSerialization.jsonObject(with: data) as? Dictionary<String, String>
+
+            return (fetchedProfile.0, profDict!);
+        }
+        return (fetchedProfile.0,fetchedProfile.1 as! [String:String]);
     }
     
     public func getProfile(gamertag:String)->(Int,[String:Any]){
         let urlReq = buildAPIRequest(httpMethod: "GET", method: .player, queryItems: ["gamertag":gamertag]);
         return makeAPIRequest(req: urlReq);
+    }
+    
+    //Upload immagine
+    
+    public func updateImage(image:String)->(Int,[String:String]){
+        let urlReq = buildAPIRequest(httpMethod: "PATCH", method: .player, params: ["image":image,"type":"image"]);
+        return makeAPIRequest(req: urlReq) as! (Int,Dictionary<String,String>);
+        
     }
     
 }

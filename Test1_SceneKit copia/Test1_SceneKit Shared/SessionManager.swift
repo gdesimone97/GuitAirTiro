@@ -16,6 +16,7 @@ protocol SessionManagerDelegate: class {
     func nearPeerHasChangedState(_ manager: SessionManager,peer change: MCPeerID, connected: Int)
     /** Segnala la ricezione di un messaggio */
     func mexReceived(_ manager: SessionManager,didMessageReceived: SignalCode)
+    func mexReceived(_ manager: SessionManager,didMessageReceived: Songs)
     func mexReceived(_ manager: SessionManager,didMessageReceived: Array<String>)
     func mexReceived(_ manager: SessionManager,didMessageReceived: Int)
     /** Connessione con peer persa */
@@ -24,7 +25,8 @@ protocol SessionManagerDelegate: class {
 
 
 class SessionManager: NSObject {
-    private var i = 0
+    private let KEY_SONG = "song"
+    private let KEY_POINTS = "points"
     // Initiating a Session
     private var peerID = MCPeerID(displayName: UIDevice.current.name ) // ID peer ugaule all'identificativo del device
     
@@ -84,11 +86,24 @@ class SessionManager: NSObject {
     }
 
     func sendSignal(_ peer: MCPeerID, points: Int) {
-        var array = Array<String>()
-        array[0] = String(points)
-        sendSignal(peer, message: array)
+        mySendSignal(peer, mex: points)
     }
-
+    
+    func sendSignal(_ peer: MCPeerID, song: Songs) {
+        mySendSignal(peer, mex: song)
+    }
+    
+    private func mySendSignal(_ peer: MCPeerID, mex: Any) {
+        do {
+            let mex = try NSKeyedArchiver.archivedData(withRootObject: mex, requiringSecureCoding: false)
+            if self.session.connectedPeers.count > 0 {
+                try self.session.send(mex, toPeers: [peer], with: .unreliable)
+            }
+        }
+        catch _ {
+            print("errore")
+        }
+    }
     
     func sendSignal (_ peer: MCPeerID, message: SignalCode) {
         var mex = message.rawValue
@@ -105,32 +120,8 @@ class SessionManager: NSObject {
     }
     
     func sendSignal (_ peer: MCPeerID, message: Array<String>) {
-        do {
-            let mex = try NSKeyedArchiver.archivedData(withRootObject: message, requiringSecureCoding: false)
-            if self.session.connectedPeers.count > 0 {
-                try self.session.send(mex, toPeers: [peer], with: .unreliable)
-            }
-        }
-        catch _ {
-            print("errore")
-        }
+        mySendSignal(peer, mex: message)
     }
-    
-    func sendSignal (_ peer: MCPeerID, message: UInt8) {
-        var mex = message
-        guard mex != 0 else {print("Non puoi mandare 0, questo metodo verà cancellato successivamente"); return}
-        if self.session.connectedPeers.count > 0 {
-            print("Messaggio inviato")
-            let data = withUnsafeBytes(of: &mex) { Data($0) }
-            do {
-                try self.session.send(data, toPeers: [peer], with: .unreliable)
-            }
-            catch _ {
-                print("Errore invio messaggio")
-            }
-        }
-    }
-    
     
     /**
      Funzione che ritorna la lista dei dispositivi connessi
@@ -165,7 +156,6 @@ extension SessionManager: MCSessionDelegate {
     // Lo stato di un peer vicino è cambiato
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         self.delegate?.nearPeerHasChangedState(self, peer: peerID, connected: state.rawValue)
-        self.delegateSettings?.nearPeerHasChangedState(self, peer: peerID, connected: state.rawValue)
          self.delegateGame?.nearPeerHasChangedState(self, peer: peerID, connected: state.rawValue)
         
         print("Stato della connessione: \(state.rawValue) di \(peerID)")
@@ -182,13 +172,15 @@ extension SessionManager: MCSessionDelegate {
             self.delegateGame?.mexReceived(self, didMessageReceived: code!)
         }
         else {
-            let array = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! Array<String>
-            if array.count == 1 {
-                let points = Int(array[0])
-                self.delegate?.mexReceived(self, didMessageReceived: points!)
+            let data = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data)
+            if let song = data as? Songs {
+                self.delegate?.mexReceived(self, didMessageReceived: song)
             }
-            else {
-                self.delegate?.mexReceived(self, didMessageReceived: array)
+            else if let points = data as? Int {
+                self.delegate?.mexReceived(self, didMessageReceived: points)
+            }
+            else if let chords = data as? Array<String> {
+                self.delegate?.mexReceived(self, didMessageReceived: chords)
             }
         }
     }
@@ -209,7 +201,6 @@ extension SessionManager: MCSessionDelegate {
 extension SessionManager: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
         print("peer trovato: \(peerID.displayName) ; \(peerID)")
-        
         self.delegate?.peerFound(self, peer: peerID)
     }
     
@@ -221,7 +212,7 @@ extension SessionManager: MCNearbyServiceBrowserDelegate {
 
 extension SessionManager: MCNearbyServiceAdvertiserDelegate {
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-        
+        #if os(iOS)
         let allert = UIAlertController(title: "Invitation", message: "Do you want accept the connection request?", preferredStyle: .alert)
         let actionAccept = UIAlertAction(title: "Accept", style: .default, handler: { action in
             invitationHandler(true,self.session)
@@ -234,5 +225,8 @@ extension SessionManager: MCNearbyServiceAdvertiserDelegate {
         allert.addAction(actionDecline)
         let viewController:UIViewController = UIApplication.shared.keyWindow!.rootViewController!
         viewController.present(allert, animated: true, completion: nil)
+        #elseif os(tvOS)
+        invitationHandler(false,self.session)
+        #endif
     }
 }

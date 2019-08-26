@@ -1,37 +1,35 @@
 //
-//  Multiplayer TableViewController.swift
+//  Songs TableViewController.swift
 //  Test1_SceneKit iOS
 //
-//  Created by Mario De Sio on 22/08/2019.
+//  Created by Mario De Sio on 26/08/2019.
 //  Copyright © 2019 Gennaro Giaquinto. All rights reserved.
 //
 
 import UIKit
 
-class Multiplayer_TableViewController: UITableViewController {
+class Songs_TableViewController: UITableViewController {
 
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var resultSearchView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    
-    
+
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 1
     }
 /*
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return
+        return 0
     }
 */
     /*

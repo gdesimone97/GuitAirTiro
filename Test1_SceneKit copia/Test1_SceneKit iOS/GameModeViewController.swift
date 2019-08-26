@@ -376,6 +376,10 @@ class GameModeViewController: UIViewController {
 }
 
 extension GameModeViewController: SessionManagerDelegate {
+    func mexReceived(_ manager: SessionManager, didMessageReceived: Songs) {
+        return
+    }
+    
     func mexReceived(_ manager: SessionManager, didMessageReceived: Int) {
         return
     }

@@ -65,6 +65,7 @@
 		08D465BA22F1A78100B8D43B /* LogoWatch.png in Resources */ = {isa = PBXBuildFile; fileRef = 08D465B722F1A78000B8D43B /* LogoWatch.png */; };
 		08D465BB22F1A78100B8D43B /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08D465B822F1A78100B8D43B /* Interface.storyboard */; };
 		08D465BC22F1A78100B8D43B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08D465B922F1A78100B8D43B /* Assets.xcassets */; };
+		08D8E2C52313D02D005A42E9 /* Songs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7703F79022FAE2A30075BF92 /* Songs.swift */; };
 		08F9EF01230EEB61001B5656 /* GuitAirAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F9EEFF230EEB61001B5656 /* GuitAirAPI.swift */; };
 		08F9EF02230EEB61001B5656 /* GuitAirGameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F9EF00230EEB61001B5656 /* GuitAirGameCenter.swift */; };
 		259FCF7A4466898030E2854A /* Pods_Test1_SceneKit_watchOS_App_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E921CE1C6D8E8B53642FAF /* Pods_Test1_SceneKit_watchOS_App_Extension.framework */; };
@@ -105,6 +106,11 @@
 		F207C45F230E99E3002DA2BF /* multiplayer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F207C45E230E99E2002DA2BF /* multiplayer@2x.png */; };
 		F207C467230EA440002DA2BF /* swiperight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F207C466230EA43F002DA2BF /* swiperight@2x.png */; };
 		F207C469230EB2D8002DA2BF /* Multiplayer TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F207C468230EB2D8002DA2BF /* Multiplayer TableViewController.swift */; };
+		F225CEF02313E205007CFE6D /* Send Invitation ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F225CEEF2313E205007CFE6D /* Send Invitation ViewController.swift */; };
+		F225CEF22313E910007CFE6D /* Send Friend Request ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F225CEF12313E910007CFE6D /* Send Friend Request ViewController.swift */; };
+		F225CEF423142C2C007CFE6D /* Friend Request ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F225CEF323142C2C007CFE6D /* Friend Request ViewController.swift */; };
+		F225CEF623142CB6007CFE6D /* Pending Friend Request ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F225CEF523142CB6007CFE6D /* Pending Friend Request ViewController.swift */; };
+		F225CEF823142F88007CFE6D /* Songs TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F225CEF723142F88007CFE6D /* Songs TableViewController.swift */; };
 		F229440C2310359D000C14C5 /* MatchButton.png in Resources */ = {isa = PBXBuildFile; fileRef = F229440B2310359D000C14C5 /* MatchButton.png */; };
 		F2AB389F230FD9FF00833589 /* Pending Request ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AB389E230FD9FF00833589 /* Pending Request ViewController.swift */; };
 		F2AB38A6230FDDA700833589 /* accept.png in Resources */ = {isa = PBXBuildFile; fileRef = F2AB38A4230FDDA600833589 /* accept.png */; };
@@ -263,6 +269,11 @@
 		F207C45E230E99E2002DA2BF /* multiplayer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "multiplayer@2x.png"; sourceTree = "<group>"; };
 		F207C466230EA43F002DA2BF /* swiperight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "swiperight@2x.png"; sourceTree = "<group>"; };
 		F207C468230EB2D8002DA2BF /* Multiplayer TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Multiplayer TableViewController.swift"; sourceTree = "<group>"; };
+		F225CEEF2313E205007CFE6D /* Send Invitation ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Send Invitation ViewController.swift"; sourceTree = "<group>"; };
+		F225CEF12313E910007CFE6D /* Send Friend Request ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Send Friend Request ViewController.swift"; sourceTree = "<group>"; };
+		F225CEF323142C2C007CFE6D /* Friend Request ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Friend Request ViewController.swift"; sourceTree = "<group>"; };
+		F225CEF523142CB6007CFE6D /* Pending Friend Request ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pending Friend Request ViewController.swift"; sourceTree = "<group>"; };
+		F225CEF723142F88007CFE6D /* Songs TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Songs TableViewController.swift"; sourceTree = "<group>"; };
 		F229440B2310359D000C14C5 /* MatchButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MatchButton.png; sourceTree = "<group>"; };
 		F2AB389E230FD9FF00833589 /* Pending Request ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pending Request ViewController.swift"; sourceTree = "<group>"; };
 		F2AB38A4230FDDA600833589 /* accept.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accept.png; sourceTree = "<group>"; };
@@ -411,15 +422,20 @@
 				0898EC2E22F051A2007C32DD /* Main.storyboard */,
 				0898EC2222F05146007C32DD /* ChordsPickerViewController.swift */,
 				F2AB389E230FD9FF00833589 /* Pending Request ViewController.swift */,
+				F225CEF523142CB6007CFE6D /* Pending Friend Request ViewController.swift */,
+				F225CEEF2313E205007CFE6D /* Send Invitation ViewController.swift */,
 				0898EC2122F05146007C32DD /* GameModeViewController.swift */,
 				0898EC2322F05146007C32DD /* NotationTableViewCell.swift */,
 				0898EC2622F05146007C32DD /* NotationTableViewController.swift */,
 				0898EC2022F05146007C32DD /* SettingsTableViewController.swift */,
 				F229440B2310359D000C14C5 /* MatchButton.png */,
 				F2AB38A4230FDDA600833589 /* accept.png */,
+				F225CEF723142F88007CFE6D /* Songs TableViewController.swift */,
+				F225CEF12313E910007CFE6D /* Send Friend Request ViewController.swift */,
 				F2AB38A5230FDDA700833589 /* refuse.png */,
 				F207C468230EB2D8002DA2BF /* Multiplayer TableViewController.swift */,
 				0898EC2522F05146007C32DD /* ViewController.swift */,
+				F225CEF323142C2C007CFE6D /* Friend Request ViewController.swift */,
 				77DFAD2122E84C56006DCBEE /* AppDelegate.swift */,
 				77DFAD2822E84C56006DCBEE /* LaunchScreen.storyboard */,
 				77DFAD2B22E84C56006DCBEE /* Info.plist */,
@@ -811,6 +827,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F225CEF423142C2C007CFE6D /* Friend Request ViewController.swift in Sources */,
 				0828F0DE2310706C0062ADCF /* SignUpViewController.swift in Sources */,
 				F2AB38A9230FE29400833589 /* Invitations ViewController.swift in Sources */,
 				0898EC2C22F05146007C32DD /* ViewController.swift in Sources */,
@@ -824,9 +841,11 @@
 				F207C469230EB2D8002DA2BF /* Multiplayer TableViewController.swift in Sources */,
 				08F9EF01230EEB61001B5656 /* GuitAirAPI.swift in Sources */,
 				0898EC2B22F05146007C32DD /* Guitar.swift in Sources */,
+				F225CEF22313E910007CFE6D /* Send Friend Request ViewController.swift in Sources */,
 				0875E9F1230D826D009964B1 /* appModel.xcdatamodeld in Sources */,
 				F2AB389F230FD9FF00833589 /* Pending Request ViewController.swift in Sources */,
 				0875E9F4230D8792009964B1 /* Stat+CoreDataClass.swift in Sources */,
+				08D8E2C52313D02D005A42E9 /* Songs.swift in Sources */,
 				088BAC3622F9720800784692 /* DevicesSettingsPaired.swift in Sources */,
 				0898EC2722F05146007C32DD /* SettingsTableViewController.swift in Sources */,
 				087B1E5122F878DE00BDC2C1 /* GuitarSelectedViewController.swift in Sources */,
@@ -836,12 +855,15 @@
 				F2AB38AB230FF52700833589 /* Matches ViewController.swift in Sources */,
 				08F9EF02230EEB61001B5656 /* GuitAirGameCenter.swift in Sources */,
 				F2B4E820230D3ED0009F6C36 /* Leaderboard View Controller.swift in Sources */,
+				F225CEF02313E205007CFE6D /* Send Invitation ViewController.swift in Sources */,
+				F225CEF623142CB6007CFE6D /* Pending Friend Request ViewController.swift in Sources */,
 				779E565022EB090400ACC1BF /* SessionManager.swift in Sources */,
 				0898EC2D22F05146007C32DD /* NotationTableViewController.swift in Sources */,
 				08B5E77E22F1C3C500A6FF05 /* SignalCode.swift in Sources */,
 				0875E9FE230D99B2009964B1 /* PersistanceManager.swift in Sources */,
 				086325B622F3328800513E1B /* LoginViewController.swift in Sources */,
 				086325B022F326B600513E1B /* userDefaultKeysString.swift in Sources */,
+				F225CEF823142F88007CFE6D /* Songs TableViewController.swift in Sources */,
 				77DFAD2222E84C56006DCBEE /* AppDelegate.swift in Sources */,
 				08D464B922F18E4500B8D43B /* GameController.swift in Sources */,
 			);
