@@ -98,7 +98,7 @@ class GuitAirGameCenter{
     
     public func login(gamertag:String, password:String, devicetoken : String = "")->(Int,[String:String]){
         
-        let params = ["gamertag":gamertag,"password":password, "devicetoken":devicetoken];
+        let params = ["gamertag":gamertag,"password":password, "device_token":devicetoken];
         
         let urlReq = buildAPIRequest(httpMethod: "POST", method: .account, params: params);
         let res = makeAPIRequest(req: urlReq) as! (Int,[String:String]);
@@ -250,7 +250,15 @@ class GuitAirGameCenter{
     public func getMyProfile()->(Int,[String:Any]){
         let urlReq = buildAPIRequest(httpMethod: "GET", method: .player);
 //        print(urlReq.allHTTPHeaderFields)
-        return makeAPIRequest(req: urlReq);
+        var fetchedProfile =  makeAPIRequest(req: urlReq);
+        if(fetchedProfile.0 == 200){
+            let profile = fetchedProfile.1["profile"]! as! String;
+            var data = profile.data(using: .unicode)!;
+            let profDict = try? JSONSerialization.jsonObject(with: data) as! Dictionary<String, String>
+
+            return (fetchedProfile.0, profDict!);
+        }
+        return fetchedProfile;
     }
     
     public func getProfile(gamertag:String)->(Int,[String:Any]){
