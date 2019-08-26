@@ -13,11 +13,13 @@ class LoginViewController: UIViewController {
     let userDefaults = UserDefaults.standard
     @IBOutlet var usernameText: UITextField!
     @IBOutlet var passwordText: UITextField!
+    @IBOutlet var errorLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         usernameText.delegate = self
         passwordText.delegate = self
+        errorLabel.text = nil
         // Do any additional setup after loading the view.
     }
     
@@ -28,13 +30,15 @@ class LoginViewController: UIViewController {
         if user != nil && pass != nil {
             let token = userDefault.string(forKey: TOKEN)
             let res = game.login(gamertag: user!, password: pass!,devicetoken: token ?? "")
-            if res.0 == 200 {
+            if res.0 == 200 || res.0 == 201 {
                 print("Sono entrato")
                 userDefault.set(1, forKey: LOGIN)
                 performSegue(withIdentifier: "login", sender: nil)
             }
             else {
-                print("Non sei entrato")
+                DispatchQueue.main.async {
+                    self.errorLabel.text = "No connection"
+                }
             }
         }
         
