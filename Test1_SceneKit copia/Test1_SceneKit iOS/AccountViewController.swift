@@ -103,8 +103,7 @@ class AccountViewController: UIViewController {
     }
     
     private func convertImageToString(image: UIImage) -> String {
-        let dataImage = image.pngData()
-        return String(data: dataImage!, encoding: .unicode)!
+        return (image.jpegData(compressionQuality: 0.0)?.base64EncodedString())!
     }
     
     private func convertStringToImage(string: String) -> UIImage {
