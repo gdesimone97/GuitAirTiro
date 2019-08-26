@@ -51,7 +51,7 @@ class AccountViewController: UIViewController {
             let score = profile["total_score"]
             let wins = profile["wins"]
             let draws = profile["draws"]
-            let losses = profile["looses"]
+            let losses = profile["losses"]
             let gamertagString = profile["gamertag"]
             let image = profile["image"]
             let array = [score,wins,draws,losses]
