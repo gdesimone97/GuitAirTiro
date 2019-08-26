@@ -64,19 +64,19 @@ class GuitAirGameCenter{
         let task = session.dataTask(with: req, completionHandler: { data, response, error -> Void in
             
             do {
-                let json: Dictionary<String,Any> = ["":""]
+                var json: Dictionary<String,Any> = ["":""]
                 var respCode : Int = 0;
                 if data == nil {
                     respCode = 500
                 }
                 else{
-                    let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, Any>
+                    json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, Any>
                     if let httpResp = response as? HTTPURLResponse{
                     respCode = httpResp.statusCode;
                     }
                 }
                 
-                result = (respCode, json) as! (Int, [String : Any]);
+                result = (respCode, json);
                 semaphore.signal();
             } catch {
                 print("Error")
