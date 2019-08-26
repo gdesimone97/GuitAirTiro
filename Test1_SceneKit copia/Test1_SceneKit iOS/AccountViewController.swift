@@ -35,6 +35,8 @@ class AccountViewController: UIViewController {
         
     }
     
+    var thread = DispatchQueue.init(label: "photo")
+    
      override func viewWillAppear(_ animated: Bool) {
         if flag {
             reloadStatOnline()
@@ -103,7 +105,8 @@ class AccountViewController: UIViewController {
     }
     
     private func convertImageToString(image: UIImage) -> String {
-        return (image.jpegData(compressionQuality: 0.0)?.base64EncodedString())!
+        let data = (image.jpegData(compressionQuality: 0.0)?.base64EncodedString())!
+        return data
     }
     
     private func convertStringToImage(string: String) -> UIImage {
@@ -158,7 +161,8 @@ extension AccountViewController: UIImagePickerControllerDelegate,UINavigationCon
         self.imageProfile.image = image
         flag = false
         //print(self.convertImageToString(image: image))
-        DispatchQueue.main.async {
+        dismiss(animated: true, completion: nil)
+        thread.async {
             let res = self.game.updateImage(image: self.convertImageToString(image: image))
             if res.0 == 200 || res.0 == 201 {
                 print("Salvato")
@@ -169,6 +173,5 @@ extension AccountViewController: UIImagePickerControllerDelegate,UINavigationCon
                 print("Non salvato")
             }
         }
-        dismiss(animated: true, completion: nil)
     }
 }
