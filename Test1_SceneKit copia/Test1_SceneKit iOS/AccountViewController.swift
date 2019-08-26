@@ -16,18 +16,15 @@ class AccountViewController: UIViewController {
     @IBOutlet var gamerTag: UILabel!
     @IBOutlet var statLabel: [UILabel]!
     
+    let game = GuitAirGameCenter.share
     
     let imagePickerController = UIImagePickerController()
-    
+    var flag = true
     let userDefaults = UserDefaults.standard
     let gameCenter = GuitAirGameCenter.share
     override func viewDidLoad() {
         super.viewDidLoad()
         pickButton.setTitle("", for: UIControl.State.normal  )
-        
-//        if let image = userDefaults.getImage(forKey: IMAGE_DEFAULT) {
-//            imageProfile.image = image
-//        }
         
         self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2;
         self.imageProfile.clipsToBounds = true;
@@ -36,12 +33,13 @@ class AccountViewController: UIViewController {
         imagePickerController.allowsEditing = false
         imagePickerController.delegate = self
         
-//        PersistanceManager.UploadStat(score: 1, wins: 2, draws: 3, losses: 4, image: nil, gamerTag: nil)
-       
     }
     
      override func viewWillAppear(_ animated: Bool) {
-        reloadStatOnline()
+        if flag {
+            reloadStatOnline()
+            flag = true
+        }
     }
     
     private func reloadStatOnline() {
@@ -56,15 +54,23 @@ class AccountViewController: UIViewController {
             let image = profile["image"]
             let array = [score,wins,draws,losses]
             var i = 0
-            
             gamerTag.text = gamertagString
+            if image != "empty" {
+                imageProfile.image = convertStringToImage(string: image!)
+            }
             for label in self.statLabel {
                 label.text = String(array[i]!)
                 i += 1
             }
-            
+            DispatchQueue.main.async {
+                if image == "empty" {                PersistanceManager.UploadStat(score: Int(score!), wins: Int(wins!), draws: Int(draws!), losses: Int(losses!), image: nil, gamerTag: gamertagString)
+                }
+                else {
+                    
+                    PersistanceManager.UploadStat(score: Int(score!), wins: Int(wins!), draws: Int(draws!), losses: Int(losses!), image: nil , gamerTag: gamertagString)
+                }
+            }
         }
-        
     }
     
     private func loadImageOffline() {
@@ -95,7 +101,17 @@ class AccountViewController: UIViewController {
         let dataImage = image.pngData()
         return NSData(data: dataImage!)
     }
-
+    
+    private func convertImageToString(image: UIImage) -> String {
+        let dataImage = image.pngData()
+        return String(data: dataImage!, encoding: .unicode)!
+    }
+    
+    private func convertStringToImage(string: String) -> UIImage {
+        let data = Data(base64Encoded: string)
+        return UIImage(data: data!)!
+    }
+    
     @IBAction func logOutButton(_ sender: Any) {
         userDefaults.set(0,forKey: LOGIN)
         userDefaults.set(nil, forKey: JWT_STRING)
@@ -139,11 +155,21 @@ class AccountViewController: UIViewController {
 extension AccountViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let image =  info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         self.imageProfile.image = image
-        //userDefault.setImage(image: image, forKey: IMAGE_DEFAULT)
-        let imageToSave = convertImageToData(image: image)
-        PersistanceManager.UploadStat(score: nil, wins: nil, draws: nil, losses: nil, image: imageToSave as Data?, gamerTag: nil)
+        flag = false
+        //print(self.convertImageToString(image: image))
+        DispatchQueue.main.async {
+            let res = self.game.updateImage(image: self.convertImageToString(image: image))
+            if res.0 == 200 || res.0 == 201 {
+                print("Salvato")
+            }
+            else {
+                print(res.0)
+                print(res.1)
+                print("Non salvato")
+            }
+        }
         dismiss(animated: true, completion: nil)
     }
 }
