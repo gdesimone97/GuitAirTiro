@@ -42,6 +42,10 @@ class GameViewController: UIViewController {
     var callbackClosure: ( () -> Void )?
     
     override func viewWillDisappear(_ animated: Bool) {
+        if let device = session.showConnectedDevices() {
+            session.sendSignal(device[0], points: points)
+        }
+        
         sendSignalWhenClosing()
         soundEffect.stopGuitars()
         self.playing = false
@@ -87,8 +91,8 @@ class GameViewController: UIViewController {
     var consecutivePlaneNode: SCNNode?
     
     
-    var song: Songs = Songs.LaCanzoneDelSole // Da settare dal telefono
-    var songRecord: Int = 140 // DA SETTARE DAL TELEFONOOOOO
+    var song: Songs = Songs.KnockinOnHeavensDoor // Da settare dal telefono
+    var songRecord: Int = 1000 // DA SETTARE DAL TELEFONOOOOO
     
     // This is the thread that shows nodes on the guitar
     let noteQueue = DispatchQueue(label: "noteQueue", qos: .userInteractive)
@@ -400,6 +404,11 @@ class GameViewController: UIViewController {
 }
 
 extension GameViewController: SessionManagerDelegate {
+    
+    func mexReceived(_ manager: SessionManager, didMessageReceived: Int) {
+        <#code#>
+    }
+    
     
     func peerFound(_ manger: SessionManager, peer: MCPeerID) {
         dictionary.addSample(peer: peer)
