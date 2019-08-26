@@ -110,6 +110,7 @@
 		F225CEF22313E910007CFE6D /* Send Friend Request ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F225CEF12313E910007CFE6D /* Send Friend Request ViewController.swift */; };
 		F225CEF423142C2C007CFE6D /* Friend Request ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F225CEF323142C2C007CFE6D /* Friend Request ViewController.swift */; };
 		F225CEF623142CB6007CFE6D /* Pending Friend Request ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F225CEF523142CB6007CFE6D /* Pending Friend Request ViewController.swift */; };
+		F225CEF823142F88007CFE6D /* Songs TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F225CEF723142F88007CFE6D /* Songs TableViewController.swift */; };
 		F229440C2310359D000C14C5 /* MatchButton.png in Resources */ = {isa = PBXBuildFile; fileRef = F229440B2310359D000C14C5 /* MatchButton.png */; };
 		F2AB389F230FD9FF00833589 /* Pending Request ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AB389E230FD9FF00833589 /* Pending Request ViewController.swift */; };
 		F2AB38A6230FDDA700833589 /* accept.png in Resources */ = {isa = PBXBuildFile; fileRef = F2AB38A4230FDDA600833589 /* accept.png */; };
@@ -272,6 +273,7 @@
 		F225CEF12313E910007CFE6D /* Send Friend Request ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Send Friend Request ViewController.swift"; sourceTree = "<group>"; };
 		F225CEF323142C2C007CFE6D /* Friend Request ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Friend Request ViewController.swift"; sourceTree = "<group>"; };
 		F225CEF523142CB6007CFE6D /* Pending Friend Request ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pending Friend Request ViewController.swift"; sourceTree = "<group>"; };
+		F225CEF723142F88007CFE6D /* Songs TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Songs TableViewController.swift"; sourceTree = "<group>"; };
 		F229440B2310359D000C14C5 /* MatchButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MatchButton.png; sourceTree = "<group>"; };
 		F2AB389E230FD9FF00833589 /* Pending Request ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pending Request ViewController.swift"; sourceTree = "<group>"; };
 		F2AB38A4230FDDA600833589 /* accept.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accept.png; sourceTree = "<group>"; };
@@ -428,6 +430,7 @@
 				0898EC2022F05146007C32DD /* SettingsTableViewController.swift */,
 				F229440B2310359D000C14C5 /* MatchButton.png */,
 				F2AB38A4230FDDA600833589 /* accept.png */,
+				F225CEF723142F88007CFE6D /* Songs TableViewController.swift */,
 				F225CEF12313E910007CFE6D /* Send Friend Request ViewController.swift */,
 				F2AB38A5230FDDA700833589 /* refuse.png */,
 				F207C468230EB2D8002DA2BF /* Multiplayer TableViewController.swift */,
@@ -860,6 +863,7 @@
 				0875E9FE230D99B2009964B1 /* PersistanceManager.swift in Sources */,
 				086325B622F3328800513E1B /* LoginViewController.swift in Sources */,
 				086325B022F326B600513E1B /* userDefaultKeysString.swift in Sources */,
+				F225CEF823142F88007CFE6D /* Songs TableViewController.swift in Sources */,
 				77DFAD2222E84C56006DCBEE /* AppDelegate.swift in Sources */,
 				08D464B922F18E4500B8D43B /* GameController.swift in Sources */,
 			);

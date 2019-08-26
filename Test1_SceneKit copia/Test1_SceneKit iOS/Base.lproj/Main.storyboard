@@ -2147,10 +2147,10 @@
             </objects>
             <point key="canvasLocation" x="2327.536231884058" y="2090.625"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Songs Table View Controller-->
         <scene sceneID="NAs-VC-av2">
             <objects>
-                <tableViewController id="HbB-9H-bjS" sceneMemberID="viewController">
+                <tableViewController id="HbB-9H-bjS" customClass="Songs_TableViewController" customModule="Test1_SceneKit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="XrD-E3-YPQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2185,10 +2185,10 @@
             </objects>
             <point key="canvasLocation" x="2369" y="2851"/>
         </scene>
-        <!--View Controller-->
+        <!--Pending Friend Request View Controller-->
         <scene sceneID="iNT-Eq-GhJ">
             <objects>
-                <viewController id="TNA-dy-BZQ" sceneMemberID="viewController">
+                <viewController id="TNA-dy-BZQ" customClass="Pending_Friend_Request_ViewController" customModule="Test1_SceneKit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hbG-mf-eq9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2239,10 +2239,10 @@
             </objects>
             <point key="canvasLocation" x="3180" y="1977"/>
         </scene>
-        <!--View Controller-->
+        <!--Friend List View Controller-->
         <scene sceneID="Nd4-EU-SqM">
             <objects>
-                <viewController id="koD-JQ-hbT" sceneMemberID="viewController">
+                <viewController id="koD-JQ-hbT" customClass="FriendList_ViewController" customModule="Test1_SceneKit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fqI-1L-9sJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
