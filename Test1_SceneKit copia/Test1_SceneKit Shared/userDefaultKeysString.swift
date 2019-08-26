@@ -18,6 +18,7 @@ let AUDIO_FILE_NAME = "audio_file_name"
 let IMAGE_DEFAULT = "image_default"
 let JWT_STRING = "jwt"
 let TOKEN = "token"
+let UPLOAD = "upload"
 
 let userDefault = UserDefaults.standard
 
