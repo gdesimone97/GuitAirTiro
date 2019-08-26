@@ -26,8 +26,8 @@ class LoginViewController: UIViewController {
         let pass = passwordText.text
         let game = GuitAirGameCenter.share
         if user != nil && pass != nil {
-            let res = game.login(gamertag: user!, password: pass!)
-            print(res)
+            let token = userDefault.string(forKey: TOKEN)
+            let res = game.login(gamertag: user!, password: pass!,devicetoken: token ?? "")
             if res.0 == 200 {
                 print("Sono entrato")
                 userDefault.set(1, forKey: LOGIN)
