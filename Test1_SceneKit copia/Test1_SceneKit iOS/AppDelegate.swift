@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let NOTATION_KEY = "PreferredNotation";
     let notificationCenter = UNUserNotificationCenter.current()
     let CATEGORY: String = "INVITATION"
-    
+    let game = GuitAirGameCenter.share
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -211,14 +211,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate: UNUserNotificationCenterDelegate {
      func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
-        let id = userInfo["match"]
+        let idStr = userInfo["payload"] as! String
+        let id = Int(idStr)
         switch response.actionIdentifier {
         case "ACCEPT_ACTION":
             print("invito accettato")
-            /* fai qualcosa */
+            let res = game.acceptInvitation(id: id!)
+            print("res: \(res.0), id: \(id)")
+            if res.0 != 200 || res.0 != 201 {
+                print("Partita non accettata")
+                print("res: \(res.0), id: \(id)")
+            }
         case "DECLINE_ACTION":
             print("invito declinato")
-            /* fai qualcosa */
+            let res = game.rejectInvitation(id: id!)
+            if res.0 != 200 || res.0 != 201 {
+                print("res: \(res.0), id: \(id)")
+            }
         default:
             break
         }
