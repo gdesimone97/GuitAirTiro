@@ -129,28 +129,4 @@ extension AccountViewController: UIImagePickerControllerDelegate,UINavigationCon
         PersistanceManager.UploadStat(score: nil, wins: nil, draws: nil, losses: nil, image: imageToSave as Data?, gamerTag: nil)
         dismiss(animated: true, completion: nil)
     }
-    
-}
-
-extension UserDefaults {
-    func setImage(image: UIImage,forKey: String) {
-        let dataImage = image.pngData()
-        if dataImage == nil {
-            print("Errore conversione")
-            return
-        }
-        UserDefaults.standard.set(dataImage, forKey: forKey)
-    }
-    
-    func getImage(forKey: String) -> UIImage? {
-        let dataImage = UserDefaults.standard.object(forKey: forKey) as? Data
-        if dataImage == nil {
-            return nil
-        }
-        else {
-            let imageNotRotate = UIImage(data: dataImage!)
-            let imageWillRotate = imageNotRotate?.cgImage
-            return UIImage(cgImage: imageWillRotate!, scale: CGFloat(1.0), orientation: .right)
-        }
-    }
 }
