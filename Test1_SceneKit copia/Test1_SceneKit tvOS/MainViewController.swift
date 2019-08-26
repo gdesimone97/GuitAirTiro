@@ -45,7 +45,7 @@ class MainViewController: UIViewController {
     var flagPanelConnection = false
     var row = 0
     var chords: [String]?
-    var watch: Bool!
+    var pointsRecord: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -288,6 +288,7 @@ class MainViewController: UIViewController {
                 self.checkConnection()
                 self.soundEffect = SoundEffect()
             }
+            GameViewController.songRecord = pointsRecord
             GameViewController.dictionary = self.dictionary
             if self.chords != nil {
                 GameViewController.chords = self.chords!
@@ -339,6 +340,9 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: SessionManagerDelegate {
+    func mexReceived(_ manager: SessionManager, didMessageReceived: Int) {
+        pointsRecord = didMessageReceived
+    }
     
     func peerFound(_ manger: SessionManager, peer: MCPeerID) {
         dictionary.addSample(peer: peer)
@@ -392,17 +396,9 @@ extension MainViewController: SessionManagerDelegate {
         case .showElectricGuitar:
             self.guitarsManager.changeGuitar(newGuitar: .electric)
             
-            
-        case .OpenGameWithWatch:
-            DispatchQueue.main.async {
-                self.soundEffect.stopSongs()
-                self.watch = true
-                self.performSegue(withIdentifier: "GameSegue", sender: nil)
-            }
         case .OpenGameWithOutWatch:
             DispatchQueue.main.async {
                 self.soundEffect.stopSongs()
-                self.watch = false
                 self.performSegue(withIdentifier: "GameSegue", sender: nil)
             }
             
