@@ -14,43 +14,62 @@ class LoginViewController: UIViewController {
     @IBOutlet var usernameText: UITextField!
     @IBOutlet var passwordText: UITextField!
     @IBOutlet var errorLabel: UILabel!
-    
+    var indicator = UIActivityIndicatorView()
     override func viewDidLoad() {
         super.viewDidLoad()
         usernameText.delegate = self
         passwordText.delegate = self
         errorLabel.text = nil
+        indicator.center = self.view.center
+        indicator.style = .whiteLarge
+        indicator.hidesWhenStopped = true
+        indicator.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+        view.addSubview(indicator)
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         errorLabel.text = ""
+        usernameText.text = ""
+        passwordText.text = ""
     }
     
     @IBAction func signIn(_ sender: Any) {
         let user = usernameText.text
         let pass = passwordText.text
         let game = GuitAirGameCenter.share
+        self.view.endEditing(true)
         if user != nil && pass != nil {
             let token = userDefault.string(forKey: TOKEN)
             let res = game.login(gamertag: user!, password: pass!,devicetoken: token ?? "")
             if res.0 == 200 || res.0 == 201 {
                 print("Sono entrato")
                 userDefault.set(1, forKey: LOGIN)
+                
+                indicator.startAnimating()
                 performSegue(withIdentifier: "login", sender: nil)
             }
-            else {
+                
+            else if res.0 == 500 {
                 DispatchQueue.main.async {
                     self.errorLabel.text = "No connection"
                 }
             }
+            else {
+                DispatchQueue.main.async {
+                    self.errorLabel.text = "Username or password wrong"
+                }
+            }
         }
-        
     }
     
     
     @IBAction func SignUpButton(_ sender: Any) {
         
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        indicator.stopAnimating()
     }
     
 }
