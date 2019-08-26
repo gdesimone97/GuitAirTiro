@@ -17,8 +17,6 @@ class GuitAirGameCenter{
     static let share = GuitAirGameCenter()
     
     private init() {
-        let t = userDefault.string(forKey: JWT_STRING)
-        
         if let jwt = userDefault.string(forKey: JWT_STRING) {
             self.JWT = jwt
         }
@@ -98,7 +96,7 @@ class GuitAirGameCenter{
     
     public func login(gamertag:String, password:String, devicetoken : String = "")->(Int,[String:String]){
         
-        let params = ["gamertag":gamertag,"password":password, "devicetoken":devicetoken];
+        let params = ["gamertag":gamertag,"password":password, "device_token":devicetoken];
         
         let urlReq = buildAPIRequest(httpMethod: "POST", method: .account, params: params);
         let res = makeAPIRequest(req: urlReq) as! (Int,[String:String]);
