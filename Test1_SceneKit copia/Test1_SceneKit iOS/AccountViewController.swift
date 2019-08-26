@@ -98,6 +98,7 @@ class AccountViewController: UIViewController {
 
     @IBAction func logOutButton(_ sender: Any) {
         userDefaults.set(0,forKey: LOGIN)
+        userDefaults.set(nil, forKey: JWT_STRING)
     }
     
     @IBAction func takePhoto(_ sender: Any) {
