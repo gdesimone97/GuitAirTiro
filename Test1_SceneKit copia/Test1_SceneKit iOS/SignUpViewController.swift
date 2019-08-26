@@ -15,6 +15,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet var invalidPasswordLabel: UILabel!
     @IBOutlet var invalidLogIn: UILabel!
     
+    var indicator = UIActivityIndicatorView()
     let SEGUE = "return_to_login"
     
     override func viewDidLoad() {
@@ -23,10 +24,16 @@ class SignUpViewController: UIViewController {
         passwordText.delegate = self
         invalidPasswordLabel.text = ""
         invalidLogIn.text = ""
+        indicator.center = self.view.center
+        indicator.style = .whiteLarge
+        indicator.hidesWhenStopped = true
+        indicator.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+        view.addSubview(indicator)
         // Do any additional setup after loading the view.
     }
     
     @IBAction func signUpButton(_ sender: Any) {
+        indicator.startAnimating()
         let game = GuitAirGameCenter.share
         var flag = true
         if userText.text == "" {
@@ -62,8 +69,12 @@ class SignUpViewController: UIViewController {
                 invalidLogIn.text = "Username or password wrong"
             }
         }
-        
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        indicator.stopAnimating()
+    }
+    
 }
 
 
