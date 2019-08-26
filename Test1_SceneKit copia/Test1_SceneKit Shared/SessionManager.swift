@@ -221,7 +221,7 @@ extension SessionManager: MCNearbyServiceBrowserDelegate {
 
 extension SessionManager: MCNearbyServiceAdvertiserDelegate {
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-        
+        #if os(iOS)
         let allert = UIAlertController(title: "Invitation", message: "Do you want accept the connection request?", preferredStyle: .alert)
         let actionAccept = UIAlertAction(title: "Accept", style: .default, handler: { action in
             invitationHandler(true,self.session)
@@ -234,5 +234,8 @@ extension SessionManager: MCNearbyServiceAdvertiserDelegate {
         allert.addAction(actionDecline)
         let viewController:UIViewController = UIApplication.shared.keyWindow!.rootViewController!
         viewController.present(allert, animated: true, completion: nil)
+        #elseif os(tvOS)
+        invitationHandler(false,self.session)
+        #endif
     }
 }
