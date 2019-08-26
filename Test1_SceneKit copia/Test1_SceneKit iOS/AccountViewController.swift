@@ -15,6 +15,7 @@ class AccountViewController: UIViewController {
     
     @IBOutlet var gamerTag: UILabel!
     @IBOutlet var statLabel: [UILabel]!
+    @IBOutlet var logOutButton: UIButton!
     
     let game = GuitAirGameCenter.share
     
@@ -32,20 +33,32 @@ class AccountViewController: UIViewController {
         
         imagePickerController.allowsEditing = false
         imagePickerController.delegate = self
-        
     }
     
-    var thread = DispatchQueue.init(label: "photo")
+    let thread = DispatchQueue.init(label: "photo")
+    let threadCoreData = DispatchQueue.init(label: "core_thread")
     
      override func viewWillAppear(_ animated: Bool) {
         if flag {
-            reloadStatOnline()
+            if !reloadStatOnline() {
+                reloadStatOffline()
+                loadImage()
+            }
             flag = true
         }
     }
     
-    private func reloadStatOnline() {
+    private func reloadStatOnline() -> Bool {
+        var myFlag = true
         let res = gameCenter.getMyProfile()
+        if res.0 == 500 {
+            return false
+        }
+        if userDefaults.bool(forKey: UPLOAD) {
+            loadImage()
+            userDefaults.set(0, forKey: UPLOAD)
+            flag = false
+        }
         if res.0 == 200 || res.0 == 201 {
             let profile = res.1
             let score = profile["total_score"]
@@ -57,25 +70,18 @@ class AccountViewController: UIViewController {
             let array = [score,wins,draws,losses]
             var i = 0
             gamerTag.text = gamertagString
-            if image != "empty" {
+            if image != "empty" && myFlag{
                 imageProfile.image = convertStringToImage(string: image!)
             }
             for label in self.statLabel {
                 label.text = String(array[i]!)
                 i += 1
             }
-            DispatchQueue.main.async {
-                if image == "empty" {                PersistanceManager.UploadStat(score: Int(score!), wins: Int(wins!), draws: Int(draws!), losses: Int(losses!), image: nil, gamerTag: gamertagString)
-                }
-                else {
-                    
-                    PersistanceManager.UploadStat(score: Int(score!), wins: Int(wins!), draws: Int(draws!), losses: Int(losses!), image: nil , gamerTag: gamertagString)
-                }
-            }
         }
+        return true
     }
     
-    private func loadImageOffline() {
+    private func loadImage() {
         if let resultImage = self.getImage(){
             self.imageProfile.image = resultImage
         }
@@ -168,10 +174,13 @@ extension AccountViewController: UIImagePickerControllerDelegate,UINavigationCon
                 print("Salvato")
             }
             else {
-                print(res.0)
-                print(res.1)
+                self.userDefaults.set(1, forKey: UPLOAD)
                 print("Non salvato")
             }
+        }
+        threadCoreData.async {
+            PersistanceManager.UploadStat(score: nil, wins: nil, draws: nil, losses: nil, image: self.convertImageToData(image: image) as Data?, gamerTag: nil)
+            print("Immagine aggiornata nel core data")
         }
     }
 }
