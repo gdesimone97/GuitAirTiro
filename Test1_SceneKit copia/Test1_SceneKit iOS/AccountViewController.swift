@@ -46,9 +46,25 @@ class AccountViewController: UIViewController {
     
     private func reloadStatOnline() {
         let res = gameCenter.getMyProfile()
-        print(res)
-        let profile = res.1["profile"]!
-        print(profile)
+        if res.0 == 200 || res.0 == 201 {
+            let profile = res.1
+            let score = profile["total_score"]
+            let wins = profile["wins"]
+            let draws = profile["draws"]
+            let losses = profile["looses"]
+            let gamertagString = profile["gamertag"]
+            let image = profile["image"]
+            let array = [score,wins,draws,losses]
+            var i = 0
+            
+            gamerTag.text = gamertagString
+            for label in self.statLabel {
+                label.text = String(array[i]!)
+                i += 1
+            }
+            
+        }
+        
     }
     
     private func loadImageOffline() {
