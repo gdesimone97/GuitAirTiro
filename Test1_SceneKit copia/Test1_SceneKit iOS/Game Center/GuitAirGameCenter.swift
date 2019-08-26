@@ -17,8 +17,6 @@ class GuitAirGameCenter{
     static let share = GuitAirGameCenter()
     
     private init() {
-        let t = userDefault.string(forKey: JWT_STRING)
-        
         if let jwt = userDefault.string(forKey: JWT_STRING) {
             self.JWT = jwt
         }

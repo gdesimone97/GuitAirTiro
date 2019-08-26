@@ -239,6 +239,14 @@ extension ViewController: WCSessionDelegate {
 }
 
 extension ViewController: SessionManagerDelegate {
+    func mexReceived(_ manager: SessionManager, didMessageReceived: Songs) {
+        return
+    }
+    
+    func mexReceived(_ manager: SessionManager, didMessageReceived: Int) {
+        return
+    }
+    
     
     func mexReceived(_ manager: SessionManager, didMessageReceived: Array<String>) {
         return

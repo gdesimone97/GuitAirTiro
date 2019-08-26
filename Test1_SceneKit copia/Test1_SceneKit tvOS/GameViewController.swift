@@ -71,7 +71,6 @@ class GameViewController: UIViewController {
     
     var chords: [String]! // Those 2 vars are initialized by the mainViewController
     
-    var startNode: SCNNode?
     var boxStartNode: SCNNode?
     var pointText: SCNNode?
     var multiplierNode: SCNNode?
@@ -83,6 +82,9 @@ class GameViewController: UIViewController {
     var redBoxNode: SCNNode?
     var recordBarNode: SCNNode?
     var progressBarNode: SCNNode?
+    var recordPlaneNode: SCNNode?
+    var failedPlaneNode: SCNNode?
+    var consecutivePlaneNode: SCNNode?
     
     
     var song: Songs = Songs.LaCanzoneDelSole // Da settare dal telefono
@@ -119,12 +121,8 @@ class GameViewController: UIViewController {
         startQueue.async {
             sleep(1)
             self.points = 0
-            DispatchQueue.main.async {
-                self.boxStartNode?.opacity = 0.7
-                self.startNode = self.textManager.addTextAtPosition(str: "Press the button on the remote to start!", x: -2, y: 3, z: 0)
-            }
+            self.boxStartNode?.runAction(SCNAction.fadeIn(duration: 0.5))
             self.semaphoreStart.wait()
-            self.startNode!.removeFromParentNode()
             self.boxStartNode!.removeFromParentNode()
             self.soundEffect.countdown()
             self.textManager.addGameNotification(str: "3", color: UIColor.white, duration: 0.5, animation: true)
@@ -185,7 +183,7 @@ class GameViewController: UIViewController {
         // Setto il motionDelegate del controller
         motionDelegate = self
         
-        pointerManager = PointerManager(progressBar: progressBarNode!, recordBar: recordBarNode!, record: (songRecord != 0 ? songRecord : nil), pointer: pointerNode!, green: greenBoxNode!, yellow: yellowBoxNode!, red: redBoxNode!, function: failed)
+        pointerManager = PointerManager(progressBar: progressBarNode!, recordBar: recordBarNode!, record: songRecord, recordBox: recordPlaneNode!, pointer: pointerNode!, green: greenBoxNode!, yellow: yellowBoxNode!, red: redBoxNode!, function: failed)
         
     }
     
@@ -210,7 +208,7 @@ class GameViewController: UIViewController {
             }
         }
         
-        if startNode != nil {
+        if !playing && boxStartNode?.opacity == 1 {
             semaphoreStart.signal()
         }
     }
@@ -246,6 +244,12 @@ class GameViewController: UIViewController {
                 progressBarNode = node
             case "recordBar":
                 recordBarNode = node
+            case "recordPlane":
+                recordPlaneNode = node
+            case "failedPlane":
+                failedPlaneNode = node
+            case "consecutivePlane":
+                consecutivePlaneNode = node
             default: break
             }
         }
@@ -331,20 +335,39 @@ class GameViewController: UIViewController {
             multiplier = 1
         case 10:
             multiplier = 2
-            textManager.addGameNotification(str: "Wow! 10 consecutive notes!", color: UIColor.white, duration: 2, animation: false)
-            gameGuitarManager.fire()
+            DispatchQueue(label: "points").async {
+                self.consecutivePlaneNode?.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "Art.scnassets/Images/Scritta10")
+                self.consecutivePlaneNode?.opacity = 1
+                self.gameGuitarManager.fire()
+                sleep(2)
+                self.consecutivePlaneNode?.runAction(SCNAction.fadeOut(duration: 0.5))
+            }
         case 20:
             multiplier = 3
-            textManager.addGameNotification(str: "Amazing! 20 consecutive notes!", color: UIColor.white, duration: 2, animation: false)
-            gameGuitarManager.fire()
+            DispatchQueue(label: "points").async {
+                self.consecutivePlaneNode?.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "Art.scnassets/Images/Scritta20")
+                self.consecutivePlaneNode?.opacity = 1
+                self.gameGuitarManager.fire()
+                sleep(2)
+                self.consecutivePlaneNode?.runAction(SCNAction.fadeOut(duration: 0.5))
+            }
         case 30:
             multiplier = 4
-            textManager.addGameNotification(str: "Impressive! 30 consecutive notes!", color: UIColor.white, duration: 2, animation: false)
-            gameGuitarManager.fire()
+            DispatchQueue(label: "points").async {
+                self.consecutivePlaneNode?.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "Art.scnassets/Images/Scritta30")
+                self.consecutivePlaneNode?.opacity = 1
+                self.gameGuitarManager.fire()
+                sleep(2)
+                self.consecutivePlaneNode?.runAction(SCNAction.fadeOut(duration: 0.5))
+            }
         case 40:
-            multiplier = 5
-            textManager.addGameNotification(str: "Perfect! 40 consecutive notes!", color: UIColor.white, duration: 2, animation: false)
-            gameGuitarManager.fire()
+            DispatchQueue(label: "points").async {
+                self.consecutivePlaneNode?.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "Art.scnassets/Images/Scritta40")
+                self.consecutivePlaneNode?.opacity = 1
+                self.gameGuitarManager.fire()
+                sleep(2)
+                self.consecutivePlaneNode?.runAction(SCNAction.fadeOut(duration: 0.5))
+            }
         default:
             break
         }
@@ -356,7 +379,9 @@ class GameViewController: UIViewController {
             self.playing = false
             self.motionDelegate = nil
             self.soundEffect.booSound()
-            self.textManager.addGameNotification(str: "You failed!", color: UIColor.red, duration: 3, animation: false)
+            self.failedPlaneNode?.runAction(SCNAction.group( [ SCNAction.fadeIn(duration: 0.3), SCNAction.move(by: SCNVector3(x: 0, y: 0, z: 2), duration: 0.4), SCNAction.rotateBy(x: 0, y: 0, z: 0.2, duration: 0.4) ] ))
+            self.soundEffect.explosionSound()
+            self.soundEffect.booSound()
             sleep(4)
             DispatchQueue.main.async {
                 self.dismiss(animated: false, completion: nil)

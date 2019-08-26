@@ -10,9 +10,17 @@ import UIKit
 
 class Match_ViewController: UIViewController {
 
-   
+    @IBAction func playButton(_ sender: Any) {
+    }
+    @IBOutlet weak var innerView: UIView!
+    
+    @IBOutlet weak var turnLabel: UILabel!
+    @IBOutlet weak var gamertagLabel: UILabel!
+    @IBOutlet weak var songLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        innerView.layer.cornerRadius = 14
         // Do any additional setup after loading the view.
     }
     

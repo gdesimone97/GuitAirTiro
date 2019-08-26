@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0828F0DE2310706C0062ADCF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0828F0DD2310706C0062ADCF /* SignUpViewController.swift */; };
 		0854421D22F8226E00C73B03 /* registrazione.png in Resources */ = {isa = PBXBuildFile; fileRef = 0854421C22F8226D00C73B03 /* registrazione.png */; };
 		0854422422F8369800C73B03 /* frecciasx@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0854422322F8369700C73B03 /* frecciasx@2x.png */; };
 		0854422622F838F200C73B03 /* frecciadx@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0854422522F838F200C73B03 /* frecciadx@2x.png */; };
@@ -64,6 +65,7 @@
 		08D465BA22F1A78100B8D43B /* LogoWatch.png in Resources */ = {isa = PBXBuildFile; fileRef = 08D465B722F1A78000B8D43B /* LogoWatch.png */; };
 		08D465BB22F1A78100B8D43B /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08D465B822F1A78100B8D43B /* Interface.storyboard */; };
 		08D465BC22F1A78100B8D43B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08D465B922F1A78100B8D43B /* Assets.xcassets */; };
+		08D8E2C52313D02D005A42E9 /* Songs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7703F79022FAE2A30075BF92 /* Songs.swift */; };
 		08F9EF01230EEB61001B5656 /* GuitAirAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F9EEFF230EEB61001B5656 /* GuitAirAPI.swift */; };
 		08F9EF02230EEB61001B5656 /* GuitAirGameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F9EF00230EEB61001B5656 /* GuitAirGameCenter.swift */; };
 		259FCF7A4466898030E2854A /* Pods_Test1_SceneKit_watchOS_App_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E921CE1C6D8E8B53642FAF /* Pods_Test1_SceneKit_watchOS_App_Extension.framework */; };
@@ -104,6 +106,7 @@
 		F207C45F230E99E3002DA2BF /* multiplayer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F207C45E230E99E2002DA2BF /* multiplayer@2x.png */; };
 		F207C467230EA440002DA2BF /* swiperight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F207C466230EA43F002DA2BF /* swiperight@2x.png */; };
 		F207C469230EB2D8002DA2BF /* Multiplayer TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F207C468230EB2D8002DA2BF /* Multiplayer TableViewController.swift */; };
+		F229440C2310359D000C14C5 /* MatchButton.png in Resources */ = {isa = PBXBuildFile; fileRef = F229440B2310359D000C14C5 /* MatchButton.png */; };
 		F2AB389F230FD9FF00833589 /* Pending Request ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AB389E230FD9FF00833589 /* Pending Request ViewController.swift */; };
 		F2AB38A6230FDDA700833589 /* accept.png in Resources */ = {isa = PBXBuildFile; fileRef = F2AB38A4230FDDA600833589 /* accept.png */; };
 		F2AB38A7230FDDA700833589 /* refuse.png in Resources */ = {isa = PBXBuildFile; fileRef = F2AB38A5230FDDA700833589 /* refuse.png */; };
@@ -156,6 +159,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0828F0DD2310706C0062ADCF /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		0854421C22F8226D00C73B03 /* registrazione.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = registrazione.png; sourceTree = "<group>"; };
 		0854422322F8369700C73B03 /* frecciasx@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "frecciasx@2x.png"; sourceTree = "<group>"; };
 		0854422522F838F200C73B03 /* frecciadx@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "frecciadx@2x.png"; sourceTree = "<group>"; };
@@ -260,6 +264,7 @@
 		F207C45E230E99E2002DA2BF /* multiplayer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "multiplayer@2x.png"; sourceTree = "<group>"; };
 		F207C466230EA43F002DA2BF /* swiperight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "swiperight@2x.png"; sourceTree = "<group>"; };
 		F207C468230EB2D8002DA2BF /* Multiplayer TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Multiplayer TableViewController.swift"; sourceTree = "<group>"; };
+		F229440B2310359D000C14C5 /* MatchButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MatchButton.png; sourceTree = "<group>"; };
 		F2AB389E230FD9FF00833589 /* Pending Request ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pending Request ViewController.swift"; sourceTree = "<group>"; };
 		F2AB38A4230FDDA600833589 /* accept.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accept.png; sourceTree = "<group>"; };
 		F2AB38A5230FDDA700833589 /* refuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refuse.png; sourceTree = "<group>"; };
@@ -411,6 +416,7 @@
 				0898EC2322F05146007C32DD /* NotationTableViewCell.swift */,
 				0898EC2622F05146007C32DD /* NotationTableViewController.swift */,
 				0898EC2022F05146007C32DD /* SettingsTableViewController.swift */,
+				F229440B2310359D000C14C5 /* MatchButton.png */,
 				F2AB38A4230FDDA600833589 /* accept.png */,
 				F2AB38A5230FDDA700833589 /* refuse.png */,
 				F207C468230EB2D8002DA2BF /* Multiplayer TableViewController.swift */,
@@ -420,6 +426,7 @@
 				77DFAD2B22E84C56006DCBEE /* Info.plist */,
 				086325AD22F320D600513E1B /* AccountViewController.swift */,
 				086325B522F3328800513E1B /* LoginViewController.swift */,
+				0828F0DD2310706C0062ADCF /* SignUpViewController.swift */,
 				086325B722F33A5100513E1B /* NavigationController.swift */,
 				F2AB38AC230FF5B000833589 /* Match ViewController.swift */,
 				F2AB38AA230FF52700833589 /* Matches ViewController.swift */,
@@ -651,6 +658,7 @@
 				087B1E5522F87A2700BDC2C1 /* elettric_guitar.png in Resources */,
 				088E1CC422F345F1006A197D /* BlueButton.png in Resources */,
 				087B1E5422F87A2700BDC2C1 /* classic_guitar.png in Resources */,
+				F229440C2310359D000C14C5 /* MatchButton.png in Resources */,
 				08CF906422F475A900F8B853 /* lose-image.png in Resources */,
 				0887361022F444DC00472B14 /* guitar-player.png in Resources */,
 				0887361422F4498400472B14 /* account@2x.png in Resources */,
@@ -804,6 +812,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0828F0DE2310706C0062ADCF /* SignUpViewController.swift in Sources */,
 				F2AB38A9230FE29400833589 /* Invitations ViewController.swift in Sources */,
 				0898EC2C22F05146007C32DD /* ViewController.swift in Sources */,
 				77DFAD5322E84C56006DCBEE /* MainController.swift in Sources */,
@@ -819,6 +828,7 @@
 				0875E9F1230D826D009964B1 /* appModel.xcdatamodeld in Sources */,
 				F2AB389F230FD9FF00833589 /* Pending Request ViewController.swift in Sources */,
 				0875E9F4230D8792009964B1 /* Stat+CoreDataClass.swift in Sources */,
+				08D8E2C52313D02D005A42E9 /* Songs.swift in Sources */,
 				088BAC3622F9720800784692 /* DevicesSettingsPaired.swift in Sources */,
 				0898EC2722F05146007C32DD /* SettingsTableViewController.swift in Sources */,
 				087B1E5122F878DE00BDC2C1 /* GuitarSelectedViewController.swift in Sources */,

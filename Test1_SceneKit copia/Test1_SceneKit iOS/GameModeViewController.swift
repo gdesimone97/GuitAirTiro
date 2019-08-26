@@ -203,8 +203,8 @@ class GameModeViewController: UIViewController {
         
         let guitarSelected = UserDefaults.getGuitar(forKey: GUITAR)
         if guitarSelected == TypeOfGuitar.electric {
-            motionManager.deviceMotionUpdateInterval = 0.3
             self.motionManager = CMMotionManager()
+            motionManager.deviceMotionUpdateInterval = 0.3
             motionManager.startDeviceMotionUpdates(to: OperationQueue.current!, withHandler: { data, error -> Void in
                 if let data = data {
                     self.newAttitude = abs(data.attitude.roll)
@@ -376,6 +376,14 @@ class GameModeViewController: UIViewController {
 }
 
 extension GameModeViewController: SessionManagerDelegate {
+    func mexReceived(_ manager: SessionManager, didMessageReceived: Songs) {
+        return
+    }
+    
+    func mexReceived(_ manager: SessionManager, didMessageReceived: Int) {
+        return
+    }
+    
     func peerFound(_ manger: SessionManager, peer: MCPeerID) {
         return
     }

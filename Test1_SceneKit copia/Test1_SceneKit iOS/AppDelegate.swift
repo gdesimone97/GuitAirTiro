@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let NOTATION_KEY = "PreferredNotation";
     let notificationCenter = UNUserNotificationCenter.current()
     let CATEGORY: String = "INVITATION"
-    
+    let game = GuitAirGameCenter.share
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -42,7 +42,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // *** Notifiche ***
         // Autorizzazioni
-        notificationCenter.requestAuthorization(options: [.alert , .sound, .providesAppNotificationSettings]) { (granted, error) in /* funzionalità in base all'autorizzazione */ }
+        notificationCenter.requestAuthorization(options: [.alert , .sound, .providesAppNotificationSettings]) { (granted, error) in /* funzionalità in base all'autorizzazione */
+            if granted {
+                    DispatchQueue.main.async {
+                        if !application.isRegisteredForRemoteNotifications {
+                        // Registrazione per le push notification
+                        application.registerForRemoteNotifications()
+                    }
+                }
+            }
+            
+        }
         notificationCenter.getNotificationSettings { (settings) in
             guard settings.authorizationStatus == .authorized else { return }
             DispatchQueue.main.async {
@@ -187,6 +197,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let token = tokenParts.joined()
+        userDefault.set(token, forKey: TOKEN)
         print("Device Token: \(token)")
         
     }
@@ -200,14 +211,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate: UNUserNotificationCenterDelegate {
      func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
-        let gamerTag = userInfo["GAMERTAG"]
+        let idStr = userInfo["payload"] as! String
+        let id = Int(idStr)
         switch response.actionIdentifier {
         case "ACCEPT_ACTION":
             print("invito accettato")
-            /* fai qualcosa */
+            let res = game.acceptInvitation(id: id!)
+            print("res: \(res.0), id: \(id)")
+            if res.0 != 200 || res.0 != 201 {
+                print("Partita non accettata")
+                print("res: \(res.0), id: \(id)")
+            }
         case "DECLINE_ACTION":
             print("invito declinato")
-            /* fai qualcosa */
+            let res = game.rejectInvitation(id: id!)
+            if res.0 != 200 || res.0 != 201 {
+                print("res: \(res.0), id: \(id)")
+            }
         default:
             break
         }
