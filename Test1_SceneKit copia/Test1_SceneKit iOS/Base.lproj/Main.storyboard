@@ -700,7 +700,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="logOutButton:" destination="h2b-uc-Vxe" eventType="touchUpInside" id="Iep-pK-zor"/>
                                     <segue destination="5TL-V9-hlP" kind="presentation" modalPresentationStyle="currentContext" id="7vg-9k-q1K"/>
                                 </connections>
                             </button>
@@ -729,6 +728,7 @@
                         <outlet property="gamerTag" destination="Q5v-vZ-l6n" id="yhp-22-Tpd"/>
                         <outlet property="imageProfile" destination="QjZ-SO-isT" id="I10-Sm-T9H"/>
                         <outlet property="innerView" destination="Uql-PX-ocb" id="ojj-BJ-Keo"/>
+                        <outlet property="logOutButton" destination="OhA-Fk-weF" id="YbM-Wf-blt"/>
                         <outlet property="pickButton" destination="4IH-RA-wK1" id="RxO-Q2-mrI"/>
                         <outletCollection property="statLabel" destination="9dA-OZ-qeg" collectionClass="NSMutableArray" id="MlU-ek-f6h"/>
                         <outletCollection property="statLabel" destination="YQy-i8-BEe" collectionClass="NSMutableArray" id="frW-Uy-slt"/>
@@ -955,6 +955,12 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11k-QD-828">
+                                <rect key="frame" x="0.0" y="672" width="414" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.94150799510000005" green="0.21680217709999999" blue="0.24855911429999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.20392156862745098" green="0.24705882352941178" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
@@ -962,14 +968,19 @@
                             <constraint firstItem="JAb-Ty-1xz" firstAttribute="bottom" secondItem="CMG-y2-5Ax" secondAttribute="bottom" constant="69" id="J4w-wp-58E"/>
                             <constraint firstItem="5AF-bQ-SG5" firstAttribute="top" secondItem="dJz-Kb-rtW" secondAttribute="bottom" constant="53" id="LF4-qV-xJf"/>
                             <constraint firstItem="dJz-Kb-rtW" firstAttribute="leading" secondItem="JAb-Ty-1xz" secondAttribute="leading" constant="119" id="Qxx-c0-eFP"/>
+                            <constraint firstItem="11k-QD-828" firstAttribute="top" secondItem="5AF-bQ-SG5" secondAttribute="bottom" constant="16" id="RlV-ls-BPQ"/>
+                            <constraint firstItem="CMG-y2-5Ax" firstAttribute="top" secondItem="11k-QD-828" secondAttribute="bottom" constant="15.5" id="XfQ-zP-I0a"/>
                             <constraint firstItem="dJz-Kb-rtW" firstAttribute="top" secondItem="JAb-Ty-1xz" secondAttribute="top" constant="63" id="ngm-tU-9JF"/>
+                            <constraint firstItem="11k-QD-828" firstAttribute="leading" secondItem="JAb-Ty-1xz" secondAttribute="leading" id="oOS-Lf-lUU"/>
                             <constraint firstItem="CMG-y2-5Ax" firstAttribute="leading" secondItem="JAb-Ty-1xz" secondAttribute="leading" constant="47" id="vv4-jR-2oE"/>
+                            <constraint firstItem="11k-QD-828" firstAttribute="trailing" secondItem="JAb-Ty-1xz" secondAttribute="trailing" id="zIp-Zb-Q72"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JAb-Ty-1xz"/>
                     </view>
                     <navigationItem key="navigationItem" id="9Tg-uh-qqT"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="errorLabel" destination="11k-QD-828" id="Eoz-Cc-wrd"/>
                         <outlet property="passwordText" destination="F9i-be-S32" id="44S-3Y-gSQ"/>
                         <outlet property="usernameText" destination="cRI-m8-hd2" id="3Py-XA-agl"/>
                         <segue destination="h2b-uc-Vxe" kind="show" identifier="login" id="uYw-yt-O8A"/>
@@ -977,7 +988,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tul-tk-3mR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-80" y="1612"/>
+            <point key="canvasLocation" x="-81.159420289855078" y="1611.8303571428571"/>
         </scene>
         <!--Account-->
         <scene sceneID="T8r-5d-EJO">
@@ -2405,6 +2416,7 @@
         <image name="treble.png" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Rwt-1D-TGV"/>
         <segue reference="4Oh-ZL-6AX"/>
         <segue reference="uYw-yt-O8A"/>
     </inferredMetricsTieBreakers>
