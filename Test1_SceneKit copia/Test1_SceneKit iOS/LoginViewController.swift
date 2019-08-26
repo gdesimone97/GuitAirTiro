@@ -23,6 +23,10 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        errorLabel.text = ""
+    }
+    
     @IBAction func signIn(_ sender: Any) {
         let user = usernameText.text
         let pass = passwordText.text
