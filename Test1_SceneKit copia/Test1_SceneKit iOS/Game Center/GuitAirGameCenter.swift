@@ -54,7 +54,7 @@ class GuitAirGameCenter{
     }
     
     //Faccio la richiesta al server e ritorno il risultato
-    private func makeAPIRequest( req : URLRequest )->(Int,[String:Any]){
+    private func makeAPIRequest( req : URLRequest )->(Int,[String:Any]) {
         
         let semaphore = DispatchSemaphore.init(value: 0);
         
@@ -64,15 +64,19 @@ class GuitAirGameCenter{
         let task = session.dataTask(with: req, completionHandler: { data, response, error -> Void in
             
             do {
-                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, Any>
-                
+                let json: Dictionary<String,Any> = ["":""]
                 var respCode : Int = 0;
-                
-                if let httpResp = response as? HTTPURLResponse{
+                if data == nil {
+                    respCode = 500
+                }
+                else{
+                    let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, Any>
+                    if let httpResp = response as? HTTPURLResponse{
                     respCode = httpResp.statusCode;
+                    }
                 }
                 
-                result = (respCode, json);
+                result = (respCode, json) as! (Int, [String : Any]);
                 semaphore.signal();
             } catch {
                 print("Error")
