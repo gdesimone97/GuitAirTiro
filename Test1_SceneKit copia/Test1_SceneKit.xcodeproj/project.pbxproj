@@ -65,6 +65,7 @@
 		08D465BA22F1A78100B8D43B /* LogoWatch.png in Resources */ = {isa = PBXBuildFile; fileRef = 08D465B722F1A78000B8D43B /* LogoWatch.png */; };
 		08D465BB22F1A78100B8D43B /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08D465B822F1A78100B8D43B /* Interface.storyboard */; };
 		08D465BC22F1A78100B8D43B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08D465B922F1A78100B8D43B /* Assets.xcassets */; };
+		08D8E2C52313D02D005A42E9 /* Songs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7703F79022FAE2A30075BF92 /* Songs.swift */; };
 		08F9EF01230EEB61001B5656 /* GuitAirAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F9EEFF230EEB61001B5656 /* GuitAirAPI.swift */; };
 		08F9EF02230EEB61001B5656 /* GuitAirGameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F9EF00230EEB61001B5656 /* GuitAirGameCenter.swift */; };
 		259FCF7A4466898030E2854A /* Pods_Test1_SceneKit_watchOS_App_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E921CE1C6D8E8B53642FAF /* Pods_Test1_SceneKit_watchOS_App_Extension.framework */; };
@@ -827,6 +828,7 @@
 				0875E9F1230D826D009964B1 /* appModel.xcdatamodeld in Sources */,
 				F2AB389F230FD9FF00833589 /* Pending Request ViewController.swift in Sources */,
 				0875E9F4230D8792009964B1 /* Stat+CoreDataClass.swift in Sources */,
+				08D8E2C52313D02D005A42E9 /* Songs.swift in Sources */,
 				088BAC3622F9720800784692 /* DevicesSettingsPaired.swift in Sources */,
 				0898EC2722F05146007C32DD /* SettingsTableViewController.swift in Sources */,
 				087B1E5122F878DE00BDC2C1 /* GuitarSelectedViewController.swift in Sources */,
