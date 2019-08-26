@@ -51,7 +51,7 @@ class AccountViewController: UIViewController {
         print(profile)
     }
     
-    private func loadImage() {
+    private func loadImageOffline() {
         if let resultImage = self.getImage(){
             self.imageProfile.image = resultImage
         }
