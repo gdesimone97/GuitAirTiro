@@ -1788,6 +1788,9 @@
                                     <constraint firstAttribute="width" constant="164" id="c7e-NV-Km5"/>
                                 </constraints>
                                 <state key="normal" image="MatchButton.png"/>
+                                <connections>
+                                    <action selector="playButton:" destination="ZzB-34-xBd" eventType="touchUpInside" id="VJx-0C-Gse"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="exQ-nU-naT">
                                 <rect key="frame" x="20" y="288" width="374" height="505"/>
@@ -1969,7 +1972,10 @@
                         <viewLayoutGuide key="safeArea" id="gNj-ZV-dYJ"/>
                     </view>
                     <connections>
+                        <outlet property="gamertagLabel" destination="kjU-fG-ae8" id="mIi-BV-ZJ6"/>
                         <outlet property="innerView" destination="exQ-nU-naT" id="Wyl-zj-Sfn"/>
+                        <outlet property="songLabel" destination="f4D-RF-KWL" id="caz-Vo-5N7"/>
+                        <outlet property="turnLabel" destination="Ykr-aQ-gu0" id="2I7-5o-Ohk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bgA-HK-uNi" userLabel="First Responder" sceneMemberID="firstResponder"/>
