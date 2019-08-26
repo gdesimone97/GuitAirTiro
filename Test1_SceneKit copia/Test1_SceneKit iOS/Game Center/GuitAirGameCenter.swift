@@ -250,6 +250,7 @@ class GuitAirGameCenter{
 //        print(urlReq.allHTTPHeaderFields)
         var fetchedProfile =  makeAPIRequest(req: urlReq);
         if(fetchedProfile.0 == 200){
+            
             let profile = fetchedProfile.1["profile"]! as! String;
             let data = profile.data(using: .unicode)!;
             let profDict = try? JSONSerialization.jsonObject(with: data) as? Dictionary<String, String>
@@ -262,6 +263,14 @@ class GuitAirGameCenter{
     public func getProfile(gamertag:String)->(Int,[String:Any]){
         let urlReq = buildAPIRequest(httpMethod: "GET", method: .player, queryItems: ["gamertag":gamertag]);
         return makeAPIRequest(req: urlReq);
+    }
+    
+    //Upload immagine
+    
+    public func updateImage(image:String)->(Int,[String:String]){
+        let urlReq = buildAPIRequest(httpMethod: "PATCH", method: .player, params: ["image":image,"type":image]);
+        return makeAPIRequest(req: urlReq) as! (Int,Dictionary<String,String>);
+        
     }
     
 }
