@@ -245,18 +245,18 @@ class GuitAirGameCenter{
         return getFriendRequest(type: "list");
     }
     
-    public func getMyProfile()->(Int,[String:Any]){
+    public func getMyProfile()->(Int,[String:String]){
         let urlReq = buildAPIRequest(httpMethod: "GET", method: .player);
 //        print(urlReq.allHTTPHeaderFields)
         var fetchedProfile =  makeAPIRequest(req: urlReq);
         if(fetchedProfile.0 == 200){
             let profile = fetchedProfile.1["profile"]! as! String;
-            var data = profile.data(using: .unicode)!;
-            let profDict = try? JSONSerialization.jsonObject(with: data) as! Dictionary<String, String>
+            let data = profile.data(using: .unicode)!;
+            let profDict = try? JSONSerialization.jsonObject(with: data) as? Dictionary<String, String>
 
             return (fetchedProfile.0, profDict!);
         }
-        return fetchedProfile;
+        return (fetchedProfile.0,fetchedProfile.1 as! [String:String]);
     }
     
     public func getProfile(gamertag:String)->(Int,[String:Any]){
