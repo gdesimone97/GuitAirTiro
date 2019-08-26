@@ -14,6 +14,7 @@ class ViewController: UIViewController{
     
     @IBOutlet var guitarLabel: UILabel!
     
+    var indicator = UIActivityIndicatorView()
     var userDataChords: Array<String>?
     
     let strClassic = "Acoustic Guitar Selected"
@@ -41,7 +42,6 @@ class ViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
         deviceStatus?.layer.cornerRadius = 8.34
         tvStatus?.layer.cornerRadius = 8.34
         
@@ -86,12 +86,19 @@ class ViewController: UIViewController{
         if tvSettings == TvSettings.withOutWatch.rawValue {
             if let device = sessionTv.showConnectedDevices() {
                 sessionTv.sendSignal(device[0], message: SignalCode.OpenGameWithOutWatch)
+                indicator.center = self.view.center
+                indicator.style = .whiteLarge
+                indicator.hidesWhenStopped = true
+                indicator.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                view.addSubview(indicator)
+                indicator.startAnimating()
             }
         }
     }
     
     
     override func viewDidAppear(_ animated: Bool) {
+        indicator.stopAnimating()
         let guitar = UserDefaults.getGuitar(forKey: GUITAR)
         DispatchQueue.main.async {
             self.inizializeGuitarLabel(guitar!)
