@@ -268,7 +268,7 @@ class GuitAirGameCenter{
     //Upload immagine
     
     public func updateImage(image:String)->(Int,[String:String]){
-        let urlReq = buildAPIRequest(httpMethod: "PATCH", method: .player, params: ["image":image,"type":image]);
+        let urlReq = buildAPIRequest(httpMethod: "PATCH", method: .player, params: ["image":image,"type":"image"]);
         return makeAPIRequest(req: urlReq) as! (Int,Dictionary<String,String>);
         
     }
