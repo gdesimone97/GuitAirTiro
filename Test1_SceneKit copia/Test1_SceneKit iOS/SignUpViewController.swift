@@ -50,10 +50,13 @@ class SignUpViewController: UIViewController {
             passwordText.layer.borderWidth = 0.0
         }
         if flag {
-            let res = game.register(gamertag: userText.text!, password: passwordText.text!)
-            if res.0 == 200 {
-                //performSegue(withIdentifier: SEGUE, sender: nil)
-                self.dismiss(animated: true, completion: nil)
+            let res = game.register(gamertag: userText.text!.lowercased(), password: passwordText.text!)
+            if res.0 == 200 || res.0 == 201 {
+                performSegue(withIdentifier: SEGUE, sender: nil)
+                //self.dismiss(animated: true, completion: nil)
+            }
+            else if res.0 == 409 {
+                invalidLogIn.text = "This account already exists"
             }
             else {
                 invalidLogIn.text = "Username or password wrong"
