@@ -26,10 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         //Se non è inizializzata la notazione preferita
+        PersistanceManager.mycontext = self.persistentContainer.viewContext
+        PersistanceManager.createEmptyItem()
         if userDefault.bool(forKey: LOGIN) {
             HadlerProfile.downloadProfile()
         }
-        PersistanceManager.createEmptyItem()
         
         if udef.string(forKey: NOTATION_KEY ) != nil{
             
