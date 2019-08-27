@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import Network
 
 class AccountViewController: UIViewController {
+    let monitor = NWPathMonitor()
+    let networkThread = DispatchQueue.init(label: "network_thread")
+    var connectionFlag = false
     @IBOutlet var pickButton: UIButton!
     @IBOutlet var innerView: UIView!
     @IBOutlet var imageProfile: UIImageView!
@@ -25,6 +29,8 @@ class AccountViewController: UIViewController {
     let gameCenter = GuitAirGameCenter.share
     override func viewDidLoad() {
         super.viewDidLoad()
+        monitor.pathUpdateHandler = deviceOnline(path:)
+        monitor.start(queue: networkThread)
         pickButton.setTitle("", for: UIControl.State.normal  )
         
         self.imageProfile.layer.cornerRadius = self.imageProfile.frame.size.width / 2;
@@ -40,45 +46,35 @@ class AccountViewController: UIViewController {
     
      override func viewWillAppear(_ animated: Bool) {
         if flag {
-            if !reloadStatOnline() {
-                reloadStatOffline()
-                loadImage()
+            let profile = HadlerProfile.loadProfile()
+            let array = [profile.score,profile.wins,profile.draws,profile.losses]
+            var i = 0
+            for label in statLabel{
+                label.text = String(array[i])
+                i += 1
             }
+            gamerTag.text = profile.gamerTag
+            imageProfile.image = profile.image
+        }
+        else {
             flag = true
         }
     }
     
-    private func reloadStatOnline() -> Bool {
-        var myFlag = true
-        let res = gameCenter.getMyProfile()
-        if res.0 == 500 {
-            return false
-        }
-        if userDefaults.bool(forKey: UPLOAD) {
-            loadImage()
-            userDefaults.set(0, forKey: UPLOAD)
-            flag = false
-        }
-        if res.0 == 200 || res.0 == 201 {
-            let profile = res.1
-            let score = profile["total_score"]
-            let wins = profile["wins"]
-            let draws = profile["draws"]
-            let losses = profile["losses"]
-            let gamertagString = profile["gamertag"]
-            let image = profile["image"]
-            let array = [score,wins,draws,losses]
-            var i = 0
-            gamerTag.text = gamertagString
-            if image != "empty" && myFlag{
-                imageProfile.image = convertStringToImage(string: image!)
+    private func deviceOnline(path: NWPath) {
+        if path.status == .satisfied {
+            if userDefault.bool(forKey: UPLOAD) {
+                HadlerProfile.uploadImage(image: imageProfile.image!)
+                userDefault.set(0, forKey: UPLOAD)
             }
-            for label in self.statLabel {
-                label.text = String(array[i]!)
-                i += 1
+            if connectionFlag {
+                HadlerProfile.downloadProfile()
+                connectionFlag = false
             }
         }
-        return true
+        else {
+            connectionFlag = true
+        }
     }
     
     private func loadImage() {
@@ -87,14 +83,6 @@ class AccountViewController: UIViewController {
         }
     }
     
-    private func reloadStatOffline() {
-        let arrayStat = PersistanceManager.retriveStat()
-        var i = 0
-        for label in self.statLabel {
-            label.text = String(arrayStat[i])
-            i += 1
-        }
-    }
     
     private func getImage() -> UIImage? {
         let imageTemp = PersistanceManager.retriveImage()
@@ -144,10 +132,21 @@ class AccountViewController: UIViewController {
             }
         })
         
+        let removeImage = UIAlertAction(title: "Remove Image", style: .destructive, handler: {action in
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                let defaultImage = UIImage(named: "profile.png")
+                DispatchQueue.main.async {
+                    self.imageProfile.image = defaultImage
+                }
+                HadlerProfile.uploadImage(image: defaultImage!)
+            }
+        })
+        
         let cancellAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
         allert.addAction(cameraAction)
         allert.addAction(albumAction)
+        allert.addAction(removeImage)
         allert.addAction(cancellAction)
         
         self.present(allert,animated: true,completion: nil)
@@ -166,7 +165,6 @@ extension AccountViewController: UIImagePickerControllerDelegate,UINavigationCon
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         self.imageProfile.image = image
         flag = false
-        //print(self.convertImageToString(image: image))
         dismiss(animated: true, completion: nil)
         thread.async {
             let res = self.game.updateImage(image: self.convertImageToString(image: image))
@@ -175,11 +173,10 @@ extension AccountViewController: UIImagePickerControllerDelegate,UINavigationCon
             }
             else {
                 self.userDefaults.set(1, forKey: UPLOAD)
-                print("Non salvato")
             }
         }
         threadCoreData.async {
-            PersistanceManager.UploadStat(score: nil, wins: nil, draws: nil, losses: nil, image: self.convertImageToData(image: image) as Data?, gamerTag: nil)
+            PersistanceManager.uploadImage(image: image)
             print("Immagine aggiornata nel core data")
         }
     }
