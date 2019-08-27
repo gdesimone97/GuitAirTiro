@@ -47,15 +47,22 @@ class AccountViewController: UIViewController {
     
      override func viewWillAppear(_ animated: Bool) {
         if flag {
-            let profile = HadlerProfile.loadProfile()
-            let array = [profile.score,profile.wins,profile.draws,profile.losses]
-            var i = 0
-            for label in statLabel{
-                label.text = String(array[i])
-                i += 1
+            if userDefault.bool(forKey: UPLOAD) {
+                let img = PersistanceManager.retriveImage()
+                HadlerProfile.uploadImage(image: UIImage(data: img as! Data)!)
+                userDefault.set(0, forKey: UPLOAD)
             }
-            gamerTag.text = profile.gamerTag
-            imageProfile.image = profile.image
+            else {
+                let profile = HadlerProfile.loadProfile()
+                let array = [profile.score,profile.wins,profile.draws,profile.losses]
+                var i = 0
+                for label in statLabel{
+                    label.text = String(array[i])
+                    i += 1
+                }
+                gamerTag.text = profile.gamerTag
+                imageProfile.image = profile.image
+            }
         }
         else {
             flag = true
@@ -64,8 +71,12 @@ class AccountViewController: UIViewController {
     
     private func deviceOnline(path: NWPath) {
         if path.status == .satisfied {
+            connection = true
+            DispatchQueue.main.async {
+                self.logOutButton.isEnabled = true
+                self.logOutButton.setTitleColor(.white, for: .normal)
+            }
             if userDefault.bool(forKey: UPLOAD) {
-                connection = true
                 let myimage = UIImage(data: PersistanceManager.retriveImage() as! Data)
                 HadlerProfile.uploadImage(image: myimage!)
                 userDefault.set(0, forKey: UPLOAD)
@@ -78,6 +89,10 @@ class AccountViewController: UIViewController {
         else {
             connection = false
             connectionFlag = true
+            DispatchQueue.main.async {
+                self.logOutButton.isEnabled = false
+                self.logOutButton.setTitleColor(.gray, for: .disabled)
+            }
         }
     }
     

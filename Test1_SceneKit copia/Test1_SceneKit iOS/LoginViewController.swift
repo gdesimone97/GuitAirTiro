@@ -47,17 +47,20 @@ class LoginViewController: UIViewController {
                 print("Sono entrato")
                 userDefault.set(1, forKey: LOGIN)
                 HadlerProfile.downloadProfile()
+                self.dismiss(animated: true, completion: nil)
                 performSegue(withIdentifier: "login", sender: nil)
             }
                 
             else if res.0 == 500 {
                 DispatchQueue.main.async {
                     self.errorLabel.text = "No connection"
+                    self.indicator.stopAnimating()
                 }
             }
             else {
                 DispatchQueue.main.async {
                     self.errorLabel.text = "Username or password wrong"
+                    self.indicator.stopAnimating()
                 }
             }
         }

@@ -220,9 +220,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         case "ACCEPT_ACTION":
             print("invito accettato")
             let res = game.acceptInvitation(id: id!)
-            print("res: \(res.0), id: \(id)")
             if res.0 != 200 || res.0 != 201 {
-                print("Partita non accettata")
+                print("Partita accettata")
                 print("res: \(res.0), id: \(id)")
             }
         case "DECLINE_ACTION":
