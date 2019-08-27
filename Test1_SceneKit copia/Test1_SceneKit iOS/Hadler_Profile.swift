@@ -57,7 +57,9 @@ class HadlerProfile {
         return Data(base64Encoded: string)!
     }
     
-    class func uploadImage(image: UIImage) {
+    class func uploadImage(image: UIImage) -> Int {
+        var result: Int!
+        let sem = DispatchSemaphore.init(value: 0)
         hadlerProfileThread.async {
             semaphore.wait()
             let str = image.jpegData(compressionQuality: 0.0)?.base64EncodedString()
@@ -66,7 +68,11 @@ class HadlerProfile {
             if res.0 == 200 || res.0 == 201 {
                 print("Immagine aggiornata sul server")
             }
+            result = res.0
+            sem.signal()
         }
+        sem.wait()
+        return result
     }
     
 }
