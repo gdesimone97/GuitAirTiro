@@ -14,12 +14,17 @@ class HadlerProfile {
     static private let semaphore = DispatchSemaphore.init(value: 1)
     static private let game = GuitAirGameCenter.share
     class func downloadProfile() {
+        if userDefault.bool(forKey: UPLOAD) {
+            let image = PersistanceManager.retriveImage()
+            uploadImage(image: UIImage(data: image as! Data)!)
+            userDefault.set(0, forKey: UPLOAD)
+            return
+        }
         hadlerProfileThread.async {
             self.semaphore.wait()
             print("Risorsa acquisita")
             let res = game.getMyProfile()
             if res.0 == 200 || res.0 == 201 {
-                print("risposta")
                 let profile = res.1
                 let score = profile["total_score"]
                 let wins = profile["wins"]
