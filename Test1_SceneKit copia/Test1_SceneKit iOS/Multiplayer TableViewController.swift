@@ -10,7 +10,7 @@ import UIKit
 
 class Multiplayer_TableViewController: UITableViewController, UISearchBarDelegate{
 
-    var playersTableViewDataSource = [];
+    var playersTableViewDataSource: Array<String> = [];
     var result : (Int,[String:Any]) = (0,[:]);
     let dispatchGroup = DispatchGroup();
     let game = GuitAirGameCenter.share;
