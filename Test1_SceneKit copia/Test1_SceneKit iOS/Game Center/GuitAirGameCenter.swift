@@ -301,6 +301,9 @@ class GuitAirGameCenter{
         
     }
     
-    
+    public func getLeaderboard()->(Int,[String:Any]){
+        let urlReq = buildAPIRequest(httpMethod: "GET", method: .player, queryItems: ["type":"leaderboard"])
+        return makeAPIRequest(req: urlReq)
+    }
     
 }

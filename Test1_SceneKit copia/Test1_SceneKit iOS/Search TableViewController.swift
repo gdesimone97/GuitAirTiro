@@ -1,5 +1,5 @@
 //
-//  Search ViewController.swift
+//  Search TableViewController.swift
 //  Test1_SceneKit iOS
 //
 //  Created by Mario De Sio on 27/08/2019.
@@ -8,23 +8,30 @@
 
 import UIKit
 
-class Search_ViewController: UIViewController, UISearchBarDelegate {
-
-    var playersTableViewDataSource: [String] = [];
+class Search_TableViewController: UITableViewController, UISearchBarDelegate {
+    
+    var playersTableViewDataSource: Array<String> = []
     var result : (Int,[String:Any]) = (0,[:]);
     let dispatchGroup = DispatchGroup();
     let game = GuitAirGameCenter.share;
-    var searchActive : Bool = false;
-
-    @IBOutlet weak var gamerTableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
+    var searchActive : Bool = true;
     
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.delegate = self
-        // Do any additional setup after loading the view.
+        playersTableViewDataSource = []
+    
+        self.searchBar.delegate = self
+        
+
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+
     
     
     // MARK: - Table view data source
@@ -46,7 +53,7 @@ class Search_ViewController: UIViewController, UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-      
+        
         if(searchActive){
             
             print("Effettuo ricerca");
@@ -116,6 +123,7 @@ class Search_ViewController: UIViewController, UISearchBarDelegate {
             let gamertags = res["gamertags"] as! String;
             let data = gamertags.data(using: .unicode)!;
             let gsArr = try! JSONSerialization.jsonObject(with: data) as? Array<String>;
+            print(gsArr);
             self.playersTableViewDataSource = gsArr!
             
         }
@@ -123,25 +131,64 @@ class Search_ViewController: UIViewController, UISearchBarDelegate {
         
         
     }
+    // MARK: - Table view data source
 
-    // 1
     override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
         return 1
     }
-    
-    // 2
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cars.count
+        // #warning Incomplete implementation, return the number of rows
+        return playersTableViewDataSource.count
     }
+
     
-    // 3
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "carCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
         
-        cell.textLabel?.text = cars[indexPath.row]
+        cell.textLabel?.text = playersTableViewDataSource[indexPath.row]
         
+
         return cell
     }
+    
+
+    /*
+    // Override to support conditional editing of the table view.
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        return true
+    }
+    */
+
+    /*
+    // Override to support editing the table view.
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }    
+    }
+    */
+
+    /*
+    // Override to support rearranging the table view.
+    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+
+    }
+    */
+
+    /*
+    // Override to support conditional rearranging of the table view.
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the item to be re-orderable.
+        return true
+    }
+    */
+
     /*
     // MARK: - Navigation
 

@@ -1499,7 +1499,7 @@
                                                         <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="5HF-AX-g6r" kind="show" id="alu-0C-cXK"/>
+                                                        <segue destination="C1W-5f-9Og" kind="show" id="kzx-bG-MWp"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -1634,41 +1634,52 @@
             </objects>
             <point key="canvasLocation" x="3837.68115942029" y="422.54464285714283"/>
         </scene>
-        <!--Search View Controller-->
-        <scene sceneID="Lar-Mf-czq">
+        <!--Search Table View Controller-->
+        <scene sceneID="GB0-X0-XvE">
             <objects>
-                <viewController id="5HF-AX-g6r" customClass="Search_ViewController" customModule="Test1_SceneKit" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ZXh-W9-tck">
+                <tableViewController id="C1W-5f-9Og" customClass="Search_TableViewController" customModule="Test1_SceneKit" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="DEl-nf-vpP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search for a user..." translatesAutoresizingMaskIntoConstraints="NO" id="ycd-SN-Byz">
-                                <rect key="frame" x="0.0" y="136" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
-                        </subviews>
                         <color key="backgroundColor" red="0.10629209131002426" green="0.12492533773183823" blue="0.1490231454372406" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <viewLayoutGuide key="safeArea" id="mXj-yP-VQa"/>
-                    </view>
+                        <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="Search for a user..." id="afo-Ye-7qk">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="barTintColor" red="0.10629209131002426" green="0.12492533773183823" blue="0.1490231454372406" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="hB0-lX-qwv">
+                                <rect key="frame" x="0.0" y="72" width="414" height="80"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hB0-lX-qwv" id="bxR-Ag-zGv">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="79.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="gamertag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uu5-Gk-17V">
+                                            <rect key="frame" x="20" y="29" width="75" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.10629209131002426" green="0.12492533773183823" blue="0.1490231454372406" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="C1W-5f-9Og" id="izy-GQ-oih"/>
+                            <outlet property="delegate" destination="C1W-5f-9Og" id="RT2-uo-FqH"/>
+                        </connections>
+                    </tableView>
                     <connections>
-                        <outlet property="searchBar" destination="ycd-SN-Byz" id="XOx-Cd-ppG"/>
-                        <outlet property="searchDisplay" destination="YsR-cz-GF1" id="ptO-tw-8ta"/>
-                        <outlet property="searchDisplayController" destination="YsR-cz-GF1" id="nzw-Hu-OD7"/>
+                        <outlet property="searchBar" destination="afo-Ye-7qk" id="SoN-JQ-P6d"/>
                     </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CnV-Uy-IqA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="YsR-cz-GF1">
-                    <connections>
-                        <outlet property="delegate" destination="5HF-AX-g6r" id="oLN-sz-Lgj"/>
-                        <outlet property="searchBar" destination="ycd-SN-Byz" id="97j-D6-fqC"/>
-                        <outlet property="searchContentsController" destination="5HF-AX-g6r" id="NQV-LG-hgR"/>
-                        <outlet property="searchResultsDataSource" destination="5HF-AX-g6r" id="nyF-Ay-qAr"/>
-                        <outlet property="searchResultsDelegate" destination="5HF-AX-g6r" id="dye-HK-P2C"/>
-                    </connections>
-                </searchDisplayController>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eEt-cH-zEA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4620.289855072464" y="234.375"/>
+            <point key="canvasLocation" x="4670" y="187"/>
         </scene>
         <!--Invitations View Controller-->
         <scene sceneID="w3U-Ql-Arw">
@@ -2456,7 +2467,6 @@
         <image name="treble.png" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Rwt-1D-TGV"/>
         <segue reference="4Oh-ZL-6AX"/>
         <segue reference="5ya-L3-UxN"/>
     </inferredMetricsTieBreakers>

@@ -60,6 +60,12 @@ class GameModeViewController: UIViewController {
     var guitar42: Guitar?
     var wah11: AKAutoWah?
     var wah12: AKAutoWah?
+    var wah21: AKAutoWah?
+    var wah22: AKAutoWah?
+    var wah31: AKAutoWah?
+    var wah32: AKAutoWah?
+    var wah41: AKAutoWah?
+    var wah42: AKAutoWah?
     
     var wahList: [AKAutoWah]?
     
@@ -203,14 +209,30 @@ class GameModeViewController: UIViewController {
             }
             
             if guitarSelected == TypeOfGuitar.electric {
-                wah11 = AKAutoWah(guitar11?.chord, wah: 0, mix: 1, amplitude: 10)
-                wah12 = AKAutoWah(guitar12?.chord, wah: 0, mix: 1, amplitude: 10)
-                wahList = [wah11!, wah12!]
+//                let wahAmount = AKOperation.sineWave(frequency: 0.2).scale(minimum: 1, maximum: 0)
+//
+//                let effect = AKOperationEffect(guitar11?.chord) { player, _ in
+//                    let wahAmount = AKOperation.sineWave(frequency: 1.7).scale(minimum: 1, maximum: 0)
+//                    return player.autoWah(wah: wahAmount, amplitude: 0.5)
+//                }
+                
+                wah11 = AKAutoWah(guitar11?.chord, wah: 0, mix: 1, amplitude: 0.5)
+                wah12 = AKAutoWah(guitar12?.chord, wah: 0, mix: 1, amplitude: 0.5)
+                wah21 = AKAutoWah(guitar21?.chord, wah: 0, mix: 1, amplitude: 0.5)
+                wah22 = AKAutoWah(guitar22?.chord, wah: 0, mix: 1, amplitude: 0.5)
+                wah31 = AKAutoWah(guitar31?.chord, wah: 0, mix: 1, amplitude: 0.5)
+                wah32 = AKAutoWah(guitar32?.chord, wah: 0, mix: 1, amplitude: 0.5)
+                wah41 = AKAutoWah(guitar41?.chord, wah: 0, mix: 1, amplitude: 0.5)
+                wah42 = AKAutoWah(guitar42?.chord, wah: 0, mix: 1, amplitude: 0.5)
+                wahList = [wah11!, wah12!, wah21!, wah22!, wah31!, wah32!, wah41!, wah42!]
+                
+                //        create mixer, to allow repeated chords/multiple chords
+                let mixer = AKMixer(guitar11?.chord, guitar21?.chord, guitar31?.chord, guitar41?.chord, guitar12?.chord, guitar22?.chord, guitar32?.chord, guitar42?.chord, wah11, wah12, wah21, wah22, wah31, wah32, wah41, wah42)
+                AudioKit.output = mixer
+                
+                
             }
             
-            //        create mixer, to allow repeated chords/multiple chords
-            let mixer = AKMixer(guitar11?.chord, guitar21?.chord, guitar31?.chord, guitar41?.chord, guitar12?.chord, guitar22?.chord, guitar32?.chord, guitar42?.chord, wah11 ?? nil, wah12 ?? nil)
-            AudioKit.output = mixer
             do{
                 try AudioKit.start()
             }catch{
@@ -405,20 +427,35 @@ class GameModeViewController: UIViewController {
             }
         }
         if blueButton.isTouchInside {
-            
+            if !self.flag2 {
+                wahEffect(guitar: 2)
+            }
+            else {
+                wahEffect(guitar: 3)
+            }
         }
         if greenButton.isTouchInside {
-            
+            if !self.flag3 {
+                wahEffect(guitar: 4)
+            }
+            else {
+                wahEffect(guitar: 5)
+            }
         }
         if roseButton.isTouchInside {
-            
+            if !self.flag4 {
+                wahEffect(guitar: 6)
+            }
+            else {
+                wahEffect(guitar: 7)
+            }
         }
     }
-    
+
     func wahEffect(guitar: Int) {
         DispatchQueue(label: "wahEffect").async {
             self.wahList![guitar].wah = 100
-            sleep(2)
+            sleep(1)
             self.wahList![guitar].wah = 0
         }
     }

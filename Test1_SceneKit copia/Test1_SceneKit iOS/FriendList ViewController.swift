@@ -10,9 +10,26 @@ import UIKit
 
 class FriendList_ViewController: UIViewController {
 
+    let game = GuitAirGameCenter.share;
+    var friendList = [String]();
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        let res = game.getFriendList();
+        
+        if(res.0 == 200){
+            
+
+            let ffString = res.1["req"] as! String;
+            self.friendList = try! JSONSerialization.jsonObject(with: ffString.data(using: .unicode)!) as! Array<String>;
+            print(friendList);
+            
+            
+        }
+        
+        
         // Do any additional setup after loading the view.
     }
     
