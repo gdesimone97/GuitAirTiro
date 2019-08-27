@@ -10,9 +10,10 @@ import UIKit
 
 class Multiplayer_TableViewController: UITableViewController, UISearchBarDelegate{
 
-    
+    var result : (Int,[String:Any]) = (0,[:]);
+    let dispatchGroup = DispatchGroup();
     let game = GuitAirGameCenter.share;
-    var searchActive : Bool = false
+    var searchActive : Bool = true;
     @IBOutlet weak var searchPlayer : UISearchBar!
     @IBOutlet weak var resultSearchView: UITableView!
     override func viewDidLoad() {
@@ -34,7 +35,7 @@ class Multiplayer_TableViewController: UITableViewController, UISearchBarDelegat
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchActive = false;
+        searchActive = true;
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -50,10 +51,6 @@ class Multiplayer_TableViewController: UITableViewController, UISearchBarDelegat
         
         if(searchActive){
             
-            print("cerco \(searchText)");
-            //grafica di attesa
-            waitingIndicator.isHidden = false
-            
             DispatchQueue.global(qos: .background).async(execute: {
                 let res = self.game.searchPlayer(gamertag: searchText);
                 
@@ -61,24 +58,31 @@ class Multiplayer_TableViewController: UITableViewController, UISearchBarDelegat
                 DispatchQueue.main.async(execute: {
                     
                     self.waitingIndicator.isHidden = true;
-                    self.updatePlayersView(searchText: searchText);
+                    
+                    self.updatePlayersView(res : res.0==200 ? res.1 : [:]);
                 })
                 
-                
-                
             })
-            
-            
-            //updatePlayersView(searchText: searchText);
-            
             
         }
         
     }
     
-    func updatePlayersView( searchText : String ){
-        let res = game.searchPlayer(gamertag: searchText);
-        print(res);
+    
+    func updatePlayersView( res : [String:Any] ){
+        
+        if(res.count == 1 ){
+            //trovati 0 giocatori
+        }else{
+            let gamertags = res["gamertags"] as! String;
+                    let data = gamertags.data(using: .unicode)!;
+                    let gsArr = try! JSONSerialization.jsonObject(with: data) as? Array<String>;
+                        print(gsArr);
+
+        }
+        
+        
+        
     }
 
     
@@ -150,3 +154,4 @@ class Multiplayer_TableViewController: UITableViewController, UISearchBarDelegat
     */
 
 }
+
