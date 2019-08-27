@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 class HadlerProfile {
-    static private let hadlerProfileThread = DispatchQueue.init(label: "hadler_profile")
-    static private let semaphore = DispatchSemaphore.init(value: 0)
+    static private let hadlerProfileThread = DispatchQueue.global(qos: .userInitiated)
+    static private let semaphore = DispatchSemaphore.init(value: 1)
     static private let game = GuitAirGameCenter.share
     class func downloadProfile() {
         hadlerProfileThread.async {
@@ -39,11 +39,15 @@ class HadlerProfile {
     class func loadProfile() -> Profile {
         print("Caricamento in corso...")
         semaphore.wait()
-        return Profile()
         print("Caricamento completato")
         semaphore.signal()
+        return Profile()
     }
-    class private func convertStringToData(string: String) -> Data {
+    class private func convertStringToData(string: String) -> Data? {
+        if string == "empty" {
+            let image = UIImage(named: "profile.png")
+            return image?.jpegData(compressionQuality: 0.0)
+        }
         return Data(base64Encoded: string)!
     }
     
