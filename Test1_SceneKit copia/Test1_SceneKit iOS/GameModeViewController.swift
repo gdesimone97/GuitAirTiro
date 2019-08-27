@@ -16,7 +16,7 @@ class GameModeViewController: UIViewController {
     
     var sessionDelegate: ViewController!
     let sessionTv = SessionManager.share
-    var motionManager: CMMotionManager!
+    var motionManager: CMMotionManager?
     
     var oldAttitude: Double! = 0.00
     var newAttitude: Double! = 0.00
@@ -48,6 +48,8 @@ class GameModeViewController: UIViewController {
     @IBOutlet weak var roseButton: UIButton!
     
     /**********GUITAR-RELATED VARIABLES*****************/
+    let guitarSelected = UserDefaults.getGuitar(forKey: GUITAR)
+    
     var guitar11: Guitar?
     var guitar21: Guitar?
     var guitar31: Guitar?
@@ -56,6 +58,10 @@ class GameModeViewController: UIViewController {
     var guitar22: Guitar?
     var guitar32: Guitar?
     var guitar42: Guitar?
+    var wah11: AKAutoWah?
+    var wah12: AKAutoWah?
+    
+    var wahList: [AKAutoWah]?
     
     var flag1 = false
     var flag2 = false
@@ -82,6 +88,12 @@ class GameModeViewController: UIViewController {
     var toPlay: [String]!
     
     /**************************************************/
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if motionManager != nil {
+            motionManager!.stopDeviceMotionUpdates()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -190,8 +202,14 @@ class GameModeViewController: UIViewController {
                 print("Could not find guitar files")
             }
             
+            if guitarSelected == TypeOfGuitar.electric {
+                wah11 = AKAutoWah(guitar11?.chord, wah: 0, mix: 1, amplitude: 10)
+                wah12 = AKAutoWah(guitar12?.chord, wah: 0, mix: 1, amplitude: 10)
+                wahList = [wah11!, wah12!]
+            }
+            
             //        create mixer, to allow repeated chords/multiple chords
-            let mixer = AKMixer(guitar11?.chord, guitar21?.chord, guitar31?.chord, guitar41?.chord, guitar12?.chord, guitar22?.chord, guitar32?.chord, guitar42?.chord)
+            let mixer = AKMixer(guitar11?.chord, guitar21?.chord, guitar31?.chord, guitar41?.chord, guitar12?.chord, guitar22?.chord, guitar32?.chord, guitar42?.chord, wah11 ?? nil, wah12 ?? nil)
             AudioKit.output = mixer
             do{
                 try AudioKit.start()
@@ -202,12 +220,11 @@ class GameModeViewController: UIViewController {
         
         let thread = DispatchQueue.init(label: "motion")
         
-        let guitarSelected = UserDefaults.getGuitar(forKey: GUITAR)
         if guitarSelected == TypeOfGuitar.electric {
             thread.async {
                 self.motionManager = CMMotionManager()
-                self.motionManager.deviceMotionUpdateInterval = 0.3
-                self.motionManager.startDeviceMotionUpdates(to: OperationQueue.main, withHandler: { data, error -> Void in
+                self.motionManager!.deviceMotionUpdateInterval = 0.3
+                self.motionManager!.startDeviceMotionUpdates(to: OperationQueue.main, withHandler: { data, error -> Void in
                     if let data = data {
                         self.newAttitude = abs(data.attitude.roll)
                         
@@ -216,11 +233,13 @@ class GameModeViewController: UIViewController {
                             if let device = self.sessionTv.showConnectedDevices() {
                                 self.sessionTv.sendSignal(device[0], message: SignalCode.wah)
                             }
+                            else {
+                                self.wah()
+                            }
                         }
                         self.oldAttitude = self.newAttitude
                     }
                 })
-                print("motion attivo")
             }
         }
         
@@ -374,6 +393,34 @@ class GameModeViewController: UIViewController {
     }
     @IBAction func touchDownPink(_ sender: Any) {
         buttonActionPinkDown!()
+    }
+    
+    func wah() {
+        if redButton.isTouchInside {
+            if !self.flag1 {
+                wahEffect(guitar: 0)
+            }
+            else {
+                wahEffect(guitar: 1)
+            }
+        }
+        if blueButton.isTouchInside {
+            
+        }
+        if greenButton.isTouchInside {
+            
+        }
+        if roseButton.isTouchInside {
+            
+        }
+    }
+    
+    func wahEffect(guitar: Int) {
+        DispatchQueue(label: "wahEffect").async {
+            self.wahList![guitar].wah = 100
+            sleep(2)
+            self.wahList![guitar].wah = 0
+        }
     }
 }
 
