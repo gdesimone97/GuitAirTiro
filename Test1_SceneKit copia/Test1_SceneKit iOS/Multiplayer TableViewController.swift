@@ -10,6 +10,7 @@ import UIKit
 
 class Multiplayer_TableViewController: UITableViewController, UISearchBarDelegate{
 
+    var playersTableViewDataSource = [];
     var result : (Int,[String:Any]) = (0,[:]);
     let dispatchGroup = DispatchGroup();
     let game = GuitAirGameCenter.share;
@@ -84,7 +85,7 @@ class Multiplayer_TableViewController: UITableViewController, UISearchBarDelegat
                                 
                                 self.waitingIndicator.isHidden = true;
                                 
-                                self.updatePlayersView(res: res);
+                                self.updateDataSourcePlayers(res: res);
                                 
                             })
                             
@@ -112,7 +113,7 @@ class Multiplayer_TableViewController: UITableViewController, UISearchBarDelegat
     }
     
     
-    func updatePlayersView( res : [String:Any] ){
+    func updateDataSourcePlayers( res : [String:Any] ){
         
         if(res.count == 1 ){
             //trovati 0 giocatori
@@ -120,7 +121,7 @@ class Multiplayer_TableViewController: UITableViewController, UISearchBarDelegat
             let gamertags = res["gamertags"] as! String;
                     let data = gamertags.data(using: .unicode)!;
                     let gsArr = try! JSONSerialization.jsonObject(with: data) as? Array<String>;
-                        print(gsArr);
+                self.playersTableViewDataSource = gsArr!
 
         }
         
