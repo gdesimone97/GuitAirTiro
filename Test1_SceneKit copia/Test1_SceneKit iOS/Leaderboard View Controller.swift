@@ -10,10 +10,33 @@ import UIKit
 
 class Leaderboard_View_Controller: UIViewController {
 
+    var leaderboardList = [[String:String]]()
+    let game = GuitAirGameCenter.share;
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-
+        let res = game.getLeaderboard();
+        
+        if(res.0 == 200 ){
+            
+            let leadArr = res.1["leaderboard"] as! String;
+            let laData = leadArr.data(using: .unicode)!;
+            let lasa = try! JSONSerialization.jsonObject(with: laData) as! Array<String>;
+            
+            for lString in lasa{
+                
+                let lsData = lString.data(using: .unicode)!;
+                let lead = try! JSONSerialization.jsonObject(with: lsData) as! Dictionary<String,String>
+                
+                leaderboardList.append(lead);
+                
+            }
+            
+            
+        }
+        
+        
         // Do any additional setup after loading the view.
     }
     
