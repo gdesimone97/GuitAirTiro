@@ -10,6 +10,7 @@ import UIKit
 
 class Multiplayer_TableViewController: UITableViewController, UISearchBarDelegate{
 
+    
     let game = GuitAirGameCenter.share;
     var searchActive : Bool = false
     @IBOutlet weak var searchPlayer : UISearchBar!
@@ -53,13 +54,14 @@ class Multiplayer_TableViewController: UITableViewController, UISearchBarDelegat
             //grafica di attesa
             waitingIndicator.isHidden = false
             
-            DispatchQueue.global(qos: .userInteractive).async(execute: {
+            DispatchQueue.global(qos: .background).async(execute: {
                 let res = self.game.searchPlayer(gamertag: searchText);
                 
-                print(res);
                 
                 DispatchQueue.main.async(execute: {
+                    
                     self.waitingIndicator.isHidden = true;
+                    self.updatePlayersView(searchText: searchText);
                 })
                 
                 
