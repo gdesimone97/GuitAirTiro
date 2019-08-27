@@ -51,16 +51,59 @@ class Multiplayer_TableViewController: UITableViewController, UISearchBarDelegat
         
         if(searchActive){
             
+            print("Effettuo ricerca");
+            
+            self.waitingIndicator.isHidden = false;
+            
             DispatchQueue.global(qos: .background).async(execute: {
-                let res = self.game.searchPlayer(gamertag: searchText);
                 
                 
-                DispatchQueue.main.async(execute: {
+                
+                let urlReq = self.game.returnSearch(searchText: searchText);
+                
+                print(urlReq);
+                
+                self.game.getSession().dataTask(with: urlReq,completionHandler: {
+                  
+                    data,response,error in
                     
-                    self.waitingIndicator.isHidden = true;
+                    do {
+                        var json: Dictionary<String,Any> = ["":""]
+                        if data == nil {
+                        
+                            print("DATA NIl");
+                            return;
+                            
+                        }
+                        else{
+                            json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, Any>
+                            
+                            let res = json;
+
+                            DispatchQueue.main.async(execute: {
+                                
+                                self.waitingIndicator.isHidden = true;
+                                
+                                self.updatePlayersView(res: res);
+                                
+                            })
+                            
+                            
+                            
+                            print("Invocato metodo di aggiornamneto");
+                        }
                     
-                    self.updatePlayersView(res : res.0==200 ? res.1 : [:]);
-                })
+                    
+                        } catch{
+                        print("Error while json")
+                        return;
+                    }
+                    
+                    
+                }).resume()
+                
+                
+               
                 
             })
             
