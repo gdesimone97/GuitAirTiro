@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class HadlerProfile {
-    static private let hadlerProfileThread = DispatchQueue.global(qos: .userInitiated)
+    static private let hadlerProfileThread = DispatchQueue.global(qos: .userInteractive)
     static private let semaphore = DispatchSemaphore.init(value: 1)
     static private let game = GuitAirGameCenter.share
     class func downloadProfile() {
@@ -19,6 +19,7 @@ class HadlerProfile {
             print("Risorsa acquisita")
             let res = game.getMyProfile()
             if res.0 == 200 || res.0 == 201 {
+                print("risposta")
                 let profile = res.1
                 let score = profile["total_score"]
                 let wins = profile["wins"]
