@@ -12,14 +12,24 @@ import CoreData
 
 class PersistanceManager {
     static let entityName = "Stat"
-    
-    static func getContext() -> NSManagedObjectContext {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.persistentContainer.viewContext
+    static var mycontext: NSManagedObjectContext! {
+        get {
+            return context
+        }
+        set {
+            context = newValue
+        }
     }
+    private static var context: NSManagedObjectContext!
+//    static func getContext() -> NSManagedObjectContext {
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        return appDelegate.persistentContainer.viewContext
+//    }
+    
+    
     
     static func createEmptyItem() {
-        let context = getContext()
+        //let context = getContext()
         guard checkRecord() == true else { print("No record creato"); return }
         print("Record creato")
         let statItem = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context) as! Stat
@@ -38,7 +48,7 @@ class PersistanceManager {
         }
     }
     private static func checkRecord() -> Bool {
-        let context = getContext()
+        //let context = getContext()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         var number = 0
         do {
@@ -48,7 +58,7 @@ class PersistanceManager {
         else { return false }
     }
     private static func getItem() -> Stat? {
-        let context = getContext()
+        //let context = getContext()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         fetchRequest.fetchLimit = 1
         do {
@@ -84,7 +94,7 @@ class PersistanceManager {
     }
     
     static func UploadStat(score: Int?,wins: Int?,draws: Int?,losses: Int?,image: Data?,gamerTag: String?) {
-        let context = getContext()
+        //let context = getContext()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         fetchRequest.fetchLimit = 1
         do {
