@@ -45,7 +45,7 @@ class LoginViewController: UIViewController {
             if res.0 == 200 || res.0 == 201 {
                 print("Sono entrato")
                 userDefault.set(1, forKey: LOGIN)
-                
+                HadlerProfile.downloadProfile()
                 indicator.startAnimating()
                 performSegue(withIdentifier: "login", sender: nil)
             }
