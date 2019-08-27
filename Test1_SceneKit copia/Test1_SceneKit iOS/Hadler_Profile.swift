@@ -52,6 +52,16 @@ class HadlerProfile {
         return Data(base64Encoded: string)!
     }
     
+    class func uploadImage(image: UIImage) {
+        hadlerProfileThread.async {
+            semaphore.wait()
+            let str = image.jpegData(compressionQuality: 0.0)?.base64EncodedString()
+            game.updateImage(image: str!)
+            semaphore.signal()
+            print("Immagine aggiornata sul server")
+        }
+    }
+    
 }
 
 struct Profile {
