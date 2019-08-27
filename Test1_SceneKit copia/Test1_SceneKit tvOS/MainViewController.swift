@@ -45,7 +45,7 @@ class MainViewController: UIViewController {
     var flagPanelConnection = false
     var row = 0
     var chords: [String]?
-    var pointsRecord: Int!
+    var pointsRecord: Int! = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -340,6 +340,10 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: SessionManagerDelegate {
+    func mexReceived(_ manager: SessionManager, didMessageReceived: Songs) {
+        
+    }
+    
     func mexReceived(_ manager: SessionManager, didMessageReceived: Int) {
         pointsRecord = didMessageReceived
     }

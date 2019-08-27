@@ -92,7 +92,7 @@ class GameViewController: UIViewController {
     
     
     var song: Songs = Songs.KnockinOnHeavensDoor // Da settare dal telefono
-    var songRecord: Int = 1000 // DA SETTARE DAL TELEFONOOOOO
+    var songRecord: Int! // DA SETTARE DAL TELEFONOOOOO
     
     // This is the thread that shows nodes on the guitar
     let noteQueue = DispatchQueue(label: "noteQueue", qos: .userInteractive)
@@ -110,7 +110,7 @@ class GameViewController: UIViewController {
         
         gameGuitarManager = GameGuitarManager(scene: gameView.scene!, width: 2.5, length: 20, z: -17, function: changePoints(point:))
         textManager = TextManager(scene: gameView.scene!)
-        soundEffect = SoundEffect(file1: chords[0], file2: chords[1], file3: chords[2], file4: chords[3])
+        soundEffect = SoundEffect(file1: chords[0], file2: chords[1], file3: chords[2], file4: chords[3], song: song.base ?? nil)
         
         
         // Allow the tapGesture on the remote
@@ -157,6 +157,7 @@ class GameViewController: UIViewController {
         noteQueue.async {
             // This thread shows the notes to play taking the song's string
             self.semaphorePlay.wait()
+            self.soundEffect.startSongToPlay()
             for pair in self.song.notes.split(separator: ";") {
                 let x = pair.split(separator: ":")
                 for i in 0..<x.count-1 {
@@ -404,9 +405,13 @@ class GameViewController: UIViewController {
 }
 
 extension GameViewController: SessionManagerDelegate {
+    func mexReceived(_ manager: SessionManager, didMessageReceived: Songs) {
+        
+    }
+    
     
     func mexReceived(_ manager: SessionManager, didMessageReceived: Int) {
-        <#code#>
+        
     }
     
     

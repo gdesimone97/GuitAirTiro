@@ -8,12 +8,16 @@
 
 import UIKit
 
-class Multiplayer_TableViewController: UITableViewController {
+class Multiplayer_TableViewController: UITableViewController, UISearchBarDelegate{
 
-    @IBOutlet weak var searchBar: UISearchBar!
+    let game = GuitAirGameCenter.share;
+    var searchActive : Bool = false
+    @IBOutlet weak var searchPlayer : UISearchBar!
     @IBOutlet weak var resultSearchView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchPlayer.delegate = self
+        waitingIndicator.isHidden = true
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -24,10 +28,64 @@ class Multiplayer_TableViewController: UITableViewController {
     
     // MARK: - Table view data source
 
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = true;
+    }
+    @IBOutlet var waitingIndicator: UIActivityIndicatorView!
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if(searchActive){
+            
+            print("cerco \(searchText)");
+            //grafica di attesa
+            waitingIndicator.isHidden = false
+            
+            DispatchQueue.global(qos: .userInteractive).async(execute: {
+                let res = self.game.searchPlayer(gamertag: searchText);
+                
+                print(res);
+                
+                DispatchQueue.main.async(execute: {
+                    self.waitingIndicator.isHidden = true;
+                })
+                
+                
+                
+            })
+            
+            
+            //updatePlayersView(searchText: searchText);
+            
+            
+        }
+        
+    }
+    
+    func updatePlayersView( searchText : String ){
+        let res = game.searchPlayer(gamertag: searchText);
+        print(res);
+    }
+
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 2
     }
+    
+    
 /*
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows

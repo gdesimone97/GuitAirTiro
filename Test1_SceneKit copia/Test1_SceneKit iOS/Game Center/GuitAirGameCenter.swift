@@ -277,4 +277,33 @@ class GuitAirGameCenter{
         
     }
     
+    //Ricerca giocatore da barra di ricerca
+    
+    public func searchPlayer( gamertag:String )->(Int,[String:String]){
+        let urlReq = buildAPIRequest(httpMethod: "GET", method: .player, queryItems: ["search":gamertag])
+        let res = makeAPIRequest(req: urlReq)
+        if( res.0 == 200 ){
+            
+            let gamertags = res.1["gamertags"] as! String;
+            let data = gamertags.data(using: .unicode)!;
+            let gsArr = try! JSONSerialization.jsonObject(with: data) as? Array<String>
+            var gtDict : [String:String] = [:]
+            var k = 0;
+            
+            for user in gsArr!{
+                
+                let index = "user\(k)";
+                gtDict[index] = user;
+                k+=1;
+            }
+            
+            return (200,gtDict);
+        }
+        
+        return res as! (Int,[String:String]);
+        
+    }
+    
+    
+    
 }
