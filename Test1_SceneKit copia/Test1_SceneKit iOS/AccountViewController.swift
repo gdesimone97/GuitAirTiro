@@ -178,7 +178,7 @@ extension AccountViewController: UIImagePickerControllerDelegate,UINavigationCon
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         self.imageProfile.image = image
         flag = false
-        dismiss(animated: true, completion: nil)
+        picker.dismiss(animated: true, completion: nil)
         thread.async {
             let res = self.game.updateImage(image: self.convertImageToString(image: image))
             if res.0 == 200 || res.0 == 201 {
