@@ -47,7 +47,6 @@ class LoginViewController: UIViewController {
                 print("Sono entrato")
                 userDefault.set(1, forKey: LOGIN)
                 HadlerProfile.downloadProfile()
-                self.dismiss(animated: true, completion: nil)
                 performSegue(withIdentifier: "login", sender: nil)
             }
                 
@@ -73,6 +72,13 @@ class LoginViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         indicator.stopAnimating()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "login" {
+            let tabController = segue.destination as! UITabBarController
+            tabController.selectedIndex = 2
+        }
     }
     
 }
