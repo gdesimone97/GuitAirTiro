@@ -12,6 +12,7 @@ import MultipeerConnectivity
 class GuitarSelectedViewController: UIViewController {
     
     let session = SessionManager.share
+    var flag: Bool = true
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var guitarLabel: UILabel!
     
@@ -25,18 +26,21 @@ class GuitarSelectedViewController: UIViewController {
     let acousticImage : UIImage = (UIImage(named: "acoustic"))!
     
     
-    
     // swipeImage movement
     func moveSwipeImageLeft(){
-        UIView.animate(withDuration: 1.5, animations: {
-            self.swipeImage.center.x -= 60.0
-        }, completion: {finished in self.moveSwipeImageRight()} )
+        if flag {
+            UIView.animate(withDuration: 1.5, animations: {
+                self.swipeImage.center.x -= 60.0
+            }, completion: {finished in self.moveSwipeImageRight()} )
+        }
     }
     
     func moveSwipeImageRight(){
-        UIView.animate(withDuration: 1.5, animations: {
-            self.swipeImage.center.x += 60.0
-        }, completion: {finished in self.moveSwipeImageLeft()} )
+        if flag {
+            UIView.animate(withDuration: 1.5, animations: {
+                self.swipeImage.center.x += 60.0
+            }, completion: {finished in self.moveSwipeImageLeft()} )
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -44,7 +48,9 @@ class GuitarSelectedViewController: UIViewController {
        self.moveSwipeImageRight()
     }
     
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        flag = false
+    }
     
     
     
