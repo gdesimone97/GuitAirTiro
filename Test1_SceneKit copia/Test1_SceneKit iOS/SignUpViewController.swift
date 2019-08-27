@@ -64,9 +64,11 @@ class SignUpViewController: UIViewController {
             }
             else if res.0 == 409 {
                 invalidLogIn.text = "This account already exists"
+                indicator.stopAnimating()
             }
             else {
                 invalidLogIn.text = "Username or password wrong"
+                indicator.stopAnimating()
             }
         }
     }
