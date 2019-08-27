@@ -68,6 +68,7 @@
 		08D8E2C52313D02D005A42E9 /* Songs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7703F79022FAE2A30075BF92 /* Songs.swift */; };
 		08F9EF01230EEB61001B5656 /* GuitAirAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F9EEFF230EEB61001B5656 /* GuitAirAPI.swift */; };
 		08F9EF02230EEB61001B5656 /* GuitAirGameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F9EF00230EEB61001B5656 /* GuitAirGameCenter.swift */; };
+		12AFB56D23152D7C00B022C7 /* ResultTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AFB56C23152D7C00B022C7 /* ResultTableView.swift */; };
 		259FCF7A4466898030E2854A /* Pods_Test1_SceneKit_watchOS_App_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E921CE1C6D8E8B53642FAF /* Pods_Test1_SceneKit_watchOS_App_Extension.framework */; };
 		4DCC5A52BA1C80F0803B3382 /* Pods_Test1_SceneKit_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F1AB350036D84B5016AEC19 /* Pods_Test1_SceneKit_tvOS.framework */; };
 		7703F79122FAE2A30075BF92 /* Songs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7703F79022FAE2A30075BF92 /* Songs.swift */; };
@@ -224,6 +225,7 @@
 		08D465B922F1A78100B8D43B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		08F9EEFF230EEB61001B5656 /* GuitAirAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuitAirAPI.swift; sourceTree = "<group>"; };
 		08F9EF00230EEB61001B5656 /* GuitAirGameCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuitAirGameCenter.swift; sourceTree = "<group>"; };
+		12AFB56C23152D7C00B022C7 /* ResultTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableView.swift; sourceTree = "<group>"; };
 		2A15CD72FB1605F801D79853 /* Pods-Test1_SceneKit watchOS App Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test1_SceneKit watchOS App Extension.release.xcconfig"; path = "Target Support Files/Pods-Test1_SceneKit watchOS App Extension/Pods-Test1_SceneKit watchOS App Extension.release.xcconfig"; sourceTree = "<group>"; };
 		37A58CE124B71E8151DB7139 /* Pods_Test1_SceneKit_watchOS_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Test1_SceneKit_watchOS_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4217021D0952E689A6BEE811 /* Pods-Test1_SceneKit iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test1_SceneKit iOS.release.xcconfig"; path = "Target Support Files/Pods-Test1_SceneKit iOS/Pods-Test1_SceneKit iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -432,6 +434,7 @@
 				F2AB38A4230FDDA600833589 /* accept.png */,
 				F225CEF723142F88007CFE6D /* Songs TableViewController.swift */,
 				F225CEF12313E910007CFE6D /* Send Friend Request ViewController.swift */,
+				12AFB56C23152D7C00B022C7 /* ResultTableView.swift */,
 				F2AB38A5230FDDA700833589 /* refuse.png */,
 				F207C468230EB2D8002DA2BF /* Multiplayer TableViewController.swift */,
 				0898EC2522F05146007C32DD /* ViewController.swift */,
@@ -853,6 +856,7 @@
 				0898EC2A22F05146007C32DD /* NotationTableViewCell.swift in Sources */,
 				0875E9F5230D8792009964B1 /* Stat+CoreDataProperties.swift in Sources */,
 				F2AB38AB230FF52700833589 /* Matches ViewController.swift in Sources */,
+				12AFB56D23152D7C00B022C7 /* ResultTableView.swift in Sources */,
 				08F9EF02230EEB61001B5656 /* GuitAirGameCenter.swift in Sources */,
 				F2B4E820230D3ED0009F6C36 /* Leaderboard View Controller.swift in Sources */,
 				F225CEF02313E205007CFE6D /* Send Invitation ViewController.swift in Sources */,

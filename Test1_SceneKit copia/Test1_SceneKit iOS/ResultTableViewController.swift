@@ -1,97 +1,37 @@
 //
-//  Multiplayer TableViewController.swift
+//  ResultTableViewController.swift
 //  Test1_SceneKit iOS
 //
-//  Created by Mario De Sio on 22/08/2019.
+//  Created by Christian Marino on 27/08/2019.
 //  Copyright © 2019 Gennaro Giaquinto. All rights reserved.
 //
 
 import UIKit
 
-class Multiplayer_TableViewController: UITableViewController, UISearchBarDelegate{
+class ResultTableViewController: UITableViewController {
 
-    let game = GuitAirGameCenter.share;
-    var searchActive : Bool = false
-    @IBOutlet weak var searchPlayer : UISearchBar!
-    @IBOutlet weak var resultSearchView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchPlayer.delegate = self
-        waitingIndicator.isHidden = true
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    
-    
+
     // MARK: - Table view data source
 
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchActive = false;
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchActive = false;
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false;
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = true;
-    }
-    @IBOutlet var waitingIndicator: UIActivityIndicatorView!
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        if(searchActive){
-            
-            print("cerco \(searchText)");
-            //grafica di attesa
-            waitingIndicator.isHidden = false
-            
-            DispatchQueue.global(qos: .userInteractive).async(execute: {
-                let res = self.game.searchPlayer(gamertag: searchText);
-                
-                print(res);
-                
-                DispatchQueue.main.async(execute: {
-                    self.waitingIndicator.isHidden = true;
-                })
-                
-                
-                
-            })
-            
-            
-            //updatePlayersView(searchText: searchText);
-            
-            
-        }
-        
-    }
-    
-    func updatePlayersView( searchText : String ){
-        let res = game.searchPlayer(gamertag: searchText);
-        print(res);
-    }
-
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 0
     }
-    
-    
-/*
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return
+        return 0
     }
-*/
+
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
