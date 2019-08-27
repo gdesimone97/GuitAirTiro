@@ -519,7 +519,9 @@ extension GameViewController: ReactToMotionEvents {
     
     func motionUpdate(motion: GCMotion) {
         
-        let motionAcceleration = motion.userAcceleration.y * motion.gravity.y + motion.userAcceleration.x * motion.gravity.x + motion.userAcceleration.z * motion.gravity.z
+        let motionAcceleration = motion.userAcceleration.y * motion.gravity.y +
+                                 motion.userAcceleration.x * motion.gravity.x +
+                                 motion.userAcceleration.z * motion.gravity.z
         
         
         if !movedController && -motionAcceleration > soundThreshold {

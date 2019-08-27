@@ -9,17 +9,17 @@
 import UIKit
 
 class Multiplayer_TableViewController: UITableViewController, UISearchBarDelegate{
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    
+
 
     /*
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -34,16 +34,16 @@ class Multiplayer_TableViewController: UITableViewController, UISearchBarDelegat
         return playersTableViewDataSource.count
     }
 
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "playerCell", for: indexPath)
-        
+
         cell.textLabel?.text = playersTableViewDataSource[indexPath.row]
-        
+
         return cell
 
     }
-    
+
 */
     /*
     // Override to support conditional editing of the table view.
@@ -61,7 +61,7 @@ class Multiplayer_TableViewController: UITableViewController, UISearchBarDelegat
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     */
 
@@ -91,4 +91,3 @@ class Multiplayer_TableViewController: UITableViewController, UISearchBarDelegat
     */
 
 }
-
