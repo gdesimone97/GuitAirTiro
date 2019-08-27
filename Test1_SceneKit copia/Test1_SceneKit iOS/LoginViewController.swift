@@ -47,6 +47,7 @@ class LoginViewController: UIViewController {
                 print("Sono entrato")
                 userDefault.set(1, forKey: LOGIN)
                 HadlerProfile.downloadProfile()
+                self.dismiss(animated: true, completion: nil)
                 performSegue(withIdentifier: "login", sender: nil)
             }
                 
