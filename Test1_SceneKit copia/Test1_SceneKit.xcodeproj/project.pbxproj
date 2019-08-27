@@ -108,6 +108,7 @@
 		F207C45F230E99E3002DA2BF /* multiplayer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F207C45E230E99E2002DA2BF /* multiplayer@2x.png */; };
 		F207C467230EA440002DA2BF /* swiperight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F207C466230EA43F002DA2BF /* swiperight@2x.png */; };
 		F207C469230EB2D8002DA2BF /* Multiplayer TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F207C468230EB2D8002DA2BF /* Multiplayer TableViewController.swift */; };
+		F20B23632315987700515FE6 /* Search ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B23622315987700515FE6 /* Search ViewController.swift */; };
 		F225CEF02313E205007CFE6D /* Send Invitation ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F225CEEF2313E205007CFE6D /* Send Invitation ViewController.swift */; };
 		F225CEF22313E910007CFE6D /* Send Friend Request ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F225CEF12313E910007CFE6D /* Send Friend Request ViewController.swift */; };
 		F225CEF423142C2C007CFE6D /* Friend Request ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F225CEF323142C2C007CFE6D /* Friend Request ViewController.swift */; };
@@ -273,6 +274,7 @@
 		F207C45E230E99E2002DA2BF /* multiplayer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "multiplayer@2x.png"; sourceTree = "<group>"; };
 		F207C466230EA43F002DA2BF /* swiperight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "swiperight@2x.png"; sourceTree = "<group>"; };
 		F207C468230EB2D8002DA2BF /* Multiplayer TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Multiplayer TableViewController.swift"; sourceTree = "<group>"; };
+		F20B23622315987700515FE6 /* Search ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Search ViewController.swift"; sourceTree = "<group>"; };
 		F225CEEF2313E205007CFE6D /* Send Invitation ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Send Invitation ViewController.swift"; sourceTree = "<group>"; };
 		F225CEF12313E910007CFE6D /* Send Friend Request ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Send Friend Request ViewController.swift"; sourceTree = "<group>"; };
 		F225CEF323142C2C007CFE6D /* Friend Request ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Friend Request ViewController.swift"; sourceTree = "<group>"; };
@@ -429,6 +431,7 @@
 				F225CEF523142CB6007CFE6D /* Pending Friend Request ViewController.swift */,
 				F225CEEF2313E205007CFE6D /* Send Invitation ViewController.swift */,
 				0898EC2122F05146007C32DD /* GameModeViewController.swift */,
+				F20B23622315987700515FE6 /* Search ViewController.swift */,
 				0898EC2322F05146007C32DD /* NotationTableViewCell.swift */,
 				0898EC2622F05146007C32DD /* NotationTableViewController.swift */,
 				0898EC2022F05146007C32DD /* SettingsTableViewController.swift */,
@@ -866,6 +869,7 @@
 				F225CEF02313E205007CFE6D /* Send Invitation ViewController.swift in Sources */,
 				F225CEF623142CB6007CFE6D /* Pending Friend Request ViewController.swift in Sources */,
 				779E565022EB090400ACC1BF /* SessionManager.swift in Sources */,
+				F20B23632315987700515FE6 /* Search ViewController.swift in Sources */,
 				0898EC2D22F05146007C32DD /* NotationTableViewController.swift in Sources */,
 				08B5E77E22F1C3C500A6FF05 /* SignalCode.swift in Sources */,
 				0875E9FE230D99B2009964B1 /* PersistanceManager.swift in Sources */,
