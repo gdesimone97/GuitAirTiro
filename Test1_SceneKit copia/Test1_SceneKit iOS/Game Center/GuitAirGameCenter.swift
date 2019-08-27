@@ -54,6 +54,11 @@ class GuitAirGameCenter{
     }
     
     //Faccio la richiesta al server e ritorno il risultato
+    public func getSession()->URLSession{
+        return self.session;
+    }
+    
+    
     private func makeAPIRequest( req : URLRequest )->(Int,[String:Any]) {
         
         let semaphore = DispatchSemaphore.init(value: 0);
@@ -77,6 +82,7 @@ class GuitAirGameCenter{
                 }
                 
                 result = (respCode, json);
+                semaphore.signal();
             } catch {
                 print("Error")
                 return;
@@ -102,6 +108,8 @@ class GuitAirGameCenter{
     }
     
     public func login(gamertag:String, password:String, devicetoken : String = "")->(Int,[String:String]){
+        
+        print("eseguo login");
         
         let params = ["gamertag":gamertag,"password":password, "device_token":devicetoken];
         
