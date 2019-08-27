@@ -62,6 +62,8 @@ class ViewController: UIViewController{
             session.activate()
         }
         
+        HadlerProfile.downloadProfile()
+        
     }
     
     
