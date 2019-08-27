@@ -13,6 +13,7 @@ class AccountViewController: UIViewController {
     let monitor = NWPathMonitor()
     let networkThread = DispatchQueue.init(label: "network_thread")
     var connectionFlag = false
+    var connection: Bool!
     @IBOutlet var pickButton: UIButton!
     @IBOutlet var innerView: UIView!
     @IBOutlet var imageProfile: UIImageView!
@@ -64,7 +65,9 @@ class AccountViewController: UIViewController {
     private func deviceOnline(path: NWPath) {
         if path.status == .satisfied {
             if userDefault.bool(forKey: UPLOAD) {
-                HadlerProfile.uploadImage(image: imageProfile.image!)
+                connection = true
+                let myimage = UIImage(data: PersistanceManager.retriveImage() as! Data)
+                HadlerProfile.uploadImage(image: myimage!)
                 userDefault.set(0, forKey: UPLOAD)
             }
             if connectionFlag {
@@ -73,6 +76,7 @@ class AccountViewController: UIViewController {
             }
         }
         else {
+            connection = false
             connectionFlag = true
         }
     }
@@ -138,7 +142,16 @@ class AccountViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.imageProfile.image = defaultImage
                 }
-                HadlerProfile.uploadImage(image: defaultImage!)
+                if self.connection {
+                    HadlerProfile.uploadImage(image: defaultImage!)
+                }
+                else {
+                    userDefault.set(1, forKey: UPLOAD)
+                }
+                self.threadCoreData.async {
+                    PersistanceManager.uploadImage(image: defaultImage!)
+                    print("Immagine aggiornata nel core data")
+                }
             }
         })
         
