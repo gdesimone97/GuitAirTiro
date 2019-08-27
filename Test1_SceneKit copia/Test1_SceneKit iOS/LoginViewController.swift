@@ -53,11 +53,13 @@ class LoginViewController: UIViewController {
             else if res.0 == 500 {
                 DispatchQueue.main.async {
                     self.errorLabel.text = "No connection"
+                    self.indicator.stopAnimating()
                 }
             }
             else {
                 DispatchQueue.main.async {
                     self.errorLabel.text = "Username or password wrong"
+                    self.indicator.stopAnimating()
                 }
             }
         }
