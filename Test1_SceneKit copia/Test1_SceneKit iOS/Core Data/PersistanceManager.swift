@@ -61,6 +61,10 @@ class PersistanceManager {
         
     }
     
+    static func uploadImage(image: UIImage) {
+        PersistanceManager.UploadStat(score: nil, wins: nil, draws: nil, losses: nil, image: image.jpegData(compressionQuality: 0.0), gamerTag: nil)
+    }
+    
     static func retriveImage() -> NSData? {
         return getItem()?.image
     }
