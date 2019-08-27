@@ -36,6 +36,8 @@ class SoundEffect {
     private var song8: AKPlayer?
     private var songs: [AKPlayer]?
     
+    private var songToPlay: AKPlayer?
+    
     
     // Guitars
     private var guitar11: Guitar?
@@ -129,13 +131,17 @@ class SoundEffect {
     
     
     // This is for GameViewController
-    init(file1: String, file2: String, file3: String, file4: String) {
+    init(file1: String, file2: String, file3: String, file4: String, song: String?) {
         
         do{
             countdownPlayer = AKPlayer(audioFile: try findFile(str: "Sound Effects/countdown.wav"))
             booEffect = AKPlayer(audioFile: try findFile(str: "Sound Effects/Crowd Boo sound effect.mp3"))
             applauseEffect = AKPlayer(audioFile: try findFile(str: "Sound Effects/Crowd Cheers and Applause.mp3"))
             explosionEffect = AKPlayer(audioFile: try findFile(str: "Sound Effects/Explosion.mp3"))
+            
+            if song != nil {
+                songToPlay = AKPlayer(audioFile: try findFile(str: "Songs/" + song!))
+            }
             
             guitar11 = try Guitar(file: file1)
             guitar21 = try Guitar(file: file2)
@@ -160,7 +166,7 @@ class SoundEffect {
         wah = [wah11, wah12, wah21, wah22, wah31, wah32, wah41, wah42]
         
         
-        AudioKit.output = AKMixer(guitar11?.chord, guitar21?.chord, guitar31?.chord, guitar41?.chord, guitar12?.chord, guitar22?.chord, guitar32?.chord, guitar42?.chord, wah11, wah12, wah21, wah22, wah31, wah32, wah41, wah42, countdownPlayer, booEffect, applauseEffect, explosionEffect)
+        AudioKit.output = AKMixer(guitar11?.chord, guitar21?.chord, guitar31?.chord, guitar41?.chord, guitar12?.chord, guitar22?.chord, guitar32?.chord, guitar42?.chord, wah11, wah12, wah21, wah22, wah31, wah32, wah41, wah42, countdownPlayer, booEffect, applauseEffect, explosionEffect, songToPlay)
         do{
             try AudioKit.start()
         } catch {
@@ -324,6 +330,13 @@ class SoundEffect {
         
         
         try! AudioKit.stop()
+    }
+    
+    func startSongToPlay() {
+        if songToPlay != nil {
+            songToPlay!.stop()
+            songToPlay!.play()
+        }
     }
     
 }

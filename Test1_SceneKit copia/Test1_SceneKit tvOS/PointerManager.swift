@@ -53,7 +53,6 @@ class PointerManager {
         if progressBar != nil {
             modifyBar(actualPoints: actualPoints)
         }
-        print(pointer.position.z)
         
         if pointer.position.z < MIN_PLANE && Up {
             return
