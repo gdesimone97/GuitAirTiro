@@ -9,18 +9,10 @@
 import UIKit
 
 class Multiplayer_TableViewController: UITableViewController, UISearchBarDelegate{
-
-    var playersTableViewDataSource = [];
-    var result : (Int,[String:Any]) = (0,[:]);
-    let dispatchGroup = DispatchGroup();
-    let game = GuitAirGameCenter.share;
-    var searchActive : Bool = true;
-    @IBOutlet weak var searchPlayer : UISearchBar!
-    @IBOutlet weak var resultSearchView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchPlayer.delegate = self
-        waitingIndicator.isHidden = true
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -28,130 +20,31 @@ class Multiplayer_TableViewController: UITableViewController, UISearchBarDelegat
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    
-    // MARK: - Table view data source
 
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchActive = false;
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchActive = true;
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false;
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = true;
-    }
-    @IBOutlet var waitingIndicator: UIActivityIndicatorView!
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        if(searchActive){
-            
-            print("Effettuo ricerca");
-            
-            self.waitingIndicator.isHidden = false;
-            
-            DispatchQueue.global(qos: .background).async(execute: {
-                
-                
-                
-                let urlReq = self.game.returnSearch(searchText: searchText);
-                
-                print(urlReq);
-                
-                self.game.getSession().dataTask(with: urlReq,completionHandler: {
-                  
-                    data,response,error in
-                    
-                    do {
-                        var json: Dictionary<String,Any> = ["":""]
-                        if data == nil {
-                        
-                            print("DATA NIl");
-                            return;
-                            
-                        }
-                        else{
-                            json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, Any>
-                            
-                            let res = json;
-
-                            DispatchQueue.main.async(execute: {
-                                
-                                self.waitingIndicator.isHidden = true;
-                                
-                                self.updateDataSourcePlayers(res: res);
-                                
-                            })
-                            
-                            
-                            
-                            print("Invocato metodo di aggiornamneto");
-                        }
-                    
-                    
-                        } catch{
-                        print("Error while json")
-                        return;
-                    }
-                    
-                    
-                }).resume()
-                
-                
-               
-                
-            })
-            
-        }
-        
-    }
-    
-    
-    func updateDataSourcePlayers( res : [String:Any] ){
-        
-        if(res.count == 1 ){
-            //trovati 0 giocatori
-        }else{
-            let gamertags = res["gamertags"] as! String;
-                    let data = gamertags.data(using: .unicode)!;
-                    let gsArr = try! JSONSerialization.jsonObject(with: data) as? Array<String>;
-                self.playersTableViewDataSource = gsArr!
-
-        }
-        
-        
-        
-    }
-
-    
+    /*
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 2
     }
-    
-    
-/*
+    */
+    /*
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return
+        return playersTableViewDataSource.count
     }
-*/
-    /*
+
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "playerCell", for: indexPath)
+        
+        cell.textLabel?.text = playersTableViewDataSource[indexPath.row]
+        
         return cell
-    }
-    */
 
+    }
+    
+*/
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
