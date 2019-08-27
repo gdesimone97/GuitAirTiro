@@ -25,7 +25,6 @@ class LoginViewController: UIViewController {
         indicator.hidesWhenStopped = true
         indicator.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
         view.addSubview(indicator)
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,12 +40,13 @@ class LoginViewController: UIViewController {
         self.view.endEditing(true)
         if user != nil && pass != nil {
             let token = userDefault.string(forKey: TOKEN)
+            self.view.endEditing(true)
+            indicator.startAnimating()
             let res = game.login(gamertag: user!, password: pass!,devicetoken: token ?? "")
             if res.0 == 200 || res.0 == 201 {
                 print("Sono entrato")
                 userDefault.set(1, forKey: LOGIN)
                 HadlerProfile.downloadProfile()
-                indicator.startAnimating()
                 performSegue(withIdentifier: "login", sender: nil)
             }
                 
