@@ -61,9 +61,11 @@ class HadlerProfile {
         hadlerProfileThread.async {
             semaphore.wait()
             let str = image.jpegData(compressionQuality: 0.0)?.base64EncodedString()
-            game.updateImage(image: str!)
+            let res = game.updateImage(image: str!)
             semaphore.signal()
-            print("Immagine aggiornata sul server")
+            if res.0 == 200 || res.0 == 201 {
+                print("Immagine aggiornata sul server")
+            }
         }
     }
     
