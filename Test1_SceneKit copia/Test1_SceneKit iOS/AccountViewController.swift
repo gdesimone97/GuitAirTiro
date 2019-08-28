@@ -191,10 +191,7 @@ extension AccountViewController: UIImagePickerControllerDelegate,UINavigationCon
         picker.dismiss(animated: true, completion: nil)
         thread.async {
             let res = HadlerProfile.uploadImage(image: image)
-            if res == 200 || res == 201 {
-                print("Salvato")
-            }
-            else {
+            if res != 200 || res != 201 {
                 self.userDefaults.set(1, forKey: UPLOAD)
             }
         }
