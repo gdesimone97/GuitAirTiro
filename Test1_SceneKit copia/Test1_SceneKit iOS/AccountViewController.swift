@@ -81,14 +81,9 @@ class AccountViewController: UIViewController {
                 HadlerProfile.uploadImage(image: myimage!)
                 userDefault.set(0, forKey: UPLOAD)
             }
-            if connectionFlag {
-                HadlerProfile.downloadProfile()
-                connectionFlag = false
-            }
         }
         else {
             connection = false
-            connectionFlag = true
             DispatchQueue.main.async {
                 self.logOutButton.isEnabled = false
                 self.logOutButton.setTitleColor(.gray, for: .disabled)
@@ -195,8 +190,8 @@ extension AccountViewController: UIImagePickerControllerDelegate,UINavigationCon
         flag = false
         picker.dismiss(animated: true, completion: nil)
         thread.async {
-            let res = self.game.updateImage(image: self.convertImageToString(image: image))
-            if res.0 == 200 || res.0 == 201 {
+            let res = HadlerProfile.uploadImage(image: image)
+            if res == 200 || res == 201 {
                 print("Salvato")
             }
             else {
