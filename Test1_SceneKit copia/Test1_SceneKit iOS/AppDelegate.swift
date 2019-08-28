@@ -222,14 +222,14 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             let id = Int(idStr)
             switch response.actionIdentifier {
             case "ACCEPT_ACTION":
-                print("invito accettato")
+                print("amicizia accetatta")
                 let res = game.acceptInvitation(id: id!)
                 if res.0 != 200 || res.0 != 201 {
                     print("Partita accettata")
                     print("res: \(res.0), id: \(id)")
                 }
             case "DECLINE_ACTION":
-                print("invito declinato")
+                print("amicizia rifiutata")
                 let res = game.rejectInvitation(id: id!)
                 if res.0 != 200 || res.0 != 201 {
                     print("res: \(res.0), id: \(id)")
