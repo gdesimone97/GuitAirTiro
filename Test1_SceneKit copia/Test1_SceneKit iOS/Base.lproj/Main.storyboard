@@ -533,11 +533,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile.png" translatesAutoresizingMaskIntoConstraints="NO" id="QjZ-SO-isT">
-                                <rect key="frame" x="56" y="128" width="130" height="133"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4IH-RA-wK1">
                                 <rect key="frame" x="56" y="84" width="130" height="133"/>
                                 <constraints>
@@ -549,44 +544,6 @@
                                     <action selector="takePhoto:" destination="h2b-uc-Vxe" eventType="touchUpInside" id="9Cs-67-hY2"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="heS-k2-J1i">
-                                <rect key="frame" x="210" y="126" width="162" height="49"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guitar-player.png" translatesAutoresizingMaskIntoConstraints="NO" id="ehK-Y2-vhG">
-                                        <rect key="frame" x="0.0" y="0.0" width="47" height="49"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="49" id="KBM-yG-2IG"/>
-                                            <constraint firstAttribute="width" constant="47" id="Mqa-RE-zEP"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GAMERTAG" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q5v-vZ-l6n">
-                                        <rect key="frame" x="59" y="0.0" width="103" height="49"/>
-                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="18"/>
-                                        <color key="textColor" red="1" green="0.56470588235294117" blue="0.32156862745098036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OhA-Fk-weF">
-                                <rect key="frame" x="160" y="716" width="94" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="94" id="5pL-yY-Lxt"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Logout">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="logOutButton:" destination="h2b-uc-Vxe" eventType="touchUpInside" id="1GJ-pA-Dht"/>
-                                    <segue destination="5TL-V9-hlP" kind="presentation" modalPresentationStyle="currentContext" id="7vg-9k-q1K"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STATISTICS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0do-e3-7A0">
-                                <rect key="frame" x="153.5" y="299" width="107" height="21.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="18"/>
-                                <color key="textColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uql-PX-ocb">
                                 <rect key="frame" x="82" y="364" width="250" height="250"/>
                                 <subviews>
@@ -721,6 +678,52 @@
                                     <constraint firstAttribute="height" constant="250" id="u5F-4t-2tg"/>
                                 </constraints>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="heS-k2-J1i">
+                                <rect key="frame" x="210" y="126" width="162" height="49"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guitar-player.png" translatesAutoresizingMaskIntoConstraints="NO" id="ehK-Y2-vhG">
+                                        <rect key="frame" x="0.0" y="0.0" width="47" height="49"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="49" id="KBM-yG-2IG"/>
+                                            <constraint firstAttribute="width" constant="47" id="Mqa-RE-zEP"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GAMERTAG" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q5v-vZ-l6n">
+                                        <rect key="frame" x="59" y="0.0" width="103" height="49"/>
+                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="18"/>
+                                        <color key="textColor" red="1" green="0.56470588235294117" blue="0.32156862745098036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OhA-Fk-weF">
+                                <rect key="frame" x="160" y="716" width="94" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="94" id="5pL-yY-Lxt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="logOutButton:" destination="h2b-uc-Vxe" eventType="touchUpInside" id="1GJ-pA-Dht"/>
+                                    <segue destination="5TL-V9-hlP" kind="presentation" modalPresentationStyle="currentContext" id="7vg-9k-q1K"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STATISTICS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0do-e3-7A0">
+                                <rect key="frame" x="153.5" y="299" width="107" height="21.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="18"/>
+                                <color key="textColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile.png" translatesAutoresizingMaskIntoConstraints="NO" id="QjZ-SO-isT">
+                                <rect key="frame" x="56" y="84" width="130" height="133"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="133" id="B65-bT-7BU"/>
+                                    <constraint firstAttribute="width" constant="130" id="s8N-9x-aLJ"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.20392156862745098" green="0.24705882352941178" blue="0.29411764705882354" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
@@ -729,6 +732,7 @@
                             <constraint firstItem="0do-e3-7A0" firstAttribute="leading" secondItem="eOS-Mh-Mz2" secondAttribute="leading" constant="153.5" id="Cyf-lU-Ydn"/>
                             <constraint firstItem="eOS-Mh-Mz2" firstAttribute="trailing" secondItem="heS-k2-J1i" secondAttribute="trailing" constant="42" id="QPl-kC-bT3"/>
                             <constraint firstItem="eOS-Mh-Mz2" firstAttribute="trailing" secondItem="OhA-Fk-weF" secondAttribute="trailing" constant="160" id="Wke-LM-fNN"/>
+                            <constraint firstItem="QjZ-SO-isT" firstAttribute="leading" secondItem="eOS-Mh-Mz2" secondAttribute="leading" constant="56" id="WnZ-FP-B81"/>
                             <constraint firstItem="eOS-Mh-Mz2" firstAttribute="bottom" secondItem="OhA-Fk-weF" secondAttribute="bottom" constant="63" id="XJJ-2O-yQ8"/>
                             <constraint firstItem="4IH-RA-wK1" firstAttribute="top" secondItem="eOS-Mh-Mz2" secondAttribute="top" constant="40" id="bhn-JX-1IS"/>
                             <constraint firstItem="Uql-PX-ocb" firstAttribute="leading" secondItem="eOS-Mh-Mz2" secondAttribute="leading" constant="82" id="c1h-dU-wUs"/>
@@ -737,6 +741,7 @@
                             <constraint firstItem="eOS-Mh-Mz2" firstAttribute="trailing" secondItem="Uql-PX-ocb" secondAttribute="trailing" constant="82" id="fdP-Mz-zqU"/>
                             <constraint firstItem="eOS-Mh-Mz2" firstAttribute="trailing" secondItem="0do-e3-7A0" secondAttribute="trailing" constant="153.5" id="lEM-9m-sCh"/>
                             <constraint firstItem="heS-k2-J1i" firstAttribute="top" secondItem="eOS-Mh-Mz2" secondAttribute="top" constant="82" id="pM2-S4-q9A"/>
+                            <constraint firstItem="QjZ-SO-isT" firstAttribute="top" secondItem="eOS-Mh-Mz2" secondAttribute="top" constant="40" id="q36-ih-h6p"/>
                             <constraint firstItem="0do-e3-7A0" firstAttribute="top" secondItem="heS-k2-J1i" secondAttribute="bottom" constant="124" id="wkA-IH-1o9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eOS-Mh-Mz2"/>
