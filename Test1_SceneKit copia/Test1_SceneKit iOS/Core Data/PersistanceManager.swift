@@ -12,6 +12,7 @@ import CoreData
 
 class PersistanceManager {
     static let entityName = "Stat"
+    static let entityGame = "Games"
     static var mycontext: NSManagedObjectContext! {
         get {
             return context
@@ -26,7 +27,35 @@ class PersistanceManager {
 //        return appDelegate.persistentContainer.viewContext
 //    }
     
+    private static func checkRecordGames()->Bool{
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityGame)
+        var number = 0
+        do {
+            number = try context.count(for: fetchRequest)
+        } catch { print("Errore recupero oggetto") }
+        if number == 0 { return true }
+        else { return false }
+    }
+        
     
+    
+    
+    
+    
+    static func createEmptyGames(){
+        guard checkRecordGames() == true else { print("No record creato games"); return }
+        print("Record creato games")
+        let gameItem = NSEntityDescription.insertNewObject(forEntityName: entityGame, into: context) as! Games
+        
+        
+        
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print("Errore salvaggio: \(error.code)")
+        }
+    }
     
     static func createEmptyItem() {
         //let context = getContext()

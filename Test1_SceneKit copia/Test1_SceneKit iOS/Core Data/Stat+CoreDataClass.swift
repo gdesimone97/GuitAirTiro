@@ -13,4 +13,7 @@ import CoreData
 @objc(Stat)
 public class Stat: NSManagedObject {
 
+    
+    
+    
 }
