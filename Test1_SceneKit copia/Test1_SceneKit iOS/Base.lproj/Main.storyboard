@@ -2024,7 +2024,6 @@
                     </view>
                     <connections>
                         <outlet property="segmentedC" destination="pmI-QU-cXf" id="Xcx-HB-neS"/>
-                        <outlet property="tableView" destination="qOo-bf-Atl" id="40R-Wi-PTz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nrq-jC-INc" userLabel="First Responder" sceneMemberID="firstResponder"/>

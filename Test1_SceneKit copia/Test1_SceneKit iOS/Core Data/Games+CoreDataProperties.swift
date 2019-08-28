@@ -17,7 +17,8 @@ extension Games {
         return NSFetchRequest<Games>(entityName: "Games")
     }
 
-    @NSManaged public var gamesSerialized: NSData?
+    @NSManaged public var progrGamesSerialized: NSData?
     @NSManaged public var last_server_read: NSDate?
+    @NSManaged public var endedGamesSerialized: NSData?
 
 }
