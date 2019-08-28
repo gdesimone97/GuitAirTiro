@@ -90,7 +90,7 @@ class Matches_ViewController: UIViewController, UITableViewDelegate, UITableView
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        if (Date().timeIntervalSince(PersistanceManager.retriveLastServerRead()) > 10){
+        if (Date().timeIntervalSince(PersistanceManager.retriveLastServerRead()) > 300){
 
         let matchRes = game.getMatches();
 
