@@ -11,16 +11,21 @@ import UIKit
 class Search_TableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating {
    
     func updateSearchResults(for searchController: UISearchController) {
+        flag = true
         guard let text = searchController.searchBar.text else { return }
         print(text)
+        self.filterContent(searchedText: text)
     }
     
     
+    
+    var flag: Bool = false
+    var filteredDataSource: Array<String> = []
     var playersTableViewDataSource: Array<String> = []
     var result : (Int,[String:Any]) = (0,[:]);
     let dispatchGroup = DispatchGroup();
     let game = GuitAirGameCenter.share;
-    var searchActive : Bool = true;
+    var search: UISearchController?
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -28,17 +33,17 @@ class Search_TableViewController: UITableViewController, UISearchBarDelegate, UI
         super.viewDidLoad()
         
         //Search controlling
-        let search = UISearchController(searchResultsController: nil)
-        search.searchResultsUpdater = self
-        search.obscuresBackgroundDuringPresentation = false
-        search.searchBar.placeholder = "Type something here to search"
+        self.search = UISearchController(searchResultsController: nil)
+        self.search?.searchResultsUpdater = self
+        self.search?.obscuresBackgroundDuringPresentation = false
+        self.search?.searchBar.placeholder = "Type something here to search"
         navigationItem.searchController = search
+        self.search?.searchBar.barStyle = .black
         
         // Updating players array...
         self.updatePlayerArray()
         
-//        mostrare tutti gli utenti
-        
+
         
         self.tableView.reloadData()
         
@@ -51,6 +56,22 @@ class Search_TableViewController: UITableViewController, UISearchBarDelegate, UI
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    func filterContent(searchedText: String) {
+        print("Filtering..")
+        filteredDataSource.removeAll(keepingCapacity: true)
+        for x in playersTableViewDataSource {
+            var justOne = false
+       
+            if((x.lowercased().range(of:searchedText.lowercased()) != nil) && justOne == false) {
+                        print("aggiungo \(x) alla listaFiltrata")
+                        filteredDataSource.append(x)
+                        justOne = true
+                    }
+        
+            
+            self.tableView.reloadData()
+        }
+    }
     
     func updatePlayerArray() {
         
@@ -63,101 +84,12 @@ class Search_TableViewController: UITableViewController, UISearchBarDelegate, UI
             
         }
         
-        
     }
  
 
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-
-
-//        func cosaFaccioQuandoScrivo() {
-//
-//            print("Effettuo ricerca");
-//
-//
-//            DispatchQueue.global(qos: .background).async(execute: {
-//
-//
-//
-//                let urlReq = self.game.returnSearch(searchText: searchText);
-//
-//                print(urlReq);
-//
-//                self.game.getSession().dataTask(with: urlReq,completionHandler: {
-//
-//                    data,response,error in
-//
-//                    do {
-//                        var json: Dictionary<String,Any> = ["":""]
-//                        if data == nil {
-//
-//                            print("DATA NIl");
-//                            return;
-//
-//                        }
-//                        else{
-//                            json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, Any>
-//
-//                            let res = json;
-//
-//                            DispatchQueue.main.async(execute: {
-//
-//
-//                                self.updateDataSourcePlayers(res: res);
-//
-//                            })
-//
-//
-//
-//                            print("Invocato metodo di aggiornamneto");
-//                        }
-//
-//
-//                    } catch{
-//                        print("Error while json")
-//                        return;
-//                    }
-//
-//
-//                }).resume()
-//
-//
-//
-//
-//            })
-//
-//        }
-//
-//    }
-//
-//
-    
-//    func updateArray(){
-//        if(searchActive) {
-//            self.playersTableViewDataSource.append("Mario")
-//            self.playersTableViewDataSource.append("Christian")
-//            self.playersTableViewDataSource.append("Peppe")
-//        }
-//    }
-//
-//    func updateDataSourcePlayers( res : [String:Any] ){
-//
-//        if(res.count == 1 ){
-//            //trovati 0 giocatori
-//        }else{
-//            let gamertags = res["gamertags"] as! String;
-//            let data = gamertags.data(using: .unicode)!;
-//            let gsArr = try! JSONSerialization.jsonObject(with: data) as? Array<String>;
-//            print(gsArr);
-//
-//            self.playersTableViewDataSource = gsArr!
-//        }
-//
-//
-//
-//    }
 //    // MARK: - Table view data source
 //
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -165,18 +97,35 @@ class Search_TableViewController: UITableViewController, UISearchBarDelegate, UI
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.playersTableViewDataSource.count
+        
+        if search!.isActive {
+            return self.filteredDataSource.count
+        } else {
+            return self.playersTableViewDataSource.count
+        }
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        cell.textLabel?.text = playersTableViewDataSource[indexPath.row]
-        cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator // questo accessorio aggiunge il bottone a forma di freccia che punta verso destra (utile per indicare che cliccando la vista si sposta in un altro VC)
+ 
+        var player : String
+        
+        // se viene la Search Bar è attiva allora utilizza l'elemento con indice visualizzato a partire dalla listra Filtrata
+        if search!.isActive {
+            player = self.filteredDataSource[indexPath.row]
+        } else {
+            //ricavo un elemento della lista in posizione row (il num di riga) e lo conservo
+            player = self.playersTableViewDataSource[indexPath.row]
+        }
+        
+        //riempio la cella assegnando ad una label testuale il nome dell'alimento
+        cell.textLabel?.text = player
         cell.textLabel?.textColor = UIColor.white
-
         return cell
+        
     }
 //
 
