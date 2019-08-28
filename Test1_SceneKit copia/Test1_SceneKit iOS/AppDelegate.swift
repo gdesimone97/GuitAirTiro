@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PersistanceManager.mycontext = self.persistentContainer.viewContext
         PersistanceManager.createEmptyItem()
         if userDefault.bool(forKey: LOGIN) {
-            HadlerProfile.downloadProfile()
+            HandlerProfile.downloadProfile()
         }
         
         if udef.string(forKey: NOTATION_KEY ) != nil{
