@@ -2010,6 +2010,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hba-ZV-gXS"/>
                     </view>
+                    <connections>
+                        <outlet property="cell" destination="dcE-qd-4Q9" id="Dry-iZ-coQ"/>
+                        <outlet property="tableView" destination="qOo-bf-Atl" id="C4V-vl-v8J"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nrq-jC-INc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
