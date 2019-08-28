@@ -216,7 +216,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate: UNUserNotificationCenterDelegate {
      func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let notification = response.notification
-        let userInfo = response.notification.request.content.userInfo
+        let userInfo = notification.request.content.userInfo
         let idStr = userInfo["payload"] as! String
         if notification.request.content.categoryIdentifier == CATEGORY {
             let id = Int(idStr)
