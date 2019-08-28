@@ -16,7 +16,9 @@ class Matches_ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        PersistanceManager.createEmptyGames()
         
+        if (Date().timeIntervalSince(PersistanceManager.retriveLastServerRead()) > 10){
         
         let matchRes = game.getMatches();
         
@@ -74,14 +76,24 @@ class Matches_ViewController: UIViewController {
                 
             }
             
+            let progrMatchesData = try! NSKeyedArchiver.archivedData(withRootObject: progrMatches, requiringSecureCoding: false)
+            let endedMatchesData = try! NSKeyedArchiver.archivedData(withRootObject: endedMatches, requiringSecureCoding: false)
+            PersistanceManager.uploadGame(progrMatches: progrMatchesData, endedMatches: endedMatchesData, lastRead: Date())
             //print(progrMatches);
             //print(endedMatches);
-            
+
             
             // Do any additional setup after loading the view.
             
         }
-        
+        }else{
+            
+            let res = PersistanceManager.retriveGame();
+            self.progrMatches = res?.prog ?? [String:Array<[String:String]>]()
+            self.endedMatches = res?.ended ?? [String:[[String:String]]]()
+            print(progrMatches)
+            print(endedMatches)
+        }
         
         /*
          // MARK: - Navigation
