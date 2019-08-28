@@ -106,13 +106,121 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Test1_SceneKit iOS/Search TableViewController.swift"
-            timestampString = "588684069.796419"
+            timestampString = "588701326.527513"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "78"
             endingLineNumber = "78"
             landmarkName = "updatePlayerArray()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Test1_SceneKit iOS/Matches ViewController.swift"
+            timestampString = "588701326.527667"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "Matches_ViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Test1_SceneKit.Matches_ViewController.endedMatches.getter : Swift.Dictionary&lt;Swift.String, Swift.Array&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;&gt;"
+                  moduleName = "Test1_SceneKit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mariodesio/Desktop/GitHub/GuitAirTiro/Test1_SceneKit%20copia/Test1_SceneKit%20iOS/Matches%20ViewController.swift"
+                  timestampString = "588697825.980723"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "140">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Test1_SceneKit.Matches_ViewController.endedMatches.setter : Swift.Dictionary&lt;Swift.String, Swift.Array&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;&gt;"
+                  moduleName = "Test1_SceneKit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mariodesio/Desktop/GitHub/GuitAirTiro/Test1_SceneKit%20copia/Test1_SceneKit%20iOS/Matches%20ViewController.swift"
+                  timestampString = "588697825.983753"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "192">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Test1_SceneKit.Matches_ViewController.endedMatches.modify : Swift.Dictionary&lt;Swift.String, Swift.Array&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;&gt;"
+                  moduleName = "Test1_SceneKit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mariodesio/Desktop/GitHub/GuitAirTiro/Test1_SceneKit%20copia/Test1_SceneKit%20iOS/Matches%20ViewController.swift"
+                  timestampString = "588697825.985508"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Test1_SceneKit.Matches_ViewController.endedMatches.modify : Swift.Dictionary&lt;Swift.String, Swift.Array&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Test1_SceneKit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mariodesio/Desktop/GitHub/GuitAirTiro/Test1_SceneKit%20copia/Test1_SceneKit%20iOS/Matches%20ViewController.swift"
+                  timestampString = "588697825.98737"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Test1_SceneKit.Matches_ViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Test1_SceneKit.Matches_ViewController"
+                  moduleName = "Test1_SceneKit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mariodesio/Desktop/GitHub/GuitAirTiro/Test1_SceneKit%20copia/Test1_SceneKit%20iOS/Matches%20ViewController.swift"
+                  timestampString = "588697825.989273"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "348">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Test1_SceneKit.Matches_ViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Test1_SceneKit.Matches_ViewController&gt;"
+                  moduleName = "Test1_SceneKit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mariodesio/Desktop/GitHub/GuitAirTiro/Test1_SceneKit%20copia/Test1_SceneKit%20iOS/Matches%20ViewController.swift"
+                  timestampString = "588697825.990967"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "296">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

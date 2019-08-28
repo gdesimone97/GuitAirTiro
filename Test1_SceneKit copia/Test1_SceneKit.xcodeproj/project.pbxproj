@@ -289,7 +289,7 @@
 		F2AB38A4230FDDA600833589 /* accept.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accept.png; sourceTree = "<group>"; };
 		F2AB38A5230FDDA700833589 /* refuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refuse.png; sourceTree = "<group>"; };
 		F2AB38A8230FE29400833589 /* Invitations ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Invitations ViewController.swift"; sourceTree = "<group>"; };
-		F2AB38AA230FF52700833589 /* Matches ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Matches ViewController.swift"; sourceTree = "<group>"; };
+		F2AB38AA230FF52700833589 /* Matches ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Matches ViewController.swift"; sourceTree = "<group>"; wrapsLines = 0; };
 		F2AB38AC230FF5B000833589 /* Match ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Match ViewController.swift"; sourceTree = "<group>"; };
 		F2B4E81F230D3ED0009F6C36 /* Leaderboard View Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Leaderboard View Controller.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
