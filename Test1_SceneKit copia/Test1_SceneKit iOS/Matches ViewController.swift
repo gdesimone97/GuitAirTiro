@@ -9,14 +9,16 @@
 import UIKit
 
 class Matches_ViewController: UIViewController {
-
+    
     let game = GuitAirGameCenter.share;
-    var progrMatches = [[String:String]]();
-    var endedMatches = [[String:String]]();
+    var progrMatches = [String:Array<[String:String]>]();
+    var endedMatches = [String:Array<[String:String]>]();
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        PersistanceManager.createEmptyGames()
+        
+        if (Date().timeIntervalSince(PersistanceManager.retriveLastServerRead()) > 10){
         
         let matchRes = game.getMatches();
         
@@ -43,35 +45,65 @@ class Matches_ViewController: UIViewController {
                 tempMM.append(mmDiz);
             }
             
-            progrMatches = tempMM.filter({
+            let progrMatchesTEMP = tempMM.filter({
                 
+                return $0["match_status"] == "active"
+                
+            })
+            
+            
+            let endedMatchesTEMP = tempMM.filter({
                 return $0["match_status"] == "inactive"
+            })
+            
+            for matchPlayer in progrMatchesTEMP{
                 
-            })
+                let keyForDS = String(matchPlayer["match_id"]!);
+                self.progrMatches[keyForDS] = Array<[String:String]>()
+                self.progrMatches[keyForDS]!.append(matchPlayer)
+                //progrMatches[keyForDS].append(matchPlayer)
+                //print(self.progrMatches[keyForDS])
+             
+            }
             
-            endedMatches = tempMM.filter({
-                return $0["match_status"] != "inactive"
-            })
+            for matchPlayer in endedMatchesTEMP{
+                
+                let keyForDS = String(matchPlayer["match_id"]!);
+                self.endedMatches[keyForDS] = Array<[String:String]>()
+                self.endedMatches[keyForDS]!.append(matchPlayer)
+                //progrMatches[keyForDS].append(matchPlayer)
+                //print(self.progrMatches[keyForDS])
+                
+            }
             
-            
+            let progrMatchesData = try! NSKeyedArchiver.archivedData(withRootObject: progrMatches, requiringSecureCoding: false)
+            let endedMatchesData = try! NSKeyedArchiver.archivedData(withRootObject: endedMatches, requiringSecureCoding: false)
+            PersistanceManager.uploadGame(progrMatches: progrMatchesData, endedMatches: endedMatchesData, lastRead: Date())
             //print(progrMatches);
             //print(endedMatches);
+
             
+            // Do any additional setup after loading the view.
             
-        // Do any additional setup after loading the view.
+        }
+        }else{
             
+            let res = PersistanceManager.retriveGame();
+            self.progrMatches = res?.prog ?? [String:Array<[String:String]>]()
+            self.endedMatches = res?.ended ?? [String:[[String:String]]]()
+            print(progrMatches)
+            print(endedMatches)
+        }
+        
+        /*
+         // MARK: - Navigation
+         
+         // In a storyboard-based application, you will often want to do a little preparation before navigation
+         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+         // Get the new view controller using segue.destination.
+         // Pass the selected object to the new view controller.
+         }
+         */
+        
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-}
 }

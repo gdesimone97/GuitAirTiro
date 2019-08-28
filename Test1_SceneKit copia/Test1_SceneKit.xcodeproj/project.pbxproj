@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0828F0DE2310706C0062ADCF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0828F0DD2310706C0062ADCF /* SignUpViewController.swift */; };
-		0842CFA023152B1B00B81830 /* Hadler_Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0842CF9F23152B1B00B81830 /* Hadler_Profile.swift */; };
+		0842CFA023152B1B00B81830 /* Handler_Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0842CF9F23152B1B00B81830 /* Handler_Profile.swift */; };
 		0854421D22F8226E00C73B03 /* registrazione.png in Resources */ = {isa = PBXBuildFile; fileRef = 0854421C22F8226D00C73B03 /* registrazione.png */; };
 		0854422422F8369800C73B03 /* frecciasx@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0854422322F8369700C73B03 /* frecciasx@2x.png */; };
 		0854422622F838F200C73B03 /* frecciadx@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0854422522F838F200C73B03 /* frecciadx@2x.png */; };
@@ -69,6 +69,8 @@
 		08D8E2C52313D02D005A42E9 /* Songs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7703F79022FAE2A30075BF92 /* Songs.swift */; };
 		08F9EF01230EEB61001B5656 /* GuitAirAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F9EEFF230EEB61001B5656 /* GuitAirAPI.swift */; };
 		08F9EF02230EEB61001B5656 /* GuitAirGameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F9EF00230EEB61001B5656 /* GuitAirGameCenter.swift */; };
+		12030DD52316C6AB0054871A /* Games+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12030DD32316C6AB0054871A /* Games+CoreDataClass.swift */; };
+		12030DD62316C6AB0054871A /* Games+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12030DD42316C6AB0054871A /* Games+CoreDataProperties.swift */; };
 		12AFB56D23152D7C00B022C7 /* ResultTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AFB56C23152D7C00B022C7 /* ResultTableView.swift */; };
 		259FCF7A4466898030E2854A /* Pods_Test1_SceneKit_watchOS_App_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E921CE1C6D8E8B53642FAF /* Pods_Test1_SceneKit_watchOS_App_Extension.framework */; };
 		4DCC5A52BA1C80F0803B3382 /* Pods_Test1_SceneKit_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F1AB350036D84B5016AEC19 /* Pods_Test1_SceneKit_tvOS.framework */; };
@@ -169,7 +171,7 @@
 
 /* Begin PBXFileReference section */
 		0828F0DD2310706C0062ADCF /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		0842CF9F23152B1B00B81830 /* Hadler_Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hadler_Profile.swift; sourceTree = "<group>"; };
+		0842CF9F23152B1B00B81830 /* Handler_Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Handler_Profile.swift; sourceTree = "<group>"; };
 		0854421C22F8226D00C73B03 /* registrazione.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = registrazione.png; sourceTree = "<group>"; };
 		0854422322F8369700C73B03 /* frecciasx@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "frecciasx@2x.png"; sourceTree = "<group>"; };
 		0854422522F838F200C73B03 /* frecciadx@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "frecciadx@2x.png"; sourceTree = "<group>"; };
@@ -229,6 +231,8 @@
 		08D465B922F1A78100B8D43B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		08F9EEFF230EEB61001B5656 /* GuitAirAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuitAirAPI.swift; sourceTree = "<group>"; };
 		08F9EF00230EEB61001B5656 /* GuitAirGameCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuitAirGameCenter.swift; sourceTree = "<group>"; };
+		12030DD32316C6AB0054871A /* Games+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Games+CoreDataClass.swift"; sourceTree = "<group>"; };
+		12030DD42316C6AB0054871A /* Games+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Games+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		12AFB56C23152D7C00B022C7 /* ResultTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableView.swift; sourceTree = "<group>"; };
 		2A15CD72FB1605F801D79853 /* Pods-Test1_SceneKit watchOS App Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test1_SceneKit watchOS App Extension.release.xcconfig"; path = "Target Support Files/Pods-Test1_SceneKit watchOS App Extension/Pods-Test1_SceneKit watchOS App Extension.release.xcconfig"; sourceTree = "<group>"; };
 		37A58CE124B71E8151DB7139 /* Pods_Test1_SceneKit_watchOS_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Test1_SceneKit_watchOS_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -331,6 +335,8 @@
 		0875E9EE230D8256009964B1 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				12030DD32316C6AB0054871A /* Games+CoreDataClass.swift */,
+				12030DD42316C6AB0054871A /* Games+CoreDataProperties.swift */,
 				0875E9F2230D8792009964B1 /* Stat+CoreDataClass.swift */,
 				0875E9F3230D8792009964B1 /* Stat+CoreDataProperties.swift */,
 				0875E9EF230D826D009964B1 /* appModel.xcdatamodeld */,
@@ -460,7 +466,7 @@
 				087B1E5022F878DE00BDC2C1 /* GuitarSelectedViewController.swift */,
 				088BAC3522F9720800784692 /* DevicesSettingsPaired.swift */,
 				F2B4E81F230D3ED0009F6C36 /* Leaderboard View Controller.swift */,
-				0842CF9F23152B1B00B81830 /* Hadler_Profile.swift */,
+				0842CF9F23152B1B00B81830 /* Handler_Profile.swift */,
 			);
 			path = "Test1_SceneKit iOS";
 			sourceTree = "<group>";
@@ -846,13 +852,14 @@
 				77DFAD5322E84C56006DCBEE /* MainController.swift in Sources */,
 				F207C459230D9083002DA2BF /* FriendList ViewController.swift in Sources */,
 				086325AE22F320D600513E1B /* AccountViewController.swift in Sources */,
-				0842CFA023152B1B00B81830 /* Hadler_Profile.swift in Sources */,
+				0842CFA023152B1B00B81830 /* Handler_Profile.swift in Sources */,
 				F297FB962315A6C700DD0EFD /* Search TableViewController.swift in Sources */,
 				0898EC2822F05146007C32DD /* GameModeViewController.swift in Sources */,
 				0898EC2922F05146007C32DD /* ChordsPickerViewController.swift in Sources */,
 				F2AB38AD230FF5B000833589 /* Match ViewController.swift in Sources */,
 				086325B822F33A5100513E1B /* NavigationController.swift in Sources */,
 				F207C469230EB2D8002DA2BF /* Multiplayer TableViewController.swift in Sources */,
+				12030DD52316C6AB0054871A /* Games+CoreDataClass.swift in Sources */,
 				08F9EF01230EEB61001B5656 /* GuitAirAPI.swift in Sources */,
 				0898EC2B22F05146007C32DD /* Guitar.swift in Sources */,
 				F225CEF22313E910007CFE6D /* Send Friend Request ViewController.swift in Sources */,
@@ -867,6 +874,7 @@
 				0898EC2A22F05146007C32DD /* NotationTableViewCell.swift in Sources */,
 				0875E9F5230D8792009964B1 /* Stat+CoreDataProperties.swift in Sources */,
 				F2AB38AB230FF52700833589 /* Matches ViewController.swift in Sources */,
+				12030DD62316C6AB0054871A /* Games+CoreDataProperties.swift in Sources */,
 				12AFB56D23152D7C00B022C7 /* ResultTableView.swift in Sources */,
 				08F9EF02230EEB61001B5656 /* GuitAirGameCenter.swift in Sources */,
 				F2B4E820230D3ED0009F6C36 /* Leaderboard View Controller.swift in Sources */,

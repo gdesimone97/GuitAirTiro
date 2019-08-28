@@ -292,7 +292,6 @@ class GuitAirGameCenter{
     public func updateImage(image:String)->(Int,[String:String]){
         let urlReq = buildAPIRequest(httpMethod: "PATCH", method: .player, params: ["image":image,"type":"image"]);
         
-        print(urlReq);
         
         return makeAPIRequest(req: urlReq) as! (Int,Dictionary<String,String>);
         
@@ -302,6 +301,13 @@ class GuitAirGameCenter{
     
     public func returnSearch( searchText : String) -> URLRequest{
         return buildAPIRequest(httpMethod: "GET", method: .player, queryItems: ["search":searchText])
+        
+    }
+    
+    public func listPlayer()->(Int,[String:String]){
+        
+        let urlReq = buildAPIRequest(httpMethod: "GET", method: .player, queryItems: ["type":"list"]);
+        return makeAPIRequest(req: urlReq) as! (Int,[String:String]);
         
     }
     

@@ -7,10 +7,29 @@
 //
 
 import UIKit
+import MultipeerConnectivity
 
 class Match_ViewController: UIViewController {
-
+    let session = SessionManager.share
+    let CANZONE_DEL_SOLE = "La canzone del sole"
+    let CANZONE_KNOCK = "Knock in on heavens door"
+    
     @IBAction func playButton(_ sender: Any) {
+        let song: Songs?
+        switch songLabel.text {
+        case CANZONE_DEL_SOLE:
+            song  = Songs.LaCanzoneDelSole
+        case CANZONE_KNOCK:
+            song = Songs.KnockinOnHeavensDoor
+        default:
+            print("Nessuna canzone selezionata")
+            song = nil
+        }
+        if let device = session.showConnectedDevices(){
+            if song != nil {
+                session.sendSignal(device[0], song: song!)
+            }
+        }
     }
     @IBOutlet weak var innerView: UIView!
     
