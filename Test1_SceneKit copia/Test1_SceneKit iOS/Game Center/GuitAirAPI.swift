@@ -26,7 +26,7 @@ struct GuitAirAPI{
     
     //Da cambiare con indirizzo del server
     
-    private static let baseURLString = "http://193.205.163.50/GuitAir/api/";
+    private static let baseURLString = "http://193.205.163.50/v1/GuitAir/api/";
     
     //Costruisco URL per comunicare con la mia API
     

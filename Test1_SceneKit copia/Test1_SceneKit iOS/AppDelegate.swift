@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let NOTATION_KEY = "PreferredNotation";
     let notificationCenter = UNUserNotificationCenter.current()
     let CATEGORY: String = "INVITATION"
+    let FRIENDS_REQUEST: String = "FRIENDS_REQUEST"
     let game = GuitAirGameCenter.share
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -192,7 +193,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let acceptAction = UNNotificationAction(identifier: "ACCEPT_ACTION", title: "Accept Invite", options: UNNotificationActionOptions.init(rawValue: 0))
         let declineAction = UNNotificationAction(identifier: "DECLINE_ACTION", title: "Decline Invite", options: UNNotificationActionOptions(rawValue: 0))
         let inviteCategory = UNNotificationCategory(identifier: CATEGORY, actions: [acceptAction,declineAction], intentIdentifiers: [], hiddenPreviewsBodyPlaceholder: "", options: .customDismissAction)
-        notificationCenter.setNotificationCategories([inviteCategory])
+         let friendCategory = UNNotificationCategory(identifier: FRIENDS_REQUEST, actions: [acceptAction,declineAction], intentIdentifiers: [], hiddenPreviewsBodyPlaceholder: "", options: .customDismissAction)
+        notificationCenter.setNotificationCategories([inviteCategory,friendCategory])
         
     }
     
@@ -213,31 +215,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
      func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        let userInfo = response.notification.request.content.userInfo
+        let notification = response.notification
+        let userInfo = notification.request.content.userInfo
         let idStr = userInfo["payload"] as! String
-        let id = Int(idStr)
-        switch response.actionIdentifier {
-        case "ACCEPT_ACTION":
-            print("invito accettato")
-            let res = game.acceptInvitation(id: id!)
-            if res.0 != 200 || res.0 != 201 {
-                print("Partita accettata")
-                print("res: \(res.0), id: \(id)")
+        if notification.request.content.categoryIdentifier == CATEGORY {
+            let id = Int(idStr)
+            switch response.actionIdentifier {
+            case "ACCEPT_ACTION":
+                print("invito accettato")
+                let res = game.acceptInvitation(id: id!)
+                if res.0 != 200 || res.0 != 201 {
+                    print("Partita accettata")
+                    print("res: \(res.0), id: \(id)")
+                }
+            case "DECLINE_ACTION":
+                print("invito declinato")
+                let res = game.rejectInvitation(id: id!)
+                if res.0 != 200 || res.0 != 201 {
+                    print("res: \(res.0), id: \(id)")
+                }
+            default:
+                break
             }
-        case "DECLINE_ACTION":
-            print("invito declinato")
-            let res = game.rejectInvitation(id: id!)
-            if res.0 != 200 || res.0 != 201 {
-                print("res: \(res.0), id: \(id)")
+        }
+        else if notification.request.content.categoryIdentifier == FRIENDS_REQUEST {
+            switch response.actionIdentifier {
+            case "ACCEPT_ACTION":
+                print("amicizia accettata")
+                let res = game.acceptFriendRequest(sender: idStr)
+                if res.0 != 200 || res.0 != 201 {
+                    print("Partita accettata")
+                    print("res: \(res.0), id: \(idStr)")
+                }
+            case "DECLINE_ACTION":
+                print("amicizia rifiutata")
+                let res = game.rejectFriendRequest(sender: idStr)
+                if res.0 != 200 || res.0 != 201 {
+                    print("res: \(res.0), id: \(idStr)")
+                }
+            default:
+                break
             }
-        default:
-            break
         }
         completionHandler()
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        if notification.request.content.categoryIdentifier == CATEGORY {
+        if notification.request.content.categoryIdentifier == CATEGORY || notification.request.content.categoryIdentifier == FRIENDS_REQUEST {
             completionHandler([.alert,.sound])
             return
         }

@@ -60,19 +60,27 @@ class SignUpViewController: UIViewController {
             let res = game.register(gamertag: userText.text!.lowercased(), password: passwordText.text!)
             if res.0 == 200 || res.0 == 201 {
                 performSegue(withIdentifier: SEGUE, sender: nil)
-                //self.dismiss(animated: true, completion: nil)
             }
             else if res.0 == 409 {
                 invalidLogIn.text = "This account already exists"
+                indicator.stopAnimating()
             }
             else {
                 invalidLogIn.text = "Username or password wrong"
+                indicator.stopAnimating()
             }
         }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         indicator.stopAnimating()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == SEGUE {
+            let tabController = segue.destination as! UITabBarController
+            tabController.selectedIndex = 2
+        }
     }
     
 }
