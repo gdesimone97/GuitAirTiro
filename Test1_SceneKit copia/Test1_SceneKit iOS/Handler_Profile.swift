@@ -1,5 +1,5 @@
 //
-//  Hadler_Profile.swift
+//  Handler_Profile.swift
 //  Test1_SceneKit iOS
 //
 //  Created by Giuseppe De Simone on 27/08/2019.
@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-class HadlerProfile {
-    static private let hadlerProfileThread = DispatchQueue.global(qos: .userInteractive)
+class HandlerProfile {
+    static private let HandlerProfileThread = DispatchQueue.global(qos: .userInteractive)
     static private let semaphore = DispatchSemaphore.init(value: 1)
     static private let game = GuitAirGameCenter.share
     class func downloadProfile() {
@@ -20,7 +20,7 @@ class HadlerProfile {
             userDefault.set(0, forKey: UPLOAD)
             return
         }
-        hadlerProfileThread.async {
+        HandlerProfileThread.async {
             self.semaphore.wait()
             print("Risorsa acquisita")
             let res = game.getMyProfile()
@@ -60,7 +60,7 @@ class HadlerProfile {
     class func uploadImage(image: UIImage) -> Int {
         var result: Int!
         let sem = DispatchSemaphore.init(value: 0)
-        hadlerProfileThread.async {
+        HandlerProfileThread.async {
             semaphore.wait()
             let str = image.jpegData(compressionQuality: 0.0)?.base64EncodedString()
             let res = game.updateImage(image: str!)

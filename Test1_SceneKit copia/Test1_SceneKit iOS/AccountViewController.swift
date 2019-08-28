@@ -49,11 +49,11 @@ class AccountViewController: UIViewController {
         if flag {
             if userDefault.bool(forKey: UPLOAD) {
                 let img = PersistanceManager.retriveImage()
-                HadlerProfile.uploadImage(image: UIImage(data: img as! Data)!)
+                HandlerProfile.uploadImage(image: UIImage(data: img as! Data)!)
                 userDefault.set(0, forKey: UPLOAD)
             }
             else {
-                let profile = HadlerProfile.loadProfile()
+                let profile = HandlerProfile.loadProfile()
                 let array = [profile.score,profile.wins,profile.draws,profile.losses]
                 var i = 0
                 for label in statLabel{
@@ -78,7 +78,7 @@ class AccountViewController: UIViewController {
             }
             if userDefault.bool(forKey: UPLOAD) {
                 let myimage = UIImage(data: PersistanceManager.retriveImage() as! Data)
-                HadlerProfile.uploadImage(image: myimage!)
+                HandlerProfile.uploadImage(image: myimage!)
                 userDefault.set(0, forKey: UPLOAD)
             }
         }
@@ -153,7 +153,7 @@ class AccountViewController: UIViewController {
                     self.imageProfile.image = defaultImage
                 }
                 if self.connection {
-                    HadlerProfile.uploadImage(image: defaultImage!)
+                    HandlerProfile.uploadImage(image: defaultImage!)
                 }
                 else {
                     userDefault.set(1, forKey: UPLOAD)
@@ -190,7 +190,7 @@ extension AccountViewController: UIImagePickerControllerDelegate,UINavigationCon
         flag = false
         picker.dismiss(animated: true, completion: nil)
         thread.async {
-            let res = HadlerProfile.uploadImage(image: image)
+            let res = HandlerProfile.uploadImage(image: image)
             if res != 200 || res != 201 {
                 self.userDefaults.set(1, forKey: UPLOAD)
             }
