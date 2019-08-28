@@ -38,7 +38,7 @@ class Friend_Request_ViewController: UIViewController {
                 
             }
             
-            let rcvd = game.getSentFriendRequest();
+            let rcvd = game.getReceivedFriendRequest();
             if(rcvd.0 == 200 ){
                 //Converto stringa in array
                 
