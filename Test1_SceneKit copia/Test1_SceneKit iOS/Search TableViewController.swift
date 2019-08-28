@@ -54,6 +54,16 @@ class Search_TableViewController: UITableViewController, UISearchBarDelegate, UI
     
     func updatePlayerArray() {
         
+        let res = game.listPlayer();
+        if(res.0 == 200){
+            let ls = res.1["gamertags"]! as String;
+            let lsData = ls.data(using: .unicode)!
+            self.playersTableViewDataSource = try! JSONSerialization.jsonObject(with: lsData) as! Array<String>
+            self.playersTableViewDataSource.sort();
+            
+        }
+        
+        
     }
  
 
