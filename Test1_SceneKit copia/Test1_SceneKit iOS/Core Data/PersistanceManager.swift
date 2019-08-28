@@ -22,10 +22,10 @@ class PersistanceManager {
         }
     }
     private static var context: NSManagedObjectContext!
-//    static func getContext() -> NSManagedObjectContext {
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        return appDelegate.persistentContainer.viewContext
-//    }
+    //    static func getContext() -> NSManagedObjectContext {
+    //        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    //        return appDelegate.persistentContainer.viewContext
+    //    }
     
     private static func checkRecordGames()->Bool{
         
@@ -37,23 +37,73 @@ class PersistanceManager {
         if number == 0 { return true }
         else { return false }
     }
-        
-    
-    
-    
-    
     
     static func createEmptyGames(){
         guard checkRecordGames() == true else { print("No record creato games"); return }
         print("Record creato games")
         let gameItem = NSEntityDescription.insertNewObject(forEntityName: entityGame, into: context) as! Games
-        
-        
-        
+        gameItem.progrGamesSerialized = nil
+        gameItem.endedGamesSerialized = nil
+        gameItem.last_server_read = Date.distantPast as NSDate
         do {
             try context.save()
         } catch let error as NSError {
-            print("Errore salvaggio: \(error.code)")
+            print("Errore salvaggio game: \(error.code)")
+        }
+    }
+    
+    static func uploadGame(progrMatches: Data?,endedMatches: Data?,lastRead: Date?) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityGame)
+        fetchRequest.fetchLimit = 1
+        do {
+            let result = try context.fetch(fetchRequest) as! [Games]
+            let item = result[0]
+            if progrMatches != nil {
+                item.progrGamesSerialized = progrMatches! as NSData
+            }
+            if endedMatches != nil {
+                item.endedGamesSerialized = endedMatches! as NSData
+            }
+            if lastRead != nil {
+                item.last_server_read = lastRead! as NSDate
+            }
+        } catch {
+            print("Aggiornamento fallito Games")
+        }
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print("Errore salvaggio: \(error.code) Games")
+        }
+    }
+    
+    static func uploadLastRead(lastRead: Date) {
+        uploadGame(progrMatches: nil, endedMatches: nil, lastRead: lastRead)
+    }
+    
+    static func retriveLastServerRead() -> Date {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityGame)
+        fetchRequest.fetchLimit = 1
+        do {
+            let result = try context.fetch(fetchRequest) as! [Games]
+            let item = result[0]
+            return item.last_server_read! as Date
+        } catch { print("Errore recupero oggetto")
+            return Date.distantPast
+        }
+    }
+    
+    static func retriveGame() -> (prog: Dictionary<String,Array<Dictionary<String,String>>>,ended: Dictionary<String,Array<Dictionary<String,String>>>)? {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityGame)
+        fetchRequest.fetchLimit = 1
+        do {
+            let result = try context.fetch(fetchRequest) as! [Games]
+            let item = result[0]
+            let prog = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(item.progrGamesSerialized! as Data) as! Dictionary<String,Array<Dictionary<String,String>>>
+            let ended = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(item.endedGamesSerialized! as Data) as! Dictionary<String,Array<Dictionary<String,String>>>
+            return (prog: prog,ended: ended)
+        } catch { print("Errore recupero oggetto")
+            return nil
         }
     }
     
@@ -81,7 +131,7 @@ class PersistanceManager {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         var number = 0
         do {
-             number = try context.count(for: fetchRequest)
+            number = try context.count(for: fetchRequest)
         } catch { print("Errore recupero oggetto") }
         if number == 0 { return true }
         else { return false }
