@@ -276,14 +276,24 @@ class GuitAirGameCenter{
     }
     
     public func getProfile(gamertag:String)->(Int,[String:Any]){
-        let urlReq = buildAPIRequest(httpMethod: "GET", method: .player, queryItems: ["gamertag":gamertag]);
+        let urlReq = buildAPIRequest(httpMethod: "GET", method: .player, queryItems: ["type":"profile","gamertag":gamertag]);
         return makeAPIRequest(req: urlReq);
     }
     
     //Upload immagine
     
+    public func fetchImage( gamertag : String )->(Int,[String:String]){
+        
+        let urlReq = buildAPIRequest(httpMethod: "GET", method: .player, params:["type":"image","gamertag":gamertag]);
+        return makeAPIRequest(req: urlReq) as! (Int,[String:String]);
+        
+    }
+    
     public func updateImage(image:String)->(Int,[String:String]){
         let urlReq = buildAPIRequest(httpMethod: "PATCH", method: .player, params: ["image":image,"type":"image"]);
+        
+        print(urlReq);
+        
         return makeAPIRequest(req: urlReq) as! (Int,Dictionary<String,String>);
         
     }
