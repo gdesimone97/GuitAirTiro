@@ -119,9 +119,6 @@ class SessionManager: NSObject {
 
     }
     
-    func sendSignal (_ peer: MCPeerID, message: Array<String>) {
-        mySendSignal(peer, mex: message)
-    }
     
     /**
      Funzione che ritorna la lista dei dispositivi connessi
@@ -178,9 +175,6 @@ extension SessionManager: MCSessionDelegate {
             }
             else if let points = data as? Int {
                 self.delegate?.mexReceived(self, didMessageReceived: points)
-            }
-            else if let chords = data as? Array<String> {
-                self.delegate?.mexReceived(self, didMessageReceived: chords)
             }
         }
     }

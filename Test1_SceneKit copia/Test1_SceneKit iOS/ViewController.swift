@@ -276,8 +276,6 @@ extension ViewController: SessionManagerDelegate {
                 else if guitar == TypeOfGuitar.electric {
                     sessionTv.sendSignal(device[0], message: SignalCode.showElectricGuitar)
                 }
-                let audio = userDefault.stringArray(forKey: AUDIO_FILE_NAME)!
-                sessionTv.sendSignal(device[0], message: audio)
                 DispatchQueue.main.async {
                     self.tvStatus.backgroundColor = .green
                     if tv == TvSettings.withOutWatch.rawValue {

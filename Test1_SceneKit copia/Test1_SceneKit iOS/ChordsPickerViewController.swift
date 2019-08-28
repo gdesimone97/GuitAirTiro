@@ -151,12 +151,8 @@ UIPickerViewDataSource, UIPickerViewDelegate {
         for pick in chordPickers {
             let row = pick.selectedRow(inComponent: 0)
             str[j] = chords[row % chords.count]
-            audioFile[j] = engChords[row % chords.count] + ".wav"
             valuesToStore[j] = row
             j += 1
-        }
-        if let device = sessionTv.showConnectedDevices() {
-            sessionTv.sendSignal(device[0], message: audioFile)
         }
         
         userDefault.set(valuesToStore, forKey: USER_DEFAULT_KEY_ROW)
