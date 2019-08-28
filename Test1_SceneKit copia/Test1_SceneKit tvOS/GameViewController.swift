@@ -30,6 +30,7 @@ class GameViewController: UIViewController {
     var textManager: TextManager!
     var soundEffect: SoundEffect!
     var pointerManager: PointerManager!
+    var specialMultiplier: SpecialMultiplier!
     
     var session = SessionManager.share
     var dictionary: DeviceDictionary!
@@ -42,13 +43,13 @@ class GameViewController: UIViewController {
     var callbackClosure: ( () -> Void )?
     
     override func viewWillDisappear(_ animated: Bool) {
+        self.playing = false
         if let device = session.showConnectedDevices() {
             session.sendSignal(device[0], points: points)
         }
         
         sendSignalWhenClosing()
         soundEffect.stopGuitars()
-        self.playing = false
         
         callbackClosure?()
     }
@@ -71,9 +72,10 @@ class GameViewController: UIViewController {
     var playing: Bool = false
     var points = 0
     var multiplier = 1
+    var specialMultiplierNumber = 1
     var consecutivePoints: Int = 0
     
-    var chords: [String]! // Those 2 vars are initialized by the mainViewController
+    var chords: [String]!
     
     var boxStartNode: SCNNode?
     var pointText: SCNNode?
@@ -89,6 +91,7 @@ class GameViewController: UIViewController {
     var recordPlaneNode: SCNNode?
     var failedPlaneNode: SCNNode?
     var consecutivePlaneNode: SCNNode?
+    var levelNode: SCNNode?
     
     
     var song: Songs = Songs.KnockinOnHeavensDoor // Da settare dal telefono
@@ -127,6 +130,7 @@ class GameViewController: UIViewController {
             self.points = 0
             self.boxStartNode?.runAction(SCNAction.fadeIn(duration: 0.5))
             self.semaphoreStart.wait()
+            self.playing = true
             self.boxStartNode!.removeFromParentNode()
             self.soundEffect.countdown()
             self.textManager.addGameNotification(str: "3", color: UIColor.white, duration: 0.5, animation: true)
@@ -138,7 +142,6 @@ class GameViewController: UIViewController {
             self.textManager.addGameNotification(str: "GO!", color: UIColor.white, duration: 0.5, animation: true)
             self.pointsPlaneNode?.runAction(SCNAction.move(to: SCNVector3(x: -4, y: 0.5, z: -2), duration: 0.3))
             sleep(1)
-            self.playing = true
             
             // Called 2 times to unlock all the 2 threads waiting
             self.semaphorePlay.signal()
@@ -157,6 +160,9 @@ class GameViewController: UIViewController {
         noteQueue.async {
             // This thread shows the notes to play taking the song's string
             self.semaphorePlay.wait()
+            if !self.playing {
+                return
+            }
             self.soundEffect.startSongToPlay()
             for pair in self.song.notes.split(separator: ";") {
                 let x = pair.split(separator: ":")
@@ -189,13 +195,14 @@ class GameViewController: UIViewController {
         motionDelegate = self
         
         pointerManager = PointerManager(progressBar: progressBarNode!, recordBar: recordBarNode!, record: songRecord, recordBox: recordPlaneNode!, pointer: pointerNode!, green: greenBoxNode!, yellow: yellowBoxNode!, red: redBoxNode!, function: failed)
-        
+        specialMultiplier = SpecialMultiplier(node: levelNode!)
     }
     
     
     @objc func handleTap(_ gestureRecognizer: UIGestureRecognizer) {
         if playing {
-            gameGuitarManager.fire()
+//            gameGuitarManager.fire()
+            specialMultiplier.fill()
         }
         
         if !playing {
@@ -255,6 +262,8 @@ class GameViewController: UIViewController {
                 failedPlaneNode = node
             case "consecutivePlane":
                 consecutivePlaneNode = node
+            case "level":
+                levelNode = node
             default: break
             }
         }

@@ -113,6 +113,7 @@ class SoundEffect {
         
         
         songThread.async {
+            sleep(2)
             try! AudioKit.start()
             while true {
                 if !self.isCancelled {
@@ -155,14 +156,14 @@ class SoundEffect {
             print("AUDIOKIT ERROR! Could not find sound files")
         }
         
-        wah11 = AKAutoWah(guitar11?.chord, wah: 0, mix: 1, amplitude: 10)
-        wah12 = AKAutoWah(guitar12?.chord, wah: 0, mix: 1, amplitude: 10)
-        wah21 = AKAutoWah(guitar21?.chord, wah: 0, mix: 1, amplitude: 10)
-        wah22 = AKAutoWah(guitar22?.chord, wah: 0, mix: 1, amplitude: 10)
-        wah31 = AKAutoWah(guitar31?.chord, wah: 0, mix: 1, amplitude: 10)
-        wah32 = AKAutoWah(guitar32?.chord, wah: 0, mix: 1, amplitude: 10)
-        wah41 = AKAutoWah(guitar41?.chord, wah: 0, mix: 1, amplitude: 10)
-        wah42 = AKAutoWah(guitar42?.chord, wah: 0, mix: 1, amplitude: 10)
+        wah11 = AKAutoWah(guitar11?.chord, wah: 0, mix: 1, amplitude: 1)
+        wah12 = AKAutoWah(guitar12?.chord, wah: 0, mix: 1, amplitude: 1)
+        wah21 = AKAutoWah(guitar21?.chord, wah: 0, mix: 1, amplitude: 1)
+        wah22 = AKAutoWah(guitar22?.chord, wah: 0, mix: 1, amplitude: 1)
+        wah31 = AKAutoWah(guitar31?.chord, wah: 0, mix: 1, amplitude: 1)
+        wah32 = AKAutoWah(guitar32?.chord, wah: 0, mix: 1, amplitude: 1)
+        wah41 = AKAutoWah(guitar41?.chord, wah: 0, mix: 1, amplitude: 1)
+        wah42 = AKAutoWah(guitar42?.chord, wah: 0, mix: 1, amplitude: 1)
         wah = [wah11, wah12, wah21, wah22, wah31, wah32, wah41, wah42]
         
         
@@ -306,7 +307,7 @@ class SoundEffect {
     func wahEffect(guitar: Int) {
         DispatchQueue(label: "wahEffect").async {
             self.wah[guitar].wah = 100
-            sleep(2)
+            sleep(1)
             self.wah[guitar].wah = 0
         }
     }
