@@ -217,21 +217,20 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
      func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let notification = response.notification
         let userInfo = notification.request.content.userInfo
-        let idStr = userInfo["payload"] as! String
         if notification.request.content.categoryIdentifier == CATEGORY {
+            let idStr = userInfo["payload"] as! String
             let id = Int(idStr)
             switch response.actionIdentifier {
             case "ACCEPT_ACTION":
-                print("invito accettato")
                 let res = game.acceptInvitation(id: id!)
                 if res.0 != 200 || res.0 != 201 {
-                    print("Partita accettata")
+                    print("Partita accattata")
                     print("res: \(res.0), id: \(id)")
                 }
             case "DECLINE_ACTION":
-                print("invito declinato")
                 let res = game.rejectInvitation(id: id!)
                 if res.0 != 200 || res.0 != 201 {
+                    print("Partita rifiutata")
                     print("res: \(res.0), id: \(id)")
                 }
             default:
@@ -239,18 +238,18 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             }
         }
         else if notification.request.content.categoryIdentifier == FRIENDS_REQUEST {
+            let idStr = userInfo["payload"] as! String
             switch response.actionIdentifier {
             case "ACCEPT_ACTION":
-                print("amicizia accettata")
                 let res = game.acceptFriendRequest(sender: idStr)
                 if res.0 != 200 || res.0 != 201 {
-                    print("Partita accettata")
+                    print("Amicizia accettata")
                     print("res: \(res.0), id: \(idStr)")
                 }
             case "DECLINE_ACTION":
-                print("amicizia rifiutata")
                 let res = game.rejectFriendRequest(sender: idStr)
                 if res.0 != 200 || res.0 != 201 {
+                    print("Amicizia rifiutata")
                     print("res: \(res.0), id: \(idStr)")
                 }
             default:
