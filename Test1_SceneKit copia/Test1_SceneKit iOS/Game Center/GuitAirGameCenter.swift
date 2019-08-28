@@ -261,7 +261,7 @@ class GuitAirGameCenter{
     }
     
     public func getMyProfile()->(Int,[String:String]){
-        let urlReq = buildAPIRequest(httpMethod: "GET", method: .player);
+        let urlReq = buildAPIRequest(httpMethod: "GET", method: .player, queryItems: ["type":"profile"]);
 //        print(urlReq.allHTTPHeaderFields)
         var fetchedProfile =  makeAPIRequest(req: urlReq);
         if(fetchedProfile.0 == 200){
