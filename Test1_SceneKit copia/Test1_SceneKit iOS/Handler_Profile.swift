@@ -18,7 +18,6 @@ class HandlerProfile {
             let image = PersistanceManager.retriveImage()
             uploadImage(image: UIImage(data: image as! Data)!)
             userDefault.set(0, forKey: UPLOAD)
-            return
         }
         HandlerProfileThread.async {
             self.semaphore.wait()
