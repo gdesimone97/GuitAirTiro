@@ -55,7 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 }
             }
-            
         }
         notificationCenter.getNotificationSettings { (settings) in
             guard settings.authorizationStatus == .authorized else { return }
@@ -260,10 +259,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        if notification.request.content.categoryIdentifier == CATEGORY || notification.request.content.categoryIdentifier == FRIENDS_REQUEST {
-            completionHandler([.alert,.sound])
-            return
-        }
         completionHandler([.alert,.sound])
     }
 }
