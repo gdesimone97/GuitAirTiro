@@ -17,7 +17,6 @@ protocol SessionManagerDelegate: class {
     /** Segnala la ricezione di un messaggio */
     func mexReceived(_ manager: SessionManager,didMessageReceived: SignalCode)
     func mexReceived(_ manager: SessionManager,didMessageReceived: Songs)
-    func mexReceived(_ manager: SessionManager,didMessageReceived: Array<String>)
     func mexReceived(_ manager: SessionManager,didMessageReceived: Int)
     /** Connessione con peer persa */
     func peerLost(_ manager: SessionManager,peer lost: MCPeerID)
