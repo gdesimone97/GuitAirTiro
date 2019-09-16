@@ -109,6 +109,7 @@ class ViewController: UIViewController{
         }
         if tvSettings == TvSettings.withOutWatch.rawValue {
             if let device = sessionTv.showConnectedDevices() {
+                sessionTv.sendSignal(device[0], song: selectSong(userDefault.integer(forKey: SONG_SELECTED)))
                 sessionTv.sendSignal(device[0], message: SignalCode.OpenGameWithOutWatch)
                 indicator.center = self.view.center
                 indicator.style = .whiteLarge
@@ -117,6 +118,19 @@ class ViewController: UIViewController{
                 view.addSubview(indicator)
                 indicator.startAnimating()
             }
+        }
+    }
+    
+    private func selectSong(_ key: Int) -> Songs {
+        switch key {
+        case SongEnum.canzonedelsole.rawValue:
+            return Songs.LaCanzoneDelSole
+        case SongEnum.knockinOnHeavensDoor.rawValue:
+            return Songs.KnockinOnHeavensDoor
+        case SongEnum.peppoegay.rawValue:
+            return Songs.PeppeGay
+        default:
+            return Songs.LaCanzoneDelSole
         }
     }
     
