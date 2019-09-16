@@ -12,7 +12,10 @@ import MultipeerConnectivity
 
 class ViewController: UIViewController{
     
+    @IBOutlet var stackSong: UIStackView!
+    @IBOutlet var stackMode: UIStackView!
     @IBOutlet var guitarLabel: UILabel!
+    @IBOutlet var songLabel: UILabel!
     
     var indicator = UIActivityIndicatorView()
     var userDataChords: Array<String>?
@@ -56,6 +59,7 @@ class ViewController: UIViewController{
             userDefault.set(audioStandard, forKey: AUDIO_FILE_NAME)
         }
         
+        
         if WCSession.isSupported() {
             session = WCSession.default
             session!.delegate = self
@@ -66,7 +70,20 @@ class ViewController: UIViewController{
         
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        let settings = userDefault.integer(forKey: GAME_DEVICE_SETTINGS)
+        if settings == TvSettings.withWatch.rawValue {
+            stackMode.isHidden = false
+            stackSong.isHidden = true
+        }
+        else {
+            stackMode.isHidden = true
+            stackSong.isHidden = false
+        }
+        
+        
+        
+    }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
