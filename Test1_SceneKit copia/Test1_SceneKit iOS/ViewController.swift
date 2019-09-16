@@ -126,7 +126,9 @@ class ViewController: UIViewController{
         let guitar = UserDefaults.getGuitar(forKey: GUITAR)
         DispatchQueue.main.async {
             self.inizializeGuitarLabel(guitar!)
+            
         }
+        self.inizializeSong(key: userDefault.integer(forKey: SONG_SELECTED))
         if let testUserDefault = userDefault.array(forKey: USER_DEFAULT_KEY_STRING) {
             var userData = testUserDefault as! Array<String>
             userDataChords = userData
@@ -199,6 +201,20 @@ class ViewController: UIViewController{
         guitarLabel.layer.backgroundColor = UIColor(red: 0.28, green: 0.32, blue: 0.37, alpha: 1).cgColor;
         guitarLabel.layer.cornerRadius = 8;
     }
+    
+    func inizializeSong(key: Int) {
+        switch key {
+        case SongEnum.canzonedelsole.rawValue:
+            songLabel.text = Songs.LaCanzoneDelSole.title
+        case SongEnum.knockinOnHeavensDoor.rawValue:
+            songLabel.text = Songs.KnockinOnHeavensDoor.title
+        case SongEnum.peppoegay.rawValue:
+            songLabel.text = Songs.PeppeGay.title
+        default:
+            break
+        }
+    }
+    
 }
 
 extension ViewController: WCSessionDelegate {
