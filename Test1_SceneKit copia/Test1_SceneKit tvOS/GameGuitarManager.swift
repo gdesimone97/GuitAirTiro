@@ -33,7 +33,6 @@ class GameGuitarManager {
     let bokehEffectBlue = SCNParticleSystem(named: "Art.scnassets/Bokeh Effect/SceneKit Particle System.scnp", inDirectory: nil)
     let bokehEffectGreen = SCNParticleSystem(named: "Art.scnassets/Bokeh Effect/SceneKit Particle System.scnp", inDirectory: nil)
     let bokehEffectPurple = SCNParticleSystem(named: "Art.scnassets/Bokeh Effect/SceneKit Particle System.scnp", inDirectory: nil)
-    let fireEffect = SCNParticleSystem(named: "Art.scnassets/Fire Effect/SceneKit Particle System.scnp", inDirectory: nil)
     
     
     init(scene: SCNScene, width: Float, length: Float, z: Float, function: @escaping (Bool) -> Void) {
@@ -56,10 +55,14 @@ class GameGuitarManager {
         bokehEffectPurple!.particleColor = column4.color
         
         
+        
+    }
+    
+    func startScan() {
         DispatchQueue(label: "NotesNotPressed", qos: .userInteractive).async {
             while true {
-                let node = scene.rootNode.childNodes
-                scene.rootNode.enumerateChildNodes { (node, _) in
+                let node = self.scene.rootNode.childNodes
+                self.scene.rootNode.enumerateChildNodes { (node, _) in
                     if node.name == "note" {
                         // If a node exceeds the limit clickable, it's a -1 point
                         if node.position.z > 0 {
@@ -105,7 +108,7 @@ class GameGuitarManager {
     
     
     // This func checks if a tap is good or not
-    func checkPoint(column: Int) {
+    func checkPoint(column: Int) -> Bool {
         var pointFlag = false
         
         // Prendo tutti i nodi presenti nella scena, controllo se stanno nella colonna specificata e restituisco true se stanno sul pulsante o no
@@ -127,6 +130,8 @@ class GameGuitarManager {
         if !pointFlag {
             self.changePoints(false)
         }
+        
+        return pointFlag
     }
     
     
@@ -156,29 +161,6 @@ class GameGuitarManager {
         
         DispatchQueue.main.async {
             particleNode.runAction(SCNAction.sequence([wait, remove]))
-        }
-    }
-    
-    func fire() {
-        let particleNode1 = SCNNode()
-        let particleNode2 = SCNNode()
-        
-        particleNode1.addParticleSystem(fireEffect!)
-        particleNode2.addParticleSystem(fireEffect!)
-        particleNode1.position = SCNVector3(-3.5, 0, -3)
-        particleNode1.eulerAngles = SCNVector3(0, 0, -0.2)
-        particleNode2.position = SCNVector3(3.5, 0, -3)
-        particleNode2.eulerAngles = SCNVector3(0, 0, 0.2)
-        
-        self.scene.rootNode.addChildNode(particleNode1)
-        self.scene.rootNode.addChildNode(particleNode2)
-        
-        let wait = SCNAction.wait(duration: 3)
-        let remove = SCNAction.removeFromParentNode()
-        
-        DispatchQueue.main.async {
-            particleNode1.runAction(SCNAction.sequence([wait, remove]))
-            particleNode2.runAction(SCNAction.sequence([wait, remove]))
         }
     }
     

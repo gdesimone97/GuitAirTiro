@@ -306,7 +306,7 @@ class SoundEffect {
     
     func wahEffect(guitar: Int) {
         DispatchQueue(label: "wahEffect").async {
-            self.wah[guitar].wah = 100
+            self.wah[guitar].wah = 1
             sleep(1)
             self.wah[guitar].wah = 0
         }

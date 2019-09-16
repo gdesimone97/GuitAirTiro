@@ -44,7 +44,6 @@ class MainViewController: UIViewController {
     var planeNode: SCNNode!
     var flagPanelConnection = false
     var row = 0
-    var chords: [String]?
     var pointsRecord: Int! = 0
     
     override func viewDidLoad() {
@@ -66,8 +65,6 @@ class MainViewController: UIViewController {
         self.textManager = TextManager(scene: gameView.scene!)
         soundEffect = SoundEffect()
         
-        self.addGestures()
-        
         peerListQueue.async {
             while true {
                 self.peerListMain()
@@ -75,7 +72,12 @@ class MainViewController: UIViewController {
             }
         }
         
-        
+        DispatchQueue(label: "gesture").async {
+            sleep(5)
+            DispatchQueue.main.async {
+                self.addGestures()
+            }
+        }
         
     }
     
@@ -290,9 +292,6 @@ class MainViewController: UIViewController {
             }
             GameViewController.songRecord = pointsRecord
             GameViewController.dictionary = self.dictionary
-            if self.chords != nil {
-                GameViewController.chords = self.chords!
-            }
             
             
         default:
@@ -389,7 +388,7 @@ extension MainViewController: SessionManagerDelegate {
     }
     
     func mexReceived(_ manager: SessionManager, didMessageReceived: Array<String>) {
-        self.chords = didMessageReceived
+        
     }
     
     func mexReceived(_ manager: SessionManager, didMessageReceived: SignalCode) {

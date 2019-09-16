@@ -59,7 +59,7 @@ class PointerManager {
         }
         
         DispatchQueue.main.async {
-            self.pointer.runAction(SCNAction.move(by: SCNVector3(x: 0, y: 0, z: (Up ? -Float(self.movement) : Float(self.movement))), duration: 0))
+            self.pointer.runAction(SCNAction.move(by: SCNVector3(x: 0, y: 0, z: (Up ? -Float(self.movement) : Float(self.movement))), duration: 0.5))
             self.modifyPlanes()
         }
         

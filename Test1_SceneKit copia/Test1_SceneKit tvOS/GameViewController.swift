@@ -72,10 +72,9 @@ class GameViewController: UIViewController {
     var playing: Bool = false
     var points = 0
     var multiplier = 1
-    var specialMultiplierNumber = 1
     var consecutivePoints: Int = 0
     
-    var chords: [String]!
+    var chords: [String] { return song.chords }
     
     var boxStartNode: SCNNode?
     var pointText: SCNNode?
@@ -146,6 +145,9 @@ class GameViewController: UIViewController {
             // Called 2 times to unlock all the 2 threads waiting
             self.semaphorePlay.signal()
             self.semaphorePlay.signal()
+            
+            sleep(3)
+            self.gameGuitarManager.startScan()
         }
         
         
@@ -183,7 +185,6 @@ class GameViewController: UIViewController {
                     self.textManager.addGameNotification(str: "You did \(self.points) points!", color: UIColor.white, duration: 3, animation: false)
                 }
                 
-                self.gameGuitarManager.fire()
                 sleep(4)
                 DispatchQueue.main.async {
                     self.dismiss(animated: false, completion: nil)
@@ -194,15 +195,14 @@ class GameViewController: UIViewController {
         // Setto il motionDelegate del controller
         motionDelegate = self
         
-        pointerManager = PointerManager(progressBar: progressBarNode!, recordBar: recordBarNode!, record: songRecord, recordBox: recordPlaneNode!, pointer: pointerNode!, green: greenBoxNode!, yellow: yellowBoxNode!, red: redBoxNode!, function: failed)
-        specialMultiplier = SpecialMultiplier(node: levelNode!)
+        pointerManager = PointerManager(progressBar: progressBarNode!, recordBar: recordBarNode!, record: 250, recordBox: recordPlaneNode!, pointer: pointerNode!, green: greenBoxNode!, yellow: yellowBoxNode!, red: redBoxNode!, function: failed)
+        specialMultiplier = SpecialMultiplier(scene: gameView.scene!, node: levelNode!, toCall: specialMultiplayerFunc(double:))
     }
     
     
     @objc func handleTap(_ gestureRecognizer: UIGestureRecognizer) {
         if playing {
-//            gameGuitarManager.fire()
-            specialMultiplier.fill()
+            specialMultiplier.empty()
         }
         
         if !playing {
@@ -331,13 +331,17 @@ class GameViewController: UIViewController {
         }
         
         if point {
-            self.points += multiplier
+            self.points = self.points + multiplier
         }
         
         pointerManager.modify(Up: point, actualPoints: self.points)
         
         if point {
             consecutivePoints += 1
+            
+            if consecutivePoints%10 == 0 {
+                specialMultiplier.fill()
+            }
         }
         else {
             consecutivePoints = 0
@@ -352,7 +356,7 @@ class GameViewController: UIViewController {
             DispatchQueue(label: "points").async {
                 self.consecutivePlaneNode?.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "Art.scnassets/Images/Scritta10")
                 self.consecutivePlaneNode?.opacity = 1
-                self.gameGuitarManager.fire()
+                
                 sleep(2)
                 self.consecutivePlaneNode?.runAction(SCNAction.fadeOut(duration: 0.5))
             }
@@ -361,7 +365,7 @@ class GameViewController: UIViewController {
             DispatchQueue(label: "points").async {
                 self.consecutivePlaneNode?.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "Art.scnassets/Images/Scritta20")
                 self.consecutivePlaneNode?.opacity = 1
-                self.gameGuitarManager.fire()
+                
                 sleep(2)
                 self.consecutivePlaneNode?.runAction(SCNAction.fadeOut(duration: 0.5))
             }
@@ -370,7 +374,7 @@ class GameViewController: UIViewController {
             DispatchQueue(label: "points").async {
                 self.consecutivePlaneNode?.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "Art.scnassets/Images/Scritta30")
                 self.consecutivePlaneNode?.opacity = 1
-                self.gameGuitarManager.fire()
+                
                 sleep(2)
                 self.consecutivePlaneNode?.runAction(SCNAction.fadeOut(duration: 0.5))
             }
@@ -378,7 +382,7 @@ class GameViewController: UIViewController {
             DispatchQueue(label: "points").async {
                 self.consecutivePlaneNode?.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "Art.scnassets/Images/Scritta40")
                 self.consecutivePlaneNode?.opacity = 1
-                self.gameGuitarManager.fire()
+                
                 sleep(2)
                 self.consecutivePlaneNode?.runAction(SCNAction.fadeOut(duration: 0.5))
             }
@@ -403,6 +407,14 @@ class GameViewController: UIViewController {
         }
     }
     
+    func specialMultiplayerFunc(double: Bool) {
+        if double {
+            multiplier *= 2
+        }
+        else {
+            multiplier /= 2
+        }
+    }
     
     func sendSignalWhenClosing() {
         if let device = session.showConnectedDevices() {
@@ -455,25 +467,6 @@ extension GameViewController: SessionManagerDelegate {
             case .closeGame: // Stop the game session
                 self.dismiss(animated: false, completion: nil)
             
-            case .signal:
-                if self.button1Pressed {
-                    self.play(col: 1)
-                    self.gameGuitarManager.checkPoint(column: 1)
-                }
-                if self.button2Pressed {
-                    self.play(col: 2)
-                    self.gameGuitarManager.checkPoint(column: 2)
-                }
-                if self.button3Pressed {
-                    self.play(col: 3)
-                    self.gameGuitarManager.checkPoint(column: 3)
-                }
-                if self.button4Pressed {
-                    self.play(col: 4)
-                    self.gameGuitarManager.checkPoint(column: 4)
-                }
-                
-
             case .key1Pressed:
                 self.button1.position.y = 0
                 self.button1Pressed = true
@@ -540,23 +533,27 @@ extension GameViewController: ReactToMotionEvents {
             
             if button1Pressed {
                 play(col: 1)
-                self.gameGuitarManager.checkPoint(column: 1)
-                goodNote = true
+                if self.gameGuitarManager.checkPoint(column: 1) {
+                    goodNote = true
+                }
             }
             if button2Pressed {
                 play(col: 2)
-                self.gameGuitarManager.checkPoint(column: 2)
-                goodNote = true
+                if self.gameGuitarManager.checkPoint(column: 2) {
+                    goodNote = true
+                }
             }
             if button3Pressed {
                 play(col: 3)
-                self.gameGuitarManager.checkPoint(column: 3)
-                goodNote = true
+                if self.gameGuitarManager.checkPoint(column: 3) {
+                    goodNote = true
+                }
             }
             if button4Pressed {
                 play(col: 4)
-                self.gameGuitarManager.checkPoint(column: 4)
-                goodNote = true
+                if self.gameGuitarManager.checkPoint(column: 4) {
+                    goodNote = true
+                }
             }
             
             if !goodNote {
