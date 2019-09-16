@@ -14,9 +14,9 @@ struct GuitarType {
     var y: Float?
 }
 
-enum GuitarsEnum {
-    case acoustic
-    case electric
+enum GuitarsEnum: Int {
+    case acoustic = 0
+    case electric = 1
 }
 
 class Guitars {

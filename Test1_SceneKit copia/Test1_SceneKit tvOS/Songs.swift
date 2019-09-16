@@ -22,7 +22,8 @@ class Songs: NSObject, NSCoding {
         aCoder.encode(base, forKey: "base")
         aCoder.encode(notes, forKey: "notes")
         aCoder.encode(chords, forKey: "chords")
-        aCoder.encode(guitar, forKey: "guitar")
+        let guit = String(self.guitar.rawValue)
+        aCoder.encode(guit, forKey: "guitar")
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -31,7 +32,9 @@ class Songs: NSObject, NSCoding {
         self.base = aDecoder.decodeObject(forKey: "base") as? String
         self.notes = aDecoder.decodeObject(forKey: "notes") as! String
         self.chords = aDecoder.decodeObject(forKey: "chords") as! [String]
-        self.guitar = aDecoder.decodeObject(forKey: "guitar") as! GuitarsEnum
+        let guit = aDecoder.decodeObject(forKey: "guitar") as! String
+        let guitInt = Int(guit)
+        self.guitar = GuitarsEnum.init(rawValue: guitInt!)
     }
 
     var title: String!

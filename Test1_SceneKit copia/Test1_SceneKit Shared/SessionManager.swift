@@ -100,7 +100,7 @@ class SessionManager: NSObject {
             }
         }
         catch _ {
-            print("errore")
+            print("errore codifica")
         }
     }
     
