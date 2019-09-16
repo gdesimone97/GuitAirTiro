@@ -25,6 +25,7 @@
 		087B1E5422F87A2700BDC2C1 /* classic_guitar.png in Resources */ = {isa = PBXBuildFile; fileRef = 087B1E5222F87A2700BDC2C1 /* classic_guitar.png */; };
 		087B1E5522F87A2700BDC2C1 /* elettric_guitar.png in Resources */ = {isa = PBXBuildFile; fileRef = 087B1E5322F87A2700BDC2C1 /* elettric_guitar.png */; };
 		087FE91B232FD57400C847B0 /* SongsChordsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087FE91A232FD57400C847B0 /* SongsChordsNavigationController.swift */; };
+		087FE920232FE41C00C847B0 /* SongsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087FE91F232FE41C00C847B0 /* SongsTableViewController.swift */; };
 		0887361022F444DC00472B14 /* guitar-player.png in Resources */ = {isa = PBXBuildFile; fileRef = 0887360F22F444DC00472B14 /* guitar-player.png */; };
 		0887361422F4498400472B14 /* account@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0887361322F4498400472B14 /* account@2x.png */; };
 		088BAC3622F9720800784692 /* DevicesSettingsPaired.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BAC3522F9720800784692 /* DevicesSettingsPaired.swift */; };
@@ -189,6 +190,7 @@
 		087B1E5222F87A2700BDC2C1 /* classic_guitar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = classic_guitar.png; sourceTree = "<group>"; };
 		087B1E5322F87A2700BDC2C1 /* elettric_guitar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = elettric_guitar.png; sourceTree = "<group>"; };
 		087FE91A232FD57400C847B0 /* SongsChordsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsChordsNavigationController.swift; sourceTree = "<group>"; };
+		087FE91F232FE41C00C847B0 /* SongsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsTableViewController.swift; sourceTree = "<group>"; };
 		0887360C22F43F1B00472B14 /* Test1_SceneKit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Test1_SceneKit.entitlements; sourceTree = "<group>"; };
 		0887360F22F444DC00472B14 /* guitar-player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guitar-player.png"; sourceTree = "<group>"; };
 		0887361322F4498400472B14 /* account@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "account@2x.png"; sourceTree = "<group>"; };
@@ -470,6 +472,7 @@
 				F2B4E81F230D3ED0009F6C36 /* Leaderboard View Controller.swift */,
 				0842CF9F23152B1B00B81830 /* Handler_Profile.swift */,
 				087FE91A232FD57400C847B0 /* SongsChordsNavigationController.swift */,
+				087FE91F232FE41C00C847B0 /* SongsTableViewController.swift */,
 			);
 			path = "Test1_SceneKit iOS";
 			sourceTree = "<group>";
@@ -876,6 +879,7 @@
 				087B1E5122F878DE00BDC2C1 /* GuitarSelectedViewController.swift in Sources */,
 				77DFAD5322E84C56006DCBEE /* MainController.swift in Sources */,
 				0898EC2A22F05146007C32DD /* NotationTableViewCell.swift in Sources */,
+				087FE920232FE41C00C847B0 /* SongsTableViewController.swift in Sources */,
 				0875E9F5230D8792009964B1 /* Stat+CoreDataProperties.swift in Sources */,
 				F2AB38AB230FF52700833589 /* Matches ViewController.swift in Sources */,
 				12030DD62316C6AB0054871A /* Games+CoreDataProperties.swift in Sources */,

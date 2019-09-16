@@ -1091,6 +1091,34 @@
             </objects>
             <point key="canvasLocation" x="1681" y="-340"/>
         </scene>
+        <!--Songs Table View Controller-->
+        <scene sceneID="PeC-U0-NNl">
+            <objects>
+                <tableViewController id="WyE-u6-CzV" customClass="SongsTableViewController" customModule="Test1_SceneKit" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="RJ5-Pu-LXe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ftn-wb-yez">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ftn-wb-yez" id="MJH-oh-xLp">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="WyE-u6-CzV" id="bEx-LR-vlP"/>
+                            <outlet property="delegate" destination="WyE-u6-CzV" id="j0p-Nw-zcE"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ohT-MQ-p3C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2034" y="-1940"/>
+        </scene>
         <!--Chords Picker View Controller-->
         <scene sceneID="gjc-bN-99N">
             <objects>
@@ -1486,21 +1514,6 @@
             </objects>
             <point key="canvasLocation" x="-630.43478260869574" y="2339.7321428571427"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="uXm-BQ-BDs">
-            <objects>
-                <viewController id="xO6-Ix-7Xe" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="pcd-FK-8Dk">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="DKb-LE-Q68"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lYL-1s-qx7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2368" y="-1896"/>
-        </scene>
         <!--Chords-->
         <scene sceneID="pOC-du-tgl">
             <objects>
@@ -1517,7 +1530,7 @@
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="bKR-OX-dVT" kind="show" identifier="chords_segue" id="Tdr-BR-uHA"/>
-                        <segue destination="xO6-Ix-7Xe" kind="show" identifier="songs_segue" id="ler-09-4Sq"/>
+                        <segue destination="WyE-u6-CzV" kind="show" identifier="songs_segue" id="wyO-GJ-hBk"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5YR-gf-WDI" userLabel="First Responder" sceneMemberID="firstResponder"/>
