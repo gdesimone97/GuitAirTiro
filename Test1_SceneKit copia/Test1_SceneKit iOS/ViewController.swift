@@ -110,7 +110,6 @@ class ViewController: UIViewController{
         if tvSettings == TvSettings.withOutWatch.rawValue {
             if let device = sessionTv.showConnectedDevices() {
                 sessionTv.sendSignal(device[0], song: selectSong(userDefault.integer(forKey: SONG_SELECTED)))
-                sessionTv.sendSignal(device[0], message: SignalCode.OpenGameWithOutWatch)
                 indicator.center = self.view.center
                 indicator.style = .whiteLarge
                 indicator.hidesWhenStopped = true
