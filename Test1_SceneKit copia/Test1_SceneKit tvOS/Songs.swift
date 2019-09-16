@@ -39,3 +39,8 @@ struct Songs {
     static var songs: [Int : Songs] { return [1: Songs.KnockinOnHeavensDoor, 2: Songs.LaCanzoneDelSole, 3: Songs.PeppeGay] }
 }
 
+extension Songs: Equatable {
+    static func ==(lhs: Songs, rhs: Songs) -> Bool {
+        return lhs.title == rhs.title
+    }
+}

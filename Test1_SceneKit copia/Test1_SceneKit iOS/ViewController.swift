@@ -50,6 +50,11 @@ class ViewController: UIViewController{
         
         sessionTv.delegate = self
         
+        
+        if userDefault.integer(forKey: SONG_SELECTED) == nil {
+            userDefault.set(SongEnum.canzonedelsole.rawValue, forKey: SONG_SELECTED)
+        }
+        
         if UserDefaults.getGuitar(forKey: GUITAR) == nil {
             UserDefaults.setGuitar(guitar: TypeOfGuitar.classic, forKey: GUITAR)
         }

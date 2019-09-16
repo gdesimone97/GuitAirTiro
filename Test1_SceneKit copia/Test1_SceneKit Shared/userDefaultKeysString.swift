@@ -33,6 +33,12 @@ enum TypeOfGuitar: Int {
     case classic = 2
 }
 
+enum SongEnum: Int {
+    case canzonedelsole = 1
+    case knockinOnHeavensDoor = 0
+    case peppoegay = 2
+}
+
 func selectGuitar(_ guitar: TypeOfGuitar) -> String {
     switch guitar {
     case .classic:
@@ -66,3 +72,4 @@ extension UserDefaults {
         return TypeOfGuitar.init(rawValue: guitInt)!
     }
 }
+

@@ -10,7 +10,7 @@ import UIKit
 
 class SongsTableViewController: UITableViewController {
     
-    let dic = Songs.
+    let dic = Songs.songs
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,19 +31,62 @@ class SongsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return
+        return dic.capacity
     }
 
-    /*
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "songsIdentifier", for: indexPath)
+        let key = indexPath.row + 1
+        cell.textLabel?.text = dic[key]?.title
+        cell.textLabel?.textColor = .white
         return cell
     }
-    */
-
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        var song: Songs!
+        let value = userDefault.integer(forKey: SONG_SELECTED)
+        switch value {
+        case SongEnum.canzonedelsole.rawValue:
+            song = Songs.LaCanzoneDelSole
+        case SongEnum.knockinOnHeavensDoor.rawValue:
+            song = Songs.KnockinOnHeavensDoor
+        case SongEnum.peppoegay.rawValue:
+            song = Songs.PeppeGay
+        default:
+            break
+        }
+        let dic = Songs.songs
+        var key: Int!
+        for k in dic.keys {
+            if dic[k] == song {
+                key = k
+                break
+            }
+        }
+        if (indexPath.row + 1) == key {
+            cell.accessoryType = .checkmark
+        }
+        else {
+            cell.accessoryType = .none
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let temp = indexPath.row
+        userDefault.set(indexPath.row, forKey: SONG_SELECTED)
+        let cell = tableView.cellForRow(at: indexPath)
+        let cells = tableView.visibleCells
+        for c in cells {
+            if c != cell {
+                c.accessoryType = .none
+            }
+            else {
+                c.accessoryType = .checkmark
+            }
+        }
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
