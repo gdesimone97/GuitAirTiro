@@ -19,6 +19,7 @@ let IMAGE_DEFAULT = "image_default"
 let JWT_STRING = "jwt"
 let TOKEN = "token"
 let UPLOAD = "upload"
+let SONG_SELECTED = "songs_selected"
 
 let userDefault = UserDefaults.standard
 
