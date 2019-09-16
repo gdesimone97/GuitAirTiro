@@ -15,13 +15,28 @@ import Foundation
 //    case PeppeGay = SongsType(author: "Gennaro", notes: "3:2:500000;1:500000;4:500000;1:3:500000;")
 //}
 
-struct Songs {
+class Songs: NSObject, NSCoding {
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(title, forKey: "title")
+        aCoder.encode(author, forKey: "author")
+        aCoder.encode(base, forKey: "base")
+        aCoder.encode(notes, forKey: "notes")
+        aCoder.encode(chords, forKey: "chords")
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        self.title = aDecoder.decodeObject(forKey: "title") as! String
+        self.author = aDecoder.decodeObject(forKey: "author") as! String
+        self.base = aDecoder.decodeObject(forKey: "base") as? String
+        self.notes = aDecoder.decodeObject(forKey: "notes") as! String
+        self.chords = aDecoder.decodeObject(forKey: "chords") as! [String]
+    }
+    
     var title: String!
     var author: String!
     var base: String?
     var notes: String!
     var chords: [String]!
-    
     init(title: String, author: String, base: String?, chords: [String], notes: String) {
         self.title = title
         self.author = author
@@ -37,10 +52,10 @@ struct Songs {
     static var KnockinOnHeavensDoor: Songs { return Songs(title: "Knockin' on Heavens Door", author: "BobDylan.jpg", base: "KnockinOnHeavensDoor.mp3", chords: ["G.wav", "D.wav", "Am.wav", "C.wav"], notes: "0:1725350;1:837404;1:837404;2:837404;2:837404;3:837404;3:837404;3:837404;3:837404;1:837404;1:837404;2:837404;2:837404;4:837404;4:837404;4:837404;4:837404;1:837404;1:837404;2:837404;2:837404;3:837404;3:837404;3:837404;3:837404;1:837404;1:837404;2:837404;2:837404;4:837404;4:837404;4:837404;4:837404;1:837404;1:837404;2:837404;2:837404;3:837404;3:837404;3:837404;3:837404;1:837404;1:837404;2:837404;2:837404;4:837404;4:837404;4:837404;4:837404;1:837404;1:837404;2:837404;2:837404;3:837404;3:837404;3:837404;3:837404;1:837404;1:837404;2:837404;2:837404;4:837404;4:837404;4:837404;4:837404;1:837404;1:837404;2:837404;2:837404;3:837404;3:837404;3:837404;3:837404;1:837404;1:837404;2:837404;2:837404;4:837404;4:837404;4:837404;4:837404;1:837404;1:837404;2:837404;2:837404;3:837404;3:837404;3:837404;3:837404;1:837404;1:837404;2:837404;2:837404;4:837404;4:837404;4:837404;4:837404;")}
     
     static var songs: [Int : Songs] { return [1: Songs.KnockinOnHeavensDoor, 2: Songs.LaCanzoneDelSole, 3: Songs.PeppeGay] }
-}
-
-extension Songs: Equatable {
+    
     static func ==(lhs: Songs, rhs: Songs) -> Bool {
         return lhs.title == rhs.title
     }
+    
 }
+
