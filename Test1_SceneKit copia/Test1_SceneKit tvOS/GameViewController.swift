@@ -93,8 +93,8 @@ class GameViewController: UIViewController {
     var levelNode: SCNNode?
     
     
-    var song: Songs = Songs.KnockinOnHeavensDoor // Da settare dal telefono
-    var songRecord: Int! // DA SETTARE DAL TELEFONOOOOO
+    var song: Songs! // Settata dalla MainView
+    var songRecord: Int! // Settata dalla MainView
     
     // This is the thread that shows nodes on the guitar
     let noteQueue = DispatchQueue(label: "noteQueue", qos: .userInteractive)

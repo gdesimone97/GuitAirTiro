@@ -44,7 +44,8 @@ class MainViewController: UIViewController {
     var planeNode: SCNNode!
     var flagPanelConnection = false
     var row = 0
-    var pointsRecord: Int! = 0
+    var pointsRecord: Int = 0
+    var choosenSong: Songs!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -284,12 +285,13 @@ class MainViewController: UIViewController {
         case "GameSegue":
             let GameViewController = segue.destination as! GameViewController
             
-            // Prima della segue che mi manda al gioco, preparo la funzione che verrà chiamata quando GameViewController verrà dismessa
+            // Prima della segue che mi manda al gioco, preparo le proprietà e la funzione che verrà chiamata quando GameViewController verrà dismessa
             GameViewController.callbackClosure = {
                 self.session.delegate = self
                 self.checkConnection()
                 self.soundEffect = SoundEffect()
             }
+            GameViewController.song = choosenSong
             GameViewController.songRecord = pointsRecord
             GameViewController.dictionary = self.dictionary
             
@@ -340,7 +342,11 @@ class MainViewController: UIViewController {
 
 extension MainViewController: SessionManagerDelegate {
     func mexReceived(_ manager: SessionManager, didMessageReceived: Songs) {
-        
+        choosenSong = didMessageReceived
+        DispatchQueue.main.async {
+            self.soundEffect.stopSongs()
+            self.performSegue(withIdentifier: "GameSegue", sender: nil)
+        }
     }
     
     func mexReceived(_ manager: SessionManager, didMessageReceived: Int) {
@@ -398,13 +404,6 @@ extension MainViewController: SessionManagerDelegate {
             self.guitarsManager.changeGuitar(newGuitar: .acoustic)
         case .showElectricGuitar:
             self.guitarsManager.changeGuitar(newGuitar: .electric)
-            
-        case .OpenGameWithOutWatch:
-            DispatchQueue.main.async {
-                self.soundEffect.stopSongs()
-                self.performSegue(withIdentifier: "GameSegue", sender: nil)
-            }
-            
             
         // Add more cases here
         default:
